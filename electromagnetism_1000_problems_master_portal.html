@@ -3,88 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>電磁気学1 学習ポータル（完全ホワイト・特大カード版）</title>
+    <title>電磁気学1 全1000問＋全12回PDF完全問題 マスターポータル</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background: #ffffff !important;
-            color: #111827 !important;
-            line-height: 2.0 !important;
-            font-size: 18px !important;
-            padding-bottom: 100px;
+            background: #ffffff;
+            color: #111827;
+            padding-bottom: 80px;
+            font-size: 17px;
+            line-height: 1.8;
         }
-
         .header {
             background: #ffffff;
             border-bottom: 3px solid #e5e7eb;
-            padding: 60px 24px 50px;
+            padding: 50px 24px;
             text-align: center;
-            margin-bottom: 40px;
         }
         .header h1 {
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 900;
             color: #111827;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .header p {
             color: #4b5563;
-            font-size: 18px;
+            font-size: 16px;
         }
-
         .container {
-            max-width: 960px;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: 40px auto 0;
             padding: 0 24px;
         }
-
-        .featured-card {
-            background: #ffffff;
-            border: 3px solid #2563eb;
-            border-radius: 24px;
-            padding: 44px;
-            margin-bottom: 50px;
-            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.08);
+        .main-card {
+            background: #eff6ff;
+            border: 3px solid #bfdbfe;
+            border-radius: 20px;
+            padding: 36px 40px;
+            margin-bottom: 40px;
         }
-        .featured-badge {
+        .main-card-badge {
+            display: inline-block;
             background: #2563eb;
             color: #ffffff;
-            font-size: 15px;
-            font-weight: 900;
-            padding: 6px 18px;
-            border-radius: 30px;
-            display: inline-block;
-            margin-bottom: 14px;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 20px;
+            margin-bottom: 16px;
         }
-        .featured-title {
+        .main-card h2 {
             font-size: 26px;
             font-weight: 900;
-            color: #111827;
+            color: #1e40af;
             margin-bottom: 14px;
         }
-        .featured-desc {
-            font-size: 18px;
-            color: #374151;
+        .main-card p {
+            font-size: 17px;
+            color: #1e3a8a;
             margin-bottom: 24px;
-            line-height: 2.0;
         }
-        .btn-primary {
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-main {
             display: inline-block;
             background: #2563eb;
-            color: #ffffff;
+            color: #ffffff !important;
             text-decoration: none;
             padding: 16px 32px;
             border-radius: 14px;
-            font-weight: 800;
+            font-weight: 900;
+            font-size: 18px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            transition: all 0.2s;
+            cursor: pointer;
+            pointer-events: auto !important;
+        }
+        .btn-main:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        .btn-sub {
+            display: inline-block;
+            background: #ffffff;
+            color: #2563eb !important;
+            border: 2.5px solid #2563eb;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: 900;
             font-size: 18px;
             transition: all 0.2s;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            cursor: pointer;
+            pointer-events: auto !important;
         }
-        .btn-primary:hover {
-            background: #1d4ed8;
+        .btn-sub:hover {
+            background: #f0f7ff;
             transform: translateY(-2px);
         }
 
@@ -92,37 +111,37 @@
             font-size: 22px;
             font-weight: 900;
             color: #111827;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
-        .vol-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
         }
-        .vol-item {
+        .grid-item {
+            display: block;
             background: #ffffff;
             border: 2px solid #e5e7eb;
-            border-radius: 18px;
-            padding: 28px;
+            border-radius: 16px;
+            padding: 24px;
             text-decoration: none;
             color: inherit;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
-        .vol-item:hover {
+        .grid-item:hover {
             border-color: #2563eb;
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
-        .vol-num {
-            font-size: 14px;
-            font-weight: 900;
+        .vol-badge {
             color: #2563eb;
-            margin-bottom: 8px;
+            font-weight: 900;
+            font-size: 14px;
+            margin-bottom: 6px;
         }
-        .vol-name {
-            font-size: 18px;
+        .vol-title {
             font-weight: 800;
+            font-size: 17px;
             color: #111827;
         }
     </style>
@@ -130,66 +149,66 @@
 <body>
 
     <header class="header">
-        <h1>電磁気学1 学習ポータル</h1>
-        <p>「電磁気学まとめ.pdf」全演習問題・個別解答カード集</p>
+        <h1>電磁気学1 完全マスターポータル</h1>
+        <p>「電磁気学まとめ.pdf」（全12回）＋ 全10巻（1,000問）プリント</p>
     </header>
 
     <div class="container">
 
-        <div class="featured-card">
-            <span class="featured-badge">★ 推奨・全問網羅 ★</span>
-            <h2 class="featured-title">📖 「電磁気学まとめ.pdf」全12回 完全収録演習問題カード集</h2>
-            <p class="featured-desc">
-                講義・演習・レポート課題の全12回（全111枚の個別カード）を原文そのまま完全網羅。純白背景・19px特大フォント・圧倒的な広々余白で最も見やすいWeb問題集です。
-            </p>
-            <a href="electromagnetism_pdf_complete_all_problems_site.html" class="btn-primary">今すぐ全111枚の特大カード集を開く →</a>
+        <div class="main-card">
+            <span class="main-card-badge">★ メイン教材 ★</span>
+            <h2>📖 「電磁気学まとめ.pdf」全12回 完全問題＆解答解説集</h2>
+            <p>全84問（120以上の小問題）を完全収録。明確な最終答え＋途中計算式付きで最も学習しやすいWeb教材です。</p>
+            <div class="btn-group">
+                <a href="electromagnetism_pdf_complete_all_problems_site.html" class="btn-main">ローカル版で開く →</a>
+                <a href="https://nanten2010-byte.github.io/electromagnetism-study/electromagnetism_pdf_complete_all_problems_site.html" target="_blank" class="btn-sub">🌐 GitHub Pages (オンライン版) で開く ↗</a>
+            </div>
         </div>
 
-        <h2 class="section-title">📚 各巻プリント集 (Vol.1 〜 Vol.10)</h2>
-        <div class="vol-grid">
-            <a href="vol_01_prints_001_100.html" class="vol-item">
-                <div class="vol-num">Vol. 1</div>
-                <div class="vol-name">第1巻：ベクトル解析と微分演算子</div>
+        <h2 class="section-title">📚 各巻 プリント集 (Vol.1 〜 Vol.10)</h2>
+        <div class="grid">
+            <a href="vol_01_prints_001_100.html" class="grid-item">
+                <div class="vol-badge">Vol.01</div>
+                <div class="vol-title">第1巻：ベクトル解析と微分演算子 (No.001〜100)</div>
             </a>
-            <a href="vol_02_prints_101_200.html" class="vol-item">
-                <div class="vol-num">Vol. 2</div>
-                <div class="vol-name">第2巻：曲線・線積分と仕事</div>
+            <a href="vol_02_prints_101_200.html" class="grid-item">
+                <div class="vol-badge">Vol.02</div>
+                <div class="vol-title">第2巻：クーロンの法則と電場 (No.101〜200)</div>
             </a>
-            <a href="vol_03_prints_201_300.html" class="vol-item">
-                <div class="vol-num">Vol. 3</div>
-                <div class="vol-name">第3巻：曲面・面積分とフラックス</div>
+            <a href="vol_03_prints_201_300.html" class="grid-item">
+                <div class="vol-badge">Vol.03</div>
+                <div class="vol-title">第3巻：ガウスの法則と電位 (No.201〜300)</div>
             </a>
-            <a href="vol_04_prints_301_400.html" class="vol-item">
-                <div class="vol-num">Vol. 4</div>
-                <div class="vol-name">第4巻：ベクトル解析の三大定理</div>
+            <a href="vol_04_prints_301_400.html" class="grid-item">
+                <div class="vol-badge">Vol.04</div>
+                <div class="vol-title">第4巻：導体と静電容量 (No.301〜400)</div>
             </a>
-            <a href="vol_05_prints_401_500.html" class="vol-item">
-                <div class="vol-num">Vol. 5</div>
-                <div class="vol-name">第5巻：クーロンの法則と電場</div>
+            <a href="vol_05_prints_401_500.html" class="grid-item">
+                <div class="vol-badge">Vol.05</div>
+                <div class="vol-title">第5巻：誘電体と分極 (No.401〜500)</div>
             </a>
-            <a href="vol_06_prints_501_600.html" class="vol-item">
-                <div class="vol-num">Vol. 6</div>
-                <div class="vol-name">第6巻：ガウスの法則と電場</div>
+            <a href="vol_06_prints_501_600.html" class="grid-item">
+                <div class="vol-badge">Vol.06</div>
+                <div class="vol-title">第6巻：定常電流と回路 (No.501〜600)</div>
             </a>
-            <a href="vol_07_prints_601_700.html" class="vol-item">
-                <div class="vol-num">Vol. 7</div>
-                <div class="vol-name">第7巻：静電ポテンシャルと電位</div>
+            <a href="vol_07_prints_601_700.html" class="grid-item">
+                <div class="vol-badge">Vol.07</div>
+                <div class="vol-title">第7巻：静磁場とビオ・サバールの法則 (No.601〜700)</div>
             </a>
-            <a href="vol_08_prints_801_800.html" class="vol-item">
-                <div class="vol-num">Vol. 8</div>
-                <div class="vol-name">第8巻：導体・鏡像法・エネルギー</div>
+            <a href="vol_08_prints_701_800.html" class="grid-item">
+                <div class="vol-badge">Vol.08</div>
+                <div class="vol-title">第8巻：アンペールの法則とベクトルポテンシャル (No.701〜800)</div>
             </a>
-            <a href="vol_09_prints_801_900.html" class="vol-item">
-                <div class="vol-num">Vol. 9</div>
-                <div class="vol-name">第9巻：オームの法則と電流</div>
+            <a href="vol_09_prints_801_900.html" class="grid-item">
+                <div class="vol-badge">Vol.09</div>
+                <div class="vol-title">第9巻：電磁誘導とインダクタンス (No.801〜900)</div>
             </a>
-            <a href="vol_10_prints_901_1000.html" class="vol-item">
-                <div class="vol-num">Vol. 10</div>
-                <div class="vol-name">第10巻：コンデンサーと誘電体</div>
+            <a href="vol_10_prints_901_1000.html" class="grid-item">
+                <div class="vol-badge">Vol.10</div>
+                <div class="vol-title">第10巻：マクスウェル方程式と電磁波 (No.901〜1000)</div>
             </a>
         </div>
 
     </div>
-
 </body>
 </html>

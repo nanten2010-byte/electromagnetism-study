@@ -103,6 +103,10 @@
             scrollbar-width: thin;
         }
         .filter-btn {
+            pointer-events: auto !important;
+            position: relative;
+            z-index: 10;
+            user-select: none;
             background: #ffffff;
             color: #374151;
             border: 2px solid #d1d5db;
@@ -201,6 +205,10 @@
         }
 
         .sol-toggle {
+            pointer-events: auto !important;
+            position: relative;
+            z-index: 10;
+            user-select: none;
             background: #f3f4f6;
             color: #111827;
             border: 2px solid #d1d5db;
@@ -326,7 +334,7 @@
         }
     }
 
-    function toggleSol(btn) {
+    window.toggleSol = function(btn) {
         const content = btn.nextElementSibling;
         const arrow = btn.querySelector('span:last-child');
         content.classList.toggle('active');
@@ -340,7 +348,7 @@
         }
     }
 
-    function filterSet(setNum, btn) {
+    window.filterSet = function(setNum, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
@@ -353,7 +361,7 @@
         });
     }
 
-    function filterCards() {
+    window.filterCards = function() {
         const query = document.getElementById('searchInput').value.toLowerCase();
         document.querySelectorAll('.card-item').forEach(card => {
             const text = card.getAttribute('data-search').toLowerCase();
