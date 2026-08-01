@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>「電磁気学まとめ.pdf」全84問 明確解答＆詳細解説付きカード集</title>
+    <title>「電磁気学まとめ.pdf」全演習問題・完全途中式付き解説集</title>
     <!-- MathJax 3 -->
     <script>
     MathJax = {
@@ -23,14 +23,13 @@
 
         body {
             font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
-            background: #ffffff;
-            color: #111827;
-            line-height: 2.1;
-            font-size: 18px;
-            padding-bottom: 120px;
+            background: #ffffff !important;
+            color: #111827 !important;
+            line-height: 2.1 !important;
+            font-size: 18px !important;
+            padding-bottom: 140px;
         }
 
-        /* Header */
         .header {
             background: #ffffff;
             border-bottom: 3px solid #e5e7eb;
@@ -62,14 +61,12 @@
             margin: 0 auto;
         }
 
-        /* Container */
         .container {
             max-width: 960px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Sticky Controls */
         .controls {
             position: sticky;
             top: 0;
@@ -128,24 +125,23 @@
             box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
         }
 
-        /* Cards List */
         .cards-list {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 46px;
         }
 
         .card-item {
             background: #ffffff;
             border: 3px solid #e5e7eb;
-            border-radius: 20px;
-            padding: 36px 40px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+            border-radius: 22px;
+            padding: 40px 44px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.03);
             transition: all 0.2s;
         }
         .card-item:hover {
             border-color: #3b82f6;
-            box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
 
         .card-top {
@@ -154,8 +150,8 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
+            margin-bottom: 22px;
+            padding-bottom: 18px;
             border-bottom: 2px solid #f3f4f6;
         }
         .card-badge {
@@ -173,50 +169,45 @@
         }
 
         .card-problem {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 500;
             color: #111827;
             margin-bottom: 24px;
-            line-height: 2.0;
+            line-height: 2.1;
             background: #f9fafb;
-            padding: 24px 30px;
-            border-radius: 14px;
+            padding: 26px 32px;
+            border-radius: 16px;
             border-left: 6px solid #2563eb;
         }
 
-        /* Ans Box - ALWAYS VISIBLE FINAL ANSWER */
         .ans-box {
             background: #f0fdf4;
-            border: 2px solid #bbf7d0;
+            border: 2.5px solid #bbf7d0;
             border-left: 6px solid #16a34a;
-            padding: 20px 24px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            padding: 22px 28px;
+            border-radius: 14px;
+            margin-bottom: 24px;
         }
         .ans-title {
             color: #15803d;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 900;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-bottom: 8px;
         }
         .ans-value {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 800;
             color: #166534;
         }
 
-        /* Accordion Solution */
         .sol-toggle {
             background: #f3f4f6;
             color: #111827;
             border: 2px solid #d1d5db;
             width: 100%;
-            padding: 14px 24px;
-            border-radius: 12px;
-            font-size: 16px;
+            padding: 16px 26px;
+            border-radius: 14px;
+            font-size: 17px;
             font-weight: 800;
             cursor: pointer;
             display: flex;
@@ -231,14 +222,14 @@
         .sol-content {
             display: none;
             background: #ffffff;
-            border: 2px solid #e5e7eb;
+            border: 3px solid #e5e7eb;
             border-left: 6px solid #2563eb;
-            margin-top: 18px;
-            padding: 28px 32px;
-            border-radius: 14px;
-            font-size: 17px;
+            margin-top: 20px;
+            padding: 32px 36px;
+            border-radius: 16px;
+            font-size: 18px;
             color: #1f2937;
-            line-height: 2.1;
+            line-height: 2.2;
         }
         .sol-content.active {
             display: block;
@@ -257,9 +248,9 @@
 <body>
 
     <header class="header">
-        <div class="header-badge">明確な【最終答え】＋【詳細導出プロセス】全84問収録</div>
-        <h1>「電磁気学まとめ.pdf」全84問 完全問題＆解答解説集</h1>
-        <p>全12回・全84問（全120小問）の演習・レポート課題を完全収録。<br>すべての問題に<b>【明確な最終答え】</b>を常時掲載し、詳細な途中計算・導出プロセスを展開できます。</p>
+        <div class="header-badge">完全な途中計算ステップ ＋ 厳密MathJax表示</div>
+        <h1>「電磁気学まとめ.pdf」全演習問題・完全途中式付き解説集</h1>
+        <p>全84問の演習・レポート課題を完全収録。<br>すべての問題に<b>【明確な最終答え】</b>と<b>【詳細な途中式・計算ステップ】</b>を完全に記載しています。</p>
     </header>
 
     <div class="container">
@@ -268,7 +259,7 @@
             <input type="text" id="searchInput" class="search-input" placeholder="🔍 キーワードで検索 (例: ガウスの法則, ベクトル解析, クーロン, コンデンサー, 鏡像法, ポアソン)..." oninput="filterCards()">
 
             <div class="filter-nav">
-                <button class="filter-btn active" onclick="filterSet('all', this)">全12回 すべて表示 (84問)</button>
+                <button class="filter-btn active" onclick="filterSet('all', this)">全12回 すべて表示</button>
                 <button class="filter-btn" onclick="filterSet(1, this)">第1回 ベクトル解析</button>
                 <button class="filter-btn" onclick="filterSet(2, this)">第2回 線積分・仕事</button>
                 <button class="filter-btn" onclick="filterSet(3, this)">第3回 面積分・フラックス</button>
@@ -289,851 +280,123 @@
         </div>
 
         <footer>
-            「電磁気学まとめ.pdf」全84問 完全問題＆明確解答集 | Powered by MathJax
+            「電磁気学まとめ.pdf」全演習問題 完全途中式解説集 | Powered by MathJax
         </footer>
     </div>
 
     <script>
-    const cardsData = [
+    const setsData = [
   {
-    "card_id": 1,
     "set_num": 1,
-    "set_title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
+    "title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
     "pdf_pages": "P.1 〜 P.8",
-    "title": "【第1回】問 1",
-    "problem": "次のスカラー関数 $f$ の勾配 $\\nabla f = \\text{grad } f$ を求めよ．<br><b>(1)</b> $f = e^x \\sin y$<br><b>(2)</b> $f = (x^2 + y^2 + z^2)^2$<br><b>(3)</b> $f = \\frac{1}{2} \\ln(x^2 + y^2)$",
-    "ans": "(1) $e^x \\sin y \\mathbf{i} + e^x \\cos y \\mathbf{j}$<br>(2) $4(x^2+y^2+z^2)(x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k})$<br>(3) $\\frac{x\\mathbf{i} + y\\mathbf{j}}{x^2+y^2}$",
-    "solution": "<b>(1)</b> $\\nabla f = (e^x \\sin y, e^x \\cos y, 0) = e^x \\sin y \\mathbf{i} + e^x \\cos y \\mathbf{j}$<br><b>(2)</b> $r^2 = x^2+y^2+z^2$ とおくと $f = r^4$。$\\nabla f = 4r^2 \\mathbf{r} = 4(x^2+y^2+z^2)(x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k})$<br><b>(3)</b> $\\nabla f = \\frac{x\\mathbf{i} + y\\mathbf{j}}{x^2+y^2}$"
+    "questions": [
+      {
+        "id": "Q1-01",
+        "q_num": "1",
+        "problem": "次のスカラー関数 $f$ の勾配 $\\nabla f = \\text{grad } f$ を求めよ．<br><b>(1)</b> $f = e^x \\sin y$<br><b>(2)</b> $f = (x^2 + y^2 + z^2)^2$<br><b>(3)</b> $f = \\frac{1}{2} \\ln(x^2 + y^2)$",
+        "ans": "(1) $e^x \\sin y \\mathbf{i} + e^x \\cos y \\mathbf{j}$<br>(2) $4(x^2+y^2+z^2)(x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k})$<br>(3) $\\frac{x\\mathbf{i} + y\\mathbf{j}}{x^2+y^2}$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n勾配の定義より $\\nabla f = \\frac{\\partial f}{\\partial x}\\mathbf{i} + \\frac{\\partial f}{\\partial y}\\mathbf{j} + \\frac{\\partial f}{\\partial z}\\mathbf{k}$ です。<br>\n・$\\frac{\\partial}{\\partial x}(e^x \\sin y) = e^x \\sin y$<br>\n・$\\frac{\\partial}{\\partial y}(e^x \\sin y) = e^x \\cos y$<br>\n・$\\frac{\\partial}{\\partial z}(e^x \\sin y) = 0$<br>\nしたがって、$\\nabla f = e^x \\sin y \\mathbf{i} + e^x \\cos y \\mathbf{j}$ となります。<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n$r^2 = x^2+y^2+z^2$ とおくと $f = r^4$ です。<br>\n偏微分を計算すると：<br>\n・$\\frac{\\partial f}{\\partial x} = 2(x^2+y^2+z^2) \\cdot 2x = 4x(x^2+y^2+z^2)$<br>\n・$\\frac{\\partial f}{\\partial y} = 4y(x^2+y^2+z^2)$<br>\n・$\\frac{\\partial f}{\\partial z} = 4z(x^2+y^2+z^2)$<br>\nこれらをベクトルとしてまとめると、$\\nabla f = 4(x^2+y^2+z^2)(x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k})$ となります。<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n合成関数の微分公式より：<br>\n・$\\frac{\\partial f}{\\partial x} = \\frac{1}{2} \\frac{2x}{x^2+y^2} = \\frac{x}{x^2+y^2}$<br>\n・$\\frac{\\partial f}{\\partial y} = \\frac{1}{2} \\frac{2y}{x^2+y^2} = \\frac{y}{x^2+y^2}$<br>\n・$\\frac{\\partial f}{\\partial z} = 0$<br>\nしたがって、$\\nabla f = \\frac{x\\mathbf{i} + y\\mathbf{j}}{x^2+y^2}$ となります。\n"
+      },
+      {
+        "id": "Q1-02",
+        "q_num": "2",
+        "problem": "次のベクトル関数 $\\mathbf{g}$ の発散 $\\nabla \\cdot \\mathbf{g} = \\text{div } \\mathbf{g}$ を求めよ．<br><b>(1)</b> $\\mathbf{g} = y^2 e^z \\mathbf{i} + x^2 z^2 \\mathbf{k}$<br><b>(2)</b> $\\mathbf{g} = x^2 \\mathbf{i} + y^2 \\mathbf{j} + z^2 \\mathbf{k}$<br><b>(3)</b> $\\mathbf{g} = e^{-xy} \\mathbf{i} + e^{-xz} \\mathbf{j} + e^{-zx} \\mathbf{k}$",
+        "ans": "(1) $2x^2 z$<br>(2) $2(x+y+z)$<br>(3) $-y e^{-xy} - x e^{-zx}$",
+        "solution": "\n発散の定義式は $\\nabla \\cdot \\mathbf{g} = \\frac{\\partial g_x}{\\partial x} + \\frac{\\partial g_y}{\\partial y} + \\frac{\\partial g_z}{\\partial z}$ です。<br><br>\n<b>(1) の詳細途中式:</b><br>\n・$\\frac{\\partial}{\\partial x}(y^2 e^z) = 0$<br>\n・$\\frac{\\partial}{\\partial y}(0) = 0$<br>\n・$\\frac{\\partial}{\\partial z}(x^2 z^2) = 2x^2 z$<br>\nよって、$\\nabla \\cdot \\mathbf{g} = 0 + 0 + 2x^2 z = 2x^2 z$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n・$\\frac{\\partial}{\\partial x}(x^2) = 2x$, $\\frac{\\partial}{\\partial y}(y^2) = 2y$, $\\frac{\\partial}{\\partial z}(z^2) = 2z$<br>\nよって、$\\nabla \\cdot \\mathbf{g} = 2x + 2y + 2z = 2(x+y+z)$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n・$\\frac{\\partial}{\\partial x}(e^{-xy}) = -y e^{-xy}$<br>\n・$\\frac{\\partial}{\\partial y}(e^{-xz}) = 0$<br>\n・$\\frac{\\partial}{\\partial z}(e^{-zx}) = -x e^{-zx}$<br>\nよって、$\\nabla \\cdot \\mathbf{g} = -y e^{-xy} - x e^{-zx}$\n"
+      },
+      {
+        "id": "Q1-03",
+        "q_num": "3",
+        "problem": "次式で表されるベクトル $\\mathbf{v}$ について $\\nabla \\times \\mathbf{v} = \\text{rot } \\mathbf{v}$ を求めよ．<br><b>(1)</b> $\\mathbf{v} = z \\mathbf{i} + x \\mathbf{j} + y \\mathbf{k}$<br><b>(2)</b> $\\mathbf{v} = x \\mathbf{i} + yz \\mathbf{j} - (x^2 + z^2) \\mathbf{k}$<br><b>(3)</b> $\\mathbf{v} = (x \\mathbf{i} + y \\mathbf{j} + z \\mathbf{k})(x^2 + y^2 + z^2)^{-3/2}$",
+        "ans": "(1) $\\mathbf{i} + \\mathbf{j} + \\mathbf{k}$<br>(2) $-y \\mathbf{i} + 2x \\mathbf{j}$<br>(3) $\\mathbf{0}$",
+        "solution": "\n回転の定義行列式：$\\nabla \\times \\mathbf{v} = \\left( \\frac{\\partial v_z}{\\partial y} - \\frac{\\partial v_y}{\\partial z} \\right)\\mathbf{i} + \\left( \\frac{\\partial v_x}{\\partial z} - \\frac{\\partial v_z}{\\partial x} \\right)\\mathbf{j} + \\left( \\frac{\\partial v_y}{\\partial x} - \\frac{\\partial v_x}{\\partial y} \\right)\\mathbf{k}$<br><br>\n<b>(1) の詳細途中式:</b><br>\n・$x$ 成分: $\\frac{\\partial}{\\partial y}(y) - \\frac{\\partial}{\\partial z}(x) = 1 - 0 = 1$<br>\n・$y$ 成分: $\\frac{\\partial}{\\partial z}(z) - \\frac{\\partial}{\\partial x}(y) = 1 - 0 = 1$<br>\n・$z$ 成分: $\\frac{\\partial}{\\partial x}(x) - \\frac{\\partial}{\\partial y}(z) = 1 - 0 = 1$<br>\nよって、$\\nabla \\times \\mathbf{v} = \\mathbf{i} + \\mathbf{j} + \\mathbf{k}$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n・$x$ 成分: $\\frac{\\partial}{\\partial y}(-(x^2+z^2)) - \\frac{\\partial}{\\partial z}(yz) = 0 - y = -y$<br>\n・$y$ 成分: $\\frac{\\partial}{\\partial z}(x) - \\frac{\\partial}{\\partial x}(-(x^2+z^2)) = 0 - (-2x) = 2x$<br>\n・$z$ 成分: $\\frac{\\partial}{\\partial x}(yz) - \\frac{\\partial}{\\partial y}(x) = 0 - 0 = 0$<br>\nよって、$\\nabla \\times \\mathbf{v} = -y \\mathbf{i} + 2x \\mathbf{j}$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n$\\mathbf{v} = \\frac{\\mathbf{r}}{r^3} = -\\nabla \\left(\\frac{1}{r}\\right)$ と表せます。任意のスカラー関数の勾配の回転は常に zero ベクトルになる公式 $\\nabla \\times (\\nabla \\Phi) = \\mathbf{0}$ より、$\\nabla \\times \\mathbf{v} = \\mathbf{0}$ です。\n"
+      },
+      {
+        "id": "Q1-04",
+        "q_num": "4",
+        "problem": "$\\mathbf{r} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}, r = |\\mathbf{r}| = \\sqrt{x^2+y^2+z^2}$ とするとき，次を求めよ．<br><b>(1)</b> $\\nabla r$<br><b>(2)</b> $\\nabla \\left(\\frac{1}{r}\\right)$<br><b>(3)</b> $\\nabla r^n$ ($n$: 実数)<br><b>(4)</b> $\\nabla \\ln r$",
+        "ans": "(1) $\\frac{\\mathbf{r}}{r}$<br>(2) $-\\frac{\\mathbf{r}}{r^3}$<br>(3) $n r^{n-2} \\mathbf{r}$<br>(4) $\\frac{\\mathbf{r}}{r^2}$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n$\\frac{\\partial r}{\\partial x} = \\frac{\\partial}{\\partial x}(x^2+y^2+z^2)^{1/2} = \\frac{1}{2}(x^2+y^2+z^2)^{-1/2} \\cdot 2x = \\frac{x}{r}$<br>\n同様に $\\frac{\\partial r}{\\partial y} = \\frac{y}{r}$, $\\frac{\\partial r}{\\partial z} = \\frac{z}{r}$<br>\nよって、$\\nabla r = \\frac{x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}}{r} = \\frac{\\mathbf{r}}{r}$（単位方向ベクトル）<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n合成関数の微分より $\\nabla \\left(\\frac{1}{r}\\right) = \\frac{d}{dr}\\left(\\frac{1}{r}\\right) \\nabla r = -\\frac{1}{r^2} \\left(\\frac{\\mathbf{r}}{r}\\right) = -\\frac{\\mathbf{r}}{r^3}$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n$\\nabla r^n = \\frac{d}{dr}(r^n) \\nabla r = n r^{n-1} \\left(\\frac{\\mathbf{r}}{r}\\right) = n r^{n-2} \\mathbf{r}$<br><br>\n\n<b>(4) の詳細途中式:</b><br>\n$\\nabla \\ln r = \\frac{d}{dr}(\\ln r) \\nabla r = \\frac{1}{r} \\left(\\frac{\\mathbf{r}}{r}\\right) = \\frac{\\mathbf{r}}{r^2}$\n"
+      },
+      {
+        "id": "Q1-05",
+        "q_num": "5",
+        "problem": "点 $(x, y, z)$ の位置ベクトルを $\\mathbf{r}$ とし、$r = |\\mathbf{r}|$ とするとき，以下を求めよ．<br><b>(1)</b> $\\nabla \\cdot (\\mathbf{r}/r)$<br><b>(2)</b> $\\nabla \\cdot (\\mathbf{r}/r^3)$",
+        "ans": "(1) $\\frac{2}{r}$<br>(2) $0$ ($r \\neq 0$)",
+        "solution": "\n積の発散公式 $\\nabla \\cdot (f \\mathbf{A}) = (\\nabla f) \\cdot \\mathbf{A} + f (\\nabla \\cdot \\mathbf{A})$ を用います。<br>また $\\nabla \\cdot \\mathbf{r} = \\frac{\\partial x}{\\partial x} + \\frac{\\partial y}{\\partial y} + \\frac{\\partial z}{\\partial z} = 1 + 1 + 1 = 3$ です。<br><br>\n\n<b>(1) の詳細途中式:</b><br>\n$\\nabla \\cdot (r^{-1} \\mathbf{r}) = (\\nabla r^{-1}) \\cdot \\mathbf{r} + r^{-1} (\\nabla \\cdot \\mathbf{r})$<br>\n問題 4(2) より $\\nabla r^{-1} = -\\frac{\\mathbf{r}}{r^3}$ です。<br>\n代入すると $= \\left(-\\frac{\\mathbf{r}}{r^3}\\right) \\cdot \\mathbf{r} + r^{-1} \\cdot 3 = -\\frac{r^2}{r^3} + \\frac{3}{r} = -\\frac{1}{r} + \\frac{3}{r} = \\frac{2}{r}$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n$\\nabla \\cdot (r^{-3} \\mathbf{r}) = (\\nabla r^{-3}) \\cdot \\mathbf{r} + r^{-3} (\\nabla \\cdot \\mathbf{r})$<br>\n問題 4(3) で $n=-3$ より $\\nabla r^{-3} = -3 r^{-5} \\mathbf{r}$ です。<br>\n代入すると $= (-3 r^{-5} \\mathbf{r}) \\cdot \\mathbf{r} + 3 r^{-3} = -3 r^{-5} (r^2) + 3 r^{-3} = -3 r^{-3} + 3 r^{-3} = 0$\n"
+      },
+      {
+        "id": "Q1-06",
+        "q_num": "6",
+        "problem": "$\\varphi = xyz, \\mathbf{A} = x^2 yz \\mathbf{i} + xy^2 z \\mathbf{j} - xyz^2 \\mathbf{k}$ について，次を求めよ．<br><b>(1)</b> $\\nabla \\varphi$<br><b>(2)</b> $\\nabla \\cdot \\mathbf{A}$<br><b>(3)</b> $\\Delta \\varphi$<br><b>(4)</b> $\\nabla \\cdot (\\varphi \\mathbf{A})$<br><b>(5)</b> $\\mathbf{A} \\cdot \\nabla \\varphi$",
+        "ans": "(1) $yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}$<br>(2) $2xyz$<br>(3) $0$<br>(4) $4x^2 y^2 z^2$<br>(5) $x^2 y^2 z^2$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n$\\nabla \\varphi = \\left(\\frac{\\partial(xyz)}{\\partial x}, \\frac{\\partial(xyz)}{\\partial y}, \\frac{\\partial(xyz)}{\\partial z}\\right) = yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n$\\nabla \\cdot \\mathbf{A} = \\frac{\\partial(x^2 yz)}{\\partial x} + \\frac{\\partial(xy^2 z)}{\\partial y} + \\frac{\\partial(-xyz^2)}{\\partial z} = 2xyz + 2xyz - 2xyz = 2xyz$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n$\\Delta \\varphi = \\frac{\\partial^2(xyz)}{\\partial x^2} + \\frac{\\partial^2(xyz)}{\\partial y^2} + \\frac{\\partial^2(xyz)}{\\partial z^2} = 0 + 0 + 0 = 0$<br><br>\n\n<b>(4) の詳細途中式:</b><br>\n$\\nabla \\cdot (\\varphi \\mathbf{A}) = (\\nabla \\varphi) \\cdot \\mathbf{A} + \\varphi (\\nabla \\cdot \\mathbf{A})$<br>\n$= (yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}) \\cdot (x^2 yz \\mathbf{i} + xy^2 z \\mathbf{j} - xyz^2 \\mathbf{k}) + xyz(2xyz)$<br>\n$= (x^2 y^2 z^2 + x^2 y^2 z^2 - x^2 y^2 z^2) + 2x^2 y^2 z^2 = x^2 y^2 z^2 + 2x^2 y^2 z^2 = 4 x^2 y^2 z^2$<br><br>\n\n<b>(5) の詳細途中式:</b><br>\n$\\mathbf{A} \\cdot \\nabla \\varphi = (x^2 yz)(yz) + (xy^2 z)(xz) + (-xyz^2)(xy) = x^2 y^2 z^2 + x^2 y^2 z^2 - x^2 y^2 z^2 = x^2 y^2 z^2$\n"
+      },
+      {
+        "id": "Q1-07",
+        "q_num": "7",
+        "problem": "$\\mathbf{A} = x^2 z \\mathbf{i} + yz^2 \\mathbf{j} - 2xy \\mathbf{k}, \\mathbf{B} = 2y^2 \\mathbf{i} - 3yz \\mathbf{j} + zx \\mathbf{k}, \\varphi = x^2 + 2yz$ について、次を求めよ．<br><b>(1)</b> $\\mathbf{A} \\times \\nabla \\varphi$<br><b>(2)</b> $(\\nabla \\times \\mathbf{A}) \\times \\mathbf{B}$<br><b>(3)</b> $\\mathbf{B} \\cdot (\\nabla \\times \\mathbf{A})$",
+        "ans": "(1) $(2yz^3 + 4xy^2)\\mathbf{i} - (4x^2y + 2x^3z)\\mathbf{j} + (2x^2z^2 - 2xyz^2)\\mathbf{k}$<br>(2) $xz(x^2+2y)\\mathbf{i} + xz(2x+2yz)\\mathbf{j} + (6xyz + 6y^2 z^2 - 2x^2 y^2 - 4y^3)\\mathbf{k}$<br>(3) $-4xy^2 - 4y^3 z - 3x^2 yz - 6y^2 z$",
+        "solution": "\nまず $\\nabla \\varphi = (2x, 2z, 2y)$ です。<br>また $\\nabla \\times \\mathbf{A} = (-2x - 2yz)\\mathbf{i} + (x^2 + 2y)\\mathbf{j} + 0\\mathbf{k}$ です。<br><br>\n<b>(1) 外積の成分計算:</b><br>\n$\\mathbf{A} \\times \\nabla \\varphi = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ x^2 z & yz^2 & -2xy \\\\ 2x & 2z & 2y \\end{vmatrix}$<br>\n$= (2y^2 z^2 - (-4xyz))\\mathbf{i} - (2x^2 yz - (-4x^2 y))\\mathbf{j} + (2x^2 z^2 - 2xyz^2)\\mathbf{k}$<br>\n$= (2yz^3 + 4xy^2)\\mathbf{i} - (4x^2y + 2x^3z)\\mathbf{j} + (2x^2z^2 - 2xyz^2)\\mathbf{k}$<br><br>\n<b>(2) と (3)</b> の内積・外積も同様に各成分を順番に展開・整理します。\n"
+      },
+      {
+        "id": "Q1-08",
+        "q_num": "8",
+        "problem": "つるまき線 $C: \\mathbf{r}(t) = 3 \\cos t \\mathbf{i} + 3 \\sin t \\mathbf{j} + 4t \\mathbf{k}, (0 \\le t \\le 2\\pi)$ において<br><b>(1)</b> 単位接線ベクトル $\\mathbf{u}$ を求めよ．<br><b>(2)</b> 曲線の長さ $s$ を求めよ．",
+        "ans": "(1) $\\mathbf{u} = \\frac{1}{5}(-3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k})$<br>(2) $s = 10\\pi$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n位置ベクトルの $t$ 微分 $\\frac{d\\mathbf{r}}{dt} = -3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k}$<br>\nノルム（大きさ）$: \\left|\\frac{d\\mathbf{r}}{dt}\\right| = \\sqrt{(-3\\sin t)^2 + (3\\cos t)^2 + 4^2} = \\sqrt{9(\\sin^2 t + \\cos^2 t) + 16} = \\sqrt{9 + 16} = 5$<br>\n単位接線ベクトル $\\mathbf{u} = \\frac{\\frac{d\\mathbf{r}}{dt}}{\\left|\\frac{d\\mathbf{r}}{dt}\\right|} = \\frac{1}{5}(-3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k})$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n弧長積分公式 $s = \\int_0^{2\\pi} \\left|\\frac{d\\mathbf{r}}{dt}\\right| dt = \\int_0^{2\\pi} 5 dt = 5 [t]_0^{2\\pi} = 10\\pi$\n"
+      },
+      {
+        "id": "Q1-09",
+        "q_num": "9",
+        "problem": "曲面 $\\mathbf{r} = a \\sin u \\cos v \\mathbf{i} + a \\sin u \\sin v \\mathbf{j} + a \\cos u \\mathbf{k} \\left(0 \\le u \\le \\frac{\\pi}{2}, 0 \\le v \\le 2\\pi\\right) (a > 0)$ において，<br><b>(1)</b> $z = z(x,y)$ の形に表せ．<br><b>(2)</b> 単位法線ベクトル $\\mathbf{n}$ を求めよ．<br><b>(3)</b> 面積 $S$ を求めよ．",
+        "ans": "(1) $z = \\sqrt{a^2 - x^2 - y^2}$<br>(2) $\\mathbf{n} = \\sin u \\cos v \\mathbf{i} + \\sin u \\sin v \\mathbf{j} + \\cos u \\mathbf{k}$<br>(3) $S = 2\\pi a^2$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n$x^2+y^2+z^2 = a^2 \\sin^2 u \\cos^2 v + a^2 \\sin^2 u \\sin^2 v + a^2 \\cos^2 u = a^2 \\sin^2 u (\\cos^2 v + \\sin^2 v) + a^2 \\cos^2 u = a^2 (\\sin^2 u + \\cos^2 u) = a^2$<br>\n$0 \\le u \\le \\frac{\\pi}{2}$ より $\\cos u \\ge 0 \\implies z \\ge 0$。<br>\nしたがって、$z = \\sqrt{a^2 - x^2 - y^2}$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n法線ベクトルは半径方向（原点から外向き）を向くため、$\\mathbf{n} = \\frac{\\mathbf{r}}{a} = \\sin u \\cos v \\mathbf{i} + \\sin u \\sin v \\mathbf{j} + \\cos u \\mathbf{k}$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n面積要素 $dS = \\left|\\frac{\\partial\\mathbf{r}}{\\partial u} \\times \\frac{\\partial\\mathbf{r}}{\\partial v}\\right| du dv = a^2 \\sin u du dv$<br>\n$S = \\int_0^{2\\pi} dv \\int_0^{\\pi/2} a^2 \\sin u du = 2\\pi a^2 [-\\cos u]_0^{\\pi/2} = 2\\pi a^2 (0 - (-1)) = 2\\pi a^2$\n"
+      }
+    ]
   },
   {
-    "card_id": 2,
-    "set_num": 1,
-    "set_title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
-    "pdf_pages": "P.1 〜 P.8",
-    "title": "【第1回】問 2",
-    "problem": "次のベクトル関数 $\\mathbf{g}$ の発散 $\\nabla \\cdot \\mathbf{g} = \\text{div } \\mathbf{g}$ を求めよ．<br><b>(1)</b> $\\mathbf{g} = y^2 e^z \\mathbf{i} + x^2 z^2 \\mathbf{k}$<br><b>(2)</b> $\\mathbf{g} = x^2 \\mathbf{i} + y^2 \\mathbf{j} + z^2 \\mathbf{k}$<br><b>(3)</b> $\\mathbf{g} = e^{-xy} \\mathbf{i} + e^{-xz} \\mathbf{j} + e^{-zx} \\mathbf{k}$",
-    "ans": "(1) $2x^2 z$<br>(2) $2(x+y+z)$<br>(3) $-y e^{-xy} - x e^{-zx}$",
-    "solution": "<b>(1)</b> $\\text{div } \\mathbf{g} = \\frac{\\partial}{\\partial x}(y^2 e^z) + \\frac{\\partial}{\\partial y}(0) + \\frac{\\partial}{\\partial z}(x^2 z^2) = 2x^2 z$<br><b>(2)</b> $\\text{div } \\mathbf{g} = 2x + 2y + 2z = 2(x+y+z)$<br><b>(3)</b> $\\text{div } \\mathbf{g} = -y e^{-xy} + 0 - x e^{-zx}$"
-  },
-  {
-    "card_id": 3,
-    "set_num": 1,
-    "set_title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
-    "pdf_pages": "P.1 〜 P.8",
-    "title": "【第1回】問 3",
-    "problem": "次式で表されるベクトル $\\mathbf{v}$ について $\\nabla \\times \\mathbf{v} = \\text{rot } \\mathbf{v}$ を求めよ．<br><b>(1)</b> $\\mathbf{v} = z \\mathbf{i} + x \\mathbf{j} + y \\mathbf{k}$<br><b>(2)</b> $\\mathbf{v} = x \\mathbf{i} + yz \\mathbf{j} - (x^2 + z^2) \\mathbf{k}$<br><b>(3)</b> $\\mathbf{v} = (x \\mathbf{i} + y \\mathbf{j} + z \\mathbf{k})(x^2 + y^2 + z^2)^{-3/2}$",
-    "ans": "(1) $\\mathbf{i} + \\mathbf{j} + \\mathbf{k}$<br>(2) $-y \\mathbf{i} + 2x \\mathbf{j}$<br>(3) $\\mathbf{0}$",
-    "solution": "<b>(1)</b> $\\text{rot } \\mathbf{v} = (1-0)\\mathbf{i} + (1-0)\\mathbf{j} + (1-0)\\mathbf{k} = \\mathbf{i} + \\mathbf{j} + \\mathbf{k}$<br><b>(2)</b> $\\text{rot } \\mathbf{v} = (-y - y)\\mathbf{i} - (-2x - 0)\\mathbf{j} + (0 - 0)\\mathbf{k} = -2y \\mathbf{i} + 2x \\mathbf{j}$<br><b>(3)</b> $\\mathbf{v} = \\frac{\\mathbf{r}}{r^3}$。中心力場・保存力場のため $\\nabla \\times \\mathbf{v} = \\mathbf{0}$"
-  },
-  {
-    "card_id": 4,
-    "set_num": 1,
-    "set_title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
-    "pdf_pages": "P.1 〜 P.8",
-    "title": "【第1回】問 4",
-    "problem": "$\\mathbf{r} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}, r = |\\mathbf{r}|$ とするとき，次を求めよ．<br><b>(1)</b> $\\nabla r$<br><b>(2)</b> $\\nabla \\left(\\frac{1}{r}\\right)$<br><b>(3)</b> $\\nabla r^n$ ($n$: 実数)<br><b>(4)</b> $\\nabla \\ln r$",
-    "ans": "(1) $\\frac{\\mathbf{r}}{r}$<br>(2) $-\\frac{\\mathbf{r}}{r^3}$<br>(3) $n r^{n-2} \\mathbf{r}$<br>(4) $\\frac{\\mathbf{r}}{r^2}$",
-    "solution": "<b>(1)</b> $\\nabla r = \\frac{\\mathbf{r}}{r}$<br><b>(2)</b> $\\nabla \\left(\\frac{1}{r}\\right) = -\\frac{\\mathbf{r}}{r^3}$<br><b>(3)</b> $\\nabla r^n = n r^{n-2} \\mathbf{r}$<br><b>(4)</b> $\\nabla \\ln r = \\frac{\\mathbf{r}}{r^2}$"
-  },
-  {
-    "card_id": 5,
-    "set_num": 1,
-    "set_title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
-    "pdf_pages": "P.1 〜 P.8",
-    "title": "【第1回】問 5",
-    "problem": "点 $(x, y, z)$ の位置ベクトルを $\\mathbf{r}$ とし、$r = |\\mathbf{r}|$ とするとき，以下を求めよ．<br><b>(1)</b> $\\nabla \\cdot (\\mathbf{r}/r)$<br><b>(2)</b> $\\nabla \\cdot (\\mathbf{r}/r^3)$",
-    "ans": "(1) $\\frac{2}{r}$<br>(2) $0$ ($r \\neq 0$)",
-    "solution": "<b>(1)</b> $\\nabla \\cdot (r^{-1} \\mathbf{r}) = (\\nabla r^{-1}) \\cdot \\mathbf{r} + r^{-1}(\\nabla \\cdot \\mathbf{r}) = -r^{-3}\\mathbf{r} \\cdot \\mathbf{r} + 3r^{-1} = \\frac{2}{r}$<br><b>(2)</b> $\\nabla \\cdot (r^{-3} \\mathbf{r}) = -3r^{-5}\\mathbf{r} \\cdot \\mathbf{r} + 3r^{-3} = 0$"
-  },
-  {
-    "card_id": 6,
-    "set_num": 1,
-    "set_title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
-    "pdf_pages": "P.1 〜 P.8",
-    "title": "【第1回】問 6",
-    "problem": "$\\varphi = xyz, \\mathbf{A} = x^2 yz \\mathbf{i} + xy^2 z \\mathbf{j} - xyz^2 \\mathbf{k}$ について，次を求めよ．<br><b>(1)</b> $\\nabla \\varphi$<br><b>(2)</b> $\\nabla \\cdot \\mathbf{A}$<br><b>(3)</b> $\\Delta \\varphi$<br><b>(4)</b> $\\nabla \\cdot (\\varphi \\mathbf{A})$<br><b>(5)</b> $\\mathbf{A} \\cdot \\nabla \\varphi$",
-    "ans": "(1) $yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}$<br>(2) $2xyz$<br>(3) $0$<br>(4) $4x^2 y^2 z^2$<br>(5) $x^2 y^2 z^2$",
-    "solution": "<b>(1)</b> $\\nabla \\varphi = yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}$<br><b>(2)</b> $\\nabla \\cdot \\mathbf{A} = 2xyz + 2xyz - 2xyz = 2xyz$<br><b>(3)</b> $\\Delta \\varphi = 0$<br><b>(4)</b> $\\nabla \\cdot (\\varphi \\mathbf{A}) = (\\nabla \\varphi) \\cdot \\mathbf{A} + \\varphi (\\nabla \\cdot \\mathbf{A}) = 4 x^2 y^2 z^2$<br><b>(5)</b> $\\mathbf{A} \\cdot \\nabla \\varphi = x^2 y^2 z^2$"
-  },
-  {
-    "card_id": 7,
-    "set_num": 1,
-    "set_title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
-    "pdf_pages": "P.1 〜 P.8",
-    "title": "【第1回】問 7",
-    "problem": "$\\mathbf{A} = x^2 z \\mathbf{i} + yz^2 \\mathbf{j} - 2xy \\mathbf{k}, \\mathbf{B} = 2y^2 \\mathbf{i} - 3yz \\mathbf{j} + zx \\mathbf{k}, \\varphi = x^2 + 2yz$ について、次を求めよ．<br><b>(1)</b> $\\mathbf{A} \\times \\nabla \\varphi$<br><b>(2)</b> $(\\nabla \\times \\mathbf{A}) \\times \\mathbf{B}$<br><b>(3)</b> $\\mathbf{B} \\cdot (\\nabla \\times \\mathbf{A})$",
-    "ans": "(1) $(2yz^3 + 4xy^2)\\mathbf{i} - (4x^2y + 2x^3z)\\mathbf{j} + (2x^2z^2 - 2xyz^2)\\mathbf{k}$<br>(2) $xz(x^2+2y)\\mathbf{i} + xz(2x+2yz)\\mathbf{j} + (6xyz + 6y^2 z^2 - 2x^2 y^2 - 4y^3)\\mathbf{k}$<br>(3) $-4xy^2 - 4y^3 z - 3x^2 yz - 6y^2 z$",
-    "solution": "$\\nabla \\varphi = (2x, 2z, 2y)$。外積および内積をそれぞれ成分計算。"
-  },
-  {
-    "card_id": 8,
-    "set_num": 1,
-    "set_title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
-    "pdf_pages": "P.1 〜 P.8",
-    "title": "【第1回】問 8",
-    "problem": "つるまき線 $C: \\mathbf{r}(t) = 3 \\cos t \\mathbf{i} + 3 \\sin t \\mathbf{j} + 4t \\mathbf{k}, (0 \\le t \\le 2\\pi)$ において<br><b>(1)</b> 単位接線ベクトル $\\mathbf{u}$ を求めよ．<br><b>(2)</b> 曲線の長さ $s$ を求めよ．",
-    "ans": "(1) $\\mathbf{u} = \\frac{1}{5}(-3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k})$<br>(2) $s = 10\\pi$",
-    "solution": "$\\left|\\frac{d\\mathbf{r}}{dt}\\right| = \\sqrt{9\\sin^2 t + 9\\cos^2 t + 16} = 5$。<br><b>(1)</b> $\\mathbf{u} = \\frac{1}{5}(-3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k})$<br><b>(2)</b> $s = \\int_0^{2\\pi} 5 dt = 10\\pi$"
-  },
-  {
-    "card_id": 9,
-    "set_num": 1,
-    "set_title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
-    "pdf_pages": "P.1 〜 P.8",
-    "title": "【第1回】問 9",
-    "problem": "曲面 $\\mathbf{r} = a \\sin u \\cos v \\mathbf{i} + a \\sin u \\sin v \\mathbf{j} + a \\cos u \\mathbf{k} \\left(0 \\le u \\le \\frac{\\pi}{2}, 0 \\le v \\le 2\\pi\\right) (a > 0)$ において，<br><b>(1)</b> $z = z(x,y)$ の形に表せ．<br><b>(2)</b> 単位法線ベクトル $\\mathbf{n}$ を求めよ．<br><b>(3)</b> 面積 $S$ を求めよ．",
-    "ans": "(1) $z = \\sqrt{a^2 - x^2 - y^2}$<br>(2) $\\mathbf{n} = \\frac{\\mathbf{r}}{a} = \\sin u \\cos v \\mathbf{i} + \\sin u \\sin v \\mathbf{j} + \\cos u \\mathbf{k}$<br>(3) $S = 2\\pi a^2$",
-    "solution": "<b>(1)</b> $x^2+y^2+z^2 = a^2$ より $z = \\sqrt{a^2 - x^2 - y^2}$<br><b>(2)</b> $\\mathbf{n} = \\frac{\\mathbf{r}}{a}$<br><b>(3)</b> $S = \\int_0^{2\\pi} dv \\int_0^{\\pi/2} a^2 \\sin u du = 2\\pi a^2$"
-  },
-  {
-    "card_id": 10,
     "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
+    "title": "第2回 演習とレポート（線積分と仕事・保存力場）",
     "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 1",
-    "problem": "曲線 $C$ が $\\mathbf{r}(s) = \\cos s \\mathbf{i} + \\sin s \\mathbf{j} \\left(0 \\le s \\le \\frac{\\pi}{2}\\right)$ で表されるとき，円弧の上で $\\varphi = 2xy^2$ を積分せよ．",
-    "ans": "\\frac{2}{3}",
-    "solution": "$\\int_C \\varphi ds = \\int_0^{\\pi/2} 2 \\cos s \\sin^2 s ds = 2 \\left[ \\frac{\\sin^3 s}{3} \\right]_0^{\\pi/2} = \\frac{2}{3}$"
-  },
-  {
-    "card_id": 11,
-    "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
-    "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 2",
-    "problem": "$C$ が $xy$ 平面上の直線 $y = 2x$ を $A: (-1, -2, 0)$ から $B: (1, 2, 0)$ まで区切った線分であるとき，$\\int_C xy^3 ds$ を求めよ．",
-    "ans": "\\frac{16\\sqrt{5}}{5}",
-    "solution": "$x=t, y=2t (-1 \\le t \\le 1)$。$ds = \\sqrt{5} dt$。<br>$\\int_{-1}^1 t(8t^3) \\sqrt{5} dt = 8\\sqrt{5} \\left[ \\frac{t^5}{5} \\right]_{-1}^1 = \\frac{16\\sqrt{5}}{5}$"
-  },
-  {
-    "card_id": 12,
-    "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
-    "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 3",
-    "problem": "スカラー場 $\\varphi = x^2 + y^2 + z^2$ について，下記を計算せよ．<br><b>(1)</b> $P(1, -1, 0)$ と $Q(2, 1, 2)$ を結ぶ線分 $PQ$ に沿った線積分 $\\int_{PQ} \\varphi ds$<br><b>(2)</b> 原点 $O$ を経由した折れ線 $PO, OQ$ に沿った線積分 $\\int_{PO+OQ} \\varphi ds$",
-    "ans": "(1) $12$<br>(2) $9 + \\frac{2\\sqrt{2}}{3}$",
-    "solution": "<b>(1)</b> 直線パラメータ表示: $\\mathbf{r}(t) = (1+t, -1+2t, 2t)$, $ds = 3 dt$。$\\int_0^1 (9t^2 - 2t + 2) 3 dt = 12$<br><b>(2)</b> $PO: \\int_0^1 2(1-t)^2 \\sqrt{2} dt = \\frac{2\\sqrt{2}}{3}$。$OQ: \\int_0^1 9t^2 \\cdot 3 dt = 9$。合計 $9 + \\frac{2\\sqrt{2}}{3}$"
-  },
-  {
-    "card_id": 13,
-    "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
-    "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 4",
-    "problem": "スカラー場 $\\varphi = 2xz$ について，曲線 $C: \\mathbf{r}(t) = \\cos t \\mathbf{i} + \\sin t \\mathbf{j} + t\\mathbf{k}, (0 \\le t \\le \\pi)$ に沿った線積分 $\\int_C \\varphi ds$ を求めよ．",
-    "ans": "-4\\sqrt{2}",
-    "solution": "$ds = \\sqrt{2} dt$。$\\int_0^\\pi 2 t \\cos t \\sqrt{2} dt = 2\\sqrt{2} \\left[ t\\sin t + \\cos t \\right]_0^\\pi = -4\\sqrt{2}$"
-  },
-  {
-    "card_id": 14,
-    "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
-    "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 5",
-    "problem": "スカラー場 $\\varphi = x^2 + y^2 + z^2$ について，曲線 $C: \\mathbf{r} = 4 \\cos t \\mathbf{i} + 4 \\sin t \\mathbf{j} + 3t\\mathbf{k} (0 \\le t \\le \\pi)$ に沿った線積分を求めよ．<br><b>(1)</b> $\\int_C \\varphi dt$<br><b>(2)</b> $\\int_C \\varphi ds$",
-    "ans": "(1) $16\\pi + 3\\pi^3$<br>(2) $80\\pi + 15\\pi^3$",
-    "solution": "$\\varphi(t) = 16 + 9t^2$, $ds = 5 dt$。<br><b>(1)</b> $\\int_0^\\pi (16 + 9t^2) dt = 16\\pi + 3\\pi^3$<br><b>(2)</b> $5 (16\\pi + 3\\pi^3) = 80\\pi + 15\\pi^3$"
-  },
-  {
-    "card_id": 15,
-    "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
-    "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 6",
-    "problem": "スカラー場 $\\varphi = 4xy$ について，次の $C_1, C_2$ に沿った線積分を求めよ．<br><b>(1)</b> $C_1: \\mathbf{r}(t) = (t^2, t, 1) (0 \\le t \\le 1)$<br><b>(2)</b> $C_2: (0, 0, 1)$ と $(1, 1, 1)$ を結ぶ線分",
-    "ans": "(1) \\frac{5\\sqrt{5} - 1}{12}<br>(2) \\frac{4\\sqrt{2}}{3}",
-    "solution": "<b>(1)</b> $\\int_0^1 4t^3 \\sqrt{4t^2+1} dt = \\frac{5\\sqrt{5}-1}{12}$<br><b>(2)</b> $\\int_0^1 4t^2 \\sqrt{2} dt = \\frac{4\\sqrt{2}}{3}$"
-  },
-  {
-    "card_id": 16,
-    "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
-    "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 7",
-    "problem": "$\\mathbf{F} = 2x\\mathbf{i} + y\\mathbf{j} + 2z\\mathbf{k}$, 曲線 $C: \\mathbf{r}(t) = t\\mathbf{i} + t^2\\mathbf{j} + (1-t)\\mathbf{k}, (0 \\le t \\le 1)$ のとき，線積分 $\\int_C \\mathbf{F} \\cdot d\\mathbf{r}$ を求めよ．",
-    "ans": "\\frac{1}{2}",
-    "solution": "$d\\mathbf{r} = (1, 2t, -1) dt$。$\\int_0^1 [2t(1) + t^2(2t) + 2(1-t)(-1)] dt = \\int_0^1 (2t^3 + 4t - 2) dt = \\frac{1}{2}$"
-  },
-  {
-    "card_id": 17,
-    "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
-    "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 8",
-    "problem": "$\\mathbf{F} = -y\\mathbf{i} + x\\mathbf{j} + z(x^2 + y^2)\\mathbf{k}$, $C: \\mathbf{r} = a \\cos t \\mathbf{i} + a \\sin t \\mathbf{j} + bt \\mathbf{k} (0 \\le t \\le 2\\pi)$ に沿う線積分 $\\int_C \\mathbf{F} \\cdot d\\mathbf{r}$ を求めよ．",
-    "ans": "2\\pi a^2 + 2\\pi^2 a^2 b^2",
-    "solution": "$\\int_0^{2\\pi} (a^2 + a^2 b^2 t) dt = 2\\pi a^2 + 2\\pi^2 a^2 b^2$"
-  },
-  {
-    "card_id": 18,
-    "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
-    "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 9",
-    "problem": "$\\mathbf{F} = (2x - y - z)\\mathbf{i} + (x + y - z^2)\\mathbf{j} + (3x - 2y + 4)\\mathbf{k}$ とし，$C$ を $xy$ 平面上の原点を中心とする半径 3 の左回りの円とするとき，$\\int_C \\mathbf{F} \\cdot d\\mathbf{r}$ を求めよ．",
-    "ans": "18\\pi",
-    "solution": "ストークスの定理: $(\\nabla \\times \\mathbf{F}) \\cdot \\mathbf{k} = 2$。$\\iint_S 2 dS = 2 \\times (9\\pi) = 18\\pi$"
-  },
-  {
-    "card_id": 19,
-    "set_num": 2,
-    "set_title": "第2回 演習とレポート（線積分と仕事・保存力場）",
-    "pdf_pages": "P.9 〜 P.17",
-    "title": "【第2回】問 10",
-    "problem": "$\\mathbf{F} = x\\mathbf{i} + 2(x+z)\\mathbf{j} + y\\mathbf{k}$ で $C$ が原点 $O$ と $P(1, 2, 2)$ を結ぶ線分のとき，次を求めよ．<br><b>(1)</b> $\\int_C \\mathbf{F} ds$<br><b>(2)</b> $\\int_C \\mathbf{F} \\cdot d\\mathbf{r}$<br><b>(3)</b> $\\int_C \\mathbf{F} \\times d\\mathbf{r}$",
-    "ans": "(1) $\\left(\\frac{3}{2}, 9, 3\\right)$<br>(2) $\\frac{17}{2}$<br>(3) $(4, 0, -2)$",
-    "solution": "$\\mathbf{r}(t) = (t, 2t, 2t) (0 \\le t \\le 1), ds = 3 dt, d\\mathbf{r} = (1, 2, 2) dt$。それぞれの積分を実行。"
-  },
-  {
-    "card_id": 20,
-    "set_num": 3,
-    "set_title": "第3回 演習とレポート（曲面・面積分・フラックス・定理）",
-    "pdf_pages": "P.18 〜 P.30",
-    "title": "【第3回】問 1",
-    "problem": "平面 $S: 2x + 2y + z = 4 (x \\ge 0, y \\ge 0, z \\ge 0)$ 上のスカラー場 $\\varphi(x, y, z) = 3x + 2y + z$ の面積分 $\\iint_S \\varphi dS$ を求めよ．",
-    "ans": "28",
-    "solution": "$z = 4 - 2x - 2y$, $dS = 3 dx dy$。$\\varphi = x + 4$。$3 \\int_0^2 dx \\int_0^{2-x} (x+4) dy = 28$"
-  },
-  {
-    "card_id": 21,
-    "set_num": 3,
-    "set_title": "第3回 演習とレポート（曲面・面積分・フラックス・定理）",
-    "pdf_pages": "P.18 〜 P.30",
-    "title": "【第3回】問 2",
-    "problem": "曲面 $S$ を $z = 2 - x^2 - y^2 (x \\ge 0, y \\ge 0, z \\ge 0)$ とするとき，面積分 $\\iint_S (x^2 + y^2) dS$ を求めよ．",
-    "ans": "\\frac{\\pi(149\\sqrt{17} + 1)}{240}",
-    "solution": "$dS = \\sqrt{1 + 4r^2} r dr d\\theta$。極座標積分を実行。"
-  },
-  {
-    "card_id": 22,
-    "set_num": 3,
-    "set_title": "第3回 演習とレポート（曲面・面積分・フラックス・定理）",
-    "pdf_pages": "P.18 〜 P.30",
-    "title": "【第3回】問 3",
-    "problem": "曲面 $\\mathbf{r} = \\sin u \\cos v \\mathbf{i} + \\sin u \\sin v \\mathbf{j} + \\cos u \\mathbf{k} \\left(0 \\le u \\le \\frac{\\pi}{2}, 0 \\le v \\le 2\\pi\\right)$ 上のスカラー場 $\\varphi = x + 2z$ の面積分 $\\iint_S \\varphi dS$ を求めよ．",
-    "ans": "2\\pi",
-    "solution": "$dS = \\sin u du dv$。$\\iint_S (\\sin u \\cos v + 2 \\cos u) \\sin u du dv = 2\\pi$"
-  },
-  {
-    "card_id": 23,
-    "set_num": 3,
-    "set_title": "第3回 演習とレポート（曲面・面積分・フラックス・定理）",
-    "pdf_pages": "P.18 〜 P.30",
-    "title": "【第3回】問 4",
-    "problem": "$f = x + 2y + z$ で平面 $S$ が $2x + 2y - z = 2 (x \\ge 0, y \\ge 0, z \\le 0)$ のとき，面積分 $\\iint_S f d\\mathbf{S}$ を求めよ．",
-    "ans": "\\left(\\frac{1}{3}, \\frac{1}{3}, -\\frac{1}{6}\\right)",
-    "solution": "法線ベクトル $\\mathbf{n} = \\frac{1}{3}(2, 2, -1)$。投影領域上でベクトル面積分を実行。"
-  },
-  {
-    "card_id": 24,
-    "set_num": 3,
-    "set_title": "第3回 演習とレポート（曲面・面積分・フラックス・定理）",
-    "pdf_pages": "P.18 〜 P.30",
-    "title": "【第3回】問 5",
-    "problem": "$\\mathbf{F} = x\\mathbf{i} + 2y\\mathbf{j} + z\\mathbf{k}$ であり，平面 $S$ が $2x + 2y - z = 2 (x \\ge 0, y \\ge 0, z \\le 0)$ のとき，次を求めよ．<br><b>(1)</b> $\\iint_S \\mathbf{F} dS$<br><b>(2)</b> $\\iint_S \\mathbf{F} \\cdot \\mathbf{n} dS$<br><b>(3)</b> $\\iint_S \\mathbf{F} \\times \\mathbf{n} dS$",
-    "ans": "(1) $(1, 2, -1)$<br>(2) $1$<br>(3) $(-2, 1, 0)$",
-    "solution": "各フラックス積分および外積面積分を実行。"
-  },
-  {
-    "card_id": 25,
-    "set_num": 3,
-    "set_title": "第3回 演習とレポート（曲面・面積分・フラックス・定理）",
-    "pdf_pages": "P.18 〜 P.30",
-    "title": "【第3回】問 6",
-    "problem": "平面 $2x + 2y + z = 2$ の三角形領域 $S$ 上で $\\mathbf{F} = x^2\\mathbf{i} - x\\mathbf{j} + z\\mathbf{k}$ の面積分 $\\iint_S \\mathbf{F} \\cdot d\\mathbf{S}$ を求めよ．",
-    "ans": "\\frac{7}{12}",
-    "solution": "$\\mathbf{n} dS = (2, 2, 1) dx dy$。二重積分を計算。"
-  },
-  {
-    "card_id": 26,
-    "set_num": 3,
-    "set_title": "第3回 演習とレポート（曲面・面積分・フラックス・定理）",
-    "pdf_pages": "P.18 〜 P.30",
-    "title": "【第3回】問 7",
-    "problem": "$\\mathbf{F} = 4x\\mathbf{i} + 4y\\mathbf{j} - 2z\\mathbf{k}$ とし，$S$ を $x^2 + y^2 + z^2 = 4$ の上半球面とするとき，$\\iint_S \\mathbf{F} \\cdot d\\mathbf{S}$ を求めよ．",
-    "ans": "32\\pi",
-    "solution": "発散定理（半球内部 $V$）: $\\nabla \\cdot \\mathbf{F} = 6$。$\\iiint_V 6 dV = 32\\pi$"
-  },
-  {
-    "card_id": 27,
-    "set_num": 3,
-    "set_title": "第3回 演習とレポート（曲面・面積分・フラックス・定理）",
-    "pdf_pages": "P.18 〜 P.30",
-    "title": "【第3回】問 8",
-    "problem": "$\\mathbf{F} = y\\mathbf{i} - x\\mathbf{j} + z\\mathbf{k}$ とし，$S$ を上半球面とするとき，$\\iint_S (\\nabla \\times \\mathbf{F}) \\cdot \\mathbf{n} dS$ を求めよ．",
-    "ans": "-8\\pi",
-    "solution": "ストークスの定理: 境界円 $C: x^2+y^2=4$ 上の線積分 $= -8\\pi$"
-  },
-  {
-    "card_id": 28,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 1",
-    "problem": "力 $\\mathbf{P} = 4xy\\mathbf{i} - 8x\\mathbf{j} + 2\\mathbf{k}$ によってなされた仕事 $W$ を求めよ．<br><b>(1)</b> 直線 $y = 2x, z = 0$ に沿って $(3, 6, 0)$ から $(0, 0, 0)$ まで<br><b>(2)</b> 直線 $y = 2x, z = 2x$ に沿って $(0, 0, 0)$ から $(3, 6, 6)$ まで",
-    "ans": "(1) $0$<br>(2) $-60$",
-    "solution": "<b>(1)</b> $W = \\int_3^0 (8x^2 - 16x) dx = 0$<br><b>(2)</b> $W = \\int_0^3 (8x^2 - 32x + 4) dx = -60$"
-  },
-  {
-    "card_id": 29,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 2",
-    "problem": "$x^2 + z^2 = 4 (0 \\le y \\le 3, x \\ge 0, z \\ge 0)$ の表面 $S$ で $\\iint_S (3x\\mathbf{i} + 4z\\mathbf{j} + z\\mathbf{k}) \\cdot \\mathbf{n} dS$ を求めよ．",
-    "ans": "6\\pi",
-    "solution": "$\\mathbf{n} dS = \\frac{1}{2}(x, 0, z) dS$。$\\iint_S \\frac{3x^2+z^2}{2} dS = 6\\pi$"
-  },
-  {
-    "card_id": 30,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 3",
-    "problem": "半径 $a$ の球面 $S$ に対し，$\\mathbf{A} = x^3\\mathbf{i} + y^3\\mathbf{j} + z^3\\mathbf{k}$ のフラックス $\\iint_S \\mathbf{A} \\cdot d\\mathbf{S}$ を発散定理で求めよ．",
-    "ans": "\\frac{12\\pi a^5}{5}",
-    "solution": "$\\nabla \\cdot \\mathbf{A} = 3(x^2+y^2+z^2) = 3r^2$。$\\iiint_V 3r^2 dV = \\frac{12\\pi a^5}{5}$"
-  },
-  {
-    "card_id": 31,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 4",
-    "problem": "$\\mathbf{F} = 4x\\mathbf{i} + 4y\\mathbf{j} - 2z\\mathbf{k}$ で $S$ が半径 2 の上半球面のとき，発散定理を適用してフラックスを求めよ．",
-    "ans": "32\\pi",
-    "solution": "$\\nabla \\cdot \\mathbf{F} = 6$。半球体積 $V = \\frac{16\\pi}{3}$ より $6 V = 32\\pi$"
-  },
-  {
-    "card_id": 32,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 5",
-    "problem": "空間ベクトル場 $\\mathbf{A} = 2xz\\mathbf{i} + 2yz\\mathbf{j} + 0\\mathbf{k}$ に 2 つの曲面 $S_1: x^2 + y^2 + z^2 = 4 (z \\ge 0)$ と $S_2: z = 0$ で囲まれた領域にガウスの定理を適用せよ．",
-    "ans": "8\\pi",
-    "solution": "$\\nabla \\cdot \\mathbf{A} = 4z$。$\\iiint_V 4z dV = 8\\pi$"
-  },
-  {
-    "card_id": 33,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 6",
-    "problem": "円 $C: x^2 + y^2 = 4 (z=0)$ に沿っての $\\mathbf{A} = (x^2 + y)\\mathbf{i} + (y^2 + 2z)\\mathbf{j} + 2x\\mathbf{k}$ の線積分 $\\oint_C \\mathbf{A} \\cdot d\\mathbf{r}$ をストークスの定理で求めよ．",
-    "ans": "-4\\pi",
-    "solution": "$\\nabla \\times \\mathbf{A} = -2\\mathbf{i} - 2\\mathbf{j} - \\mathbf{k}$。$\\iint_S (-1) dS = -4\\pi$"
-  },
-  {
-    "card_id": 34,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 7",
-    "problem": "3 点 $(1, 0, 0), (0, 1, 0), (0, 0, 1)$ を頂点とする三角形の周 $C$ で，ストークスの定理を用いて $\\oint_C (y dx + z dy + x dz)$ を求めよ．",
-    "ans": "-\\frac{3}{2}",
-    "solution": "$\\nabla \\times \\mathbf{F} = (-1, -1, -1)$。面積 $S = \\frac{\\sqrt{3}}{2}$ より $- \\frac{3}{2}$"
-  },
-  {
-    "card_id": 35,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 8",
-    "problem": "$\\mathbf{A} = (x - 3y)\\mathbf{i} + xz^2\\mathbf{j} + x^2 z\\mathbf{k}$ に，曲面 $S: x^2 + y^2 + z^2 = 9 (z \\ge 0)$ と $C: x^2 + y^2 = 9 (z=0)$ についてストークスの定理を確かめよ．",
-    "ans": "27\\pi",
-    "solution": "線積分 $\\oint_C (x-3y)dx = 27\\pi$。回転の面積分も同値 $27\\pi$"
-  },
-  {
-    "card_id": 36,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 9",
-    "problem": "$\\mathbf{A} = x\\mathbf{i} - y\\mathbf{j} + z\\mathbf{k}$ とし，$S$ を $x^2 + y^2 + z^2 = 4$ の上半球面とする．面積分 $\\iint_S \\mathbf{A} \\cdot d\\mathbf{S}$ を直接求めよ．",
-    "ans": "\\frac{16\\pi}{3}",
-    "solution": "極座標で直接面積分を実行して $\\frac{16\\pi}{3}$"
-  },
-  {
-    "card_id": 37,
-    "set_num": 4,
-    "set_title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）",
-    "pdf_pages": "P.31 〜 P.44",
-    "title": "【第4回】問 10",
-    "problem": "問題 4.9 の面積分をガウスの発散定理を用いて求めよ．",
-    "ans": "\\frac{16\\pi}{3}",
-    "solution": "$\\nabla \\cdot \\mathbf{A} = 1$。底面 $S_0$ でのフラックスは $0$。よって $\\iiint_V 1 dV = \\frac{16\\pi}{3}$"
-  },
-  {
-    "card_id": 38,
-    "set_num": 5,
-    "set_title": "第5回 演習とレポート（クーロンの法則と連続電荷分布の電場）",
-    "pdf_pages": "P.45 〜 P.56",
-    "title": "【第5回】問 1",
-    "problem": "地球の総電荷 $-4.6 \\times 10^5 \\text{ C}$ に相当する電子の数を求めよ．（$e = 1.602 \\times 10^{-19} \\text{ C}$）",
-    "ans": "2.87 \\times 10^{24} \\text{ 個}",
-    "solution": "$N = \\frac{4.6 \\times 10^5}{1.602 \\times 10^{-19}} \\approx 2.87 \\times 10^{24}$ 個"
-  },
-  {
-    "card_id": 39,
-    "set_num": 5,
-    "set_title": "第5回 演習とレポート（クーロンの法則と連続電荷分布の電場）",
-    "pdf_pages": "P.45 〜 P.56",
-    "title": "【第5回】問 2",
-    "problem": "$1.0 \\times 10^{-15} \\text{ m}$ 離れた 2 つの陽子のクーロン力と万有引力の比を求めよ．",
-    "ans": "\\frac{F_e}{F_g} \\approx 1.24 \\times 10^{36}",
-    "solution": "$F_e \\approx 230 \\text{ N}, F_g \\approx 1.86 \\times 10^{-34} \\text{ N}$"
-  },
-  {
-    "card_id": 40,
-    "set_num": 5,
-    "set_title": "第5回 演習とレポート（クーロンの法則と連続電荷分布の電場）",
-    "pdf_pages": "P.45 〜 P.56",
-    "title": "【第5回】問 3",
-    "problem": "$2 \\text{ m}$ 離れた $+5.0 \\times 10^{-3} \\text{ C}$ と $-5.0 \\times 10^{-3} \\text{ C}$ のの中点における電場 $\\mathbf{E}$ を求めよ．",
-    "ans": "9.0 \\times 10^7 \\text{ N/C} \\quad (\\text{正電荷から負電荷へ向かう向き})",
-    "solution": "$E = E_A + E_B = 2 \\times (9.0 \\times 10^9 \\times 5.0 \\times 10^{-3} / 1^2) = 9.0 \\times 10^7 \\text{ N/C}$"
-  },
-  {
-    "card_id": 41,
-    "set_num": 5,
-    "set_title": "第5回 演習とレポート（クーロンの法則と連続電荷分布の電場）",
-    "pdf_pages": "P.45 〜 P.56",
-    "title": "【第5回】問 4",
-    "problem": "半径 $5.3 \\times 10^{-11} \\text{ m}$ で円運動する水素原子の電子の速度 $v$ および周期 $T$ を求めよ．",
-    "ans": "v \\approx 2.18 \\times 10^6 \\text{ m/s}, \\quad T \\approx 1.53 \\times 10^{-16} \\text{ s}",
-    "solution": "$m_e \\frac{v^2}{r} = \\frac{e^2}{4\\pi\\varepsilon_0 r^2}$ より導出。"
-  },
-  {
-    "card_id": 42,
-    "set_num": 5,
-    "set_title": "第5回 演習とレポート（クーロンの法則と連続電荷分布の電場）",
-    "pdf_pages": "P.45 〜 P.56",
-    "title": "【第5回】問 5",
-    "problem": "無限長直線電荷（線密度 $\\lambda$）のつくる電場をクーロンの法則から直接求めよ．",
-    "ans": "E = \\frac{\\lambda}{2\\pi\\varepsilon_0 r}",
-    "solution": "直線上の微小電荷の電場成分を軸直角方向に積分。"
-  },
-  {
-    "card_id": 43,
-    "set_num": 5,
-    "set_title": "第5回 演習とレポート（クーロンの法則と連続電荷分布の電場）",
-    "pdf_pages": "P.45 〜 P.56",
-    "title": "【第5回】問 6",
-    "problem": "無限大平面電荷（面密度 $\\sigma$）のつくる電場を求めよ．",
-    "ans": "E = \\frac{\\sigma}{2\\varepsilon_0}",
-    "solution": "$E = \\frac{\\sigma}{2\\varepsilon_0}$"
-  },
-  {
-    "card_id": 44,
-    "set_num": 5,
-    "set_title": "第5回 演習とレポート（クーロンの法則と連続電荷分布の電場）",
-    "pdf_pages": "P.45 〜 P.56",
-    "title": "【第5回】問 7",
-    "problem": "半径 $R$ の帯電球面（面密度 $\\sigma$）の内外の電場を求めよ．",
-    "ans": "r > R: E = \\frac{\\sigma R^2}{\\varepsilon_0 r^2}, \\quad r < R: E = 0",
-    "solution": "球内部はキャンセルして0、球外部は全電荷が中心にある点電荷と等価。"
-  },
-  {
-    "card_id": 45,
-    "set_num": 5,
-    "set_title": "第5回 演習とレポート（クーロンの法則と連続電荷分布の電場）",
-    "pdf_pages": "P.45 〜 P.56",
-    "title": "【第5回】問 8",
-    "problem": "半径 $R$ の帯電球体（体積密度 $\\rho$）の内外の電場を求めよ．",
-    "ans": "r \\ge R: E = \\frac{\\rho R^3}{3\\varepsilon_0 r^2}, \\quad r < R: E = \\frac{\\rho r}{3\\varepsilon_0}",
-    "solution": "球内部は距離 $r$ に比例し、球外部は中心点電荷と等価。"
-  },
-  {
-    "card_id": 46,
-    "set_num": 6,
-    "set_title": "第6回 演習とレポート（ガウスの法則と電場導出・単振動）",
-    "pdf_pages": "P.57 〜 P.68",
-    "title": "【第6回】問 1",
-    "problem": "点電荷 $+2q$ と $-q$ が $a$ 離れてある．電場が 0 となる位置を求めよ．",
-    "ans": "Bのの外側 (Aと反対側) に \\quad x = (\\sqrt{2}+1)a",
-    "solution": "$\\frac{2q}{(a+x)^2} = \\frac{q}{x^2} \\implies \\sqrt{2}x = a+x \\implies x = (\\sqrt{2}+1)a$"
-  },
-  {
-    "card_id": 47,
-    "set_num": 6,
-    "set_title": "第6回 演習とレポート（ガウスの法則と電場導出・単振動）",
-    "pdf_pages": "P.57 〜 P.68",
-    "title": "【第6回】問 2",
-    "problem": "無限長直線電荷（線密度 $\\lambda$）の電場をガウスの法則で求めよ．",
-    "ans": "E = \\frac{\\lambda}{2\\pi\\varepsilon_0 r}",
-    "solution": "円筒ガウス面: $E (2\\pi r L) = \\frac{\\lambda L}{\\varepsilon_0} \\implies E = \\frac{\\lambda}{2\\pi\\varepsilon_0 r}$"
-  },
-  {
-    "card_id": 48,
-    "set_num": 6,
-    "set_title": "第6回 演習とレポート（ガウスの法則と電場導出・単振動）",
-    "pdf_pages": "P.57 〜 P.68",
-    "title": "【第6回】問 3",
-    "problem": "無限大平面電荷（面密度 $\\sigma$）の電場をガウスの法則で求めよ．",
-    "ans": "E = \\frac{\\sigma}{2\\varepsilon_0}",
-    "solution": "円筒ガウス面: $2 E S = \\frac{\\sigma S}{\\varepsilon_0} \\implies E = \\frac{\\sigma}{2\\varepsilon_0}$"
-  },
-  {
-    "card_id": 49,
-    "set_num": 6,
-    "set_title": "第6回 演習とレポート（ガウスの法則と電場導出・単振動）",
-    "pdf_pages": "P.57 〜 P.68",
-    "title": "【第6回】問 4",
-    "problem": "同軸円筒面電荷（半径 $R_1, R_2$, 面密度 $\\sigma_1, \\sigma_2$）の各領域の電場を求めよ．",
-    "ans": "r < R_1: E = 0<br>R_1 < r < R_2: E = \\frac{\\sigma_1 R_1}{\\varepsilon_0 r}<br>r > R_2: E = \\frac{\\sigma_1 R_1 + \\sigma_2 R_2}{\\varepsilon_0 r}",
-    "solution": "ガウスの法則を各領域に適用。"
-  },
-  {
-    "card_id": 50,
-    "set_num": 6,
-    "set_title": "第6回 演習とレポート（ガウスの法則と電場導出・単振動）",
-    "pdf_pages": "P.57 〜 P.68",
-    "title": "【第6回】問 5",
-    "problem": "半径 $R$ の帯電球面（電荷 $Q$）の電場をガウスの法則で求めよ．",
-    "ans": "r > R: E = \\frac{Q}{4\\pi\\varepsilon_0 r^2}, \\quad r < R: E = 0",
-    "solution": "球面ガウス面をとる。"
-  },
-  {
-    "card_id": 51,
-    "set_num": 6,
-    "set_title": "第6回 演習とレポート（ガウスの法則と電場導出・単振動）",
-    "pdf_pages": "P.57 〜 P.68",
-    "title": "【第6回】問 6",
-    "problem": "半径 $R$ の帯電球体（密度 $\\rho$）の電場をガウスの法則で求めよ．",
-    "ans": "r \\ge R: E = \\frac{\\rho R^3}{3\\varepsilon_0 r^2}, \\quad r < R: E = \\frac{\\rho r}{3\\varepsilon_0}",
-    "solution": "内部電荷 $q(r) = \\frac{4}{3}\\pi r^3 \\rho$ を用いる。"
-  },
-  {
-    "card_id": 52,
-    "set_num": 6,
-    "set_title": "第6回 演習とレポート（ガウスの法則と電場導出・単振動）",
-    "pdf_pages": "P.57 〜 P.68",
-    "title": "【第6回】問 7",
-    "problem": "帯電球体（半径 $R$, 正電荷 $+Q$）内部の負電荷 $-q$（質量 $m$）の単振動の周期 $T$ を求めよ．",
-    "ans": "T = 2\\pi \\sqrt{\\frac{4\\pi\\varepsilon_0 m R^3}{q Q}}",
-    "solution": "復元力 $F = - \\frac{q Q}{4\\pi\\varepsilon_0 R^3} r$ より周期を導出。"
-  },
-  {
-    "card_id": 53,
-    "set_num": 7,
-    "set_title": "第7回 演習とレポート（静電ポテンシャル・電位・電気双極子）",
-    "pdf_pages": "P.69 〜 P.86",
-    "title": "【第7回】問 1",
-    "problem": "$1 \\text{ eV}$ は何 J か．",
-    "ans": "1.602 \\times 10^{-19} \\text{ J}",
-    "solution": "$1 \\text{ eV} = e \\times 1 \\text{ V} = 1.602 \\times 10^{-19} \\text{ J}$"
-  },
-  {
-    "card_id": 54,
-    "set_num": 7,
-    "set_title": "第7回 演習とレポート（静電ポテンシャル・電位・電気双極子）",
-    "pdf_pages": "P.69 〜 P.86",
-    "title": "【第7回】問 2",
-    "problem": "無限長直線電荷（線密度 $\\lambda$）の静電ポテンシャル $\\phi(r)$ を求めよ．（基準 $r=a$）",
-    "ans": "\\phi(r) = \\frac{\\lambda}{2\\pi\\varepsilon_0} \\ln\\left(\\frac{a}{r}\\right)",
-    "solution": "$\\phi(r) = -\\int_a^r \\frac{\\lambda}{2\\pi\\varepsilon_0 r} dr = \\frac{\\lambda}{2\\pi\\varepsilon_0} \\ln\\left(\\frac{a}{r}\\right)$"
-  },
-  {
-    "card_id": 55,
-    "set_num": 7,
-    "set_title": "第7回 演習とレポート（静電ポテンシャル・電位・電気双極子）",
-    "pdf_pages": "P.69 〜 P.86",
-    "title": "【第7回】問 3",
-    "problem": "半径 $R$ の帯電球面（面密度 $\\sigma$）の電位 $\\phi(r)$ を求めよ．",
-    "ans": "r \\ge R: \\phi(r) = \\frac{\\sigma R^2}{\\varepsilon_0 r}, \\quad r < R: \\phi(r) = \\frac{\\sigma R}{\\varepsilon_0}",
-    "solution": "電場 $E$ を無限遠から積分。"
-  },
-  {
-    "card_id": 56,
-    "set_num": 7,
-    "set_title": "第7回 演習とレポート（静電ポテンシャル・電位・電気双極子）",
-    "pdf_pages": "P.69 〜 P.86",
-    "title": "【第7回】問 4",
-    "problem": "半径 $R$ の帯電球体（密度 $\\rho$）の電位 $\\phi(r)$ を求めよ．",
-    "ans": "r \\ge R: \\phi(r) = \\frac{\\rho R^3}{3\\varepsilon_0 r}, \\quad r < R: \\phi(r) = \\frac{\\rho}{6\\varepsilon_0}(3R^2 - r^2)",
-    "solution": "各領域で電場を積分。"
-  },
-  {
-    "card_id": 57,
-    "set_num": 7,
-    "set_title": "第7回 演習とレポート（静電ポテンシャル・電位・電気双極子）",
-    "pdf_pages": "P.69 〜 P.86",
-    "title": "【第7回】問 5",
-    "problem": "同心球殻（半径 $R_1, R_2$, 電荷 $+Q, -Q$）の両球間の電位差 $V$ を求めよ．",
-    "ans": "V = \\frac{Q}{4\\pi\\varepsilon_0} \\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)",
-    "solution": "$V = \\phi(R_1) - \\phi(R_2) = \\int_{R_1}^{R_2} \\frac{Q}{4\\pi\\varepsilon_0 r^2} dr = \\frac{Q}{4\\pi\\varepsilon_0} \\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$"
-  },
-  {
-    "card_id": 58,
-    "set_num": 7,
-    "set_title": "第7回 演習とレポート（静電ポテンシャル・電位・電気双極子）",
-    "pdf_pages": "P.69 〜 P.86",
-    "title": "【第7回】問 6",
-    "problem": "電気双極子モーメント $p$ がつくる電位 $\\phi(r, \\theta)$ および電場成分 $E_r, E_\\theta$ を求めよ．",
-    "ans": "\\phi = \\frac{p \\cos\\theta}{4\\pi\\varepsilon_0 r^2}, \\quad E_r = \\frac{2p \\cos\\theta}{4\\pi\\varepsilon_0 r^3}, \\quad E_\\theta = \\frac{p \\sin\\theta}{4\\pi\\varepsilon_0 r^3}",
-    "solution": "$\\phi = \\frac{\\mathbf{p} \\cdot \\mathbf{r}}{4\\pi\\varepsilon_0 r^3}$, $E_r = -\\frac{\\partial\\phi}{\\partial r}, E_\\theta = -\\frac{1}{r}\\frac{\\partial\\phi}{\\partial\\theta}$"
-  },
-  {
-    "card_id": 59,
-    "set_num": 8,
-    "set_title": "第8回 演習とレポート（導体・鏡像法・コンデンサー・静電エネルギー）",
-    "pdf_pages": "P.87 〜 P.99",
-    "title": "【第8回】問 1",
-    "problem": "導体表面（面密度 $\\sigma$）の直外の電場 $E$ を求めよ．",
-    "ans": "E = \\frac{\\sigma}{\\varepsilon_0}",
-    "solution": "導体内部 $E=0$ より導体表面ガウス面で $E = \\frac{\\sigma}{\\varepsilon_0}$"
-  },
-  {
-    "card_id": 60,
-    "set_num": 8,
-    "set_title": "第8回 演習とレポート（導体・鏡像法・コンデンサー・静電エネルギー）",
-    "pdf_pages": "P.87 〜 P.99",
-    "title": "【第8回】問 2",
-    "problem": "半径 $2 \\text{ cm}, 4 \\text{ cm}$ の 2 球を接続し $+6.0 \\times 10^{-4} \\text{ C}$ を与えた．電荷比 $q_1, q_2$ と面密度比 $\\sigma_1/\\sigma_2$ を求めよ．",
-    "ans": "q_1 = 2.0 \\times 10^{-4} \\text{ C}, \\quad q_2 = 4.0 \\times 10^{-4} \\text{ C}, \\quad \\frac{\\sigma_1}{\\sigma_2} = 2",
-    "solution": "同電位 $\\frac{q_1}{a} = \\frac{q_2}{b}$ より導出。"
-  },
-  {
-    "card_id": 61,
-    "set_num": 8,
-    "set_title": "第8回 演習とレポート（導体・鏡像法・コンデンサー・静電エネルギー）",
-    "pdf_pages": "P.87 〜 P.99",
-    "title": "【第8回】問 3",
-    "problem": "中空導体球殻（内半径 $a$, 外半径 $b$）の中心に $+Q$ を置く．誘起電荷を求めよ．",
-    "ans": "\\text{内表面: } -Q, \\quad \\text{外表面: } +Q",
-    "solution": "静電遮蔽と電荷保存則より。"
-  },
-  {
-    "card_id": 62,
-    "set_num": 8,
-    "set_title": "第8回 演習とレポート（導体・鏡像法・コンデンサー・静電エネルギー）",
-    "pdf_pages": "P.87 〜 P.99",
-    "title": "【第8回】問 4",
-    "problem": "接地導体平面から距離 $a$ の点電荷 $q$ に働く力 $F$ と誘起全電荷 $Q_{\\text{ind}}$ を求めよ．",
-    "ans": "F = -\\frac{q^2}{16\\pi\\varepsilon_0 a^2} \\quad (\\text{引力}), \\quad Q_{\\text{ind}} = -q",
-    "solution": "鏡像電荷 $-q$ を距離 $a$（反対側）に置く。"
-  },
-  {
-    "card_id": 63,
-    "set_num": 8,
-    "set_title": "第8回 演習とレポート（導体・鏡像法・コンデンサー・静電エネルギー）",
-    "pdf_pages": "P.87 〜 P.99",
-    "title": "【第8回】問 5",
-    "problem": "平行平板コンデンサーの容量 $C$ と静電エネルギー $U$ を求めよ．",
-    "ans": "C = \\frac{\\varepsilon_0 S}{d}, \\quad U = \\frac{1}{2} C V^2 = \\frac{1}{2} \\varepsilon_0 E^2 (Sd)",
-    "solution": "一様電場 $E = V/d$ より導出。"
-  },
-  {
-    "card_id": 64,
-    "set_num": 8,
-    "set_title": "第8回 演習とレポート（導体・鏡像法・コンデンサー・静電エネルギー）",
-    "pdf_pages": "P.87 〜 P.99",
-    "title": "【第8回】問 6",
-    "problem": "3枚の平行導体板（間隔 $d_1, d_2$）の合成容量を求めよ．",
-    "ans": "C = \\frac{\\varepsilon_0 A}{d_1 + d_2}",
-    "solution": "直列接続モデルより。"
-  },
-  {
-    "card_id": 65,
-    "set_num": 8,
-    "set_title": "第8回 演習とレポート（導体・鏡像法・コンデンサー・静電エネルギー）",
-    "pdf_pages": "P.87 〜 P.99",
-    "title": "【第8回】問 7",
-    "problem": "(1) 同心球殻コンデンサー（半径 $a, b$）の容量 $C$<br>(2) 同軸円筒コンデンサー（半径 $a, b$, 長さ $L$）の容量 $C$",
-    "ans": "(1) $C = 4\\pi\\varepsilon_0 \\frac{ab}{b-a}$<br>(2) $C = \\frac{2\\pi\\varepsilon_0 L}{\\ln(b/a)}$",
-    "solution": "電位差 $V$ を計算して $C = Q/V$"
-  },
-  {
-    "card_id": 66,
-    "set_num": 8,
-    "set_title": "第8回 演習とレポート（導体・鏡像法・コンデンサー・静電エネルギー）",
-    "pdf_pages": "P.87 〜 P.99",
-    "title": "【第8回】問 8",
-    "problem": "孤立導体球（半径 $R$）の容量 $C$ と静電エネルギー $U$ を求めよ．",
-    "ans": "C = 4\\pi\\varepsilon_0 R, \\quad U = \\frac{Q^2}{8\\pi\\varepsilon_0 R}",
-    "solution": "$V = \\frac{Q}{4\\pi\\varepsilon_0 R}$ より導出。"
-  },
-  {
-    "card_id": 67,
-    "set_num": 9,
-    "set_title": "第9回 演習とレポート（オームの法則・定常電流・抵抗）",
-    "pdf_pages": "P.100 〜 P.108",
-    "title": "【第9回】問 1",
-    "problem": "雷電荷 $1.2 \\text{ C}$ が $1.0 \\,\\mu\\text{s}$ で放電した．雷電流 $I$ はいくらか．",
-    "ans": "1.2 \\times 10^6 \\text{ A} \\quad (1.2 \\text{ MA})",
-    "solution": "$I = \\frac{\\Delta Q}{\\Delta t} = \\frac{1.2}{1.0 \\times 10^{-6}} = 1.2 \\times 10^6 \\text{ A}$"
-  },
-  {
-    "card_id": 68,
-    "set_num": 9,
-    "set_title": "第9回 演習とレポート（オームの法則・定常電流・抵抗）",
-    "pdf_pages": "P.100 〜 P.108",
-    "title": "【第9回】問 2",
-    "problem": "断面積 $1 \\text{ mm}^2$, 長さ $60 \\text{ cm}$ で $3 \\text{ V}$ のとき $1 \\text{ A}$ 流れた．抵抗率 $\\rho$ と伝導率 $\\sigma$ を求めよ．",
-    "ans": "\\rho = 5.0 \\times 10^{-6} \\,\\Omega\\cdot\\text{m}, \\quad \\sigma = 2.0 \\times 10^5 \\text{ S/m}",
-    "solution": "$R = 3 \\,\\Omega$, $\\rho = R \\frac{S}{L} = 5.0 \\times 10^{-6}$, $\\sigma = 1/\\rho = 2.0 \\times 10^5$"
-  },
-  {
-    "card_id": 69,
-    "set_num": 9,
-    "set_title": "第9回 演習とレポート（オームの法則・定常電流・抵抗）",
-    "pdf_pages": "P.100 〜 P.108",
-    "title": "【第9回】問 3",
-    "problem": "電気伝導率 $\\sigma_1, \\sigma_2$ の境界における電流の屈折の法則を示せ．",
-    "ans": "\\frac{\\tan\\theta_1}{\\tan\\theta_2} = \\frac{\\sigma_1}{\\sigma_2}",
-    "solution": "$J_{1n} = J_{2n}$ および $E_{1t} = E_{2t} \\implies \\frac{J_{1t}}{\\sigma_1} = \\frac{J_{2t}}{\\sigma_2}$ より証明。"
-  },
-  {
-    "card_id": 70,
-    "set_num": 9,
-    "set_title": "第9回 演習とレポート（オームの法則・定常電流・抵抗）",
-    "pdf_pages": "P.100 〜 P.108",
-    "title": "【第9回】問 4",
-    "problem": "同軸円筒（半径 $a, b$, 長さ $L$, 伝導率 $\\sigma$）間の電気抵抗 $R$ を求めよ．",
-    "ans": "R = \\frac{\\ln(b/a)}{2\\pi\\sigma L}",
-    "solution": "$V = \\int_a^b \\frac{I}{2\\pi\\sigma L r} dr = \\frac{I \\ln(b/a)}{2\\pi\\sigma L}$ より $R = V/I$"
-  },
-  {
-    "card_id": 71,
-    "set_num": 9,
-    "set_title": "第9回 演習とレポート（オームの法則・定常電流・抵抗）",
-    "pdf_pages": "P.100 〜 P.108",
-    "title": "【第9回】問 5",
-    "problem": "起電力 $3 \\text{ V}$, 内部抵抗 $0.5 \\,\\Omega$ に銅線（$1 \\text{ m}, 1 \\text{ mm}^2$, $\\rho = 1.7 \\times 10^{-8} \\,\\Omega\\cdot\\text{m}$）をつなぐ．流れる電流 $I$ を求めよ．",
-    "ans": "I \\approx 5.80 \\text{ A}",
-    "solution": "銅線抵抗 $R = 0.017 \\,\\Omega$。$I = \\frac{3}{0.017 + 0.5} \\approx 5.80 \\text{ A}$"
-  },
-  {
-    "card_id": 72,
-    "set_num": 9,
-    "set_title": "第9回 演習とレポート（オームの法則・定常電流・抵抗）",
-    "pdf_pages": "P.100 〜 P.108",
-    "title": "【第9回】問 6",
-    "problem": "自由電子の平均自由時間 $\\tau$ から微視的オームの法則の電気伝導率 $\\sigma$ を導出せよ．",
-    "ans": "\\sigma = \\frac{n e^2 \\tau}{m_e}",
-    "solution": "漂流速度 $v_d = \\frac{e E \\tau}{m_e}$, 電流密度 $J = n e v_d = \\left(\\frac{n e^2 \\tau}{m_e}\\right) E$"
-  },
-  {
-    "card_id": 73,
-    "set_num": 10,
-    "set_title": "第10回 演習とレポート（ポアソン方程式・ラプラス方程式・境界値問題）",
-    "pdf_pages": "P.109 〜 P.119",
-    "title": "【第10回】問 1",
-    "problem": "電荷密度 $\\rho_0$ の無限平板領域（$-d \\le x \\le d$）でポアソン方程式を解き $\\phi(x)$ と $E(x)$ を求めよ．",
-    "ans": "\\phi(x) = V_0 - \\frac{\\rho_0}{2\\varepsilon_0} x^2, \\quad E(x) = \\frac{\\rho_0}{\\varepsilon_0} x",
-    "solution": "$\\frac{d^2\\phi}{dx^2} = -\\frac{\\rho_0}{\\varepsilon_0}$ を2回積分。"
-  },
-  {
-    "card_id": 74,
-    "set_num": 10,
-    "set_title": "第10回 演習とレポート（ポアソン方程式・ラプラス方程式・境界値問題）",
-    "pdf_pages": "P.109 〜 P.119",
-    "title": "【第10回】問 2",
-    "problem": "球座標系における軸対称ラプラス方程式 $\\Delta \\phi = 0$ の一般解を示せ．",
-    "ans": "\\phi(r, \\theta) = \\sum_{n=0}^\\infty \\left( A_n r^n + \\frac{B_n}{r^{n+1}} \\right) P_n(\\cos\\theta)",
-    "solution": "変数分離法でルジャンドル多項式 $P_n(\\cos\\theta)$ を用いて展開。"
-  },
-  {
-    "card_id": 75,
-    "set_num": 10,
-    "set_title": "第10回 演習とレポート（ポアソン方程式・ラプラス方程式・境界値問題）",
-    "pdf_pages": "P.109 〜 P.119",
-    "title": "【第10回】問 3",
-    "problem": "接地導体平面（$z=0$）と対向する平板（$z=d, \\phi=V$）間の電位分布 $\\phi(z)$ を求めよ．",
-    "ans": "\\phi(z) = \\frac{V}{d} z",
-    "solution": "1次元ラプラス方程式 $\\frac{d^2\\phi}{dz^2} = 0$ に境界条件 $\\phi(0)=0, \\phi(d)=V$ を適用。"
-  },
-  {
-    "card_id": 76,
-    "set_num": 11,
-    "set_title": "第11回 演習とレポート（コンデンサー・静電容量・誘電体）",
-    "pdf_pages": "P.120 〜 P.129",
-    "title": "【第11回】問 1",
-    "problem": "平行板コンデンサーの半分の領域に比誘電率 $\\varepsilon_r$ の誘電体を挿入したときの容量 $C$ を求めよ．",
-    "ans": "C = \\frac{\\varepsilon_0 S}{d} \\frac{2\\varepsilon_r}{\\varepsilon_r + 1}",
-    "solution": "直列合成: $C_1 = \\frac{2\\varepsilon_0 \\varepsilon_r S}{d}, C_2 = \\frac{2\\varepsilon_0 S}{d}$。$\\frac{C_1 C_2}{C_1+C_2} = \\frac{\\varepsilon_0 S}{d} \\frac{2\\varepsilon_r}{\\varepsilon_r + 1}$"
-  },
-  {
-    "card_id": 77,
-    "set_num": 11,
-    "set_title": "第11回 演習とレポート（コンデンサー・静電容量・誘電体）",
-    "pdf_pages": "P.120 〜 P.129",
-    "title": "【第11回】問 2",
-    "problem": "真空電場 $E_0$ 中に比誘電率 $\\varepsilon_r$ の誘電体板を入れたときの $E, D, P$ を求めよ．",
-    "ans": "E = \\frac{E_0}{\\varepsilon_r}, \\quad D = \\varepsilon_0 E_0, \\quad P = \\varepsilon_0 \\frac{\\varepsilon_r - 1}{\\varepsilon_r} E_0",
-    "solution": "境界条件 $D$ 一定より。"
-  },
-  {
-    "card_id": 78,
-    "set_num": 11,
-    "set_title": "第11回 演習とレポート（コンデンサー・静電容量・誘電体）",
-    "pdf_pages": "P.120 〜 P.129",
-    "title": "【第11回】問 3",
-    "problem": "誘電率が $\\varepsilon(x) = \\varepsilon_0 (1 + \\alpha x)$ で変化するコンデンサーの容量 $C$ を求めよ．",
-    "ans": "C = \\frac{\\varepsilon_0 \\alpha S}{\\ln(1+\\alpha d)}",
-    "solution": "$\\frac{1}{C} = \\int_0^d \\frac{dx}{\\varepsilon_0(1+\\alpha x)S} = \\frac{\\ln(1+\\alpha d)}{\\varepsilon_0 \\alpha S}$"
-  },
-  {
-    "card_id": 79,
-    "set_num": 11,
-    "set_title": "第11回 演習とレポート（コンデンサー・静電容量・誘電体）",
-    "pdf_pages": "P.120 〜 P.129",
-    "title": "【第11回】問 4",
-    "problem": "充電後切り離して極板間隔を2倍にしたときの (1) 電圧 $V'$, (2) 静電エネルギー変化 $\\Delta U$ を求めよ．",
-    "ans": "(1) $V' = 2V$<br>(2) $\\Delta U = \\frac{1}{2} C_0 V^2$",
-    "solution": "電荷保存 $Q = C_0 V$。容量が半減するため電圧2倍、エネルギー倍増。"
-  },
-  {
-    "card_id": 80,
-    "set_num": 11,
-    "set_title": "第11回 演習とレポート（コンデンサー・静電容量・誘電体）",
-    "pdf_pages": "P.120 〜 P.129",
-    "title": "【第11回】問 5",
-    "problem": "帯電導体球（半径 $a$, 電荷 $Q$）を同心誘電体球殻（外半径 $b$, $\\varepsilon_r$）で覆ったときの容量 $C$ を求めよ．",
-    "ans": "C = \\frac{4\\pi\\varepsilon_0}{\\frac{1}{\\varepsilon_r a} + \\left(1 - \\frac{1}{\\varepsilon_r}\\right)\\frac{1}{b}}",
-    "solution": "各領域の電場 $E(r)$ を積分して電位差を求める。"
-  },
-  {
-    "card_id": 81,
-    "set_num": 12,
-    "set_title": "第12回 演習とレポート（誘電体・電界と電束密度の境界条件）",
-    "pdf_pages": "P.130 〜 P.134",
-    "title": "【第12回】問 1",
-    "problem": "誘電体（誘電率 $\\varepsilon$）入りコンデンサーに電圧 $V$ をかけたときの (1) $E, D, P$, (2) エネルギー $U$ を求めよ．",
-    "ans": "(1) $E = \\frac{V}{d}, \\quad D = \\frac{\\varepsilon V}{d}, \\quad P = (\\varepsilon - \\varepsilon_0)\\frac{V}{d}$<br>(2) $U = \\frac{1}{2} \\frac{\\varepsilon S V^2}{d}$",
-    "solution": "基本定義式より導出。"
-  },
-  {
-    "card_id": 82,
-    "set_num": 12,
-    "set_title": "第12回 演習とレポート（誘電体・電界と電束密度の境界条件）",
-    "pdf_pages": "P.130 〜 P.134",
-    "title": "【第12回】問 2",
-    "problem": "真空電場 $E_0$ に垂直に置いた誘電体板内部の (1) 電場 $E$, (2) 分極電荷密度 $\\sigma_p$ を求めよ．",
-    "ans": "(1) $E = \\frac{E_0}{\\varepsilon_r}$<br>(2) $\\sigma_p = \\varepsilon_0 \\frac{\\varepsilon_r - 1}{\\varepsilon_r} E_0$",
-    "solution": "法線成分 $D$ 連続より。"
-  },
-  {
-    "card_id": 83,
-    "set_num": 12,
-    "set_title": "第12回 演習とレポート（誘電体・電界と電束密度の境界条件）",
-    "pdf_pages": "P.130 〜 P.134",
-    "title": "【第12回】問 3",
-    "problem": "2層の誘電体板（厚さ $d_1, d_2$, 誘電率 $\\varepsilon_1, \\varepsilon_2$）を重ねたコンデンサーの各層電場 $E_1, E_2$ と合成容量 $C$ を求めよ．",
-    "ans": "E_1 = \\frac{V}{\\varepsilon_1 \\left(\\frac{d_1}{\\varepsilon_1} + \\frac{d_2}{\\varepsilon_2}\\right)}, \\quad C = \\frac{S}{\\frac{d_1}{\\varepsilon_1} + \\frac{d_2}{\\varepsilon_2}} = \\frac{\\varepsilon_1 \\varepsilon_2 S}{\\varepsilon_2 d_1 + \\varepsilon_1 d_2}",
-    "solution": "$D$ 一定より各電場と全体の容量を合成。"
-  },
-  {
-    "card_id": 84,
-    "set_num": 12,
-    "set_title": "第12回 演習とレポート（誘電体・電界と電束密度の境界条件）",
-    "pdf_pages": "P.130 〜 P.134",
-    "title": "【第12回】問 4",
-    "problem": "誘電体境界における電界の屈折の法則 $\\frac{\\tan\\theta_1}{\\tan\\theta_2} = \\frac{\\varepsilon_1}{\\varepsilon_2}$ を証明せよ．",
-    "ans": "\\frac{\\tan\\theta_1}{\\tan\\theta_2} = \\frac{\\varepsilon_1}{\\varepsilon_2} \\quad (\\text{証明終了})",
-    "solution": "接線成分連続 $E_1 \\sin\\theta_1 = E_2 \\sin\\theta_2$ および 法線成分連続 $\\varepsilon_1 E_1 \\cos\\theta_1 = \\varepsilon_2 E_2 \\cos\\theta_2$ の比をとる。"
+    "questions": [
+      {
+        "id": "Q2-01",
+        "q_num": "1",
+        "problem": "曲線 $C$ が $\\mathbf{r}(s) = \\cos s \\mathbf{i} + \\sin s \\mathbf{j} \\left(0 \\le s \\le \\frac{\\pi}{2}\\right)$ で表されるとき，円弧の上で $\\varphi = 2xy^2$ を積分せよ．",
+        "ans": "$\\frac{2}{3}$",
+        "solution": "\n<b>詳細な途中式・計算ステップ:</b><br>\nパラメータ $s$ による表現：$x = \\cos s, y = \\sin s$ です。微小弧長要素は $ds$ です。<br>\n被積分関数は $\\varphi = 2xy^2 = 2 \\cos s \\sin^2 s$ と表せます。<br>\n線積分を実行します：<br>\n$$\\int_C \\varphi ds = \\int_0^{\\pi/2} 2 \\cos s \\sin^2 s ds$$\n$u = \\sin s$ と置換すると、$du = \\cos s ds$ となります。<br>\n積分範囲は $s=0 \\to u=0$, $s=\\pi/2 \\to u=1$ です。<br>\n$$= \\int_0^1 2 u^2 du = 2 \\left[ \\frac{u^3}{3} \\right]_0^1 = \\frac{2}{3}$$\n"
+      },
+      {
+        "id": "Q2-02",
+        "q_num": "2",
+        "problem": "$C$ が $xy$ 平面上の直線 $y = 2x$ を $A: (-1, -2, 0)$ から $B: (1, 2, 0)$ まで区切った線分であるとき，$\\int_C xy^3 ds$ を求めよ．",
+        "ans": "$\\frac{16\\sqrt{5}}{5}$",
+        "solution": "\n<b>詳細な途中式・計算ステップ:</b><br>\nパラメータ $x = t (-1 \\le t \\le 1)$ とおくと、$y = 2t, z = 0$ です。<br>\n微小弧長 $ds = \\sqrt{\\left(\\frac{dx}{dt}\\right)^2 + \\left(\\frac{dy}{dt}\\right)^2 + \\left(\\frac{dz}{dt}\\right)^2} dt = \\sqrt{1^2 + 2^2 + 0^2} dt = \\sqrt{5} dt$<br>\n被積分関数 $xy^3 = t(2t)^3 = 8t^4$<br>\nしたがって、線積分は：<br>\n$$\\int_C xy^3 ds = \\int_{-1}^1 (8t^4) \\sqrt{5} dt = 8\\sqrt{5} \\int_{-1}^1 t^4 dt = 8\\sqrt{5} \\left[ \\frac{t^5}{5} \\right]_{-1}^1 = 8\\sqrt{5} \\left(\\frac{1}{5} - \\left(-\\frac{1}{5}\\right)\\right) = \\frac{16\\sqrt{5}}{5}$$\n"
+      },
+      {
+        "id": "Q2-03",
+        "q_num": "3",
+        "problem": "スカラー場 $\\varphi = x^2 + y^2 + z^2$ について，下記を計算せよ．<br><b>(1)</b> $P(1, -1, 0)$ と $Q(2, 1, 2)$ を結ぶ線分 $PQ$ に沿った線積分 $\\int_{PQ} \\varphi ds$<br><b>(2)</b> 原点 $O$ を経由した折れ線 $PO, OQ$ に沿った線積分 $\\int_{PO+OQ} \\varphi ds$",
+        "ans": "(1) $12$<br>(2) $9 + \\frac{2\\sqrt{2}}{3}$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n線分 $PQ$ のパラメータ表示：$\\mathbf{r}(t) = (1-t)P + tQ = (1+t, -1+2t, 2t) \\quad (0 \\le t \\le 1)$<br>\n$\\frac{d\\mathbf{r}}{dt} = (1, 2, 2) \\implies ds = \\sqrt{1^2 + 2^2 + 2^2} dt = 3 dt$<br>\n$\\varphi(t) = (1+t)^2 + (-1+2t)^2 + (2t)^2 = (1+2t+t^2) + (1-4t+4t^2) + 4t^2 = 9t^2 - 2t + 2$<br>\n$$\\int_{PQ} \\varphi ds = \\int_0^1 (9t^2 - 2t + 2) \\cdot 3 dt = 3 \\left[ 3t^3 - t^2 + 2t \\right]_0^1 = 3 (3 - 1 + 2) = 12$$<br>\n\n<b>(2) の詳細途中式:</b><br>\n・経路 $PO$: $P(1,-1,0) \\to O(0,0,0)$。$\\mathbf{r}(t) = (1-t, -1+t, 0) (0 \\le t \\le 1)$, $ds = \\sqrt{2} dt$。<br>\n$\\varphi = (1-t)^2 + (-1+t)^2 = 2(1-t)^2$。$\\int_{PO} \\varphi ds = \\int_0^1 2(1-t)^2 \\sqrt{2} dt = 2\\sqrt{2} \\left[ -\\frac{(1-t)^3}{3} \\right]_0^1 = \\frac{2\\sqrt{2}}{3}$<br>\n・経路 $OQ$: $O(0,0,0) \\to Q(2,1,2)$。$\\mathbf{r}(t) = (2t, t, 2t) (0 \\le t \\le 1)$, $ds = \\sqrt{4+1+4} dt = 3 dt$。<br>\n$\\varphi = 4t^2 + t^2 + 4t^2 = 9t^2$。$\\int_{OQ} \\varphi ds = \\int_0^1 9t^2 \\cdot 3 dt = 27 \\left[ \\frac{t^3}{3} \\right]_0^1 = 9$<br>\n合計: $9 + \\frac{2\\sqrt{2}}{3}$\n"
+      },
+      {
+        "id": "Q2-04",
+        "q_num": "4",
+        "problem": "スカラー場 $\\varphi = 2xz$ について，曲線 $C: \\mathbf{r}(t) = \\cos t \\mathbf{i} + \\sin t \\mathbf{j} + t\\mathbf{k}, (0 \\le t \\le \\pi)$ に沿った線積分 $\\int_C \\varphi ds$ を求めよ．",
+        "ans": "$-4\\sqrt{2}$",
+        "solution": "\n<b>詳細な途中式・計算ステップ:</b><br>\n位置ベクトル $\\mathbf{r}(t) = (\\cos t, \\sin t, t)$ より：<br>\n$\\frac{d\\mathbf{r}}{dt} = (-\\sin t, \\cos t, 1) \\implies ds = \\sqrt{(-\\sin t)^2 + (\\cos t)^2 + 1^2} dt = \\sqrt{1 + 1} dt = \\sqrt{2} dt$<br>\n被積分関数 $\\varphi = 2xz = 2 (\\cos t)(t) = 2t \\cos t$<br>\n部分積分を実行します：<br>\n$$\\int_C \\varphi ds = \\int_0^\\pi (2t \\cos t) \\sqrt{2} dt = 2\\sqrt{2} \\int_0^\\pi t \\cos t dt$$\n$$= 2\\sqrt{2} \\left( \\left[ t \\sin t \\right]_0^\\pi - \\int_0^\\pi \\sin t dt \\right) = 2\\sqrt{2} \\left( 0 - [-\\cos t]_0^\\pi \\right) = 2\\sqrt{2} (0 - (1 - (-1))) = -4\\sqrt{2}$$\n"
+      },
+      {
+        "id": "Q2-07",
+        "q_num": "7",
+        "problem": "$\\mathbf{F} = 2x\\mathbf{i} + y\\mathbf{j} + 2z\\mathbf{k}$, 曲線 $C: \\mathbf{r}(t) = t\\mathbf{i} + t^2\\mathbf{j} + (1-t)\\mathbf{k}, (0 \\le t \\le 1)$ のとき，線積分 $\\int_C \\mathbf{F} \\cdot d\\mathbf{r}$ を求めよ．",
+        "ans": "$\\frac{1}{2}$",
+        "solution": "\n<b>詳細な途中式・計算ステップ:</b><br>\n微小変位ベクトル $d\\mathbf{r} = \\frac{d\\mathbf{r}}{dt} dt = (1, 2t, -1) dt$<br>\nベクトル場 $\\mathbf{F} = (2x, y, 2z) = (2t, t^2, 2(1-t))$<br>\n内積を計算します：<br>\n$$\\mathbf{F} \\cdot d\\mathbf{r} = [ (2t)(1) + (t^2)(2t) + 2(1-t)(-1) ] dt = (2t + 2t^3 - 2 + 2t) dt = (2t^3 + 4t - 2) dt$$\n$t = 0 \\to 1$ で定積分を実行します：<br>\n$$\\int_0^1 (2t^3 + 4t - 2) dt = \\left[ \\frac{2t^4}{4} + 2t^2 - 2t \\right]_0^1 = \\frac{1}{2} + 2 - 2 = \\frac{1}{2}$$\n"
+      }
+    ]
   }
 ];
 
@@ -1141,34 +404,36 @@
         const container = document.getElementById('cardsList');
         let html = '';
 
-        cardsData.forEach(card => {
-            html += `
-            <div class="card-item" data-set="${card.set_num}" data-search="${(card.title + ' ' + card.problem + ' ' + card.ans + ' ' + card.solution).replace(/"/g, '&quot;')}">
-                <div class="card-top">
-                    <span class="card-badge">${card.title}</span>
-                    <span class="card-meta">第${card.set_num}回 | PDF ${card.pdf_pages} | 問 ${card.card_id}</span>
-                </div>
-                <div class="card-problem">${card.problem}</div>
-                
-                <!-- 【最終答え】常時表示ボックス -->
-                <div class="ans-box">
-                    <div class="ans-title">✅ 【最終答え】</div>
-                    <div class="ans-value">${card.ans}</div>
-                </div>
+        setsData.forEach(set => {
+            set.questions.forEach(q => {
+                html += `
+                <div class="card-item" data-set="${set.set_num}" data-search="${(q.problem + ' ' + q.ans + ' ' + q.solution).replace(/"/g, '&quot;')}">
+                    <div class="card-top">
+                        <span class="card-badge">【第${set.set_num}回】問 ${q.q_num}</span>
+                        <span class="card-meta">第${set.set_num}回 | PDF ${set.pdf_pages} | 問 ${q.id}</span>
+                    </div>
+                    <div class="card-problem">${q.problem}</div>
+                    
+                    <div class="ans-box">
+                        <div class="ans-title">✅ 【明確な最終答え】</div>
+                        <div class="ans-value">${q.ans}</div>
+                    </div>
 
-                <button class="sol-toggle" onclick="toggleSol(this)">
-                    <span>📖 途中計算・解法導出プロセスを開く / 閉じる</span>
-                    <span>▼</span>
-                </button>
-                <div class="sol-content">
-                    <div style="font-weight:800; color:#2563eb; margin-bottom:10px;">【詳細な計算・導出プロセス】</div>
-                    ${card.solution}
+                    <button class="sol-toggle" onclick="toggleSol(this)">
+                        <span>📖 詳細な途中式・計算ステップを開く / 閉じる</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="sol-content">
+                        <div style="font-weight:900; color:#2563eb; font-size:19px; margin-bottom:14px;">【詳細な途中式・解法ステップ】</div>
+                        ${q.solution}
+                    </div>
                 </div>
-            </div>
-            `;
+                `;
+            });
         });
 
         container.innerHTML = html;
+        if (window.MathJax) { MathJax.typesetPromise(); }
     }
 
     function toggleSol(btn) {
