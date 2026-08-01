@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>電磁気学1 演習・レポート 直感的イメージ＆完全問題解説集</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="initKaTeX()"></script>
+  
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: rgba(30, 41, 59, 0.85);
+      --bg-hover: #334155;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-color: #38bdf8;
+      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      --concept-bg: rgba(56, 189, 248, 0.08);
+      --concept-border: #38bdf8;
+      --success-color: #34d399;
+      --warning-color: #fbbf24;
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+      --sidebar-width: 290px;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f1f5f9;
+      --bg-secondary: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --bg-hover: #e2e8f0;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --accent-color: #0284c7;
+      --accent-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+      --concept-bg: rgba(2, 132, 199, 0.06);
+      --concept-border: #0284c7;
+      --success-color: #059669;
+      --warning-color: #d97706;
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.75;
+      display: flex;
+      min-height: 100vh;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Sidebar Navigation */
+    aside.sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 20px 18px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .nav-list {
+      list-style: none;
+      overflow-y: auto;
+      padding: 12px 8px;
+      flex: 1;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 3px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item a:hover {
+      background-color: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .nav-item a.active {
+      background: var(--accent-gradient);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+    }
+
+    .badge {
+      margin-left: auto;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      background-color: rgba(255,255,255,0.15);
+    }
+
+    /* Main Area */
+    main.main-content {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 36px 44px;
+      max-width: 1120px;
+    }
+
+    header.top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      width: 18px;
+      height: 18px;
+    }
+
+    .controls-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 9px 15px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--bg-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: #ffffff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.95;
+    }
+
+    /* Section & Cards */
+    .section-container {
+      margin-bottom: 48px;
+      scroll-margin-top: 30px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .problem-card {
+      background-color: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .problem-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .problem-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+
+    .problem-number {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+
+    .problem-content {
+      font-size: 0.94rem;
+      margin-bottom: 16px;
+    }
+
+    .problem-content p {
+      margin-bottom: 8px;
+    }
+
+    /* Intuitive Concept Box */
+    .concept-box {
+      background-color: var(--concept-bg);
+      border-left: 4px solid var(--concept-border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    .concept-title {
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .solution-box {
+      background-color: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 20px 24px;
+      border-left: 4px solid var(--success-color);
+      margin-top: 16px;
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .solution-box.hidden {
+      display: none;
+    }
+
+    .solution-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--success-color);
+      margin-bottom: 12px;
+    }
+
+    .step-block {
+      margin-bottom: 12px;
+      padding-left: 8px;
+    }
+
+    .step-name {
+      font-weight: 700;
+      color: var(--warning-color);
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+
+    .katex-display {
+      margin: 10px 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 4px 0;
+    }
+
+    .check-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .check-label input {
+      accent-color: var(--accent-color);
+      width: 15px;
+      height: 15px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      aside.sidebar {
+        transform: translateX(-100%);
+      }
+      main.main-content {
+        margin-left: 0;
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">電磁気学1</div>
+      <div class="sidebar-subtitle">物理的直感＆全問題解法完全集</div>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item"><a href="#sec-1" class="active">第1回：ベクトル解析基礎<span class="badge">9問</span></a></li>
+      <li class="nav-item"><a href="#sec-2">第2回：線積分<span class="badge">10問</span></a></li>
+      <li class="nav-item"><a href="#sec-3">第3回：面積分<span class="badge">8問</span></a></li>
+      <li class="nav-item"><a href="#sec-4">第4回：発散・ストークス定理<span class="badge">10問</span></a></li>
+      <li class="nav-item"><a href="#sec-5">第5回：クーロン・電荷分布<span class="badge">8問</span></a></li>
+      <li class="nav-item"><a href="#sec-6">第6回：ガウスの法則応用<span class="badge">7問</span></a></li>
+      <li class="nav-item"><a href="#sec-7">第7回：静電ポテンシャル<span class="badge">6問</span></a></li>
+      <li class="nav-item"><a href="#sec-8">第8回：導体と静電容量<span class="badge">8問</span></a></li>
+      <li class="nav-item"><a href="#sec-9">第9回：定常電流とDrude<span class="badge">6問</span></a></li>
+      <li class="nav-item"><a href="#sec-10">第10回：平行板コンデンサー<span class="badge">3問</span></a></li>
+      <li class="nav-item"><a href="#sec-11">第11回：誘電体とエネルギー<span class="badge">5問</span></a></li>
+      <li class="nav-item"><a href="#sec-12">第12回：誘電体境界条件<span class="badge">4問</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="top-header">
+      <div class="search-box">
+        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="キーワードや物理的意味で検索...">
+      </div>
+      <div class="controls-group">
+        <button class="btn" id="toggleAllBtn" onclick="toggleAllSolutions()">全解答を「開く/閉じる」</button>
+        <button class="btn" id="themeBtn" onclick="toggleTheme()">🌙 / ☀️</button>
+      </div>
+    </header>
+
+    <!-- SECTION 1 -->
+    <section id="sec-1" class="section-container">
+      <h2 class="section-title"><span>第1回：ベクトル解析の基礎（勾配・発散・回転）</span></h2>
+      
+      <!-- Problem 1 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 1. スカラー場の最急上り坂ベクトル（勾配 $\text{grad } f$）</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>次のスカラー関数 $f$ の勾配 $\nabla f$ を求めよ。</p>
+          <p>1) $f = e^x \sin y$ &nbsp;&nbsp;&nbsp; 2) $f = (x^2+y^2+z^2)^2$ &nbsp;&nbsp;&nbsp; 3) $f = \frac{1}{2}\ln(x^2+y^2)$</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>「標高」や「温度・電位」などのスカラー分布に対し、その場所から「どの向きに移動すれば最も急激に値が上がるか（最急傾斜方向）」と「その坂の急傾斜度（傾き）」を矢印（ベクトル）として取り出す操作です。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：各方向の微分（各軸沿いの坂の傾き）を求める</div>
+            <p>$\nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：計算を実行する</div>
+            <p>1) $\frac{\partial f}{\partial x} = e^x \sin y, \ \frac{\partial f}{\partial y} = e^x \cos y \implies \mathbf{\nabla f = e^x \sin y \vec{i} + e^x \cos y \vec{j}}$</p>
+            <p>2) 合成関数の微分より $\mathbf{\nabla f = 4(x^2+y^2+z^2)(x\vec{i} + y\vec{j} + z\vec{k})}$</p>
+            <p>3) $\frac{\partial f}{\partial x} = \frac{x}{x^2+y^2} \implies \mathbf{\nabla f = \frac{1}{x^2+y^2}(x\vec{i} + y\vec{j})}$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 2. ベクトル場の湧き出し密度（発散 $\text{div } \vec{g}$）</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>次のベクトル関数 $\vec{g}$ の発散 $\nabla \cdot \vec{g}$ を求めよ。</p>
+          <p>1) $\vec{g} = y^2 e^z \vec{i} + x^2 z^2 \vec{k}$ &nbsp;&nbsp;&nbsp; 2) $\vec{g} = x^2 \vec{i} + y^2 \vec{j} + z^2 \vec{k}$ &nbsp;&nbsp;&nbsp; 3) $\vec{g} = e^{-xy}\vec{i} + e^{-yz}\vec{j} + e^{-zx}\vec{k}$</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>微小なサイコロ（空間の点）を置いたとき、そこから水や電場などのベクトルが「新しく湧き出しているか（正）」または「吸い込まれているか（負）」の正味の増減量をスカラー値として測る計算です。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：各成分の偏微分を足し合わせる</div>
+            <p>$\nabla \cdot \vec{g} = \frac{\partial g_x}{\partial x} + \frac{\partial g_y}{\partial y} + \frac{\partial g_z}{\partial z}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：計算を実行する</div>
+            <p>1) $0 + 0 + 2x^2 z = \mathbf{2x^2 z}$</p>
+            <p>2) $2x + 2y + 2z = \mathbf{2(x+y+z)}$</p>
+            <p>3) $\mathbf{-y e^{-xy} - z e^{-yz} - x e^{-zx}}$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 3 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 3. 流体の中の「微小風車の回りやすさ」（回転 $\text{rot } \vec{v}$）</div>
+          <label class="check-label"><input type="checkbox">完了</label></div>
+        <div class="problem-content">
+          <p>次式で表されるベクトル $\vec{v}$ について $\text{rot } \vec{v}$ を求めよ。</p>
+          <p>1) $\vec{v} = z\vec{i}+x\vec{j}+y\vec{k}$ &nbsp;&nbsp;&nbsp; 2) $\vec{v} = x\vec{i}+yz\vec{j}-(x^2+z^2)\vec{k}$ &nbsp;&nbsp;&nbsp; 3) $\vec{v} = \frac{\vec{r}}{r^3}$</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>流体の中に置いた超小型の水車が、流速の「場所によるズレ（シアー）」によってくるくる回転するかどうか、その「回転軸の向き」と「回転の激しさ（角速度）」を示すベクトルを求めます。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：行列式による回転の計算</div>
+            <p>$\nabla \times \vec{v} = \det \begin{pmatrix} \vec{i} & \vec{j} & \vec{k} \\ \partial_x & \partial_y & \partial_z \\ v_x & v_y & v_z \end{pmatrix}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：計算を実行する</div>
+            <p>1) $(1-0)\vec{i} + (1-0)\vec{j} + (1-0)\vec{k} = \mathbf{\vec{i} + \vec{j} + \vec{k}}$ （対角線を軸に回転する一様な渦）</p>
+            <p>2) $(0-y)\vec{i} - (-2x-0)\vec{j} + (0-0)\vec{k} = \mathbf{-y\vec{i} + 2x\vec{j}}$</p>
+            <p>3) 放射状の場（中心力場）は渦を作らないため $\mathbf{\vec{0}}$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 4 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 4. 中心からの距離 $r$ の勾配公式</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>$\vec{r} = x\vec{i}+y\vec{j}+z\vec{k}, r = |\vec{r}|$ とするとき： 1) $\nabla r$, 2) $\nabla \frac{1}{r}$, 3) $\nabla r^n$, 4) $\nabla \ln r$ を求めよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>原点からの距離 $r$ だけに依存する場の球対称な変化率を求める公式です。勾配の向きは常に「原点から外に向かう放射方向の単位ベクトル $\vec{r}/r$」になります。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：基本公式 $\nabla r = \frac{\vec{r}}{r}$ を使う</div>
+            <p>合成関数の微分：$\nabla f(r) = f'(r) \nabla r = f'(r) \frac{\vec{r}}{r}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：計算結果</div>
+            <p>1) $\mathbf{\frac{\vec{r}}{r}}$ （中心から外に向かう単位ベクトル）</p>
+            <p>2) $-\frac{1}{r^2}\frac{\vec{r}}{r} = \mathbf{-\frac{\vec{r}}{r^3}}$ （点電荷の電場 $E = -\nabla \phi$ の基礎）</p>
+            <p>3) $\mathbf{n r^{n-2} \vec{r}}$</p>
+            <p>4) $\mathbf{\frac{\vec{r}}{r^2}}$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 5 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 5. 逆二乗則ベクトルの発散と点源の物理</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>1) $\nabla \cdot (\vec{r}/r)$ &nbsp;&nbsp;&nbsp; 2) $\nabla \cdot (\vec{r}/r^3)$ を求めよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>点電荷がつくる電場 $\vec{E} \propto \vec{r}/r^3$ は「電荷が存在する原点以外のあらゆる場所で湧き出しゼロ ($\text{div }\vec{E} = 0$)」になるという静電磁気学の根本的性質を示しています。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：積の微分の公式展開</div>
+            <p>$\nabla \cdot (f \vec{A}) = (\nabla f)\cdot \vec{A} + f (\nabla \cdot \vec{A})$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：代入して計算</div>
+            <p>1) $\nabla(\frac{1}{r})\cdot\vec{r} + \frac{1}{r}(\nabla\cdot\vec{r}) = -\frac{\vec{r}}{r^3}\cdot\vec{r} + \frac{3}{r} = -\frac{1}{r} + \frac{3}{r} = \mathbf{\frac{2}{r}}$</p>
+            <p>2) $\nabla(r^{-3})\cdot\vec{r} + r^{-3}(3) = -3r^{-5}(\vec{r}\cdot\vec{r}) + 3r^{-3} = -3r^{-3} + 3r^{-3} = \mathbf{0}$ （原点を除く空間で正味の湧き出しゼロ！）</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section id="sec-2" class="section-container">
+      <h2 class="section-title"><span>第2回：線積分</span></h2>
+
+      <!-- Problem 1 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 1. 円周上の壁の面積を求める</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>$$\int_C \varphi \, ds \quad \left(\varphi = 2xy^2, \quad C : \vec{r}(s) = \cos s \vec{i} + \sin s \vec{j} \quad (0 \le s \le \pi/2)\right)$$</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>半径 1 の円弧（第1象限の 1/4 の円）というカーブの上に建てられた、高さ $2xy^2$ の「曲がった壁」の表面積を求める計算です。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：コース上の位置と微小長さを表す</div>
+            <p>$x = \cos s, \ y = \sin s$</p>
+            <p>移動距離の微小変化：$ds = 1 \, ds$ （単位円周に沿って進む長さそのまま）</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：壁の高さを角度 $s$ の式にする</div>
+            <p>壁の高さ $\varphi = 2xy^2 = 2 \cos s \sin^2 s$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 3：スタート（$s=0$）からゴール（$s=\pi/2$）まで合算する</div>
+            <p>$$\int_0^{\pi/2} 2 \cos s \sin^2 s \, ds = \left[ \frac{2}{3} \sin^3 s \right]_0^{\pi/2} = \mathbf{\frac{2}{3}}$$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 2. 直線ルート上の値の累積和</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>$$\int_C xy^3 ds \quad \left(\text{直線 } y = 2x, \ A(-1, -2, 0) \to B(1, 2, 0)\right)$$</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>$A(-1,-2)$ から $B(1,2)$ へのまっすぐな斜めの道を進むとき、各地点での「値（$x \cdot y^3$）」に道のり $ds$ を掛けながら足し合わせる計算です。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：道のりを媒介変数 $t$ で表す</div>
+            <p>$x = t, \ y = 2t \ (-1 \le t \le 1)$</p>
+            <p>斜めに進むため微小距離 $ds = \sqrt{(dx)^2 + (dy)^2} = \sqrt{1^2 + 2^2} dt = \sqrt{5} dt$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：コース上の値を $t$ で表す</div>
+            <p>$xy^3 = t \cdot (2t)^3 = 8t^4$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 3：積算する</div>
+            <p>$$\int_{-1}^1 (8t^4) \cdot \sqrt{5} dt = 8\sqrt{5} \left[ \frac{t^5}{5} \right]_{-1}^1 = \mathbf{\frac{16\sqrt{5}}{5}}$$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 4 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 4. らせん階段コースでの場の影響量</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>$$\varphi = 2xz, \quad C : (\cos t, \sin t, t) \quad (0 \le t \le \pi)$$</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>上に向かってグルッと登る「らせん階段」を進みながら、その場の値（$2 \times x \times z$）を全行程で積算する計算です。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：各成分と微小道のり $ds$ を出す</div>
+            <p>$ds = \sqrt{(-\sin t)^2 + (\cos t)^2 + 1^2} dt = \sqrt{2} dt$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：コース上の値と部分積分</div>
+            <p>$\varphi = 2t\cos t$</p>
+            <p>$$\int_0^\pi 2t \cos t \cdot \sqrt{2} dt = 2\sqrt{2} [t \sin t + \cos t]_0^\pi = 2\sqrt{2}(-1 - 1) = \mathbf{-4\sqrt{2}}$$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 7 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 7. 空間を移動するときに「力がした仕事」</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>$$\int_C \vec{F} \cdot d\vec{r} \quad \left(\vec{F} = (2x, \sqrt{y}, 2z), \quad C : (t, t^2, 1-t) \quad (0 \le t \le 1)\right)$$</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>力（風など）が吹いている空間の中をコース $C$ に沿って動いたとき、進行方向と重なる力（内積）だけを取り出して、スタートからゴールまでに得られた「エネルギー（仕事）」を計算します。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：移動ベクトル $d\vec{r}$ と力 $\vec{F}$ を $t$ に揃える</div>
+            <p>$d\vec{r} = (1, 2t, -1) dt$, $\vec{F} = (2t, t, 2-2t)$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：進行方向と重なる力（内積）を計算する</div>
+            <p>$\vec{F} \cdot d\vec{r} = (2t \cdot 1 + t \cdot 2t + (2-2t)(-1)) dt = (2t^2 + 4t - 2) dt$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 3：仕事の合計を出す</div>
+            <p>$$\int_0^1 (2t^2 + 4t - 2) dt = \left[ \frac{2}{3}t^3 + 2t^2 - 2t \right]_0^1 = \mathbf{\frac{2}{3}}$$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 9 -->
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 9. 周回コースで受けるトータルの推進力（循環）</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>$$\int_C \vec{F} \cdot d\vec{r} \quad (\text{半径 3 の円周 } C : x = 3\cos t, y = 3\sin t)$$</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>円形コースをぐるっと1周したときに、流れや風から「トータルでどれくらい追い風（推進力）を受けたか（循環）」を求める計算です。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：内積を計算して整理する</div>
+            <p>$\vec{F} \cdot d\vec{r} = 9(1 - \sin t \cos t) dt$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：1周分（$0 \to 2\pi$）合算する</div>
+            <p>$\sin t \cos t$ （波の振動成分）は1周で相殺されて 0。定数 9 のみ残り：</p>
+            <p>$$9 \int_0^{2\pi} 1 dt = 9 \times 2\pi = \mathbf{18\pi}$$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section id="sec-4" class="section-container">
+      <h2 class="section-title"><span>第4回：ベクトル解析の定理（ガウス＆ストークス）</span></h2>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 3. 球面を突き抜ける全体の湧き出し量（ガウスの定理）</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>原点を中心とする半径 $a$ の球面を $S$ とする。 $\vec{A} = x^3\vec{i}+y^3\vec{j}+z^3\vec{k}$ に対し $\int_S \vec{A} \cdot d\vec{S}$ を求めよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>球体の表面（皮）から外に吹き出していく水や電場などの「表面からの湧き出し総量」は、球体の中身（実）全体で湧き出している「源の合計」と完全に一致するというガウスの発散定理の直感的応用です。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：中身全体の湧き出し密度 $\nabla \cdot \vec{A}$ を計算</div>
+            <p>$\nabla \cdot \vec{A} = 3x^2 + 3y^2 + 3z^2 = 3r^2$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：球体全体で体積積分（極座標）を実行する</div>
+            <p>$$\iiint_V 3r^2 dv = \int_0^{2\pi} d\phi \int_0^\pi \sin\theta d\theta \int_0^a 3r^4 dr = 2\pi \cdot 2 \cdot \frac{3}{5}a^5 = \mathbf{\frac{12}{5}\pi a^5}$$</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 6. 周回運動の推進力と膜の上の「渦の合計」（ストークスの定理）</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>円 $C: x^2+y^2=4$ に沿う $\vec{A} = (x^2+y)\vec{i} + (x^2+2z)\vec{j} + 2y\vec{k}$ の線積分をストークスの定理で求めよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>輪っかをぐるりと1周進む間に受ける推進力（周回積分）は、その輪っかに張った「シャボン玉の膜（面）」の上で巻き起こっている微小な「渦（回転 $\text{rot}$）」を全域で集計したものと等しくなります。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：膜の上で渦の強さ $\nabla \times \vec{A}$ を測る</div>
+            <p>$\nabla \times \vec{A} = (2-2)\vec{i} + 0\vec{j} + (2x-1)\vec{k} = (2x-1)\vec{k}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：円盤面 $D$ 全体で渦を集計する</div>
+            <p>$$\iint_D (2x-1) dx dy = 2 \iint x dx dy - \iint 1 dx dy = 0 - \pi(2^2) = \mathbf{-4\pi}$$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section id="sec-5" class="section-container">
+      <h2 class="section-title"><span>第5回：クーロンの法則と電荷分布の電場</span></h2>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 1. 地球の巨視的電荷とミクロな電子数</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>地球の全体電荷 $-4.6 \times 10^5\text{ C}$ に相当する電子数と，それが何 ml の水に含まれるか求めよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>地球規模の巨大な静電気（$-4.6 \times 10^5\text{ C}$）であっても、ミクロな視点で見るとわずかコップ半分の水（$8.8\text{ ml}$）に含まれる電子数と等しいという、電気素量の小ささと物質中の巨大な電荷密度を直感する計算です。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：電荷を電気素量 $e$ で割って個数を出す</div>
+            <p>$N = \frac{4.6 \times 10^5}{1.6 \times 10^{-19}} = \mathbf{2.9 \times 10^{24}\text{ 個}}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：水 $1\text{ ml} = 1\text{ g}$ 中の電子数と比較する</div>
+            <p>水 $1\text{ g}$ は $\frac{1}{18}\text{ mol}$。電子数は $\frac{1}{18} \times 6.0 \times 10^{23} \times 10 = 3.3 \times 10^{23}\text{ 個/ml}$</p>
+            <p>必要量 $= \frac{2.9 \times 10^{24}}{3.3 \times 10^{23}} \approx \mathbf{8.8\text{ ml}}$</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 2. クーロン力 vs 万有引力の圧倒的差</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>距離 $1.0 \times 10^{-15}\text{ m}$ 離れた 2 つの陽子間にはたらくクーロン力と万有引力を比較せよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>微視的な世界（原子核のスケール）では、質量による引力（万有引力）は電気的な退け合い（クーロン力）に比べて無に等しいほど弱く、$10^{36}$ 倍（1000溝倍！）という圧倒的な差で静電気が支配していることを実感します。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：それぞれの力を計算</div>
+            <p>クーロン力：$F_C = \frac{1}{4\pi\varepsilon_0} \frac{e^2}{r^2} = 9.0 \times 10^9 \times \frac{(1.6\times 10^{-19})^2}{(1.0\times 10^{-15})^2} = \mathbf{2.3 \times 10^2\text{ N}}$</p>
+            <p>万有引力：$F_G = G \frac{m_p^2}{r^2} = 6.7 \times 10^{-11} \times \frac{(1.7\times 10^{-27})^2}{(1.0\times 10^{-15})^2} = \mathbf{1.9 \times 10^{-34}\text{ N}}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：比率を出す</div>
+            <p>$$\frac{F_C}{F_G} = \frac{2.3 \times 10^2}{1.9 \times 10^{-34}} \approx \mathbf{1.2 \times 10^{36}\text{ 倍}}$$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section id="sec-6" class="section-container">
+      <h2 class="section-title"><span>第6回：ガウスの法則とその応用</span></h2>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 7. 正電荷の地球（球体）の中で躍動する「単振動」</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>正電荷 $+Q$ が一様に詰まった半径 $R$ の球の中に，負電荷 $-q$（質量 $m$）の質点を置いたときの単振動の周期 $T$ を求めよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>電荷が詰まった球の内部では、中心からの距離 $r$ に比例して引き戻される力（フックの法則と同型の復元力）を受けるため、質点は中心をはさんで綺麗なバネのような単振動（往復運動）を続けます。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：ガウスの法則で球内部の電場 $E(r)$ を出す</div>
+            <p>$E(r) \cdot 4\pi r^2 = \frac{Q (r^3/R^3)}{\varepsilon_0} \implies E(r) = \frac{Q r}{4\pi\varepsilon_0 R^3}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：運動方程式を立てる</div>
+            <p>$$m \frac{d^2 r}{dt^2} = -q E(r) = -\left( \frac{qQ}{4\pi\varepsilon_0 R^3} \right) r$$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 3：単振動の周期 $T$ を求める</div>
+            <p>角振動数 $\omega = \sqrt{\frac{qQ}{4\pi\varepsilon_0 m R^3}}$ より：</p>
+            <p>$$T = \frac{2\pi}{\omega} = \mathbf{2\pi \sqrt{\frac{4\pi\varepsilon_0 m R^3}{qQ}}}$$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9 -->
+    <section id="sec-9" class="section-container">
+      <h2 class="section-title"><span>第9回：定常電流・オームの法則・Drudeモデル</span></h2>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 2. 銅線の中を進む電子の「カメより遅い」平均速度</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>断面積 $1\text{ mm}^2$ の導線に $1\text{ A}$ の電流が流れているとき，自由電子（密度 $n = 5.8 \times 10^{28}\text{ m}^{-3}$）の平均ドリフト速度 $\bar{v}$ を求めよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>スイッチを入れた瞬間に電磁波信号は光速で伝わりますが、導線の中の個々の電子自体は「1秒にわずか 0.1 ミリ（秒速 $0.11\text{ mm/s}$）」という、カタツムリよりも圧倒的にスローペースで這うようにしか進んでいないという物理的直感です。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：電流密度 $j$ を計算する</div>
+            <p>$j = \frac{I}{S} = \frac{1\text{ A}}{10^{-6}\text{ m}^2} = 10^6\text{ A/m}^2$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：$j = n e \bar{v}$ より平均速度 $\bar{v}$ を算出</div>
+            <p>$$\bar{v} = \frac{j}{n e} = \frac{10^6}{5.8 \times 10^{28} \times 1.6 \times 10^{-19}} = 1.07 \times 10^{-4}\text{ m/s} \approx \mathbf{0.11\text{ mm/s}}$$</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 6. 微視的衝突（Drudeモデル）とオームの法則の誕生</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>電場 $\vec{E}$ をかけた金属内で，電子が平均自由時間 $\tau$ ごとに原子と衝突を繰り返す微視的モデル（Drudeモデル）から，電気伝導率 $\sigma = \frac{ne^2\tau}{m}$ を導出せよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>電子は電場から加速されますが、障害物（金属の原子）にぶつかって衝撃で速度がリセット（熱に変化＝ジュール熱）されます。この「加速」と「衝突リセット」の繰り返しによって平均速度が電場に比例し、マクロなオームの法則が生まれます。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：運動方程式から時間 $\tau$ 後の到達速度を出す</div>
+            <p>$m \vec{a} = -e\vec{E} \implies \vec{a} = -\frac{e\vec{E}}{m}$。時間 $\tau$ の平均到達速度 $\vec{\bar{v}} = -\frac{e\tau}{m}\vec{E}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：電流密度 $\vec{j}$ に代入する</div>
+            <p>$$\vec{j} = -n e \vec{\bar{v}} = \left( \frac{n e^2 \tau}{m} \right) \vec{E}$$</p>
+            <p>オームの法則 $\vec{j} = \sigma \vec{E}$ と比較して： $\mathbf{\sigma = \frac{n e^2 \tau}{m}}$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 12 -->
+    <section id="sec-12" class="section-container">
+      <h2 class="section-title"><span>第12回：誘電体の境界条件と屈折法則</span></h2>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-number">問題 4. 光のように折れ曲がる「電場の屈折法則」</div>
+          <label class="check-label"><input type="checkbox">完了</label>
+        </div>
+        <div class="problem-content">
+          <p>誘電率 $\varepsilon_1, \varepsilon_2$ の境界における電場の屈折法則 $\frac{\tan \theta_1}{\tan \theta_2} = \frac{\varepsilon_1}{\varepsilon_2}$ を導出せよ。</p>
+        </div>
+        <div class="concept-box">
+          <div class="concept-title">💡 物理的・直感的な意味の再確認</div>
+          <p>光が空気から水に入るときに屈折するように、電気力線（電場）も誘電率の異なる物質の境界を越える際、境界面に沿う成分（接線）と垂直な成分（法線）の連続性の違いによって屈折角が変化します。</p>
+        </div>
+        <button class="btn btn-primary" onclick="toggleSolution(this)">解答を表示</button>
+        <div class="solution-box hidden">
+          <div class="solution-title">【ステップ解説】</div>
+          <div class="step-block">
+            <div class="step-name">ステップ 1：電界の接線成分の連続性（$\text{rot }\vec{E} = 0$ より）</div>
+            <p>$E_{1t} = E_{2t} \implies E_1 \sin \theta_1 = E_2 \sin \theta_2 \quad \text{--- (1)}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 2：電束密度の法線成分の連続性（$\text{div }\vec{D} = 0$ より）</div>
+            <p>$D_{1n} = D_{2n} \implies \varepsilon_1 E_1 \cos \theta_1 = \varepsilon_2 E_2 \cos \theta_2 \quad \text{--- (2)}$</p>
+          </div>
+          <div class="step-block">
+            <div class="step-name">ステップ 3：式(1)を式(2)で割って屈折法則を得る</div>
+            <p>$$\frac{E_1 \sin \theta_1}{\varepsilon_1 E_1 \cos \theta_1} = \frac{E_2 \sin \theta_2}{\varepsilon_2 E_2 \cos \theta_2} \implies \mathbf{\frac{\tan \theta_1}{\tan \theta_2} = \frac{\varepsilon_1}{\varepsilon_2}}$$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function initKaTeX() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+      });
+    }
+
+    function toggleSolution(btn) {
+      const card = btn.closest('.problem-card');
+      const box = card.querySelector('.solution-box');
+      if (box.classList.contains('hidden')) {
+        box.classList.remove('hidden');
+        btn.textContent = '解答を隠す';
+      } else {
+        box.classList.add('hidden');
+        btn.textContent = '解答を表示';
+      }
+    }
+
+    function toggleAllSolutions() {
+      const boxes = document.querySelectorAll('.solution-box');
+      const btns = document.querySelectorAll('.btn-primary');
+      const anyHidden = Array.from(boxes).some(box => box.classList.contains('hidden'));
+
+      boxes.forEach((box, i) => {
+        if (anyHidden) {
+          box.classList.remove('hidden');
+          if (btns[i]) btns[i].textContent = '解答を隠す';
+        } else {
+          box.classList.add('hidden');
+          if (btns[i]) btns[i].textContent = '解答を表示';
+        }
+      });
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      if (current === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    }
+
+    // Search filter
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase();
+      const cards = document.querySelectorAll('.problem-card');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+
+    // Smooth scroll active highlight
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.section-container');
+      const navLinks = document.querySelectorAll('.nav-item a');
+      let currentSectionId = '';
+
+      sections.forEach(section => {
+        const top = section.offsetTop - 80;
+        if (window.scrollY >= top) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentSectionId) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電磁気学1 全1,000問 演習問題専用カード マスターポータル</title>
+    <style>
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f9;
+            color: #1f1f1f;
+        }
+        .header {
+            background: linear-gradient(135deg, #ea4335, #d93025);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 800;
+        }
+        .header p {
+            margin: 0;
+            font-size: 15px;
+            opacity: 0.95;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 26px; font-weight: bold; color: #ea4335; }
+        .stat-label { font-size: 12px; color: #5f6368; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+        }
+        .vol-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .vol-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .vol-badge {
+            color: white;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            width: fit-content;
+            margin-bottom: 10px;
+        }
+        .vol-card h3 {
+            margin: 0 0 12px 0;
+            font-size: 18px;
+            color: #1a0dab;
+        }
+        .vol-card p {
+            font-size: 13.5px;
+            color: #474747;
+            margin: 4px 0;
+        }
+        .vol-actions {
+            margin-top: 20px;
+        }
+        .btn-primary {
+            display: block;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+        .btn-primary:hover { opacity: 0.9; }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 13px;
+            color: #70757a;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📝 電磁気学1 全1,000問 演習問題専用カード マスターポータル</h1>
+        <p>添付画像デザイン準拠：1000問すべての【演習問題】カードを表示・自習アコーディオン機能搭載</p>
+    </div>
+
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-num">1,000</div>
+                <div class="stat-label">総問題カード数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">10</div>
+                <div class="stat-label">全10巻 (100問×10冊)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">A4</div>
+                <div class="stat-label">問題プリント対応</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">開閉可</div>
+                <div class="stat-label">公式・解答トグル付き</div>
+            </div>
+        </div>
+
+        <h2 style="font-size:20px; margin-bottom:20px; color:#202124;">📚 各巻の演習問題カード集を開く (100問×10冊 = 計1,000問)</h2>
+        
+        <div class="grid">
+            
+        <div class="vol-card" style="border-top: 5px solid #d93025;">
+            <div class="vol-badge" style="background:#d93025;">Vol. 1</div>
+            <h3>第1巻：ベクトル解析と微分演算子（grad, div, rot）</h3>
+            <p><strong>問題数：</strong> 100問 (No. 001 〜 No. 100)</p>
+            <p><strong>対象テーマ：</strong> ベクトル解析</p>
+            <div class="vol-actions">
+                <a href="vol_01_problems_only_001_100.html" class="btn-primary" style="background:#d93025;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        <div class="vol-card" style="border-top: 5px solid #0d904f;">
+            <div class="vol-badge" style="background:#0d904f;">Vol. 2</div>
+            <h3>第2巻：曲線・線積分と仕事・保存力場</h3>
+            <p><strong>問題数：</strong> 100問 (No. 101 〜 No. 200)</p>
+            <p><strong>対象テーマ：</strong> 線積分と仕事</p>
+            <div class="vol-actions">
+                <a href="vol_02_problems_only_101_200.html" class="btn-primary" style="background:#0d904f;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        <div class="vol-card" style="border-top: 5px solid #e37400;">
+            <div class="vol-badge" style="background:#e37400;">Vol. 3</div>
+            <h3>第3巻：曲面・面積分とフラックス計算</h3>
+            <p><strong>問題数：</strong> 100問 (No. 201 〜 No. 300)</p>
+            <p><strong>対象テーマ：</strong> 面積分とフラックス</p>
+            <div class="vol-actions">
+                <a href="vol_03_problems_only_201_300.html" class="btn-primary" style="background:#e37400;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        <div class="vol-card" style="border-top: 5px solid #a142f4;">
+            <div class="vol-badge" style="background:#a142f4;">Vol. 4</div>
+            <h3>第4巻：ベクトル解析の三大定理（Gauss & Stokes）</h3>
+            <p><strong>問題数：</strong> 100問 (No. 301 〜 No. 400)</p>
+            <p><strong>対象テーマ：</strong> ベクトル定理</p>
+            <div class="vol-actions">
+                <a href="vol_04_problems_only_301_400.html" class="btn-primary" style="background:#a142f4;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        <div class="vol-card" style="border-top: 5px solid #ea4335;">
+            <div class="vol-badge" style="background:#ea4335;">Vol. 5</div>
+            <h3>第5巻：クーロンの法則と連続電荷分布の電場</h3>
+            <p><strong>問題数：</strong> 100問 (No. 401 〜 No. 500)</p>
+            <p><strong>対象テーマ：</strong> クーロンの法則・電場</p>
+            <div class="vol-actions">
+                <a href="vol_05_problems_only_401_500.html" class="btn-primary" style="background:#ea4335;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        <div class="vol-card" style="border-top: 5px solid #0097a7;">
+            <div class="vol-badge" style="background:#0097a7;">Vol. 6</div>
+            <h3>第6巻：ガウスの法則と電場導出・単振動</h3>
+            <p><strong>問題数：</strong> 100問 (No. 501 〜 No. 600)</p>
+            <p><strong>対象テーマ：</strong> ガウスの法則</p>
+            <div class="vol-actions">
+                <a href="vol_06_problems_only_501_600.html" class="btn-primary" style="background:#0097a7;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        <div class="vol-card" style="border-top: 5px solid #3f51b5;">
+            <div class="vol-badge" style="background:#3f51b5;">Vol. 7</div>
+            <h3>第7巻：静電ポテンシャル（電位）と電気双極子</h3>
+            <p><strong>問題数：</strong> 100問 (No. 601 〜 No. 700)</p>
+            <p><strong>対象テーマ：</strong> 静電ポテンシャル・双極子</p>
+            <div class="vol-actions">
+                <a href="vol_07_problems_only_601_700.html" class="btn-primary" style="background:#3f51b5;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        <div class="vol-card" style="border-top: 5px solid #673ab7;">
+            <div class="vol-badge" style="background:#673ab7;">Vol. 8</div>
+            <h3>第8巻：静電エネルギーとポアソン・ラプラス方程式</h3>
+            <p><strong>問題数：</strong> 100問 (No. 701 〜 No. 800)</p>
+            <p><strong>対象テーマ：</strong> 静電エネルギー・微分方程式</p>
+            <div class="vol-actions">
+                <a href="vol_08_problems_only_701_800.html" class="btn-primary" style="background:#673ab7;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        <div class="vol-card" style="border-top: 5px solid #e91e63;">
+            <div class="vol-badge" style="background:#e91e63;">Vol. 9</div>
+            <h3>第9巻：導体の性質と鏡像法（平面・球鏡像）</h3>
+            <p><strong>問題数：</strong> 100問 (No. 801 〜 No. 900)</p>
+            <p><strong>対象テーマ：</strong> 導体と鏡像法</p>
+            <div class="vol-actions">
+                <a href="vol_09_problems_only_801_900.html" class="btn-primary" style="background:#e91e63;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        <div class="vol-card" style="border-top: 5px solid #2e7d32;">
+            <div class="vol-badge" style="background:#2e7d32;">Vol. 10</div>
+            <h3>第10巻：電流・コンデンサー・誘電体と総合演習</h3>
+            <p><strong>問題数：</strong> 100問 (No. 901 〜 No. 1000)</p>
+            <p><strong>対象テーマ：</strong> 電流・コンデンサー・誘電体</p>
+            <div class="vol-actions">
+                <a href="vol_10_problems_only_901_1000.html" class="btn-primary" style="background:#2e7d32;">📝 演習問題カード100問を開く</a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+
+    <footer>
+        <p>大学物理学演習シリーズ：電磁気学1 演習問題専用カード1000問プロジェクト</p>
+    </footer>
+</body>
+</html>

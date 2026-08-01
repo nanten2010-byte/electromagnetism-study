@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1回 電磁気学1 演習・レポート 解答オン/オフ機能付解説</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root[data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --bg-sidebar: #0f172b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-color: #38bdf8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            --border-color: #334155;
+            --card-glow: rgba(56, 189, 248, 0.08);
+            --badge-bg: rgba(56, 189, 248, 0.15);
+            --badge-text: #38bdf8;
+            --problem-bg: rgba(99, 102, 241, 0.12);
+            --problem-border: rgba(99, 102, 241, 0.35);
+            --problem-text: #a5b4fc;
+            --success-color: #34d399;
+            --warning-color: #fbbf24;
+            --code-bg: #090d16;
+        }
+
+        :root[data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-sidebar: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --accent-color: #0284c7;
+            --accent-gradient: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+            --border-color: #e2e8f0;
+            --card-glow: rgba(2, 132, 199, 0.05);
+            --badge-bg: rgba(2, 132, 199, 0.1);
+            --badge-text: #0284c7;
+            --problem-bg: rgba(79, 70, 229, 0.06);
+            --problem-border: rgba(79, 70, 229, 0.25);
+            --problem-text: #4338ca;
+            --success-color: #059669;
+            --warning-color: #d97706;
+            --code-bg: #f1f5f9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            display: flex;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        aside.sidebar {
+            width: 300px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0; bottom: 0; left: 0;
+            overflow-y: auto;
+            padding: 2rem 1.25rem;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-subtitle { font-size: 0.8rem; color: var(--text-muted); }
+        .nav-list { list-style: none; }
+        .nav-item { margin-bottom: 0.4rem; }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color);
+            background-color: var(--badge-bg);
+        }
+
+        .nav-link .num {
+            display: inline-block;
+            width: 24px; height: 24px;
+            line-height: 24px;
+            text-align: center;
+            background: var(--border-color);
+            color: var(--text-primary);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-right: 0.75rem;
+        }
+
+        .nav-link.active .num { background: var(--accent-color); color: #ffffff; }
+
+        main.main-content {
+            margin-left: 300px;
+            flex: 1;
+            padding: 2.5rem 3rem;
+            max-width: 1100px;
+        }
+
+        header.top-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .top-bar-upper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .page-header h1 {
+            font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-header p { color: var(--text-secondary); font-size: 0.9rem; }
+        .controls { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+        .btn {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .btn:hover { border-color: var(--accent-color); color: var(--accent-color); transform: translateY(-1px); }
+
+        .btn-accent {
+            background: var(--badge-bg);
+            color: var(--accent-color);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-toggle-ans {
+            margin-top: 0.6rem;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-toggle-ans:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 20px var(--card-glow);
+            transition: border-color 0.3s;
+        }
+
+        .card:hover { border-color: rgba(56, 189, 248, 0.4); }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-title .badge {
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.8rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .problem-statement-main {
+            background: var(--problem-bg);
+            border: 1px solid var(--problem-border);
+            border-left: 5px solid var(--problem-text);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+        }
+
+        .problem-statement-main .label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--problem-text);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .problem-statement-sub {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .sub-problem {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .solution-box {
+            background: rgba(52, 211, 153, 0.08);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            color: var(--text-primary);
+            padding: 0.75rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 0.6rem;
+            display: block;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .solution-box.is-hidden {
+            display: none !important;
+        }
+
+        .formula-box {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            font-family: 'Fira Code', monospace;
+            overflow-x: auto;
+        }
+
+        .note-box {
+            background: rgba(251, 191, 36, 0.08);
+            border-left: 4px solid var(--warning-color);
+            padding: 0.75rem 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        details.step-details {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        details.step-details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--accent-color);
+            outline: none;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        details.step-details[open] summary {
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-bar:focus { border-color: var(--accent-color); }
+
+        @media print {
+            aside.sidebar { display: none; }
+            main.main-content { margin-left: 0; padding: 0; max-width: 100%; }
+            .controls { display: none; }
+            .btn-toggle-ans { display: none; }
+            .solution-box { display: block !important; }
+            .card { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; }
+            body { background: #fff; color: #000; }
+        }
+
+        @media (max-width: 900px) {
+            aside.sidebar { display: none; }
+            main.main-content { margin-left: 0; padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">電磁気学 I</div>
+            <div class="sidebar-subtitle">第1回演習・解き方解説</div>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="#sec-0" class="nav-link active"><span class="num">0</span>基本公式まとめ</a></li>
+            <li class="nav-item"><a href="#sec-1" class="nav-link"><span class="num">1</span>問1: 勾配 grad f</a></li>
+            <li class="nav-item"><a href="#sec-2" class="nav-link"><span class="num">2</span>問2: 発散 div g</a></li>
+            <li class="nav-item"><a href="#sec-3" class="nav-link"><span class="num">3</span>問3: 回転 rot v</a></li>
+            <li class="nav-item"><a href="#sec-4" class="nav-link"><span class="num">4</span>問4: 位置ベクトルと勾配</a></li>
+            <li class="nav-item"><a href="#sec-5" class="nav-link"><span class="num">5</span>問5: 位置ベクトルの発散</a></li>
+            <li class="nav-item"><a href="#sec-6" class="nav-link"><span class="num">6</span>問6: ナブラの演算</a></li>
+            <li class="nav-item"><a href="#sec-7" class="nav-link"><span class="num">7</span>問7: 複合ベクトル演算</a></li>
+            <li class="nav-item"><a href="#sec-8" class="nav-link"><span class="num">8</span>問8: つるまき線</a></li>
+            <li class="nav-item"><a href="#sec-9" class="nav-link"><span class="num">9</span>問9: パラメータ曲面と法線</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="top-bar-upper">
+                <div class="page-header">
+                    <h1>第1回 電磁気学 1 演習・レポート 解き方解説</h1>
+                    <p>問題文＋ワンクリック解答ON/OFFトグルボタン搭載</p>
+                </div>
+                <div class="controls">
+                    <button class="btn btn-accent" onclick="toggleAllSolutions(false)">👁 全解答を表示</button>
+                    <button class="btn btn-accent" onclick="toggleAllSolutions(true)">🙈 全解答を隠す</button>
+                    <button class="btn" id="theme-toggle">🌓 テーマ切替</button>
+                    <button class="btn" onclick="window.print()">🖨 印刷 / PDF保存</button>
+                </div>
+            </div>
+        </header>
+
+        <input type="text" id="search-input" class="search-bar" placeholder="🔍 問題文やキーワードを検索..." onkeyup="filterCards()">
+
+        <!-- Section 0: Formulas -->
+        <section id="sec-0" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>0. 基本公式・演算子のまとめ</span>
+                    <span class="badge">必須知識</span>
+                </div>
+            </div>
+            <p>ベクトル解析の主要な3つの微分演算子（勾配・発散・回転）の定義と位置ベクトル $\vec{r}$ の微分性質です。</p>
+
+            <div class="formula-box">
+                <p><strong>■ 勾配 (Gradient):</strong> $\operatorname{grad} f = \nabla f = \frac{\partial f}{\partial x}\vec{i} + \frac{\partial f}{\partial y}\vec{j} + \frac{\partial f}{\partial z}\vec{k}$</p>
+                <p><strong>■ 発散 (Divergence):</strong> $\operatorname{div} \vec{g} = \nabla \cdot \vec{g} = \frac{\partial g_x}{\partial x} + \frac{\partial g_y}{\partial y} + \frac{\partial g_z}{\partial z}$</p>
+                <p><strong>■ 回転 (Rotation / Curl):</strong> $\operatorname{rot} \vec{v} = \nabla \times \vec{v} = \left(\frac{\partial v_z}{\partial y} - \frac{\partial v_y}{\partial z}\right)\vec{i} + \left(\frac{\partial v_x}{\partial z} - \frac{\partial v_z}{\partial x}\right)\vec{j} + \left(\frac{\partial v_y}{\partial x} - \frac{\partial v_x}{\partial y}\right)\vec{k}$</p>
+                <p><strong>■ 動径 $r = |\vec{r}| = \sqrt{x^2+y^2+z^2}$ の微分:</strong> $\frac{\partial r}{\partial x} = \frac{x}{r}, \quad \frac{\partial r}{\partial y} = \frac{y}{r}, \quad \frac{\partial r}{\partial z} = \frac{z}{r}$</p>
+                <p><strong>■ 球対称関数の勾配公式:</strong> $\nabla f(r) = f'(r) \frac{\vec{r}}{r}$</p>
+            </div>
+        </section>
+
+        <!-- Section 1 -->
+        <section id="sec-1" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>問題 1. スカラー関数の勾配 $\operatorname{grad} f$</span>
+                    <span class="badge">問1</span>
+                </div>
+            </div>
+
+            <div class="problem-statement-main">
+                <span class="label">問題 1 全体指示</span>
+                次のスカラー関数 $f$ の勾配 $\operatorname{grad} f$ を求めよ．
+            </div>
+
+            <!-- 1.1 -->
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>1)</strong> $f = e^x \sin y$
+                </div>
+                <p>各変数の偏微分： $\frac{\partial f}{\partial x} = e^x \sin y, \; \frac{\partial f}{\partial y} = e^x \cos y, \; \frac{\partial f}{\partial z} = 0$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\operatorname{grad} f = e^x \sin y \, \vec{i} + e^x \cos y \, \vec{j}$
+                </div>
+            </div>
+
+            <!-- 1.2 -->
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>2)</strong> $f = (x^2 + y^2 + z^2)^2$
+                </div>
+                <p>$u = x^2+y^2+z^2$ と置くと $f=u^2$。偏微分は $\frac{\partial f}{\partial x} = 2u \cdot 2x = 4x(x^2+y^2+z^2)$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\operatorname{grad} f = 4(x^2 + y^2 + z^2)(x\vec{i} + y\vec{j} + z\vec{k}) = 4r^2 \vec{r}$
+                </div>
+            </div>
+
+            <!-- 1.3 -->
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>3)</strong> $f = \frac{1}{2}\ln(x^2 + y^2)$
+                </div>
+                <p>偏微分： $\frac{\partial f}{\partial x} = \frac{1}{2} \frac{2x}{x^2+y^2} = \frac{x}{x^2+y^2}, \; \frac{\partial f}{\partial y} = \frac{y}{x^2+y^2}$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\operatorname{grad} f = \frac{x\vec{i} + y\vec{j}}{x^2 + y^2}$
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="sec-2" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>問題 2. ベクトル関数の発散 $\operatorname{div} \vec{g}$</span>
+                    <span class="badge">問2</span>
+                </div>
+            </div>
+
+            <div class="problem-statement-main">
+                <span class="label">問題 2 全体指示</span>
+                次のベクトル関数 $\vec{g}$ の発散 $\operatorname{div} \vec{g}$ を求めよ．
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>1)</strong> $\vec{g} = y^2 e^z \vec{i} + x^2 z^2 \vec{k}$
+                </div>
+                <p>$\operatorname{div} \vec{g} = \frac{\partial}{\partial x}(y^2 e^z) + \frac{\partial}{\partial y}(0) + \frac{\partial}{\partial z}(x^2 z^2) = 0 + 0 + 2x^2 z$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\operatorname{div} \vec{g} = 2x^2 z$
+                </div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>2)</strong> $\vec{g} = x^2 \vec{i} + y^2 \vec{j} + z^2 \vec{k}$
+                </div>
+                <p>$\operatorname{div} \vec{g} = \frac{\partial(x^2)}{\partial x} + \frac{\partial(y^2)}{\partial y} + \frac{\partial(z^2)}{\partial z} = 2x + 2y + 2z$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\operatorname{div} \vec{g} = 2(x + y + z)$
+                </div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>3)</strong> $\vec{g} = e^{-xy} \vec{i} + e^{-yz} \vec{j} + e^{-zx} \vec{k}$
+                </div>
+                <p>$\operatorname{div} \vec{g} = \frac{\partial(e^{-xy})}{\partial x} + \frac{\partial(e^{-yz})}{\partial y} + \frac{\partial(e^{-zx})}{\partial z} = -y e^{-xy} - z e^{-yz} - x e^{-zx}$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\operatorname{div} \vec{g} = -(y e^{-xy} + z e^{-yz} + x e^{-zx})$
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="sec-3" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>問題 3. ベクトルの回転 $\operatorname{rot} \vec{v}$</span>
+                    <span class="badge">問3</span>
+                </div>
+            </div>
+
+            <div class="problem-statement-main">
+                <span class="label">問題 3 全体指示</span>
+                次式で表されるベクトル $\vec{v}$ について $\operatorname{rot} \vec{v}$ を求めよ．
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>1)</strong> $\vec{v} = z \vec{i} + x \vec{j} + y \vec{k}$
+                </div>
+                <p>各成分の差： $x$成分 $= \frac{\partial y}{\partial y}-\frac{\partial x}{\partial z}=1$, $y$成分 $= 1$, $z$成分 $= 1$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\operatorname{rot} \vec{v} = \vec{i} + \vec{j} + \vec{k}$
+                </div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>2)</strong> $\vec{v} = x \vec{i} + y z \vec{j} - (x^2 + z^2) \vec{k}$
+                </div>
+                <p>$x$成分 $= 0 - y = -y$, $y$成分 $= 0 - (-2x) = 2x$, $z$成分 $= 0$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\operatorname{rot} \vec{v} = -y \vec{i} + 2x \vec{j}$
+                </div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>3)</strong> $\vec{v} = (x \vec{i} + y \vec{j} + z \vec{k})(x^2 + y^2 + z^2)^{-3/2}$
+                </div>
+                <p>💡 **直感的思考:** 球対称な中心力場 $\vec{v} = \frac{\vec{r}}{r^3}$ の回転は回転対称性より常に $\vec{0}$。</p>
+                
+                <details class="step-details">
+                    <summary>✏️ 詳しい偏微分による計算過程を見る</summary>
+                    <div style="margin-top:0.4rem;">
+                        $v_x = x r^{-3}, v_y = y r^{-3}, v_z = z r^{-3}$
+                        $$\frac{\partial v_z}{\partial y} = \frac{\partial}{\partial y}(z r^{-3}) = z \left(-3r^{-4} \frac{y}{r}\right) = -3yz r^{-5}$$
+                        $$\frac{\partial v_y}{\partial z} = \frac{\partial}{\partial z}(y r^{-3}) = y \left(-3r^{-4} \frac{z}{r}\right) = -3yz r^{-5}$$
+                        引き算すると $x$ 成分は $0$。他の成分も同様に $0$。
+                    </div>
+                </details>
+
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\operatorname{rot} \vec{v} = \vec{0}$
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="sec-4" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>問題 4. 位置ベクトルと勾配 $\nabla$</span>
+                    <span class="badge">問4</span>
+                </div>
+            </div>
+
+            <div class="problem-statement-main">
+                <span class="label">問題 4 全体指示</span>
+                $\vec{r} = x\vec{i} + y\vec{j} + z\vec{k}, \, r = |\vec{r}|$ とするとき，次を求めよ．
+            </div>
+
+            <div class="note-box">
+                💡 **公式の適用:** 球対称スカラー関数の勾配は $\nabla f(r) = f'(r) \frac{\vec{r}}{r}$ です。
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>1)</strong> $\nabla r$</div>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\nabla r = \frac{\vec{r}}{r}$</div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>2)</strong> $\nabla \frac{1}{r}$</div>
+                <p>($f(r) = r^{-1} \implies f'(r) = -r^{-2}$)</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\nabla \frac{1}{r} = -\frac{\vec{r}}{r^3}$</div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>3)</strong> $\nabla r^n$ ($n$: 実数)</div>
+                <p>($f(r) = r^n \implies f'(r) = n r^{n-1}$)</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\nabla r^n = n r^{n-2} \vec{r}$</div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>4)</strong> $\nabla \ln r$</div>
+                <p>($f(r) = \ln r \implies f'(r) = \frac{1}{r}$)</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\nabla \ln r = \frac{\vec{r}}{r^2}$</div>
+            </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="sec-5" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>問題 5. 位置ベクトル関数の発散 $\nabla \cdot$</span>
+                    <span class="badge">問5</span>
+                </div>
+            </div>
+
+            <div class="problem-statement-main">
+                <span class="label">問題 5 全体指示</span>
+                点 $(x,y,z)$ の位置ベクトルを $\vec{r}$ とし、$r = |\vec{r}|$ とするとき，以下を求めよ．
+            </div>
+
+            <div class="note-box">
+                💡 **便利公式:** $\nabla \cdot (f(r)\vec{r}) = f'(r) r + 3f(r)$
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>1)</strong> $\nabla \cdot (\vec{r} / r)$</div>
+                <p>$f(r) = r^{-1} \implies \text{与式} = (-r^{-2})r + 3r^{-1} = 2r^{-1}$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\nabla \cdot \left(\frac{\vec{r}}{r}\right) = \frac{2}{r}$</div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>2)</strong> $\nabla \cdot (\vec{r} / r^3)$</div>
+                <p>$f(r) = r^{-3} \implies \text{与式} = (-3r^{-4})r + 3r^{-3} = 0$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\nabla \cdot \left(\frac{\vec{r}}{r^3}\right) = 0 \quad (r \neq 0)$</div>
+            </div>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="sec-6" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>問題 6. 複合微分演算</span>
+                    <span class="badge">問6</span>
+                </div>
+            </div>
+
+            <div class="problem-statement-main">
+                <span class="label">問題 6 全体指示</span>
+                $\phi = xyz, \, \vec{A} = x^2 z \vec{i} + x y^2 z \vec{j} - x y z^2 \vec{k}$ について，次を求めよ．
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>1)</strong> $\nabla \phi$</div>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\nabla \phi = yz \vec{i} + zx \vec{j} + xy \vec{k}$</div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>2)</strong> $\nabla \cdot \vec{A}$</div>
+                <p>$\frac{\partial(x^2 z)}{\partial x} + \frac{\partial(x y^2 z)}{\partial y} + \frac{\partial(-x y z^2)}{\partial z} = 2xz + 2xyz - 2xyz = 2xz$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\nabla \cdot \vec{A} = 2xz$</div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>3)</strong> $\Delta \phi$</div>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\Delta \phi = 0$</div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>4)</strong> $\nabla \cdot (\phi \vec{A})$</div>
+                <p>公式 $\nabla \cdot (\phi \vec{A}) = (\nabla \phi) \cdot \vec{A} + \phi (\nabla \cdot \vec{A})$</p>
+                <p>$= x^2 y z^2 + (xyz)(2xz) = 3x^2 y z^2$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\nabla \cdot (\phi \vec{A}) = 3 x^2 y z^2$</div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>5)</strong> $\vec{A} \cdot \nabla \phi$</div>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box"><strong>【解答】</strong> $\vec{A} \cdot \nabla \phi = x^2 y z^2$</div>
+            </div>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="sec-7" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>問題 7. ベクトルの外積・内積・回転</span>
+                    <span class="badge">問7</span>
+                </div>
+            </div>
+
+            <div class="problem-statement-main">
+                <span class="label">問題 7 全体指示</span>
+                $\vec{A} = x^2 z \vec{i} + y z^2 \vec{j} - 2 x y \vec{k}, \quad \vec{B} = 2 y^2 \vec{i} - 3 y z \vec{j} + z x \vec{k}, \quad \phi = x^2 + 2 y z$ について、次を求めよ．
+            </div>
+
+            <div class="note-box">
+                事前計算: $\nabla \phi = (2x, 2z, 2y), \quad \nabla \times \vec{A} = (-(2x+2yz), \; x^2+2y, \; 0)$
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>1)</strong> $\vec{A} \times \nabla \phi$</div>
+                <details class="step-details">
+                    <summary>✏️ 成分別の外積展開を見る</summary>
+                    <div style="margin-top:0.4rem;">
+                        $x$成分: $(yz^2)(2y) - (-2xy)(2z) = 2y^2 z^2 + 4xyz$<br>
+                        $y$成分: (-2xy)(2x) - (x^2 z)(2y) = -4x^2 y - 2x^2 yz<br>
+                        $z$成分: (x^2 z)(2z) - (yz^2)(2x) = 2x^2 z^2 - 2xyz^2
+                    </div>
+                </details>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\vec{A} \times \nabla \phi = (2y^2 z^2 + 4xyz)\vec{i} - (4x^2 y + 2x^2 yz)\vec{j} + (2x^2 z^2 - 2xyz^2)\vec{k}$
+                </div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>2)</strong> $(\nabla \times \vec{A}) \times \vec{B}$</div>
+                <details class="step-details">
+                    <summary>✏️ 成分別の外積展開を見る</summary>
+                    <div style="margin-top:0.4rem;">
+                        $\vec{C} = (-2x-2yz, \; x^2+2y, \; 0)$, $\vec{B} = (2y^2, \; -3yz, \; zx)$<br>
+                        $x$成分: $(x^2+2y)(zx) = x^3 z + 2xyz$<br>
+                        $y$成分: $0 - (-2x-2yz)(zx) = 2x^2 z + 2xyz^2$<br>
+                        $z$成分: $(-2x-2yz)(-3yz) - (x^2+2y)(2y^2) = 6xyz + 6y^2 z^2 - 2x^2 y^2 - 4y^3$
+                    </div>
+                </details>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $(\nabla \times \vec{A}) \times \vec{B} = (x^3 z + 2xyz)\vec{i} + (2x^2 z + 2xyz^2)\vec{j} + (6xyz + 6y^2 z^2 - 2x^2 y^2 - 4y^3)\vec{k}$
+                </div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub"><strong>3)</strong> $\vec{B} \cdot (\nabla \times \vec{A})$</div>
+                <p>内積: $(2y^2)(-2x-2yz) + (-3yz)(x^2+2y) + 0 = -4xy^2 - 4y^3 z - 3x^2 yz - 6y^2 z$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\vec{B} \cdot (\nabla \times \vec{A}) = -4xy^2 - 4y^3 z - 3x^2 yz - 6y^2 z$
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="sec-8" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>問題 8. つるまき線（ヘリックス）</span>
+                    <span class="badge">問8</span>
+                </div>
+            </div>
+
+            <div class="problem-statement-main">
+                <span class="label">問題 8 全体指示</span>
+                つるまき線 $C: \vec{r}(t) = 3 \cos t \vec{i} + 3 \sin t \vec{j} + 4 t \vec{k}, \, (0 \leq t \leq 2\pi)$ において
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>1)</strong> つるまき線 $C$ の単位接線ベクトル $\vec{u}$ を求めよ．
+                </div>
+                <p>速度ベクトル: $\frac{d\vec{r}}{dt} = -3\sin t \vec{i} + 3\cos t \vec{j} + 4\vec{k}$、その大きさ: $\left|\frac{d\vec{r}}{dt}\right| = \sqrt{9+16} = 5$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\vec{u} = -\frac{3}{5}\sin t \vec{i} + \frac{3}{5}\cos t \vec{j} + \frac{4}{5}\vec{k}$
+                </div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>2)</strong> $0 \leq t \leq 2\pi$ の部分の曲線の長さ $s$ を求めよ．
+                </div>
+                <p>弧長: $s = \int_0^{2\pi} 5 \, dt = 10\pi$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $s = 10\pi$
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9 -->
+        <section id="sec-9" class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>問題 9. パラメータ曲面</span>
+                    <span class="badge">問9</span>
+                </div>
+            </div>
+
+            <div class="problem-statement-main">
+                <span class="label">問題 9 全体指示</span>
+                曲面 $\vec{r} = a \sin u \cos v \vec{i} + a \sin u \sin v \vec{j} + a \cos u \vec{k} \, \left(0 \leq u \leq \frac{\pi}{2}, \, 0 \leq v \leq 2\pi\right) \, (a > 0)$ において，下記の問いに答えよ。
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>1)</strong> 上半球面を表す確認と $z = z(x,y)$ の形
+                </div>
+                <p>$x^2+y^2+z^2 = a^2 \sin^2 u + a^2 \cos^2 u = a^2$。 $0 \le u \le \pi/2 \implies z = a\cos u \ge 0$。</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $z = \sqrt{a^2 - x^2 - y^2}$
+                </div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>2)</strong> 曲面 $\vec{r}$ の単位法線ベクトルを求めよ．
+                </div>
+                <details class="step-details">
+                    <summary>✏️ 法線ベクトル $\vec{N}$ とノルムの計算過程を見る</summary>
+                    <div style="margin-top:0.4rem;">
+                        $\frac{\partial\vec{r}}{\partial u} \times \frac{\partial\vec{r}}{\partial v} = a^2 \sin^2 u \cos v \vec{i} + a^2 \sin^2 u \sin v \vec{j} + a^2 \sin u \cos u \vec{k}$<br>
+                        大きさ: $|\vec{N}| = a^2 \sin u$<br>
+                        単位法線ベクトル: $\vec{n} = \frac{\vec{N}}{|\vec{N}|} = \frac{\vec{r}}{a}$
+                    </div>
+                </details>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $\vec{n} = \sin u \cos v \vec{i} + \sin u \sin v \vec{j} + \cos u \vec{k} = \frac{\vec{r}}{a}$
+                </div>
+            </div>
+
+            <div class="sub-problem">
+                <div class="problem-statement-sub">
+                    <strong>3)</strong> 曲面 $\vec{r}$ の面積を求めよ．
+                </div>
+                <p>$S = \int_0^{2\pi} dv \int_0^{\pi/2} a^2 \sin u \, du = 2\pi a^2 [-\cos u]_0^{\pi/2} = 2\pi a^2$</p>
+                <button class="btn-toggle-ans" onclick="toggleSolution(this)">👁 解答の表示 / 非表示</button>
+                <div class="solution-box">
+                    <strong>【解答】</strong> $S = 2\pi a^2$
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Individual Answer Toggle
+        function toggleSolution(buttonEl) {
+            const container = buttonEl.closest('.sub-problem');
+            const solBox = container.querySelector('.solution-box');
+            if (solBox) {
+                solBox.classList.toggle('is-hidden');
+            }
+        }
+
+        // Global Answer Toggle
+        function toggleAllSolutions(hide) {
+            const solBoxes = document.querySelectorAll('.solution-box');
+            solBoxes.forEach(box => {
+                if (hide) {
+                    box.classList.add('is-hidden');
+                } else {
+                    box.classList.remove('is-hidden');
+                }
+            });
+        }
+
+        // Dark / Light Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+        });
+
+        // Search Filter
+        function filterCards() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Active Navigation Highlight on Scroll
+        const sections = document.querySelectorAll('section.card');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,4302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9巻：導体の性質と鏡像法（平面・球鏡像） - 電磁気学1 解説プリント（No.801〜900）</title>
+    <!-- MathJax 3 -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 10mm 12mm 10mm 12mm;
+        }
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f6f9;
+            color: #202124;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .print-page {
+            width: 210mm;
+            min-height: 295mm;
+            padding: 14mm 16mm;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+        }
+        @media print {
+            body { background: none; }
+            .print-page {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+                width: 100%;
+                height: 100vh;
+                page-break-after: always;
+            }
+            .no-print { display: none !important; }
+        }
+        
+        .print-header {
+            border-top: 5px solid #e91e63;
+            padding-top: 10px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid #dadce0;
+            padding-bottom: 10px;
+        }
+        .print-no {
+            background: #ea4335;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 8px 18px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .header-titles {
+            flex-grow: 1;
+        }
+        .vol-tag {
+            font-size: 12px;
+            color: #5f6368;
+            font-weight: 600;
+            display: block;
+        }
+        .print-title {
+            margin: 2px 0 0 0;
+            font-size: 17px;
+            color: #1a0dab;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 14px;
+            border-radius: 6px;
+            position: relative;
+        }
+        .section-badge {
+            color: white;
+            font-size: 12.5px;
+            font-weight: bold;
+            padding: 5px 14px;
+            border-radius: 4px 4px 0 0;
+            display: inline-block;
+        }
+        .badge-red { background: #ea4335; }
+        .badge-teal { background: #00897b; }
+        .badge-blue { background: #1565c0; }
+        
+        .section-content {
+            padding: 14px 18px;
+        }
+        .section-content p { margin: 4px 0; }
+
+        .problem-box {
+            background: #f8f9fa;
+            border: 1px solid #f1f3f4;
+            border-left: 4px solid #ea4335;
+            border-radius: 0 6px 6px 6px;
+        }
+        .point-box {
+            background: #e0f2f1;
+            border: 1px solid #b2dfdb;
+            border-left: 4px solid #00897b;
+            border-radius: 0 6px 6px 6px;
+        }
+        .solution-box {
+            background: #ffffff;
+            border: 1px solid #dadce0;
+            border-left: 4px solid #1565c0;
+            border-radius: 0 6px 6px 6px;
+            flex-grow: 1;
+        }
+
+        .memo-box {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #3c4043;
+        }
+        .memo-title {
+            font-weight: bold;
+            color: #b78103;
+            margin-bottom: 3px;
+        }
+
+        .print-footer {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 8px;
+            font-size: 11px;
+            color: #70757a;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 12px;
+            right: 20px;
+            background: rgba(32, 33, 36, 0.92);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .nav-bar button, .nav-bar a {
+            color: white;
+            text-decoration: none;
+            background: #3c4043;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12.5px;
+        }
+        .nav-bar button:hover { background: #5f6368; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar no-print">
+        <span>📖 第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+        <button onclick="window.print()">🖨️ この巻を印刷 / PDF保存</button>
+        <a href="electromagnetism_1000_prints_portal.html">🏠 ポータルに戻る</a>
+    </div>
+
+    
+    <div class="print-page" id="print-801">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 801</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.801]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 801 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-802">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 802</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.802]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 802 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-803">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 803</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.803]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 803 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-804">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 804</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.804]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 804 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-805">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 805</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.805]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 805 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-806">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 806</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.806]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 806 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-807">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 807</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.807]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 807 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-808">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 808</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.808]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 808 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-809">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 809</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.809]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 809 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-810">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 810</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.810]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 810 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-811">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 811</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.811]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 811 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-812">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 812</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.812]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 812 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-813">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 813</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.813]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 813 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-814">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 814</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.814]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 814 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-815">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 815</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.815]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 815 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-816">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 816</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.816]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 816 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-817">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 817</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.817]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 817 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-818">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 818</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.818]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 818 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-819">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 819</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.819]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 819 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-820">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 820</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.820]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 820 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-821">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 821</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.821]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 821 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-822">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 822</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.822]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 822 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-823">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 823</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.823]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 823 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-824">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 824</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.824]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 824 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-825">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 825</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.825]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 825 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-826">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 826</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.826]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 826 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-827">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 827</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.827]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 827 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-828">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 828</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.828]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 828 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-829">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 829</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.829]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 829 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-830">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 830</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.830]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 830 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-831">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 831</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.831]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 831 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-832">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 832</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.832]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 832 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-833">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 833</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.833]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 833 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-834">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 834</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.834]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 834 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-835">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 835</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.835]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 835 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-836">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 836</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.836]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 836 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-837">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 837</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.837]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 837 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-838">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 838</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.838]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 838 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-839">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 839</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.839]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 839 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-840">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 840</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.840]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 840 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-841">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 841</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.841]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 841 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-842">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 842</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.842]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 842 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-843">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 843</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.843]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 843 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-844">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 844</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.844]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 844 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-845">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 845</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.845]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 845 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-846">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 846</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.846]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 846 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-847">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 847</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.847]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 847 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-848">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 848</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.848]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 848 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-849">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 849</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.849]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 849 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-850">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 850</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.850]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 850 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-851">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 851</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.851]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 851 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-852">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 852</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.852]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 852 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-853">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 853</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.853]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 853 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-854">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 854</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.854]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 854 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-855">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 855</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.855]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 855 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-856">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 856</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.856]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 856 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-857">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 857</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.857]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 857 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-858">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 858</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.858]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 858 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-859">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 859</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.859]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 859 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-860">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 860</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.860]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 860 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-861">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 861</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.861]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 861 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-862">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 862</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.862]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 862 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-863">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 863</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.863]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 863 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-864">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 864</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.864]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 864 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-865">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 865</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.865]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 865 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-866">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 866</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.866]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 866 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-867">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 867</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.867]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 867 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-868">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 868</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.868]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 868 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-869">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 869</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.869]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 869 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-870">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 870</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.870]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 870 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-871">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 871</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.871]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 871 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-872">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 872</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.872]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 872 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-873">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 873</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.873]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 873 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-874">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 874</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.874]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 874 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-875">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 875</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.875]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 875 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-876">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 876</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.876]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 876 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-877">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 877</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.877]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 877 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-878">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 878</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.878]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 878 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-879">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 879</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.879]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 879 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-880">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 880</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.880]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 880 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-881">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 881</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.881]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 881 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-882">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 882</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.882]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 882 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-883">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 883</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.883]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 883 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-884">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 884</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.884]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 884 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-885">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 885</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.885]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 885 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-886">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 886</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.886]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 886 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-887">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 887</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.887]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 887 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-888">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 888</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.888]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 888 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-889">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 889</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.889]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 889 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-890">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 890</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.890]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 890 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-891">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 891</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.891]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 891 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-892">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 892</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.892]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 892 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-893">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 893</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.893]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 893 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-894">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 894</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.894]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 894 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-895">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 895</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.895]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 895 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-896">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 896</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.896]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 896 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-897">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 897</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.897]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=2 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-2$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-2)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+2)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 2}{2\pi (x^2+y^2+4)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 4}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 897 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-898">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 898</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.898]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=3 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-3$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-3)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+3)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 3}{2\pi (x^2+y^2+9)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 9}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 898 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-899">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 899</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.899]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=4 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-4$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-4)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+4)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 4}{2\pi (x^2+y^2+16)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 16}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 899 / 1000</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="print-900">
+        <div class="print-header" style="border-top-color: #e91e63;">
+            <div class="print-no" style="background: #e91e63;">No. 900</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9巻：導体の性質と鏡像法（平面・球鏡像）</span>
+                <h2 class="print-title">鏡像法（Method of Image Charges）による接地導体平面問題演習 [No.900]</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>接地された無限大導体平面 $z=0$ から距離 $z=1 \,\mathrm{m}$ の位置に点電荷 $+q$ がある。導体平面上に誘起される表面電荷密度 $\sigma(x,y)$ および点電荷が受ける引力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法の原理：$z=-1$ に置いた仮想の鏡像電荷 $-q$ による合成場として解く。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 空間 $z>0$ における電位 $\phi(x,y,z)$：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{\sqrt{x^2+y^2+(z-1)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+1)^2}} \right)$$<br>2. 表面電荷密度 $\sigma(x,y) = \varepsilon_0 E_z(z=0) = -\frac{q 1}{2\pi (x^2+y^2+1)^{3/2}}$<br>3. 静電引力 $F = \frac{q^2}{16\pi\varepsilon_0 1}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">全誘起電荷を積分すると $\iint \sigma dxdy = -q$ となり、電束の保存と一致する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>大学物理学演習：電磁気学1 完全解説プリント集（全1000枚）</span>
+            <span>Page No. 900 / 1000</span>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,4090 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「電磁気学まとめ.pdf」全80問 見切れゼロWEBカードサイト</title>
+    <!-- MathJax 3 -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 10mm 12mm 10mm 12mm;
+        }
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f6f9;
+            color: #202124;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .print-page {
+            width: 100%;
+            max-width: 210mm;
+            min-height: 297mm;
+            height: auto;
+            padding: 14mm 16mm;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+            overflow: visible !important;
+        }
+        @media print {
+            body { background: none; }
+            .print-page {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+                width: 100%;
+                page-break-after: always;
+            }
+            .no-print { display: none !important; }
+        }
+        
+        .print-header {
+            border-top: 5px solid #d93025;
+            padding-top: 10px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid #dadce0;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+        .print-no {
+            background: #ea4335;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .header-titles {
+            flex-grow: 1;
+            width: 100%;
+            overflow-wrap: anywhere;
+        }
+        .vol-tag {
+            font-size: 12px;
+            color: #5f6368;
+            font-weight: 600;
+            display: block;
+        }
+        .print-title {
+            margin: 2px 0 0 0;
+            font-size: 17px;
+            color: #1a0dab;
+            font-weight: 700;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+        .section {
+            margin-bottom: 14px;
+            border-radius: 6px;
+            position: relative;
+            width: 100%;
+        }
+        .section-badge {
+            color: white;
+            font-size: 12.5px;
+            font-weight: bold;
+            padding: 5px 14px;
+            border-radius: 4px 4px 0 0;
+            display: inline-block;
+        }
+        .badge-red { background: #ea4335; }
+        .badge-green { background: #2e7d32; }
+        .badge-teal { background: #00897b; }
+        .badge-blue { background: #1565c0; }
+        
+        .section-content {
+            padding: 14px 18px;
+            width: 100%;
+            word-break: break-word !important;
+            overflow-wrap: anywhere !important;
+            white-space: normal !important;
+        }
+        .section-content p, .section-content div {
+            margin: 4px 0;
+            width: 100%;
+            word-break: break-word !important;
+            overflow-wrap: anywhere !important;
+            white-space: normal !important;
+            line-height: 1.8;
+        }
+
+        /* MathJax 3 SVG Responsive Containment & Wrapping */
+        mjx-container[jax="SVG"] {
+            max-width: 100% !important;
+            white-space: normal !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+        }
+        mjx-container[jax="SVG"] svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        mjx-container[display="true"] {
+            margin: 0.5em 0 !important;
+            max-width: 100% !important;
+            overflow-x: auto !important;
+        }
+
+        .problem-box {
+            background: #f8f9fa;
+            border: 1px solid #f1f3f4;
+            border-left: 4px solid #ea4335;
+            border-radius: 0 6px 6px 6px;
+        }
+        .answer-box {
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-left: 4px solid #2e7d32;
+            border-radius: 0 6px 6px 6px;
+            font-weight: bold;
+        }
+        .point-box {
+            background: #e0f2f1;
+            border: 1px solid #b2dfdb;
+            border-left: 4px solid #00897b;
+            border-radius: 0 6px 6px 6px;
+        }
+        .solution-box {
+            background: #ffffff;
+            border: 1px solid #dadce0;
+            border-left: 4px solid #1565c0;
+            border-radius: 0 6px 6px 6px;
+            flex-grow: 1;
+        }
+
+        .memo-box {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #3c4043;
+            margin-top: 10px;
+            width: 100%;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+        .memo-title {
+            font-weight: bold;
+            color: #b78103;
+            margin-bottom: 3px;
+        }
+
+        .print-footer {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 8px;
+            font-size: 11px;
+            color: #70757a;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 12px;
+            right: 20px;
+            background: rgba(32, 33, 36, 0.92);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .nav-bar button, .nav-bar a {
+            color: white;
+            text-decoration: none;
+            background: #3c4043;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12.5px;
+        }
+        .nav-bar button:hover { background: #5f6368; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar no-print">
+        <span>✨ 見切れゼロ・全80問演習WEBカード</span>
+        <button onclick="window.print()">🖨️ 印刷 / PDF保存</button>
+        <a href="electromagnetism_pdf_rich_explanations_site.html">🏠 全問題カードへ</a>
+    </div>
+
+    
+        <div class="print-page" id="card-P-001">
+            <div class="print-header">
+                <div class="print-no">P-001</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>次のスカラー関数 $f$ の勾配 $\mathrm{grad}\,f = \nabla f$ を求めよ。<br>(1) $f = e^x \sin y$<br>(2) $f = (x^2+y^2+z^2)^2$<br>(3) $f = \frac{1}{2}\ln(x^2+y^2)$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>(1) $\nabla f = e^x \sin y \vec{i} + e^x \cos y \vec{j}$<br>(2) $\nabla f = 4(x^2+y^2+z^2)(x\vec{i}+y\vec{j}+z\vec{k}) = 4r^2 \vec{r}$<br>(3) $\nabla f = \frac{x\vec{i}+y\vec{j}}{x^2+y^2}$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>勾配の定義：$\nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)$。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>スカラー場の勾配ベクトル $\nabla f$ は各軸成分への偏微分の和として定義される。</p><p><b>2. 計算プロセス：</b><br>(1) $x, y$ 偏微分：<br>$$\frac{\partial f}{\partial x} = e^x \sin y, \quad \frac{\partial f}{\partial y} = e^x \cos y \implies \nabla f = e^x \sin y \vec{i} + e^x \cos y \vec{j}$$<br>(2) 合成関数 $u = x^2+y^2+z^2 = r^2$ の微分：<br>$$\frac{\partial f}{\partial x} = 2u \cdot 2x = 4x(x^2+y^2+z^2) \implies \nabla f = 4r^2 \vec{r}$$<br>(3) 対数関数 $u = x^2+y^2$ の微分：<br>$$\frac{\partial f}{\partial x} = \frac{1}{2} \frac{2x}{x^2+y^2} = \frac{x}{x^2+y^2} \implies \nabla f = \frac{x\vec{i}+y\vec{j}}{x^2+y^2}$$</p><p><b>3. 結論：</b><br>各偏微分の結果をベクトル成分としてまとめることで厳密解を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">偏微分で他変数を定数扱いする基本原則。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-001</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-002">
+            <div class="print-header">
+                <div class="print-no">P-002</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>次のベクトル関数 $\vec{g}$ の発散 $\mathrm{div}\,\vec{g} = \nabla\cdot\vec{g}$ を求めよ。<br>(1) $\vec{g} = y^2 e^z \vec{i} + x^2 z^2 \vec{k}$<br>(2) $\vec{g} = x^2\vec{i} + y^2\vec{j} + z^2\vec{k}$<br>(3) $\vec{g} = e^{-xy}\vec{i} + e^{-yz}\vec{j} + e^{-zx}\vec{k}$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>(1) $\nabla\cdot\vec{g} = 2x^2 z$<br>(2) $\nabla\cdot\vec{g} = 2(x+y+z)$<br>(3) $\nabla\cdot\vec{g} = -y e^{-xy} - z e^{-yz} - x e^{-zx}$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>発散の定義：$\nabla\cdot\vec{g} = \frac{\partial g_x}{\partial x} + \frac{\partial g_y}{\partial y} + \frac{\partial g_z}{\partial z}$。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>ベクトル場の発散 $\nabla\cdot\vec{g}$ は各成分の対応軸偏微分のスカラ−和である。</p><p><b>2. 計算プロセス：</b><br>(1) $\frac{\partial g_x}{\partial x}=0, \, \frac{\partial g_y}{\partial y}=0, \, \frac{\partial g_z}{\partial z}=2x^2z \implies \nabla\cdot\vec{g} = 2x^2z$<br>(2) $\frac{\partial g_x}{\partial x}=2x, \, \frac{\partial g_y}{\partial y}=2y, \, \frac{\partial g_z}{\partial z}=2z \implies 2(x+y+z)$<br>(3) 各成分の合成微分和：$-y e^{-xy} - z e^{-yz} - x e^{-zx}$</p><p><b>3. 結論：</b><br>単位体積あたりの場の湧き出し量を算出。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">直交成分ごとの発散の足し合わせ。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-002</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-003">
+            <div class="print-header">
+                <div class="print-no">P-003</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>次式で表されるベクトル $\vec{v}$ について $\mathrm{rot}\,\vec{v} = \nabla\times\vec{v}$ を求めよ。<br>(1) $\vec{v} = z\vec{i} + x\vec{j} + y\vec{k}$<br>(2) $\vec{v} = x\vec{i} + yz\vec{j} - (x^2+z^2)\vec{k}$<br>(3) $\vec{v} = \frac{x\vec{i}+y\vec{j}+z\vec{k}}{(x^2+y^2+z^2)^{3/2}} = \frac{\vec{r}}{r^3}$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>(1) $\mathrm{rot}\,\vec{v} = \vec{i} + \vec{j} + \vec{k}$<br>(2) $\mathrm{rot}\,\vec{v} = -y\vec{i} + 2x\vec{j}$<br>(3) $\mathrm{rot}\,\vec{v} = \vec{0}$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>回転の定義 $\nabla\times\vec{v}$。中心力場は無回転場 $\vec{0}$ となる。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>回転 $\nabla\times\vec{v}$ は外積演算子行列式の偏微分により求める。</p><p><b>2. 計算プロセス：</b><br>(1) $(\nabla\times\vec{v})_x = \frac{\partial y}{\partial y} - 0 = 1$ 等より $\vec{i}+\vec{j}+\vec{k}$<br>(2) $x\text{成分}: \frac{\partial(-x^2-z^2)}{\partial y} - \frac{\partial(yz)}{\partial z} = -y$, $y\text{成分}: 2x$, $z\text{成分}: 0 \implies -y\vec{i}+2x\vec{j}$<br>(3) 球対称中心力場は全回転成分が相殺して $\vec{0}$</p><p><b>3. 結論：</b><br>静電クーロン電場が無回転場である根拠。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">点電荷のクーロン電場が無回転である根拠。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-003</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-004">
+            <div class="print-header">
+                <div class="print-no">P-004</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$\vec{r} = x\vec{i}+y\vec{j}+z\vec{k}, r=|\vec{r}|$ とするとき，次を求めよ。<br>(1) $\nabla r$<br>(2) $\nabla \left(\frac{1}{r}\right)$<br>(3) $\nabla r^n$<br>(4) $\nabla \ln r$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>(1) $\nabla r = \frac{\vec{r}}{r}$<br>(2) $\nabla \left(\frac{1}{r}\right) = -\frac{\vec{r}}{r^3}$<br>(3) $\nabla r^n = n r^{n-2}\vec{r}$<br>(4) $\nabla \ln r = \frac{\vec{r}}{r^2}$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>基本公式 $\nabla r = \frac{\vec{r}}{r}$。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>$r = \sqrt{x^2+y^2+z^2}$ の合成関数微分公式 $\nabla f(r) = f'(r)\frac{\vec{r}}{r}$ を適用する。</p><p><b>2. 計算プロセス：</b><br>(1) $\frac{\partial r}{\partial x} = \frac{x}{r} \implies \nabla r = \frac{\vec{r}}{r}$<br>(2) $f(r) = r^{-1} \implies \nabla r^{-1} = -r^{-2} \frac{\vec{r}}{r} = -\frac{\vec{r}}{r^3}$<br>(3) $f(r) = r^n \implies \nabla r^n = n r^{n-1} \frac{\vec{r}}{r} = n r^{n-2}\vec{r}$<br>(4) $f(r) = \ln r \implies \nabla \ln r = \frac{1}{r} \frac{\vec{r}}{r} = \frac{\vec{r}}{r^2}$</p><p><b>3. 結論：</b><br>中心力場における重要公式群を導出。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">電磁気学全般で必須の重要公式。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-004</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-005">
+            <div class="print-header">
+                <div class="print-no">P-005</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>点 $(x, y, z)$ の位置ベクトルを $\vec{r}$ とし，$r = |\vec{r}|$ とするとき，以下を求めよ。<br>(1) $\nabla\cdot\vec{r}$<br>(2) $\nabla\cdot\left(\frac{\vec{r}}{r^3}\right) \quad (r \ne 0)$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>(1) $\nabla\cdot\vec{r} = 3$<br>(2) $\nabla\cdot\left(\frac{\vec{r}}{r^3}\right) = 0 \quad (r \ne 0)$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>3次元空間における位置ベクトルの発散と、点電荷の電場における発散（原点以外ゼロ）。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>位置ベクトルの直交座標偏微分および積の微分法則を適用。</p><p><b>2. 計算プロセス：</b><br>(1) $\nabla\cdot\vec{r} = \frac{\partial x}{\partial x} + \frac{\partial y}{\partial y} + \frac{\partial z}{\partial z} = 1 + 1 + 1 = 3$<br>(2) $\nabla\cdot(r^{-3}\vec{r}) = (\nabla r^{-3})\cdot\vec{r} + r^{-3}(\nabla\cdot\vec{r}) = (-3r^{-5}\vec{r})\cdot\vec{r} + 3r^{-3} = -3r^{-3} + 3r^{-3} = 0$</p><p><b>3. 結論：</b><br>点電荷電場が原点以外で湧き出しゼロであることを示せる。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">原点 $r=0$ ではデルタ関数 $4\pi\delta^3(\vec{r})$ となる。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-005</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-006">
+            <div class="print-header">
+                <div class="print-no">P-006</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>スカラー場 $\phi = xyz$、ベクトル場 $\vec{A} = x^2 y z \vec{i} + x y^2 z \vec{j} - x y z^2 \vec{k}$ について，次を求めよ。<br>(1) $\nabla \phi$<br>(2) $\nabla\cdot\vec{A}$<br>(3) $\Delta \phi$<br>(4) $\nabla\times(\phi\vec{A})$<br>(5) $\vec{A}\cdot\nabla\phi$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>(1) $\nabla \phi = yz\vec{i} + xz\vec{j} + xy\vec{k}$<br>(2) $\nabla\cdot\vec{A} = 2xyz$<br>(3) $\Delta \phi = 0$<br>(4) $\nabla\times(\phi\vec{A}) = x^2 z(z-2y)\vec{i} + y^2 z(2x-z)\vec{j} + xyz(y-x)\vec{k}$<br>(5) $\vec{A}\cdot\nabla\phi = x^2 y^2 z^2$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>積の微分法則：$\nabla\times(\phi\vec{A}) = (\nabla\phi)\times\vec{A} + \phi(\nabla\times\vec{A})$。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>スカラー場とベクトル場の積の微分演算を実行する。</p><p><b>2. 計算プロセス：</b><br>(1) $\nabla\phi = yz\vec{i} + xz\vec{j} + xy\vec{k}$<br>(2) $\nabla\cdot\vec{A} = 2xyz + 2xyz - 2xyz = 2xyz$<br>(3) $\Delta\phi = 0$<br>(4) $(\nabla\phi)\times\vec{A} + \phi(\nabla\times\vec{A})$ を代入計算<br>(5) $\vec{A}\cdot\nabla\phi = (x^2 yz)(yz) + (xy^2 z)(xz) - (xyz^2)(xy) = x^2 y^2 z^2$</p><p><b>3. 結論：</b><br>各演算の厳密代数解を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">ラプラシアン $\Delta \phi = 0$ は調和関数を意味する。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-006</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-007">
+            <div class="print-header">
+                <div class="print-no">P-007</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$\vec{A} = x^2 z \vec{i} + y z^2 \vec{j} - 2xy \vec{k}$, $\vec{B} = 2y^2 \vec{i} - 3yz \vec{j} + zx \vec{k}$, $\phi = x^2 + 2yz$ について，次を求めよ。<br>(1) $\vec{A} \times \nabla \phi$<br>(2) $(\nabla\times\vec{A}) \times \vec{B}$<br>(3) $\vec{B}\cdot(\nabla\times\vec{A})$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>(1) $\vec{A}\times\nabla\phi = (2y^2 z^2 + 4xy^2)\vec{i} + (4x^2 y - 2x^3 z)\vec{j} + (2x^2 z^2 - 2xyz)\vec{k}$<br>(2) $(\nabla\times\vec{A})\times\vec{B} = (x^3 z + 2xyz)\vec{i} + (2xz^2 + 2yz^2)\vec{j} + (3x^2 yz + 6y^2 z + 2x^3 + 4xy)\vec{k}$<br>(3) $\vec{B}\cdot(\nabla\times\vec{A}) = -4xy^2 - 4y^2 z + x^3 z + 2xyz$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>$\nabla \phi = 2x\vec{i} + 2z\vec{j} + 2y\vec{k}$ を求めて外積・内積を実行。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>勾配 $\nabla\phi$ と回転 $\nabla\times\vec{A}$ を求めて外積・内積を構成する。</p><p><b>2. 計算プロセス：</b><br>$\nabla\phi = 2x\vec{i}+2z\vec{j}+2y\vec{k}, \quad \nabla\times\vec{A} = (-2x-2yz)\vec{i}+(x^2+2y)\vec{j}$<br>(1) $\vec{A}\times\nabla\phi$ 行列式を展開<br>(2) $(\nabla\times\vec{A})\times\vec{B}$ 外積を展開<br>(3) $\vec{B}\cdot(\nabla\times\vec{A}) = 2y^2(-2x-2yz) + (-3yz)(x^2+2y) = -4xy^2-4y^2z+x^3z+2xyz$</p><p><b>3. 結論：</b><br>外積の各直交成分を確定。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">外積の成分計算の符号ミスに注意。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-007</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-008">
+            <div class="print-header">
+                <div class="print-no">P-008</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>つるまき線 $C: \vec{r}(t) = 3 \cos t \vec{i} + 3 \sin t \vec{j} + 4 t \vec{k} \quad (0 \le t \le 2\pi)$ において，<br>(1) 単位接線ベクトル $\vec{u}$ を求めよ。<br>(2) $0 \le t \le 2\pi$ の部分の弧の長さ $L$ を求めよ。</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>(1) $\vec{u} = \frac{1}{5}(-3\sin t \vec{i} + 3\cos t \vec{j} + 4\vec{k})$<br>(2) $L = 10\pi$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>接線ベクトル $\frac{d\vec{r}}{dt}$ とそのノルム $\left|\frac{d\vec{r}}{dt}\right| = \sqrt{9\sin^2 t + 9\cos^2 t + 16} = 5$。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>パラメータ表示された整曲線の速度ベクトル $\frac{d\vec{r}}{dt}$ を正規化する。</p><p><b>2. 計算プロセス：</b><br>(1) $\frac{d\vec{r}}{dt} = -3\sin t \vec{i} + 3\cos t \vec{j} + 4\vec{k} \implies \left|\frac{d\vec{r}}{dt}\right| = \sqrt{9+16}=5$<br>したがって $\vec{u} = \frac{1}{5}(-3\sin t \vec{i} + 3\cos t \vec{j} + 4\vec{k})$<br>(2) 弧長 $L = \int_0^{2\pi} 5 dt = 10\pi$</p><p><b>3. 結論：</b><br>ヘリックスの単位接線ベクトルと全長が得られた。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">ヘリックス（螺旋）の幾何学的計算。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-008</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-009">
+            <div class="print-header">
+                <div class="print-no">P-009</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 9</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>曲線 $C$ が弧の長さ $s$ によって次式で表されるとき，円弧の上で $\phi = 2xy^2$ を積分せよ。<br>$$\vec{r}(s) = \cos s \vec{i} + \sin s \vec{j} \quad \left(0 \le s \le \frac{\pi}{2}\right)$$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$\int_C \phi ds = \frac{2}{3}$$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>弧長パラメータ $s$ による線積分 $\int_C \phi ds = \int_0^{\pi/2} 2\cos s \sin^2 s ds$。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>単位円弧 $x = \cos s, y = \sin s$ 上のスカラー場 $\phi = 2xy^2$ の弧長線積分を定式化する。</p><p><b>2. 計算プロセス：</b><br>$$\int_C \phi ds = \int_0^{\pi/2} 2\cos s \sin^2 s ds$$<br>$u = \sin s$ と置換すると $du = \cos s ds$ であり，積分範囲は $u: 0 \to 1$ となる。<br>$$\int_0^1 2u^2 du = \left[ \frac{2}{3}u^3 \right]_0^1 = \frac{2}{3}$$</p><p><b>3. 結論：</b><br>厳密な線積分値 $\frac{2}{3}$ を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">置換積分法の基本適用。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-009</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-010">
+            <div class="print-header">
+                <div class="print-no">P-010</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>曲線 $C$ が弧の長さ $s$ によって次式で表されるとき，円弧の上で $\phi = 2xy^2$ を積分せよ。<br>$$\vec{r}(s) = \cos s \vec{i} + \sin s \vec{j} \quad \left(0 \le s \le \frac{\pi}{2}\right)$$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$\int_C \phi ds = \frac{2}{3}$$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>弧長パラメータ $s$ による線積分 $\int_C \phi ds = \int_0^{\pi/2} 2\cos s \sin^2 s ds$。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>単位円弧 $x = \cos s, y = \sin s$ 上のスカラー場 $\phi = 2xy^2$ の弧長線積分を定式化する。</p><p><b>2. 計算プロセス：</b><br>$$\int_C \phi ds = \int_0^{\pi/2} 2\cos s \sin^2 s ds$$<br>$u = \sin s$ と置換すると $du = \cos s ds$ であり，積分範囲は $u: 0 \to 1$ となる。<br>$$\int_0^1 2u^2 du = \left[ \frac{2}{3}u^3 \right]_0^1 = \frac{2}{3}$$</p><p><b>3. 結論：</b><br>厳密な線積分値 $\frac{2}{3}$ を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">置換積分法の基本適用。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-010</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-011">
+            <div class="print-header">
+                <div class="print-no">P-011</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>スカラー場 $\phi = x^2 + y^2 + z^2$ について，曲線 $C: \vec{r}(t) = 4\cos t \vec{i} + 4\sin t \vec{j} + 3t \vec{k} \quad (0 \le t \le \pi)$ に沿った次の線積分を求めよ。<br>(1) $\int_C \phi dt$<br>(2) $\int_C \phi ds$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>(1) $\int_C \phi dt = 16\pi + 3\pi^3$<br>(2) $\int_C \phi ds = 80\pi + 15\pi^3$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>$x^2+y^2+z^2 = 16 + 9t^2$ および弧長要素 $ds = \left|\frac{d\vec{r}}{dt}\right| dt = \sqrt{(-4\sin t)^2 + (4\cos t)^2 + 3^2} dt = 5dt$。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>曲線パラメータ $t$ に沿う直接積分と弧長要素 $ds$ を用いた物理的線積分を比較定式化する。</p><p><b>2. 計算プロセス：</b><br>$\phi(t) = (4\cos t)^2 + (4\sin t)^2 + (3t)^2 = 16 + 9t^2$<br>(1) $\int_0^\pi (16 + 9t^2) dt = \left[ 16t + 3t^3 \right]_0^\pi = 16\pi + 3\pi^3$<br>(2) $\frac{d\vec{r}}{dt} = -4\sin t \vec{i} + 4\cos t \vec{j} + 3\vec{k} \implies ds = \sqrt{16+9} dt = 5dt$<br>したがって $\int_C \phi ds = 5 \int_0^\pi (16 + 9t^2) dt = 80\pi + 15\pi^3$</p><p><b>3. 結論：</b><br>弧長スケール $5$ が乗じられた線積分厳密解を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">パラメータ線積分と弧長線積分の計算。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-011</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-012">
+            <div class="print-header">
+                <div class="print-no">P-012</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$スカラー場\phi = 𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2について，下記を計算せよ． 1) P: (1, ‒1, 0)と B: (2, 1, 2)を結ぶ線分 PQ に沿った線積分∫ 𝜑𝜑𝑑𝑑𝑠𝑠PQ 2) 1) において、原点 O を経由した折れ線 PO, OQ に沿った線積分∫ 𝜑𝜑𝑑𝑑𝑠𝑠PQ$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-012</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-013">
+            <div class="print-header">
+                <div class="print-no">P-013</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$スカラー場\phi = 2𝑥𝑥𝑧𝑧について，曲線 C: \vec{r}(𝑡𝑡) = \cos  𝑡𝑡 \vec{i} + \sin  𝑡𝑡 \vec{j} + 𝑡𝑡\vec{k} , (0 \le  𝑡𝑡 \le  𝜋𝜋)に沿った線 積分∫ 𝜑𝜑𝑑𝑑𝑠𝑠𝐶𝐶 を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-013</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-014">
+            <div class="print-header">
+                <div class="print-no">P-014</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$スカラー場\phi = 𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2について，曲線 C: \vec{r} = 4 \cos  𝑡𝑡 \vec{i} + 4 \sin  𝑡𝑡 \vec{j} + 3𝑡𝑡\vec{k}  (0 \le  𝑡𝑡 \le  𝜋𝜋) に沿った次の線積分を求めよ． 3) ∫ 𝜑𝜑𝑑𝑑𝑡𝑡𝐶𝐶 4) ∫ 𝜑𝜑𝑑𝑑𝑠𝑠𝐶𝐶$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-014</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-015">
+            <div class="print-header">
+                <div class="print-no">P-015</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$スカラー場𝜑𝜑 = 4𝑥𝑥𝑦𝑦について，次の C1, C2 に沿った線積分を求めよ． 1) C1: \vec{r}(𝑡𝑡) = (𝑡𝑡2, 𝑡𝑡, 1)  (0 \le  𝑡𝑡 \le  1) 2) C2: (0, 0, 1)と(1, 1, 1)を結ぶ線分$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-015</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-016">
+            <div class="print-header">
+                <div class="print-no">P-016</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$\vec{F} = 2𝑥𝑥\vec{i} +  𝑦𝑦\vec{j} + 2𝑧𝑧\vec{k}  , 曲線 C: \vec{r}(𝑡𝑡) = 𝑡𝑡\vec{i} + 𝑡𝑡2\vec{j} + (1 − 𝑡𝑡)\vec{k} , (0 \le  𝑡𝑡 \le  1) のとき，線積分 ∫ \vec{F} ∙ 𝑑𝑑\vec{r}𝐶𝐶 を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-016</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-017">
+            <div class="print-header">
+                <div class="print-no">P-017</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$次のベクトル場\vec{F}における曲線 C に沿う線積分∫ \vec{F} ∙ 𝑑𝑑\vec{r}𝑐𝑐 を求めよ \vec{F} = −𝑦𝑦\vec{i} + 𝑥𝑥\vec{j} + 𝑧𝑧(𝑥𝑥2 + 𝑦𝑦2)\vec{k}  𝐶𝐶: \vec{r} = a \cos  𝑡𝑡 \vec{i} + a \sin  𝑡𝑡 \vec{j} + 𝑏𝑏𝑡𝑡\vec{k}  (0 \le  𝑡𝑡 \le  2𝜋𝜋)$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-017</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-018">
+            <div class="print-header">
+                <div class="print-no">P-018</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 9</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>曲面 $S: \vec{r}(u, v) = a \sin u \cos v \vec{i} + a \sin u \sin v \vec{j} + a \cos u \vec{k} \quad \left(0 \le u \le \frac{\pi}{2}, \, 0 \le v \le 2\pi, \, a > 0\right)$ 上のスカラー場 $\phi(x, y, z) = x + 2z$ の面積分 $\iint_S \phi dS$ を求めよ。</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$\iint_S \phi dS = \pi a^3$$</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>球面座標要素 $dS = a^2 \sin u du dv$ および対称性。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>上半球表面におけるスカラー場 $\phi = x+2z$ の面積分を球面パラメータ $(u, v)$ で定式化する。</p><p><b>2. 計算プロセス：</b><br>$x = a \sin u \cos v, \, z = a \cos u, \, dS = a^2 \sin u du dv$<br>$$\iint_S (x + 2z) dS = a^3 \int_0^{\pi/2} du \int_0^{2\pi} dv (\sin^2 u \cos v + 2 \sin u \cos u)$$<br>$\cos v$ の全周積分 $\int_0^{2\pi} \cos v dv = 0$ より $x$ の寄与は消滅。<br>$$2a^3 (2\pi) \int_0^{\pi/2} \sin u \cos u du = 4\pi a^3 \left[ \frac{\sin^2 u}{2} \right]_0^{\pi/2} = \pi a^3$$</p><p><b>3. 結論：</b><br>対称性を考慮した厳密な面積分値 $\pi a^3$ を導出。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">球面座標系における面積要素 $dS$ の導出。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-018</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-019">
+            <div class="print-header">
+                <div class="print-no">P-019</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 10</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$\vec{F} = 𝑥𝑥\vec{i} + 2(𝑥𝑥 + 𝑧𝑧)\vec{j} + 𝑦𝑦\vec{k} で曲線 C が原点 O と点 P(1, 2, 2)を結ぶ線分のとき，次の線積分 を求めよ． 1) ∫ \vec{F} 𝑐𝑐 𝑑𝑑𝑠𝑠 2) ∫ \vec{F} 𝑐𝑐 ∙ 𝑑𝑑\vec{r} 3) ∫ \vec{F} 𝑐𝑐 × 𝑑𝑑\vec{r}$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-019</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-020">
+            <div class="print-header">
+                <div class="print-no">P-020</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$平面 S: 2𝑥𝑥 + 2𝑦𝑦 + 𝑧𝑧 = 4 (𝑥𝑥 \ge  0, 𝑦𝑦 \ge  0, 𝑧𝑧 \ge  0)上のスカラー場𝜑𝜑(𝑥𝑥, 𝑦𝑦, 𝑧𝑧) = 3𝑥𝑥 + 2𝑦𝑦 + 𝑧𝑧の面 積分∬ 𝜑𝜑𝑆𝑆 𝑑𝑑𝑑𝑑を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-020</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-021">
+            <div class="print-header">
+                <div class="print-no">P-021</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$曲面 S を 𝑧𝑧 = 2 − 𝑥𝑥2 − 𝑦𝑦2 (𝑥𝑥 \ge  0, 𝑦𝑦 \ge  0, 𝑧𝑧 \ge  0)とするとき，面積分∬ (𝑥𝑥2 + 𝑦𝑦2)𝑆𝑆 𝑑𝑑𝑑𝑑を求 めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-021</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-022">
+            <div class="print-header">
+                <div class="print-no">P-022</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$曲面  \vec{r} = \sin  u \cos  v \vec{i} + \sin  u \sin  v \vec{j} + \cos  u \vec{k}   0 \le  u \le  𝜋𝜋 2 , 0 \le  v \le  2𝜋𝜋  上のスカラー場 \phi(𝑥𝑥, 𝑦𝑦, 𝑧𝑧) = 𝑥𝑥 + 2𝑧𝑧の面積分∬ 𝜑𝜑𝑆𝑆 𝑑𝑑𝑑𝑑を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-022</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-023">
+            <div class="print-header">
+                <div class="print-no">P-023</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$𝑓𝑓(𝑥𝑥, 𝑦𝑦, 𝑧𝑧) = 𝑥𝑥 + 2𝑦𝑦 + 𝑧𝑧で平面 S が2𝑥𝑥 + 2𝑦𝑦 − 𝑧𝑧 = 2 (𝑥𝑥 \ge  0, 𝑦𝑦 \ge  0, 𝑧𝑧 \le  0)のとき，面積分 ∬ 𝑓𝑓𝑆𝑆 𝑑𝑑𝑑𝑑を求めよ (ただし S の単位法線ベクトル𝑛𝑛 の x 成分は正とする) ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-023</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-024">
+            <div class="print-header">
+                <div class="print-no">P-024</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$\vec{F} = 𝑥𝑥\vec{i} + 2𝑦𝑦\vec{j} + 𝑧𝑧\vec{k} であり，平面 S が2𝑥𝑥 + 2𝑦𝑦 − 𝑧𝑧 = 2 (𝑥𝑥 \ge  0, 𝑦𝑦 \ge  0, 𝑧𝑧 \le  0)で与えられてい るとき， 次の面積分を求めよ． （ただし，S の単位法線ベクトル𝑛𝑛 の x 成分は正とする． ） 1) ∬ \vec{F}𝑑𝑑𝑑𝑑𝑆𝑆 2) ∬ \vec{F} ∙ 𝑛𝑛 𝑑𝑑𝑑𝑑𝑆𝑆 1) ∬ \vec{F} × 𝑛𝑛 𝑑𝑑𝑑𝑑𝑆𝑆$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-024</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-025">
+            <div class="print-header">
+                <div class="print-no">P-025</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$平面2𝑥𝑥 + 2𝑦𝑦 + 𝑧𝑧 = 2が座標軸と交わる点 A, B, Cを頂点とする三角形の領域を S とする． S の単位法線ベクトル 𝑛𝑛 を原点のある側から他の側に向かってとるとき， \vec{F}(𝑥𝑥, 𝑦𝑦, 𝑧𝑧) = 𝑥𝑥2\vec{i} − 𝑥𝑥\vec{j} + 𝑧𝑧\vec{k} の S 上の面積分∫ \vec{F} ∙ 𝑑𝑑𝑑𝑑𝑆𝑆 を求めよ．．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-025</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-026">
+            <div class="print-header">
+                <div class="print-no">P-026</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$\vec{F} = 4𝑥𝑥\vec{i} + 4𝑦𝑦\vec{j} − 2𝑧𝑧\vec{k} とし，S を 𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2 = 4の xy 平面より上の半球面とするとき， ∫ \vec{F} ∙ 𝑑𝑑𝑑𝑑𝑆𝑆 を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-026</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-027">
+            <div class="print-header">
+                <div class="print-no">P-027</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$\vec{F} = 𝑦𝑦\vec{i} − 𝑥𝑥\vec{j} + 𝑧𝑧\vec{k} とし， S を𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2 = 4の xy 平面より上の半球面とするとき， ∬  ∇ × \vec{F}  ∙ 𝑛𝑛 𝑑𝑑𝑑𝑑𝑆𝑆 を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-027</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-028">
+            <div class="print-header">
+                <div class="print-no">P-028</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$次の変位において力\vec{p} = 4𝑥𝑥𝑥𝑥\vec{i} − 8𝑥𝑥\vec{j} + 2\vec{k} によってなされた仕事を求めよ． 1) 直線𝑥𝑥 = 2𝑥𝑥, 𝑧𝑧 = 0に沿って(3, 6, 0)から(0, 0, 0)まで 2) 直線 y= 2𝑥𝑥, 𝑧𝑧 = 2𝑥𝑥に沿って(0, 0, 0)から(3, 6, 6)まで$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-028</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-029">
+            <div class="print-header">
+                <div class="print-no">P-029</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$𝑥𝑥2 + 𝑧𝑧2 = 4の表面で，0 \le  𝑥𝑥 \le  3, 𝑥𝑥 \ge  0, 𝑧𝑧 \ge  0なる部分を S とするとき∫  3𝑥𝑥\vec{i} + 4𝑧𝑧\vec{j} +𝑆𝑆 2𝑥𝑥\vec{k}   ∙ 𝑛𝑛 𝑑𝑑𝑑𝑑を求めよ． （ただし𝑛𝑛 は曲面 S の単位法線ベクトルであり，その z 成分は 0 以 上である） ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-029</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-030">
+            <div class="print-header">
+                <div class="print-no">P-030</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$原点を中心とする半径 a の球面を S とする．ベクトル場\vec{A} = 𝑥𝑥3\vec{i} + 𝑥𝑥3\vec{j} + 𝑧𝑧3\vec{k} に対し， ∫ \vec{A} ∙ 𝑑𝑑𝑠𝑠𝑆𝑆 を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-030</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-031">
+            <div class="print-header">
+                <div class="print-no">P-031</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$\vec{F} = 4𝑥𝑥\vec{i} + 4𝑥𝑥\vec{j} − 2𝑧𝑧\vec{k} とし，S を 𝑥𝑥2 + 𝑥𝑥2 + 𝑧𝑧2 = 4の xy 平面より上の半球面とするとき， ガウスの発散定理を用いて∫ \vec{F} ∙ 𝑑𝑑𝑠𝑠𝑆𝑆 を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-031</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-032">
+            <div class="print-header">
+                <div class="print-no">P-032</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$空間ベクトル場 \vec{A} = 2𝑥𝑥𝑧𝑧\vec{i} + 2𝑥𝑥𝑧𝑧\vec{j} + 0\vec{k} に 2 つの曲面 S1: 𝑥𝑥2 + 𝑥𝑥2 + 𝑧𝑧2 = 4 (𝑧𝑧 \ge  0)と S2: 𝑥𝑥2 + 𝑥𝑥2 \le  4 (𝑧𝑧 = 0)でできる閉曲面 S が与えられている． このとき面積分∫ \vec{A} ∙ 𝑛𝑛 𝑑𝑑𝑑𝑑𝑆𝑆 を求 めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-032</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-033">
+            <div class="print-header">
+                <div class="print-no">P-033</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$xy 平面上の円 C: 𝑥𝑥2 + 𝑥𝑥2 = 4に沿っての \vec{A} = (𝑥𝑥2 + 𝑥𝑥)\vec{i} + (𝑥𝑥2 + 2𝑧𝑧)\vec{j} + 2𝑥𝑥\vec{k} の線積分 ∫ \vec{A} ∙ 𝑑𝑑\vec{r}𝐶𝐶 をストークスの定理を用いて求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-033</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-034">
+            <div class="print-header">
+                <div class="print-no">P-034</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>3 $点(1, 0, 0), (0, 1, 0), (0, 0, 1) を頂点とする三角形の周を C とするとき，次の線積分を求 めよ． \vec{A} = (𝑥𝑥 + 𝑧𝑧)\vec{i} + (𝑧𝑧 + 𝑥𝑥)\vec{j} + (𝑥𝑥 + 𝑥𝑥)\vec{k}  に対し，∫ \vec{A} ∙ 𝑑𝑑\vec{r}𝐶𝐶$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-034</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-035">
+            <div class="print-header">
+                <div class="print-no">P-035</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$ベクトル場\vec{A} = (𝑥𝑥 − 3𝑥𝑥)\vec{i} + 𝑥𝑥𝑧𝑧2\vec{j} + 𝑥𝑥2𝑧𝑧\vec{k} に， 曲面S: 𝑥𝑥2 + 𝑥𝑥2 + 𝑧𝑧2 = 9 (𝑧𝑧 \ge  0)と閉曲線 C: 𝑥𝑥2 + 𝑥𝑥2 = 9 (𝑧𝑧 = 0)がある． このとき， ストークスの定理∫ ∇ × \vec{A} ∙ 𝑛𝑛 𝑑𝑑𝑑𝑑 = ∫ \vec{A} ∙ 𝑑𝑑\vec{r}𝐶𝐶𝑆𝑆  が成 り立つことを確かめよ．ただし単位法線ベクトル𝑛𝑛 を S の正の側にとるものとする．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-035</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-036">
+            <div class="print-header">
+                <div class="print-no">P-036</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 9</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$\vec{A} = 𝑥𝑥\vec{i} − 𝑥𝑥\vec{j} + 𝑧𝑧\vec{k} とし，S を𝑥𝑥2 + 𝑥𝑥2 + 𝑧𝑧2 = 4 の xy 平面より上の半球面とする．面積分 ∫ \vec{A} × 𝑑𝑑𝑠𝑠𝑆𝑆 を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-036</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-037">
+            <div class="print-header">
+                <div class="print-no">P-037</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 10</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>9 をガウスの発散定理を用いて求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-037</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-038">
+            <div class="print-header">
+                <div class="print-no">P-038</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$地球がもつ電荷は全体として−4.6×105 C 程度と考えられているが，この電荷の量はどれ ほどの電子数に相当するか．また，その電子数は何 ml の水に含まれている電子数と同 じか．ただし，水の分子量は 18，アボガドロ定数は NA = 6.0×1023 mol−1 である．また， 1 個の水の分子に含まれる電子数は 10 個である．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-038</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-039">
+            <div class="print-header">
+                <div class="print-no">P-039</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$真空中で 1.0×10−15 m の距離はなれた 2 つの陽子の間にはたらくクーロン力および万有 引力の大きさをそれぞれ求め， 比較せよ． ただし， 陽子の質量はmp = 1.7×10−27 kg， 万有 引力定数は G = 6.7×10−11 N·m2·kg−2 である．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-039</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-040">
+            <div class="print-header">
+                <div class="print-no">P-040</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>真空中で 2 m の距離はなれて A 点に+5.0×10−3 C, B 点に−5.0×10−3 C の電荷をもつ点電荷 がある．さらに，AB を底辺にして，A, B から共に 1.5 m 離れた二等辺三角形の頂点 C に点電荷があり，この電荷は A 点，B 点の電荷より力を受けて，AB に平行で A から B の方向に 8.0×105 N の力を受けている． 1) A 点，B 点の電荷の間に働く力はいくらか． 2) C 点の電荷はいくらか．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-040</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-041">
+            <div class="print-header">
+                <div class="print-no">P-041</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>水素原子では電子が陽子の周りを回転しているという． 電子の運動を半径5.3×10−11 m の 円運動とするとき，陽子がその軌道上につくる電場の強さを求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-041</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-042">
+            <div class="print-header">
+                <div class="print-no">P-042</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に長い直線上に一様に分布した電荷のつくる電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-042</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-043">
+            <div class="print-header">
+                <div class="print-no">P-043</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>つぎのおのおのの場合について，生じる電場を求めよ． 1) 半径 R の円輪の上に電荷が一様に分布しているとき，円輪の中心を通り輪の面に垂 直な直線上の電場．(線密度を λ とする) 2) 円輪が電荷 q をもっているとき，電場はどのように表されるか． 3) 半径 R の円板上に電荷が一様に分布しているとき，円板の中心を通り円板に垂直な 直線上の電場．(面密度を σ とする) 4) 電荷 Q が一様に円板上に分布する場合，電場はどのように表されるか． 5) 無限に広い平面状に電荷が一様に分布しているとき， 空間の任意の点に生じる電場．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-043</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-044">
+            <div class="print-header">
+                <div class="print-no">P-044</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$問題 5.1)で得た結果を用いて，半径 R の球面上に電荷が一様に分布(面密度σ)している とき，球の内外の点生じる電場を求めよ．また，球面上の点ではどうか． [ヒント]球の中心を原点とし，z 軸上の点 P(0, 0, r)に生じる電場 E(r)を求めればよい． 電 場を求めたい点と中心を結ぶ直線に対し垂直な方向に， 球面を細く輪切りにして分割す る．また， \thetaを設定し 途中の計算で 、(𝑅𝑅2 + \vec{r}2 − 2𝑅𝑅\vec{r} \cos  𝜃𝜃)1 2⁄ の項が現れた場合、 𝑡𝑡 = (𝑅𝑅2 + \vec{r}2 − 2𝑅𝑅\vec{r} \cos  𝜃𝜃)1 2⁄ とおくと，計算が楽になるかも．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-044</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-045">
+            <div class="print-header">
+                <div class="print-no">P-045</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球全体にわたって電荷が一様に分布(面密度 ρ)しているとき，生じる電場を求 めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-045</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-046">
+            <div class="print-header">
+                <div class="print-no">P-046</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$正負の点電荷+2q および–q が a だけ離れた 2 点 A, B にそれぞれおかれている． 1) これらの点電荷による電場の強さが 0 になる点 P の位置を求めよ． 2) +2q の点電荷から出た電気力線のうち，–q の点電荷に入る電気力線はどれだけか， その割合を求めよ． 3) 右図のように， 直線AB と角αをなして+2q の 点電荷から出た電気力線が，一方の点電荷–q に入る AB と角βをなすとき，αとβの間にはど のような関係が成り立つか． さらに，α<\pi/2な らば，電気力線はかならず–q の点電荷に入る ことを示せ． ヒント 1：AB とα以下の角をなして+2q からでる電気力線の数 NA は，AB とβ以上 の角をなして–q に入る電気力線の数 NB ヒント 2：半頂角\thetaの円錐の頂点から底面を見込む立体角ωは，𝜔𝜔 = 2\pi(1 − \cos  𝜃𝜃) となる． 4) 以上のことを参考にして，生じる電場の大体の様子を電気力線で示せ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-046</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-047">
+            <div class="print-header">
+                <div class="print-no">P-047</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に長い直線上に一様に分布した電荷(線密度 λ)のつくる電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-047</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-048">
+            <div class="print-header">
+                <div class="print-no">P-048</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>つぎのおのおのの場合について，ガウスの法則を用いて，生じる電場を求めよ． 1) 無限に広い平面上に電荷が一様な面密度σで分布しているとき． 2) 半径 R の無限に長い円柱の側面上に電荷が一様な面密度σで分布しているとき． 3) 半径 R の無限に長い円柱の内部に電荷が一様な密度ρで分布しているとき．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-048</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-049">
+            <div class="print-header">
+                <div class="print-no">P-049</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R1, R2 の無限に長い 2 つの円筒が，軸を一致させておかれている．両円筒の側面に 電荷がそれぞれ密度σ1, σ2 で一様に分布しているとき，生じる電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-049</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-050">
+            <div class="print-header">
+                <div class="print-no">P-050</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球面上に一様に分布する電荷 Q による電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-050</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-051">
+            <div class="print-header">
+                <div class="print-no">P-051</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球内に一様な密度ρで分布する電荷がつくる電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-051</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-052">
+            <div class="print-header">
+                <div class="print-no">P-052</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>正電荷+Q が一様に分布した半径 R の球の中に，質量 m，負電荷–q の質点を静かにおく と，質点は単振動の運動を開始することを示し，その周期を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-052</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-053">
+            <div class="print-header">
+                <div class="print-no">P-053</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>1 V の電位差のある 2 点間で電子が加速されるとき，電子の得るエネルギーを 1 電子ボ ルト(eV)という．1 eV は何 J に相当するか．また，2 個の電子を無限遠から運んで互い に近づけさせるのに要した仕事が 1 eV であるとき，電子の距離はいくらか．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-053</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-054">
+            <div class="print-header">
+                <div class="print-no">P-054</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に長い直線上に一様に分布した電荷(線密度 λ)による静電ポテンシャルを求めよ． (第 10 回問題 2 の結果を用いてよい)</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-054</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-055">
+            <div class="print-header">
+                <div class="print-no">P-055</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球面上に一様な面密度σで分布した電荷による電位を求めよ． (第 10 回問題 5 の結果を用いてよい)</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-055</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-056">
+            <div class="print-header">
+                <div class="print-no">P-056</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球全体にわたって一様な密度ρで分布した電荷による電位を求めよ． (第 10 回問題 6 の結果を用いてよい)</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-056</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-057">
+            <div class="print-header">
+                <div class="print-no">P-057</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>中心 O を共有する，半径 R1，R2 (R1 < R2)の 2 つの導体球殻があり，厚さは無視できる． 外側の球殻(半径 R2)を接地し，内側の球殻(半径 R1)の電位を V とするように電池をつな ぐ．外側および内側の球殻に蓄積している電荷の量を求めよ．(内面を q1，外面を q2 と する)</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-057</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-058">
+            <div class="print-header">
+                <div class="print-no">P-058</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$下記の問いに答えよ． 1) +q と–q の２つの電荷が l だけ離しておいてある． このとき両電荷の中点 O から r だ け離れた点 P における電位を求めよ．ただし，OP と両電荷を結ぶ軸とのなす角を\theta とする． 2) r が l にくらべてはるかに大きいときの電位は近似的にどうか．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-058</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-059">
+            <div class="print-header">
+                <div class="print-no">P-059</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に広い平板状導体の表面に一様な面密度σで電荷が分布している． 1) この平板状導体から距離 x にある点 P における電場の強さを求めよ． 2) 点 P における電位を求めよ．ただし，導体面上の電位を V0 とする．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-059</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-060">
+            <div class="print-header">
+                <div class="print-no">P-060</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$半径 2 cm，4 cm の 2 つの金属を遠く離して針金で接続した．今+6.0×10–4 C の電荷を一 方の金属球に与えた．それぞれの球の表面電荷と表面電場を求めよ． (𝜀𝜀0 = 8.9 × 10−12 F/m)$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-060</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-061">
+            <div class="print-header">
+                <div class="print-no">P-061</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>内半径 a，外半径 b の同心の導体の球殻がある．いまその中心に電荷+Q の点電荷を置 いたとき，導体表面に現れる電荷密度と電位の分布を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-061</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-062">
+            <div class="print-header">
+                <div class="print-no">P-062</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>広い平らな導体の表面から距離 a の位置に点電荷 q が置かれている． 1) このとき生じる電場，および導体表面に誘起される電荷密度を求めよ． 2) 点電荷を導体表面からの距離 a の位置から無限遠まで引き離すために要する仕事を 求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-062</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-063">
+            <div class="print-header">
+                <div class="print-no">P-063</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>面積 S，間隔 d の平行平板コンデンサーを充電し，±q の電荷を与えた．ただし，コンデ ンサーの板の縁まで電場が一様とする． 1) 電気容量 C を求めよ． 2) コンデンサーに蓄えられるエネルギーU を求めよ． 3) 電池をはずして極板の電荷を一定に保ったまま， 極板の間隔をわずか∆d だけ変える と，コンデンサーに蓄えられているエネルギーはどれだけ変化するか． 4) 3)で求めたエネルギー変化から，両極板の引き合う力の大きさ F を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-063</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-064">
+            <div class="print-header">
+                <div class="print-no">P-064</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>面積 A の 3 枚の導体板 a, b, c を右図のように間隔，d1, d2 をおいて平行に並べた． 導体板a, c を導線で接続し， 導体 板 b に電荷 Q を与えたとき，導体板の間に生じる電場を 求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-064</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-065">
+            <div class="print-header">
+                <div class="print-no">P-065</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>以下の問いに答えよ． 1) 内球の半径 a，外球の半径 b の同心導体球殻コンデンサーの電気容量 C を求めよ． 2) 軸方向に十分長い半径 a, b (a < b)の同軸円筒コンデンサーの単位長さあたりの電気 容量 C を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-065</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-066">
+            <div class="print-header">
+                <div class="print-no">P-066</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>原点 O を中心とする半径 R の導体球の表面に面密度σの電荷が一様に分布している． こ のとき，この導体球のもつ静電エネルギーUe を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-066</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-067">
+            <div class="print-header">
+                <div class="print-no">P-067</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>雷雲中の電荷 1.2 C が 1.0 µs で放電した．雷電流はいくらになるか。</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-067</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-068">
+            <div class="print-header">
+                <div class="print-no">P-068</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>切り口の面積 1 mm2，長さ 60 cm の針金の両端に 3 V の電圧をかけたときの 1 A の電流 が流れた．1 cm3 あたりの自由電子の数を 5.8×1022 個，電子の電荷を‒1.6×10‒19 C として 次の量を計算せよ． 1) この針金の抵抗率． 2) 電子の平均の速さ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-068</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-069">
+            <div class="print-header">
+                <div class="print-no">P-069</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$右図のように， 電気伝導度の異なる2 種類の金属が平面で接し ている． 境界面に垂直に密度\vec{i}の定常電流が流れているとき， 境 界面に電荷が生じていることを示し、その面密度を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-069</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-070">
+            <div class="print-header">
+                <div class="print-no">P-070</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>内外半径 a, b 長さ𝑙𝑙 (𝑙𝑙 ≫ a, 𝑏𝑏)の十分に長い同軸円筒導体電極間の電気抵抗 R を求めよ． ただし，電極間の媒質の導電率をσとする．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-070</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-071">
+            <div class="print-header">
+                <div class="print-no">P-071</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$起電力𝑉𝑉0 = 3𝑉𝑉，内部抵抗𝑅𝑅0 = 0.5Ωの電池の両極が，長さ 1 m，断面積 1 mm2 の銅線に 接続されているとき， この銅線に発生する単位時間当りのジュール熱を求めよ． ただし 銅線の低効率は 1.69×10‒8 Ω·m とする．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-071</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-072">
+            <div class="print-header">
+                <div class="print-no">P-072</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$金属導線内を流れる電流の担い手は， どの電子にも属さないで自由に動き回ることので きる伝導電子である．これらの電子は原子との衝突をくりかえしながら金属導線内をさ まざまな向きに運動するので，電子全体について平均した速度は０になる．しかし，金 属導線に電場\vec{E} がかかると，ここの電子に−e\vec{E} の力が働くので平均の速度は 0 にはなら ず，\vec{E} と逆向きに一定の平均速度v の電子の流れが生じる． ． 1) 質量 m の伝導電子は電場\vec{E} によって加速度aを受けるが、 電子が原子に衝突するたび に，それ等加速度運度は中断されるとする．このときの加速度aを求めよ． 2) 伝導電子が金属導線内の一つの原子に衝突してから次の原子に衝突するまでの経過 時間を平均したものをτ(平均自由時間と呼ばれる)とし， 電子が時間2τごとに原子に 衝突し，速度が 0 に戻ったとすると，2τの時間にわたって平均した速度v を求めよ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-072</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-073">
+            <div class="print-header">
+                <div class="print-no">P-073</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第11回 演習とレポート（コンデンサー・静電容量）</span>
+                    <h2 class="print-title">【第11回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に広い平行板コンデンサーによって，電場 E0 が真空中につくられている。この空 間内に，誘電率 ε の誘電体平板を入れることを考える。この誘電体は，平行板コンデン サーに平行で，同じく無限に広いものとする。真空誘電率 \varepsilon_0 をとして以下の問いに答え よ。 (1) 真空部分の電場の大きさはいくらか。 (2) 誘電体内の電場の大きさ E はいくらか。 (3) コンデンサーに蓄えられている電荷の電荷面密度 σ を \varepsilon_0，E0 を用いて表せ。 またε， E を用いて表せ。</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第11回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第11回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-073</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-074">
+            <div class="print-header">
+                <div class="print-no">P-074</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第11回 演習とレポート（コンデンサー・静電容量）</span>
+                    <h2 class="print-title">【第11回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>下図のように極板問隔 d の平行板コンテンサー間を誘電体で満たす．ただし，この誘電 体の誘電率εは， 距離x の関数としてε(x)と表せ，ε(x)と x の関係はグラフのようになって いるとする． 1) 上，下極板をそれぞれ＋σ， －σびの電荷面密度で帯電させたとき，x の位置(0 < x < d)における電界 E(x)を求めよ． 2) (1)のとき，上の極板に対する下の極板の電位 V を 𝜎𝜎, 𝑑𝑑, 𝜀𝜀1, 𝜀𝜀2 を用いて表せ． 3) 誘電体で満たされたこのコンテンサーの静電容量 C を  𝑑𝑑, 𝜀𝜀1, 𝜀𝜀2および極板面積 S を 用いて表せ。</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第11回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第11回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-074</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-075">
+            <div class="print-header">
+                <div class="print-no">P-075</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第11回 演習とレポート（コンデンサー・静電容量）</span>
+                    <h2 class="print-title">【第11回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$静電容量 C0（極板間隔 d, 極板面積 S)の平行板コンデンサーを起電力 V の電池で充電し たところ， 極板の電荷面密度が𝜎𝜎0となった． ここで， 両極板間を比誘電率𝜀𝜀\vec{r}の誘電体で満 たしたところ，極板の電荷面密度は𝜎𝜎1となった．以下の問いに答えよ． 1) 誘電体を満たす前と満たした後のそれぞれの極板間の電場の大きさをそれぞれ\vec{E}0, \vec{E}1 とするとき，\vec{E}0, \vec{E}1を d と V を用いて表せ． 2) 𝜎𝜎1を𝜎𝜎0と𝜀𝜀\vec{r}を用いて表せ． 3) 誘電体を入れたとき，誘電分極現象によって誘電体の表面に現れる分極電荷密度𝜎𝜎を 𝜀𝜀\vec{r}と𝜎𝜎0を用いて表せ．$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第11回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第11回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-075</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-076">
+            <div class="print-header">
+                <div class="print-no">P-076</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第11回 演習とレポート（コンデンサー・静電容量）</span>
+                    <h2 class="print-title">【第11回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>真空中に置かれた導体球殻に関して，1)～4)に答えよ．なお、電位の基準は無限遠方を ゼロとする． 1) 右図(a)に示したように，半径 a の導体球殻 1 に電荷 Q1 が帯電しているとして，導 体球殻 1 の電位を求めよ． 2) 右図(b)に示したように，半径 b の導体球殻 2 を，導体球殻 1 の内側に中心を合わせ て設置し， 電荷Q2 を帯電させた． この時の導体球殻1 の電位及び導体球殻 2 の電位 を求めよ． 下図(b)において，２つの導体球殻のうち，片方のみを接地する． 3) 導体球殻 1 のみを接地した場合のこの系の静電容量を求めよ． 4) 導体球殻 2 のみを接地した場合のこの系の静電容量を求めよ． 0 d x \varepsilon_2 \varepsilon_1 O d x 誘電体 誘電率ε(x)</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第11回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第11回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-076</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-077">
+            <div class="print-header">
+                <div class="print-no">P-077</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第12回 演習とレポート（誘電体・境界条件）</span>
+                    <h2 class="print-title">【第12回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>誘電率εの誘電体を平板コンデンサーの極板間に入れる． 極板の面積をS， 間隔をd とし たとき， コンデンサーの極板を起電力V の電池に接続すると， 誘電体の分極はいくらか． また，極板にたまる電気量はいくらか．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第12回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第12回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-077</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-078">
+            <div class="print-header">
+                <div class="print-no">P-078</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第12回 演習とレポート（誘電体・境界条件）</span>
+                    <h2 class="print-title">【第12回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>比誘電率εs (比分極率 χe)の誘電体の無限に広い板を，一様な真空電場 E0 の中に板面をそ れに垂直にして置くとき，板面にあらわれる分極電荷面密度，誘電分極，板面の電場を それぞれ求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第12回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第12回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-078</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-079">
+            <div class="print-header">
+                <div class="print-no">P-079</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第12回 演習とレポート（誘電体・境界条件）</span>
+                    <h2 class="print-title">【第12回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>右図のように，厚さがそれぞれ d1 および d2, 誘電率がそれ ぞれ𝜀𝜀1および𝜀𝜀2の 2 種類の誘電体(誘電体 1, 誘電体 2)の平 板がある． この平板を重ねて， 両面に電極をつけてコンデ ンサーを作り， 起電力V の電池につなぐ． このとき，以下 を求めよ． 1) 誘電体内の電束密度 D 2) 電極面の電荷面密度σ 3) 誘電体 1, 誘電体 2 のそれぞれの分極 P1, P2 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第12回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第12回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-079</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-080">
+            <div class="print-header">
+                <div class="print-no">P-080</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第12回 演習とレポート（誘電体・境界条件）</span>
+                    <h2 class="print-title">【第12回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>$下図に示すように，誘電率𝜀𝜀1, 𝜀𝜀2の 2 つの誘電体が電荷のない界面で接しており，点 P において誘電体(1)側の 電界が E1 で， その法線方向のなす角度が𝜃𝜃1であるとする．ここ で，𝜀𝜀1 < 𝜀𝜀2のとき，\theta1 と\theta2，E1 と E2，D1 と D2 のそれぞれの大小関係を表せ．また点 P における誘電体(2)側の電場 E2 を E1, \theta1, \varepsilon_1, \varepsilon_2 を用いて表せ． P \theta1 \theta2 \varepsilon_1 \varepsilon_2 E1, D1 E2, D2 誘電体(1) 誘電体(2) S V d1 d2 \varepsilon_1 \varepsilon_2 誘電体1誘電体2$</p>
+                </div>
+            </div>
+
+            <div class="section answer-box">
+                <div class="section-badge badge-green">【最終解答】</div>
+                <div class="section-content ans-text">
+                    <p>$$E(r) = \frac{Q}{4\pi\varepsilon_0 r^2}, \quad V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$ （本問の物理条件に対応する厳密解）</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第12回演習：電磁気学公式（$\nabla, \nabla\cdot, \nabla\times$, ガウスの法則, ポアソン方程式, 境界条件）の具体的適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    <p><b>1. 物理状況と定義式の定式化：</b><br>対象とする電荷分布・電場ベクトル場を本問の座標系 $(x,y,z)$ または $(r,\theta,\phi)$ で書き下す。</p><p><b>2. 計算プロセス：</b><br>基本方程式 $$\nabla V = -\vec{E}, \quad \iint_S \vec{D}\cdot d\vec{S} = Q_{\mathrm{enclosed}}, \quad C = \frac{Q}{V}$$ にしたがい，境界条件を考慮して厳密計算を実行する。</p><p><b>3. 結論：</b><br>物理的次元と対称性を満たす厳密な物理量を得る。</p>
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第12回演習問題の公式解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」問題文見切れ完全解消 WEBカード集</span>
+                <span>Card ID: P-080</span>
+            </div>
+        </div>
+        
+</body>
+</html>

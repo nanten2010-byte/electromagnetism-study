@@ -1,0 +1,4028 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電磁気学I 演習・レポート詳細解説</title>
+    
+    <!-- External Libraries (CDN) -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <!-- Marked.js (Markdown parser) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.2.4/dist/mermaid.min.js"></script>
+
+    <style>
+        :root {
+            /* Transitions */
+            --transition-speed: 0.3s;
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Dark Theme variables */
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #090d16 0%, #111827 50%, #0d1527 100%);
+            --sidebar-bg: rgba(17, 24, 39, 0.85);
+            --card-bg: rgba(31, 41, 55, 0.7);
+            --card-hover-bg: rgba(59, 130, 246, 0.12);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --border-hover-color: rgba(59, 130, 246, 0.5);
+            --text-primary: #f3f4f6;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #60a5fa;
+            --accent-gradient: linear-gradient(90deg, #3f84f4, #60a5fa);
+            --glow-color: rgba(59, 130, 246, 0.2);
+            --highlight-bg: rgba(234, 179, 8, 0.3);
+            --highlight-text: #fef08a;
+            --formula-bg: rgba(17, 24, 39, 0.9);
+            --shadow-primary: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+            --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+            
+            --problem-bg: rgba(30, 41, 59, 0.5);
+            --problem-border: rgba(59, 130, 246, 0.3);
+            --problem-accent: #3b82f6;
+            --solution-bg: rgba(17, 24, 39, 0.4);
+            --solution-border: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Light Theme variables */
+        [data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+            --sidebar-bg: rgba(255, 255, 255, 0.9);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-hover-bg: rgba(37, 99, 235, 0.06);
+            --border-color: rgba(148, 163, 184, 0.25);
+            --border-hover-color: rgba(37, 99, 235, 0.45);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #2563eb;
+            --accent-secondary: #1d4ed8;
+            --accent-gradient: linear-gradient(90deg, #2563eb, #3b82f6);
+            --glow-color: rgba(37, 99, 235, 0.1);
+            --highlight-bg: rgba(234, 179, 8, 0.35);
+            --highlight-text: #713f12;
+            --formula-bg: rgba(241, 245, 249, 0.95);
+            --shadow-primary: 0 10px 30px -10px rgba(148, 163, 184, 0.4);
+            --shadow-glow: 0 0 15px rgba(37, 99, 235, 0.2);
+            --scrollbar-thumb: rgba(0, 0, 0, 0.15);
+            
+            --problem-bg: rgba(239, 246, 255, 0.8);
+            --problem-border: rgba(191, 219, 254, 0.8);
+            --problem-accent: #2563eb;
+            --solution-bg: rgba(255, 255, 255, 0.85);
+            --solution-border: rgba(148, 163, 184, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            overflow: hidden;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        /* Screen Reader only helper */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Accessibility: Focus Indicators */
+        button:focus-visible, 
+        input:focus-visible, 
+        [role="button"]:focus-visible,
+        [tabindex="0"]:focus-visible {
+            outline: 3px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Sidebar Container */
+        .sidebar {
+            width: 320px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            flex-shrink: 0;
+            z-index: 10;
+            transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px var(--glow-color));
+        }
+
+        .logo-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -0.025em;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-hover-color);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .search-area {
+            padding: 16px 20px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px 14px 10px 38px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--glow-color);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .clear-search-btn {
+            position: absolute;
+            right: 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .clear-search-btn:hover {
+            color: var(--text-primary);
+        }
+
+        /* Navigation List */
+        .sidebar-menu {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 12px 16px 24px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .menu-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 8px 12px 4px 12px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            background: transparent;
+            text-align: left;
+            width: 100%;
+        }
+
+        .menu-item:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--border-color);
+        }
+
+        .menu-item.active {
+            color: var(--text-primary);
+            background: var(--card-hover-bg);
+            border-color: var(--border-hover-color);
+            box-shadow: inset 0 0 8px var(--glow-color);
+        }
+
+        .menu-item i {
+            width: 18px;
+            font-size: 0.95rem;
+            text-align: center;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+
+        .menu-item.active i {
+            color: var(--accent-secondary);
+        }
+
+        /* Main Content Panel */
+        .main-panel {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header */
+        .panel-header {
+            height: 73px;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(17, 24, 39, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            z-index: 5;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumbs span {
+            color: var(--text-muted);
+        }
+
+        .breadcrumbs .active-crumb {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .quick-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .action-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-hover-color);
+            box-shadow: 0 4px 12px var(--glow-color);
+        }
+
+        /* Content Scroll Container */
+        .content-scroll {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Content Container */
+        .content-container {
+            width: 100%;
+            max-width: 860px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Markdown styling overrides */
+        .markdown-body {
+            line-height: 1.8;
+            font-size: 1.025rem;
+        }
+
+        .markdown-body h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .markdown-body h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 700;
+            color: var(--accent-secondary);
+        }
+
+        .markdown-body h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .markdown-body h3::before {
+            content: "⚡";
+            font-size: 1rem;
+        }
+
+        .markdown-body h4 {
+            font-size: 1.1rem;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-weight: 600;
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 12px;
+        }
+
+        .markdown-body h5 {
+            font-size: 1rem;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .markdown-body p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .markdown-body ul, .markdown-body ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .markdown-body li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .markdown-body code {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            border: 1px solid var(--border-color);
+            color: var(--accent-secondary);
+        }
+
+        .markdown-body pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .markdown-body pre code {
+            background: transparent;
+            padding: 0;
+            border: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .markdown-body hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 32px 0;
+        }
+
+        /* Callout Box / Alert box styling */
+        .callout-box {
+            background: rgba(59, 130, 246, 0.06);
+            border-left: 5px solid var(--accent-primary);
+            padding: 18px 22px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .callout-box.danger {
+            background: rgba(239, 68, 68, 0.06);
+            border-left-color: #ef4444;
+        }
+
+        .callout-box.warning {
+            background: rgba(234, 179, 8, 0.06);
+            border-left-color: #eab308;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Formulas Styling */
+        .math-block {
+            background: var(--formula-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            display: flex;
+            justify-content: center;
+            box-shadow: var(--shadow-primary);
+            transition: all 0.2s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .math-block:hover {
+            border-color: var(--border-hover-color);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .math-inline {
+            background: var(--formula-bg);
+            padding: 2px 4px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            margin: 0 2px;
+            white-space: nowrap;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        /* Problem Cards styling */
+        .problem-card {
+            background: var(--problem-bg);
+            border: 1px solid var(--problem-border);
+            border-left: 6px solid var(--problem-accent);
+            border-radius: 16px;
+            margin: 28px 0 16px 0;
+            overflow: hidden;
+            box-shadow: var(--shadow-primary);
+        }
+        .problem-header {
+            background: rgba(59, 130, 246, 0.08);
+            padding: 12px 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--problem-border);
+            color: var(--text-primary);
+        }
+        .problem-badge {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+        }
+        .problem-body {
+            padding: 20px;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+        }
+
+        /* Solution Cards styling */
+        .solution-card {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 16px;
+            margin-bottom: 40px;
+            padding: 24px;
+            box-shadow: var(--shadow-primary);
+        }
+        .solution-section {
+            margin-bottom: 20px;
+        }
+        .solution-section:last-child {
+            margin-bottom: 0;
+        }
+        .solution-section h6 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-secondary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .solution-section h6 i {
+            font-size: 0.95rem;
+        }
+
+        /* Tables */
+        .markdown-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .markdown-body th, .markdown-body td {
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        .markdown-body th {
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-primary);
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .markdown-body td {
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .markdown-body tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Mermaid Container */
+        .mermaid {
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            box-shadow: var(--shadow-primary);
+        }
+
+        /* Nav Footer Buttons */
+        .navigation-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-footer-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            max-width: 45%;
+            text-decoration: none;
+        }
+
+        .nav-footer-btn:hover {
+            border-color: var(--border-hover-color);
+            box-shadow: 0 4px 15px var(--glow-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-footer-btn.prev:hover {
+            transform: translateX(-4px) translateY(-2px);
+        }
+
+        .nav-footer-btn.next:hover {
+            transform: translateX(4px) translateY(-2px);
+        }
+
+        .nav-footer-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .nav-footer-btn span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: block;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        /* Search Highlights */
+        mark.search-highlight {
+            background-color: var(--highlight-bg);
+            color: var(--highlight-text);
+            padding: 1px 3px;
+            border-radius: 4px;
+            border-bottom: 2px solid #eab308;
+        }
+
+        /* Formulas Cheat Sheet Mode */
+        .formula-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: var(--shadow-primary);
+            transition: all 0.2s ease;
+        }
+
+        .formula-card:hover {
+            border-color: var(--border-hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--glow-color);
+        }
+
+        .formula-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .formula-card-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: var(--card-hover-bg);
+            color: var(--accent-secondary);
+            padding: 4px 10px;
+            border-radius: 9999px;
+            border: 1px solid var(--border-hover-color);
+        }
+
+        .formula-card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .formulas-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* Floating Alert Box (Custom Notification) */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border-hover-color);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s var(--transition-bounce);
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .toast i {
+            color: var(--accent-secondary);
+        }
+
+        /* Top Notification Bar for Search Result info */
+        .search-results-banner {
+            background: var(--card-hover-bg);
+            border: 1px solid var(--border-hover-color);
+            border-radius: 12px;
+            padding: 12px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .search-results-text {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .search-results-text strong {
+            color: var(--accent-secondary);
+        }
+
+        .close-banner-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .close-banner-btn:hover {
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" aria-label="講義選択メニュー">
+        <div class="sidebar-header">
+            <div class="logo-area">
+                <i class="fa-solid fa-magnet logo-icon" aria-hidden="true"></i>
+                <div class="logo-title">電磁気学I解説</div>
+            </div>
+            <button class="theme-toggle-btn" id="theme-toggle" aria-label="テーマ切り替え (ダーク/ライト)">
+                <i class="fa-solid fa-moon" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="search-area">
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                <input type="text" class="search-input" id="search-box" placeholder="キーワードで検索..." aria-label="解説資料の検索">
+                <button class="clear-search-btn" id="clear-search" aria-label="検索条件をクリア"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            </div>
+        </div>
+
+        <div class="sidebar-menu" id="menu-container" role="tablist" aria-orientation="vertical">
+            <div class="menu-label">コンテンツ</div>
+            <!-- Dynamic menu items (buttons) will be inserted here with role="tab" -->
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-panel" aria-label="解説コンテンツ表示エリア">
+        <div class="panel-header">
+            <div class="breadcrumbs" id="breadcrumb-container" aria-label="現在位置">
+                <i class="fa-solid fa-book" aria-hidden="true"></i>
+                <span>/</span>
+                <span class="active-crumb" id="active-breadcrumb">概要と全体像</span>
+            </div>
+            <div class="quick-actions">
+                <button class="action-btn" id="copy-btn" aria-label="このセクションの内容をテキストとしてコピー">
+                    <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                    <span>コピー</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="content-scroll">
+            <div class="content-container">
+                <!-- Search Result banner if searching -->
+                <div id="search-banner-container" aria-live="polite"></div>
+                
+                <!-- Main markdown render viewport -->
+                <article class="markdown-body" id="rendered-content" aria-live="assertive"></article>
+
+                <!-- Footer Navigation Buttons -->
+                <nav class="navigation-footer" aria-label="前後の回への移動">
+                    <button class="nav-footer-btn prev" id="prev-btn" aria-label="前のセクションへ移動">
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                        <div>
+                            <span>前の回</span>
+                            <p id="prev-btn-title">なし</p>
+                        </div>
+                    </button>
+                    <button class="nav-footer-btn next" id="next-btn" aria-label="次のセクションへ移動">
+                        <div>
+                            <span>次の回</span>
+                            <p id="next-btn-title">なし</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast-notification" role="alert" aria-live="polite">
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        <span id="toast-message">コピーしました！</span>
+    </div>
+
+    <!-- Markdown Data Source -->
+    <script type="text/markdown" id="markdown-data">
+# 電磁気学I 演習・レポート詳細解説資料
+
+本資料は、大学2年春学期に開講される「電磁気学I」の演習およびレポート課題（第1回〜第12回）の学習内容を、数学的・物理的側面から体系的に整理・解説したものです。[電磁気学まとめ.pdf](file:///Users/hashiguchihideaki/大学関係/２年春学期/電磁気学/電磁気学まとめ.pdf) に基づき、各演習問題の背景にある物理的意味や、計算の難所における数式変形の詳細なプロセスを網羅しています。
+
+---
+
+## 講義全体の流れと鳥観図
+
+電磁気学の学習は、数学的ツールの準備から始まり、電荷同士の相互作用、空間における電磁場の表現、物質（導体・誘電体）との相互作用へと段階的に発展します。
+
+```mermaid
+graph TD
+    A[数学的基盤: ベクトル解析 <br>第1回〜第4回] --> B[真空中の静電場・静電位 <br>第5回〜第7回]
+    B --> C[導体と境界条件・静電容量 <br>第8回]
+    B --> D[定常電流と電流モデル <br>第9回]
+    C --> E[誘電体と電束密度 <br>第10回〜第12回]
+    D --> F[マクスウェル方程式への統合]
+    E --> F
+```
+
+---
+
+## 各回の詳細解説
+
+### 第1回：ベクトル解析 of 基礎（勾配・発散・回転）
+
+電磁気学の基本法則であるマクスウェル方程式を微積分で書き下し、その物理的意味（空間的な湧き出しや回転）を理解するために不可欠なベクトル演算を学びます。
+
+#### 1. 必須暗記項目
+
+*   **３つの基底ベクトル（単位ベクトル）**：
+    $x, y, z$ の各軸方向を向く長さ $1$ の基準ベクトル。 $\vec{i}$ （または $\vec{e}_x$）、 $\vec{j}$ （または $\vec{e}_y$）、 $\vec{k}$ （または $\vec{e}_z$）と書きます。
+*   **勾配 (Gradient) $\nabla f$**：
+    スカラー場（各点に温度や標高などの数値が割り当てられた空間）から、その変化が最も急な方向を向くベクトル場を作ります。
+    $$\nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$$
+*   **発散 (Divergence) $\nabla \cdot \vec{g}$**：
+    ベクトル場から、その点において流体が「どれだけ湧き出しているか（または吸い込まれているか）」を表すスカラーを作ります。
+    $$\nabla \cdot \vec{g} = \frac{\partial g_x}{\partial x} + \frac{\partial g_y}{\partial y} + \frac{\partial g_z}{\partial z}$$
+*   **回転 (Curl) $\nabla \times \vec{v}$**：
+    ベクトル場から、各点における流体の「局所的な渦の回転軸方向と強さ」を表すベクトルを作ります。
+    $$\nabla \times \vec{v} = \det \begin{pmatrix} \vec{i} & \vec{j} & \vec{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ v_x & v_y & v_z \end{pmatrix}$$
+*   **位置ベクトル $\vec{r}$ の基本性質**：
+    原点からの矢印ベクトルを $\vec{r} = (x, y, z)$ とし、その長さを $r = |\vec{r}| = \sqrt{x^2+y^2+z^2}$ とします。以下の偏微分公式は頻出です。
+    *   $\nabla r = \frac{\vec{r}}{r}$ （距離の勾配は、外側を向く単位ベクトル）
+    *   $\nabla \frac{1}{r} = -\frac{\vec{r}}{r^3}$ （点電荷のつくる電場はこの式から導かれます）
+    *   $\nabla r^n = n r^{n-2} \vec{r}$
+    *   $\nabla \cdot \vec{r} = 3$
+    *   $\nabla \times \vec{r} = \vec{0}$ （放射状のベクトルなので渦はありません）
+
+#### 2. 解法パターン・型
+
+> **【型1：位置ベクトルの連鎖律（チェインルール）】**
+> 距離 $r = \sqrt{x^2+y^2+z^2}$ の関数 $g(r)$ を偏微分するときは、まず $r$ で微分してから、 $r$ を $x$ で偏微分する。
+> $$\frac{\partial g(r)}{\partial x} = \frac{dg(r)}{dr} \cdot \frac{\partial r}{\partial x} = g'(r) \cdot \frac{x}{r}$$
+> これを $y, z$ についても並べることで、 $\nabla g(r) = g'(r) \frac{\vec{r}}{r}$ が導かれます。
+
+> **【型2：曲面の面素 $dS$ と法線ベクトル $\vec{n}$ の決定】**
+> パラメータ $u, v$ で表される曲面 $\vec{r}(u,v)$ から幾何学的量を抽出する標準手順：
+> 1. それぞれの変数での偏微分（接ベクトル） $\vec{r}_u = \frac{\partial \vec{r}}{\partial u}$、 $\vec{r}_v = \frac{\partial \vec{r}}{\partial v}$ を求める。
+> 2. その外積 $\vec{r}_u \times \vec{r}_v$ を計算する（これが曲面に垂直な方向になります）。
+> 3. 外積の大きさ $|\vec{r}_u \times \vec{r}_v|$ を求める。
+> 4. 面素は $dS = |\vec{r}_u \times \vec{r}_v| dudv$、単位法線ベクトルは $\vec{n} = \frac{\vec{r}_u \times \vec{r}_v}{|\vec{r}_u \times \vec{r}_v|}$ となる。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1(1)</span> 勾配の計算</div>
+  <div class="problem-body">
+
+スカラー関数 $f = e^x \sin y$ の勾配 $\nabla f$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. 各変数（$x, y, z$）について順に偏微分（他の変数を定数とみなして通常の微分を行う）を行います。
+2. それぞれの微分結果をベクトルの成分として並べます。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $x$ について偏微分： $y$ を定数とみなすため、 $\frac{\partial f}{\partial x} = \frac{d(e^x)}{dx} \sin y = e^x \sin y$。
+* $y$ について偏微分： $x$ を定数とみなすため、 $\frac{\partial f}{\partial y} = e^x \frac{d(\sin y)}{dy} = e^x \cos y$。
+* $z$ について偏微分： $z$ 成分の変数を含まないため、 $\frac{\partial f}{\partial z} = 0$。
+
+これらを単位ベクトル $\vec{i}, \vec{j}$ にかけて並べると、
+$$\nabla f = e^x \sin y \vec{i} + e^x \cos y \vec{j}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1(2)</span> 勾配の計算</div>
+  <div class="problem-body">
+
+スカラー関数 $f = (x^2+y^2+z^2)^2$ の勾配 $\nabla f$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. $u = x^2+y^2+z^2$ と置いて、合成関数の微分公式 $(u^2)' = 2u \cdot u'$ を適用します。
+2. 位置ベクトル $\vec{r} = (x,y,z)$ を使ってシンプルにまとめます。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$x$ 成分について微分すると、
+$$\frac{\partial f}{\partial x} = 2(x^2+y^2+z^2) \cdot \frac{\partial}{\partial x}(x^2+y^2+z^2) = 2(x^2+y^2+z^2) \cdot 2x = 4x(x^2+y^2+z^2)$$
+$y, z$ についても対称性より同様です。位置ベクトル $\vec{r} = (x, y, z)$ を用いて整理すると、
+$$\nabla f = 4(x^2+y^2+z^2)(x\vec{i} + y\vec{j} + z\vec{k}) = 4(x^2+y^2+z^2)\vec{r}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1(3)</span> 勾配の計算</div>
+  <div class="problem-body">
+
+スカラー関数 $f = \frac{1}{2}\ln(x^2+y^2)$ の勾配 $\nabla f$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. 自然対数の微分公式 $(\ln u)' = \frac{u'}{u}$ を使用します。
+2. $z$ は式に含まれないので、 $z$ 成分は $0$ になります。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$x$ について偏微分を行うと、
+$$\frac{\partial f}{\partial x} = \frac{1}{2} \cdot \frac{2x}{x^2+y^2} = \frac{x}{x^2+y^2}$$
+$y$ についても同様に行うことで、以下の結果を得ます。
+$$\nabla f = \frac{x\vec{i} + y\vec{j}}{x^2+y^2}$$
+
+  </div>
+</div>
+
+---
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2(1)</span> 発散の計算</div>
+  <div class="problem-body">
+
+ベクトル関数 $\vec{g} = y^2 e^z \vec{i} + x^2 z^2 \vec{k}$ の発散 $\nabla \cdot \vec{g}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. $\vec{i}$ 成分（$x$ 成分）を $x$ で、 $\vec{j}$ 成分（$y$ 成分）を $y$ で、 $\vec{k}$ 成分（$z$ 成分）を $z$ で偏微分してすべて足し算します。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+各成分は $g_x = y^2 e^z$、 $g_y = 0$、 $g_z = x^2 z^2$ です。
+$$\nabla \cdot \vec{g} = \frac{\partial(y^2 e^z)}{\partial x} + \frac{\partial(0)}{\partial y} + \frac{\partial(x^2 z^2)}{\partial z} = 0 + 0 + 2x^2 z = 2x^2 z$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2(2)</span> 発散の計算</div>
+  <div class="problem-body">
+
+ベクトル関数 $\vec{g} = x^2\vec{i} + y^2\vec{j} + z^2\vec{k}$ の発散 $\nabla \cdot \vec{g}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. それぞれの成分を対応する変数で微分して足します。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$$\nabla \cdot \vec{g} = \frac{\partial(x^2)}{\partial x} + \frac{\partial(y^2)}{\partial y} + \frac{\partial(z^2)}{\partial z} = 2x + 2y + 2z = 2(x+y+z)$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2(3)</span> 発散の計算</div>
+  <div class="problem-body">
+
+ベクトル関数 $\vec{g} = e^{-xy}\vec{i} + e^{-yz}\vec{j} + e^{-zx}\vec{k}$ の発散 $\nabla \cdot \vec{g}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. 指数関数の偏微分（連鎖律）に注意して計算します。 $\frac{\partial e^{-xy}}{\partial x} = -y e^{-xy}$ となります。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+各成分を偏微分して足し合わせます。
+$$\nabla \cdot \vec{g} = \frac{\partial(e^{-xy})}{\partial x} + \frac{\partial(e^{-yz})}{\partial y} + \frac{\partial(e^{-zx})}{\partial z} = -y e^{-xy} - z e^{-yz} - x e^{-zx}$$
+
+  </div>
+</div>
+
+---
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3(1)</span> 回転の計算</div>
+  <div class="problem-body">
+
+ベクトル関数 $\vec{v} = z\vec{i} + x\vec{j} + y\vec{k}$ の回転 $\nabla \times \vec{v}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. 回転の行列式の定義に沿って、各成分の外積計算を丁寧に行います。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$$\nabla \times \vec{v} = \left( \frac{\partial v_z}{\partial y} - \frac{\partial v_y}{\partial z} \right)\vec{i} + \left( \frac{\partial v_x}{\partial z} - \frac{\partial v_z}{\partial x} \right)\vec{j} + \left( \frac{\partial v_y}{\partial x} - \frac{\partial v_x}{\partial y} \right)\vec{k}$$
+各成分 $v_x = z, v_y = x, v_z = y$ を代入すると、
+$$\nabla \times \vec{v} = \left( \frac{\partial y}{\partial y} - \frac{\partial x}{\partial z} \right)\vec{i} + \left( \frac{\partial z}{\partial z} - \frac{\partial y}{\partial x} \right)\vec{j} + \left( \frac{\partial x}{\partial x} - \frac{\partial z}{\partial y} \right)\vec{k}$$
+$$\nabla \times \vec{v} = (1 - 0)\vec{i} + (1 - 0)\vec{j} + (1 - 0)\vec{k} = \vec{i} + \vec{j} + \vec{k}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3(2)</span> 回転の計算</div>
+  <div class="problem-body">
+
+ベクトル関数 $\vec{v} = x\vec{i} + yz\vec{j} - (x^2+z^2)\vec{k}$ の回転 $\nabla \times \vec{v}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. マイナスの符合に注意しながら、同様に公式を適用します。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$$x\text{成分}： \frac{\partial(-(x^2+z^2))}{\partial y} - \frac{\partial(yz)}{\partial z} = 0 - y = -y$$
+$$y\text{成分}： \frac{\partial x}{\partial z} - \frac{\partial(-(x^2+z^2))}{\partial x} = 0 - (-2x) = 2x$$
+$$z\text{成分}： \frac{\partial(yz)}{\partial x} - \frac{\partial x}{\partial y} = 0 - 0 = 0$$
+これらをまとめて、 $\nabla \times \vec{v} = -y\vec{i} + 2x\vec{j}$ となります。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3(3)</span> 回転の計算</div>
+  <div class="problem-body">
+
+ベクトル関数 $\vec{v} = (x\vec{i} + y\vec{j} + z\vec{k})(x^2+y^2+z^2)^{-3/2}$ の回転 $\nabla \times \vec{v}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. 点電荷の電界モデルです。位置ベクトル $\vec{r}$ の定数倍は中心力場と呼ばれ、物理的には「放射状で渦を持たない」ため、回転は $0$ になります。数学的にも偏微分が相殺されることを示します。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\vec{v} = \frac{\vec{r}}{r^3}$ です。 $x$ 成分について計算を行うと、
+$$\left(\nabla \times \frac{\vec{r}}{r^3}\right)_x = \frac{\partial}{\partial y}\left(\frac{z}{r^3}\right) - \frac{\partial}{\partial z}\left(\frac{y}{r^3}\right)$$
+チェインルールを用いて偏微分すると、 $\frac{\partial}{\partial y}(r^{-3}) = -3r^{-4}\frac{y}{r} = -3\frac{y}{r^5}$ です。
+よって、左辺は $z \left(-3\frac{y}{r^5}\right) - y \left(-3\frac{z}{r^5}\right) = -3\frac{yz}{r^5} + 3\frac{yz}{r^5} = 0$ となり、相殺されます。 $y, z$ 成分も同様であり、 $\nabla \times \vec{v} = \vec{0}$ です。
+
+  </div>
+</div>
+
+---
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4(1)</span> 位置ベクトルの勾配微分を示せ</div>
+  <div class="problem-body">
+
+$\vec{r} = (x, y, z)$、 $r = |\vec{r}|$ のとき、 $\nabla r = \frac{\vec{r}}{r}$ を示せ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$x$ 成分について微分します。 $r = (x^2+y^2+z^2)^{1/2}$ なので、
+$$\frac{\partial r}{\partial x} = \frac{1}{2}(x^2+y^2+z^2)^{-1/2} \cdot 2x = \frac{x}{\sqrt{x^2+y^2+z^2}} = \frac{x}{r}$$
+$y, z$ 成分も同様になるため、ベクトルとして並べると $\nabla r = \left( \frac{x}{r}, \frac{y}{r}, \frac{z}{r} \right) = \frac{\vec{r}}{r}$ となります。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4(2)</span> 位置ベクトルの勾配微分を示せ</div>
+  <div class="problem-body">
+
+$\nabla \frac{1}{r} = -\frac{\vec{r}}{r^3}$ を示せ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid &lt;i class="fa-solid fa-square-check"&gt;&lt;/i&gt;"></i> 詳細な計算プロセスと解答</h6>
+
+【型1】の連鎖律を使います。 $g(r) = r^{-1}$ なので、 $g'(r) = -r^{-2} = -\frac{1}{r^2}$ です。
+$$\nabla \left( \frac{1}{r} \right) = g'(r) \frac{\vec{r}}{r} = -\frac{1}{r^2} \cdot \frac{\vec{r}}{r} = -\frac{\vec{r}}{r^3}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4(3)</span> 位置ベクトルの勾配微分を示せ</div>
+  <div class="problem-body">
+
+$\nabla r^n = n r^{n-2} \vec{r}$ を示せ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$g(r) = r^n$ なので、 $g'(r) = n r^{n-1}$ です。
+$$\nabla r^n = g'(r) \frac{\vec{r}}{r} = n r^{n-1} \cdot \frac{\vec{r}}{r} = n r^{n-2} \vec{r}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4(4)</span> 位置ベクトルの勾配微分を示せ</div>
+  <div class="problem-body">
+
+$\nabla \ln r = \frac{\vec{r}}{r^2}$ を示せ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$g(r) = \ln r$ なので、 $g'(r) = \frac{1}{r}$ です。
+$$\nabla \ln r = \frac{1}{r} \cdot \frac{\vec{r}}{r} = \frac{\vec{r}}{r^2}$$
+
+  </div>
+</div>
+
+---
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5(1)</span> 位置ベクトルの発散</div>
+  <div class="problem-body">
+
+$\nabla \cdot (\vec{r}/r)$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-map"></i> 考え方のロードマップ</h6>
+
+1. スカラーとベクトルの積の微分公式 $\nabla \cdot (\phi \vec{A}) = \nabla \phi \cdot \vec{A} + \phi \nabla \cdot \vec{A}$ を使用します。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\phi = r^{-1}$、 $\vec{A} = \vec{r}$ と置きます。
+$$\nabla \cdot (r^{-1}\vec{r}) = (\nabla r^{-1}) \cdot \vec{r} + r^{-1} (\nabla \cdot \vec{r})$$
+問題4(2)の結果 $\nabla r^{-1} = -\frac{\vec{r}}{r^3}$ と、 $\nabla \cdot \vec{r} = 3$ を代入します。
+$$\nabla \cdot \left(\frac{\vec{r}}{r}\right) = \left(-\frac{\vec{r}}{r^3}\right) \cdot \vec{r} + \frac{3}{r} = -\frac{r^2}{r^3} + \frac{3}{r} = -\frac{1}{r} + \frac{3}{r} = \frac{2}{r}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5(2)</span> 位置ベクトルの発散</div>
+  <div class="problem-body">
+
+$\nabla \cdot (\vec{r}/r^3)$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\phi = r^{-3}$、 $\vec{A} = \vec{r}$ と置きます。
+$$\nabla \cdot (r^{-3}\vec{r}) = (\nabla r^{-3}) \cdot \vec{r} + r^{-3} (\nabla \cdot \vec{r})$$
+問題4(3)の $n=-3$ の結果 $\nabla r^{-3} = -3 r^{-5} \vec{r}$ を代入します。
+$$\nabla \cdot \left(\frac{\vec{r}}{r^3}\right) = (-3 r^{-5}\vec{r}) \cdot \vec{r} + 3 r^{-3} = -3 r^{-5} r^2 + 3r^{-3} = -3r^{-3} + 3r^{-3} = 0$$
+
+  </div>
+</div>
+
+---
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 6</span> 複合ベクトル演算</div>
+  <div class="problem-body">
+
+$\phi = xyz$, $\vec{A} = x^2yz\vec{i} + xy^2z\vec{j} - xyz^2\vec{k}$ のとき、以下の各演算を計算せよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) $\nabla \phi$ の計算</h6>
+
+$$\nabla \phi = \frac{\partial(xyz)}{\partial x}\vec{i} + \frac{\partial(xyz)}{\partial y}\vec{j} + \frac{\partial(xyz)}{\partial z}\vec{k} = yz\vec{i} + xz\vec{j} + xy\vec{k}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) $\nabla \cdot \vec{A}$ の計算</h6>
+
+$$\nabla \cdot \vec{A} = \frac{\partial(x^2yz)}{\partial x} + \frac{\partial(xy^2z)}{\partial y} + \frac{\partial(-xyz^2)}{\partial z} = 2xyz + 2xyz - 2xyz = 2xyz$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(3) $\Delta \phi$ （ラプラシアン）の計算</h6>
+
+$$\Delta \phi = \frac{\partial^2(xyz)}{\partial x^2} + \frac{\partial^2(xyz)}{\partial y^2} + \frac{\partial^2(xyz)}{\partial z^2} = 0 + 0 + 0 = 0$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(4) $\nabla \cdot (\phi \vec{A})$ の計算</h6>
+
+$\phi\vec{A} = x^3y^2z^2\vec{i} + x^2y^3z^2\vec{j} - x^2y^2z^3\vec{k}$ なので、各成分を偏微分して足します。
+$$\nabla \cdot (\phi\vec{A}) = \frac{\partial(x^3y^2z^2)}{\partial x} + \frac{\partial(x^2y^3z^2)}{\partial y} + \frac{\partial(-x^2y^2z^3)}{\partial z}$$
+$$= 3x^2y^2z^2 + 3x^2y^2z^2 - 3x^2y^2z^2 = 3x^2y^2z^2$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(5) $\vec{A} \cdot \nabla \phi$ の計算</h6>
+
+$\vec{A}$ と (1)で求めた $\nabla \phi$ の内積をとります。
+$$\vec{A} \cdot \nabla \phi = (x^2yz)(yz) + (xy^2z)(xz) + (-xyz^2)(xy) = x^2y^2z^2 + x^2y^2z^2 - x^2y^2z^2 = x^2y^2z^2$$
+
+  </div>
+</div>
+
+---
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 7</span> ベクトル外積・内積演算</div>
+  <div class="problem-body">
+
+$\vec{A} = x^2z\vec{i} + yz^2\vec{j} - 2xy\vec{k}$、 $\vec{B} = 2y^2\vec{i} - 3yz\vec{j} + zx\vec{k}$、 $\phi = x^2+2yz$ のとき以下を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) $\vec{A} \times \nabla \phi$</h6>
+
+まず $\nabla \phi = 2x\vec{i} + 2z\vec{j} + 2y\vec{k}$ を求め、外積行列式を計算します。
+$$\vec{A} \times \nabla \phi = \det \begin{pmatrix} \vec{i} & \vec{j} & \vec{k} \\ x^2z & yz^2 & -2xy \\ 2x & 2z & 2y \end{pmatrix} = (2y^2z^2 + 4xyz)\vec{i} - (2x^2yz + 4x^2y)\vec{j} + (2x^2z^2 - 2xyz^2)\vec{k}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) $(\nabla \times \vec{A}) \times \vec{B}$</h6>
+
+まず $\nabla \times \vec{A} = -(2x+2z)\vec{i} + x^2\vec{j} - y^2\vec{k}$ を求め、 $\vec{B}$ との外積をとります。
+$$= (x^3z - 3y^3)\vec{i} + (2x^2yz + 2y^2z + 2xyz)\vec{j} + (3x^2yz + 6xyz + 2x^2y^2)\vec{k}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(3) $\vec{B} \cdot (\nabla \times \vec{A})$</h6>
+
+$\vec{B}$ と (2)で求めた $\nabla \times \vec{A}$ の内積を計算します。
+$$\vec{B} \cdot (\nabla \times \vec{A}) = -4xy^2 - 4y^2z - 3x^2yz - xy^2z$$
+
+  </div>
+</div>
+
+---
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 8</span> 螺旋（つるまき線）のパラメータ計算</div>
+  <div class="problem-body">
+
+つるまき線 $C: \vec{r}(t) = 3\cos t\vec{i} + 3\sin t\vec{j} + 4t\vec{k}$ ($0 \le t \le 2\pi$) について、以下を計算せよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) 単位接線ベクトル $\vec{u}$</h6>
+
+接ベクトルは、 $\vec{r}'(t) = -3\sin t\vec{i} + 3\cos t\vec{j} + 4\vec{k}$。
+ベクトルの大きさは、 $|\vec{r}'(t)| = \sqrt{(-3\sin t)^2 + (3\cos t)^2 + 4^2} = 5$。
+これを大きさ $5$ で割って規格化し、
+$$\vec{u} = -\frac{3}{5}\sin t\vec{i} + \frac{3}{5}\cos t\vec{j} + \frac{4}{5}\vec{k}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) 曲線長 $s$ ($0 \le t \le 2\pi$)</h6>
+
+微小長さ $ds = 5 dt$ を積分します。
+$$s = \int_0^{2\pi} 5 dt = [5t]_0^{2\pi} = 10\pi$$
+
+  </div>
+</div>
+
+---
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 9</span> 球面パラメータにおける幾何ベクトル</div>
+  <div class="problem-body">
+
+上半球面 $\vec{r}(u,v) = a\sin u\cos v\vec{i} + a\sin u\sin v\vec{j} + a\cos u\vec{k}$ ($0 \le u \le \pi/2, 0 \le v \le 2\pi$, $a>0$) について、以下の問いに答えよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) $x^2+y^2+z^2=a^2$, $z\ge 0$ であることを確かめ、 $z=z(x,y)$ の形に表せ。</h6>
+
+各パラメータを二乗して足し合わせると、
+$$x^2+y^2+z^2 = a^2\sin^2 u(\cos^2 v + \sin^2 v) + a^2\cos^2 u = a^2$$
+また、 $0 \le u \le \pi/2$ では $\cos u \ge 0 \implies z \ge 0$ です。平方根をとって、
+$$z = \sqrt{a^2-x^2-y^2}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) 曲面の単位法線ベクトル $\vec{n}$ を求めよ。</h6>
+
+接ベクトル $\vec{r}_u$, $\vec{r}_v$ の外積を計算します。
+外積 $\vec{r}_u \times \vec{r}_v = (a^2\sin^2 u\cos v, a^2\sin^2 u\sin v, a^2\sin u\cos u)$。
+このベクトルの大きさは、 $|\vec{r}_u \times \vec{r}_v| = a^2\sin u$ です。
+これを大きさで割って規格化すると、
+$$\vec{n} = (\sin u\cos v, \sin u\sin v, \cos u)$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(3) 曲面の面積を求めよ。</h6>
+
+面積素 $dS = a^2\sin u dudv$ を領域 $0 \le u \le \pi/2$, $0 \le v \le 2\pi$ で積分します。
+$$S = \int_0^{2\pi} dv \int_0^{\pi/2} a^2\sin u du = 2\pi a^2 [-\cos u]_0^{\pi/2} = 2\pi a^2$$
+
+  </div>
+</div>
+
+---
+
+### 第2回：線積分と仕事
+
+電界中で電荷を移動させる際に「電界がする仕事」や「電位差」を計算するための数学的基礎です。
+
+#### 1. 必須暗記項目
+
+*   **線積分の基本定義**：
+    *   スカラー線積分： $\int_C \phi ds = \int_a^b \phi(\vec{r}(t)) \left|\frac{d\vec{r}}{dt}\right| dt$
+    *   ベクトル線積分： $\int_C \vec{F} \cdot d\vec{r} = \int_a^b \vec{F}(\vec{r}(t)) \cdot \frac{d\vec{r}}{dt} dt$
+*   **電界と仕事の関係**：
+    $$W = -q \int_A^B \vec{E} \cdot d\vec{r} = q(V_B - V_A)$$
+*   **保存力場の性質**：
+    $$\oint_C \vec{E} \cdot d\vec{r} = 0 \iff \nabla \times \vec{E} = \vec{0}$$
+
+#### 2. 解法パターン・型
+
+> **【型3：線積分のパラメータ表示による一次元化】**
+> 1. 経路を $\vec{r}(t) = (x(t), y(t), z(t))$ とパラメータ化する。
+> 2. 微小な変位ベクトル $d\vec{r} = (x'(t), y'(t), z'(t)) dt$ を求める。
+> 3. 内積をとって $t$ だけの積分式にし、通常の定積分を行う。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 円弧上のスカラー線積分</div>
+  <div class="problem-body">
+
+曲線 $C$ が $\vec{r}(s) = \cos s\vec{i} + \sin s\vec{j}$ ($0 \le s \le \pi/2$) のとき、 円弧上で $\phi = 2xy^2$ を積分せよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$x = \cos s, y = \sin s$ を代入して積分します。
+$$\int_C \phi ds = \int_0^{\pi/2} 2(\cos s)(\sin s)^2 ds = 2\int_0^{\pi/2} \sin^2 s\cos s ds$$
+$u = \sin s$ と置くと、 $du = \cos s ds$。 $s: 0 \to \pi/2 \implies u: 0 \to 1$ です。
+$$\int_0^1 2u^2 du = \left[ \frac{2}{3}u^3 \right]_0^1 = \frac{2}{3}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 直線上のスカラー線積分</div>
+  <div class="problem-body">
+
+$xy$ 平面上の直線 $y=2x$ を $A(-1,-2,0)$ から $B(1,2,0)$ まで結ぶ線分 $C$ において、 $\int_C xy^3 ds$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\vec{r}(t) = (t, 2t, 0)$ ($-1 \le t \le 1$)。
+$ds = \sqrt{1^2+2^2+0^2} dt = \sqrt{5}dt$。
+$$\int_C xy^3 ds = \int_{-1}^1 t(2t)^3 \cdot \sqrt{5} dt = 8\sqrt{5} \int_{-1}^1 t^4 dt = 8\sqrt{5} \left[ \frac{t^5}{5} \right]_{-1}^1 = \frac{16\sqrt{5}}{5}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 線積分の経路依存性の計算</div>
+  <div class="problem-body">
+
+スカラー場 $\phi = x^2+y^2+z^2$ について、 $P(1,-1,0)$ から $Q(2,1,2)$ までの線積分を、次の2つの経路で計算せよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) 直線 $PQ$ を通る経路</h6>
+
+直線の式： $\vec{r}(t) = (1+t, -1+2t, 2t)$ ($0 \le t \le 1$)。
+$ds = \sqrt{1^2+2^2+2^2} dt = 3dt$。
+$$\int_{PQ} \phi ds = \int_0^1 \{(1+t)^2 + (-1+2t)^2 + (2t)^2\} \cdot 3 dt = 3\int_0^1 (9t^2 - 2t + 2) dt = 12$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) 原点 $O$ を経由する折れ線 $PO + OQ$</h6>
+
+* **$P(1,-1,0) \to O(0,0,0)$**： $\vec{r}(t) = (-t, t, 0)$ ($-1 \le t \le 0$)、 $ds = \sqrt{2}dt$。 $\int_{PO} \phi ds = \frac{2\sqrt{2}}{3}$。
+* **$O(0,0,0) \to Q(2,1,2)$**： $\vec{r}(t) = (2t, t, 2t)$ ($0 \le t \le 1$)、 $ds = 3dt$。 $\int_{OQ} \phi ds = 9$。
+合計値は $\frac{2\sqrt{2}}{3} + 9 \approx 9.94$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 螺旋上のスカラー線積分</div>
+  <div class="problem-body">
+
+$\phi = 2xz$ について、 $C: \vec{r}(t) = \cos t\vec{i} + \sin t\vec{j} + t\vec{k}$ ($0 \le t \le \pi$) に沿った積分を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$ds = \sqrt{2}dt$。
+$$\int_0^\pi 2(\cos t)(t) \cdot \sqrt{2} dt = 2\sqrt{2} \int_0^\pi t\cos t dt = 2\sqrt{2} \left([t\sin t]_0^\pi - \int_0^\pi \sin t dt\right) = -4\sqrt{2}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5</span> 螺旋上のスカラー線積分</div>
+  <div class="problem-body">
+
+$\phi = x^2+y^2+z^2$、 $C: \vec{r}(t) = 4\cos t\vec{i} + 4\sin t\vec{j} + 3t\vec{k}$ ($0 \le t \le \pi$) について以下を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) $\int_C \phi dt$</h6>
+
+$\phi(t) = 16\cos^2 t + 16\sin^2 t + 9t^2 = 16+9t^2$。
+$$\int_0^\pi (16+9t^2) dt = \left[ 16t + 3t^3 \right]_0^\pi = 16\pi + 3\pi^3$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) $\int_C \phi ds$</h6>
+
+$ds = \sqrt{(-4\sin t)^2 + (4\cos t)^2 + 3^2} dt = 5dt$。
+$$\int_C \phi ds = 5 \int_0^\pi (16+9t^2) dt = 80\pi + 15\pi^3$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 6</span> 経路の異なるスカラー線積分</div>
+  <div class="problem-body">
+
+$\phi = 4xy$ について、次の2つの経路で線積分を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) $C_1: \vec{r}(t) = (t^2, t, 1)$ ($0 \le t \le 1$)</h6>
+
+$ds = \sqrt{4t^2+1} dt$。
+$$\int_{C_1} \phi ds = \int_0^1 4t^3 \sqrt{4t^2+1} dt = \frac{23\sqrt{5}+1}{30}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) $C_2: (0,0,1)$ と $(1,1,1)$ を結ぶ直線</h6>
+
+$\vec{r}(t) = (t, t, 1)$ ($0 \le t \le 1$)、 $ds = \sqrt{2}dt$。
+$$\int_{C_2} \phi ds = \int_0^1 4t^2 \cdot \sqrt{2} dt = \frac{4\sqrt{2}}{3}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 7</span> ベクトル場の線積分</div>
+  <div class="problem-body">
+
+$\vec{F} = 2x\vec{i} + \sqrt{y}\vec{j} + 2z\vec{k}$、 $C: \vec{r}(t) = t\vec{i} + t^2\vec{j} + (1-t)\vec{k}$ ($0 \le t \le 1$) のとき $\int_C \vec{F} \cdot d\vec{r}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$d\vec{r} = (1, 2t, -1) dt$、 $\vec{F}(\vec{r}(t)) = (2t, t, 2-2t)$。
+内積： $\vec{F}\cdot \frac{d\vec{r}}{dt} = 2t + 2t^2 - (2-2t) = 2t^2 + 4t - 2$。
+$$\int_C \vec{F} \cdot d\vec{r} = \int_0^1 (2t^2+4t-2) dt = \frac{2}{3}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 8</span> 螺旋に沿うベクトル線積分</div>
+  <div class="problem-body">
+
+$\vec{F} = -y\vec{i} + x\vec{j} + z(x^2+y^2)\vec{k}$ の、 Helix $C: \vec{r}(t) = a\cos t\vec{i} + a\sin t\vec{j} + bt\vec{k}$ ($0 \le t \le 2\pi$) に沿う仕事を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$d\vec{r} = (-a\sin t, a\cos t, b) dt$。
+内積： $\vec{F}\cdot \frac{d\vec{r}}{dt} = a^2 + a^2 b^2 t$。
+$$\int_C \vec{F} \cdot d\vec{r} = \int_0^{2\pi} (a^2 + a^2 b^2 t) dt = 2\pi a^2(1+\pi b^2)$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 9</span> 円周上のベクトル線積分</div>
+  <div class="problem-body">
+
+$\vec{F} = (2x-y-z)\vec{i} + (x+y-z^2)\vec{j} + (3x-2y+4)\vec{k}$ の、 $xy$ 平面上の原点中心半径3の円（左回り） $C$ に沿う仕事を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\vec{r}(t) = (3\cos t, 3\sin t, 0)$ ($0 \le t \le 2\pi$)、 $z=0, dz=0$。
+内積： $\vec{F}\cdot \frac{d\vec{r}}{dt} = 9 - 9\sin t\cos t$。
+$$\int_C \vec{F} \cdot d\vec{r} = \int_0^{2\pi} (9 - 9\sin t\cos t) dt = 18\pi$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 10</span> 直線上の各種ベクトル積分</div>
+  <div class="problem-body">
+
+$\vec{F} = x\vec{i} + 2(x+z)\vec{j} + y\vec{k}$ の、 原点 $O$ と $P(1,2,2)$ を結ぶ直線 $C$ における各種線積分を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) $\int_C \vec{F} ds$</h6>
+
+$\vec{r}(t) = (t, 2t, 2t)$ ($0 \le t \le 1$)、 $ds = 3 dt$。
+$$\int_C \vec{F} ds = \int_0^1 (t\vec{i} + 6t\vec{j} + 2t\vec{k}) \cdot 3 dt = \frac{3}{2}\vec{i} + 9\vec{j} + 3\vec{k}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) $\int_C \vec{F} \cdot d\vec{r}$</h6>
+
+$d\vec{r} = (1, 2, 2) dt$。
+$$\int_C \vec{F} \cdot d\vec{r} = \int_0^1 (t\cdot 1 + 6t\cdot 2 + 2t\cdot 2) dt = \frac{17}{2}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(3) $\int_C \vec{F} \times d\vec{r}$</h6>
+
+$$\vec{F} \times d\vec{r} = (8t\vec{i} - 4t\vec{k}) dt \implies \int_C \vec{F} \times d\vec{r} = 4\vec{i} - 2\vec{k}$$
+
+  </div>
+</div>
+
+---
+
+### 第3回：面積分とフラックス
+
+電場中に置かれた任意の閉曲面を貫く「電気力線の総数（フラックス）」を計算するための数学的基礎です。
+
+#### 1. 必須暗記項目
+
+*   **面積分の定義公式**：
+    *   スカラー面積分： $\iint_S \phi dS = \iint_D \phi(\vec{r}(u,v)) \left|\frac{\partial \vec{r}}{\partial u} \times \frac{\partial \vec{r}}{\partial v}\right| dudv$
+    *   流束（フラックス）： $\iint_S \vec{F} \cdot d\vec{S} = \iint_S \vec{F} \cdot \vec{n} dS$
+*   **ヤコビアン（極座標変換）**：
+    $$dxdy = r dr d\theta$$
+
+#### 2. 解法パターン・型
+
+> **【型4：面積分のパラメータ変換手順】**
+> 1. 対象の曲面を $u, v$ の2つの変数で $\vec{r}(u,v)$ とパラメータ表示する。
+> 2. 面素ベクトル $d\vec{S} = \left(\frac{\partial \vec{r}}{\partial u} \times \frac{\partial \vec{r}}{\partial v}\right) dudv$ を計算する。
+> 3. ベクトル場 $\vec{F}$ と $d\vec{S}$ の内積をとることで、 $u, v$ の2重積分に変換する。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 平面上のスカラー面積分</div>
+  <div class="problem-body">
+
+平面 $S: 2x+2y+z=4$ ($x\ge 0, y\ge 0, z\ge 0$) において、スカラー場 $\phi = 3x+2y+z$ の面積分を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$x=u, y=v$, $z=4-2u-2v$ とパラメータ表示し、 $dS = 3 dudv$。領域 $D$ は $u \ge 0, v \ge 0, u+v \le 2$。
+$$\iint_S \phi dS = 3 \iint_D (u+4) dudv = 3 \int_0^2 (u+4)(2-u) du = 28$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 曲面上のスカラー面積分</div>
+  <div class="problem-body">
+
+曲面 $S: z = 2-x^2-y^2$ ($x\ge 0, y\ge 0, z\ge 0$) における $\iint_S (x^2+y^2) dS$ の重積分を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$dS = \sqrt{1 + 4x^2 + 4y^2} dxdy$。極座標変換 $x=r\cos\theta, y=r\sin\theta$ を用います。
+$$\iint_S (x^2+y^2) dS = \int_0^{\pi/2} d\theta \int_0^{\sqrt{2}} r^3 \sqrt{4r^2+1} dr$$
+$t = \sqrt{4r^2+1}$ の置換積分により、結果は $\frac{149}{120}\pi$ です。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 球面上のスカラー面積分</div>
+  <div class="problem-body">
+
+球面 $\vec{r}(u,v)$ ($0 \le u \le \pi/2, 0 \le v \le 2\pi$) において、 $\phi = x+2z$ の面積分を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+面積素 $dS = a^2\sin u dudv$ を用いて、 $x = a\sin u\cos v$, $z = a\cos u$ を代入します。
+$$\iint_S (x+2z) dS = \int_0^{2\pi} dv \int_0^{\pi/2} (a\sin u\cos v + 2a\cos u) a^2\sin u du = 2\pi a^3$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 平面上のベクトル面積分</div>
+  <div class="problem-body">
+
+$\vec{F} = x\vec{i} + 2y\vec{j} + z\vec{k}$、 平面 $S: 2x+2y-z=2$ ($x\ge 0, y\ge 0, z\le 0$, 法線 $x$ 成分 > 0)における $\iint_S \vec{F} \cdot d\vec{S}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$z = 2x+2y-2$。 $d\vec{S} = (2, 2, -1) dxdy$。領域 $D$ は $x\ge 0, y\ge 0, x+y\le 1$。
+$$\iint_S \vec{F} \cdot d\vec{S} = \iint_D (x, 2y, 2x+2y-2) \cdot (2, 2, -1) dxdy = \iint_D (3x+4y-2) dxdy = \frac{1}{6}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5</span> ベクトル場の外積面積分</div>
+  <div class="problem-body">
+
+問題4の条件において、以下の各面積分を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) $\iint_S \vec{F} dS$</h6>
+
+$$\iint_S \vec{F} dS = \iint_D (x, 2y, 2x+2y-2) \cdot 3 dxdy = \frac{1}{2}\vec{i} + \vec{j} - \vec{k}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) $\iint_S \vec{F} \cdot \vec{n} dS$</h6>
+
+解答： $\frac{1}{6}$ （問題4と同一）
+
+  </div>
+  <div class="solution-section">
+    <h6>(3) $\iint_S \vec{F} \times \vec{n} dS$</h6>
+
+$$\iint_S \vec{F} \times \vec{n} dS = -\frac{1}{3}\vec{i} - \frac{1}{6}\vec{j} - \frac{1}{3}\vec{k}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 6</span> 三角形平面のベクトル流束</div>
+  <div class="problem-body">
+
+平面 $2x+2y+z=2$ の三角形領域 $S$（法線は原点と反対向き）における $\vec{v} = x^2\vec{i} - x\vec{j} + z\vec{k}$ の流束を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$d\vec{S} = (2,2,1)dxdy$。 $z=2-2x-2y$。領域 $D: x+y\le 1$。
+$$\iint_S \vec{v} \cdot d\vec{S} = \iint_D (2x^2 - 4x - 2y + 2) dxdy = \frac{1}{6}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 7</span> 半球面を貫く流束</div>
+  <div class="problem-body">
+
+$\vec{F} = 4x\vec{i} + 4y\vec{j} - 2z\vec{k}$ の、上半球面 $S: x^2+y^2+z^2=4$ ($z\ge 0$) における流束を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+底面円板を追加してガウスの発散定理を用いると容易に解けます（第4回問題4参照）。解答は $32\pi$ です。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 8</span> 回転ベクトルの面積分</div>
+  <div class="problem-body">
+
+$\vec{F} = y\vec{i} - x\vec{j} + z\vec{k}$ の、上半球面 $S$ における $\iint_S (\nabla \times \vec{F}) \cdot d\vec{S}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+ストークスの定理より、境界円 $C: x^2+y^2=4, z=0$ の線積分に変換します。
+$$\oint_C \vec{F} \cdot d\vec{r} = \int_0^{2\pi} -4 dt = -8\pi$$
+
+  </div>
+</div>
+
+---
+
+### 第4回：ガウスの発散定理とストークスの定理
+
+ベクトル解析における最も重要な2大定理であり、電磁気学の基本法則の「積分形」と「微分形」を相互に変換する架け橋となります。
+
+#### 1. 必須暗記項目
+
+*   **ガウスの発散定理**：
+    $$\iint_S \vec{F} \cdot \vec{n} dS = \iiint_V (\nabla \cdot \vec{F}) dV$$
+*   **ストークスの定理**：
+    $$\oint_C \vec{F} \cdot d\vec{r} = \iint_S (\nabla \times \vec{F}) \cdot \vec{n} dS$$
+
+#### 2. 解法パターン・型
+
+> **【型5：開曲面の閉曲面化によるガウスの定理の適用】**
+> 半球面や円柱側面などの開いた曲面上の流束は、底面に平らな蓋を仮定して「閉曲面」とみなし、体積積分から平面の流束を引き算して求めます。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 力場の経路による仕事の計算</div>
+  <div class="problem-body">
+
+力 $\vec{p} = 4xy\vec{i} - 8y\vec{j} + 2\vec{k}$ について、次の仕事を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) $y=2x, z=0$ に沿って、 $(3,6,0)$ から $(0,0,0)$</h6>
+
+$\vec{r}(t) = (t, 2t, 0)$ ($t: 3 \to 0$)。 $d\vec{r} = (1, 2, 0) dt$。
+$$W = \int_3^0 (8t^2 - 32t) dt = 72$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) $y=2x, z=2x$ に沿って、 $(0,0,0)$ から $(3,6,0)$</h6>
+
+$\vec{r}(t) = (t, 2t, 2t)$ ($t: 0 \to 3$)。 $d\vec{r} = (1, 2, 2) dt$。
+$$W = \int_0^3 (8t^2 - 32t + 4) dt = -60$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 円柱面上の面積分</div>
+  <div class="problem-body">
+
+$\iint_S \vec{F}\cdot\vec{n} dS$ を求めよ。 $\vec{F} = 3x\vec{i} + 4z\vec{j} + 2y\vec{k}$、 $S: y^2+z^2=4$ ($0 \le x \le 3, y\ge 0, z\ge 0$)。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\nabla \cdot \vec{F} = 3$。閉領域 $V$ の体積は $3\pi$。発散定理と境界での流束計算により、側面上の流束は $36$ と求まります。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 球面における発散定理の適用</div>
+  <div class="problem-body">
+
+$\vec{A} = (x^3, y^3, z^3)$ on $S: x^2+y^2+z^2=a^2$ の流束を、発散定理を用いて計算せよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\nabla \cdot \vec{A} = 3r^2$ を球座標で体積積分します。
+$$\iiint_V 3r^2 dV = \frac{12}{5}\pi a^5$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 半球面での発散定理（閉曲面化）</div>
+  <div class="problem-body">
+
+$\vec{F} = 4x\vec{i} + 4y\vec{j} - 2z\vec{k}$ on $S_1: x^2+y^2+z^2=4$ ($z\ge 0$) の流束を発散定理で求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+【型5】を用いて底面の円板 $S_2: z=0$ を追加します。 $\nabla \cdot \vec{F} = 6$。
+$$\iint_{S_1} \vec{F} \cdot d\vec{S} + 0 = \iiint_V 6 dV = 32\pi$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5</span> ドーム型閉曲面の流束</div>
+  <div class="problem-body">
+
+$\vec{A} = 2xz\vec{i} + 2yz\vec{j} + 0\vec{k}$ on $S_1$ (hemisphere $x^2+y^2+z^2=4, z\ge 0$) and $S_2$ (disk $x^2+y^2\le 4, z=0$) の流束を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\nabla \cdot \vec{A} = 4z$ です。
+$$\iiint_V 4z dV = 16\pi$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 6</span> ストークスの定理による線積分の変換</div>
+  <div class="problem-body">
+
+円周 $C: x^2+y^2=4, z=0$、 $\vec{A} = (x^2+y)\vec{i} + (x^2+2z)\vec{j} + 2y\vec{k}$ の線積分を、ストークスの定理を用いて求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\nabla \times \vec{A} = (2x-1)\vec{k}$。
+$$\oint_C \vec{A} \cdot d\vec{r} = \iint_D (2x-1) dxdy = -4\pi$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 7</span> 三角形境界の周回積分</div>
+  <div class="problem-body">
+
+三角形 $A(1,0,0), B(0,1,0), C(0,0,1)$ の境界 $C$、 $\vec{A} = (y+z)\vec{i} + (z+x)\vec{j} + (x+y)\vec{k}$ の線積分を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$\nabla \times \vec{A} = \vec{0}$。よって線積分は $0$ になります。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 8</span> ストークスの定理の直接検証</div>
+  <div class="problem-body">
+
+$\vec{A} = (x-3y)\vec{i} + yz^2\vec{j} + y^2 z\vec{k}$ の、半球面 $S: x^2+y^2+z^2=9$ ($z\ge 0$) における面積分と境界の線積分の両辺を直接計算して一致することを示せ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+線積分、面積分ともに計算結果は $27\pi$ となり、一致します（詳細前述）。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 9</span> ベクトル外積の面積分</div>
+  <div class="problem-body">
+
+$\vec{A} = y\vec{i} - x\vec{j} + z\vec{k}$、 半球面 $S: x^2+y^2+z^2=4$ ($z\ge 0$) における $\iint_S (\nabla \times \vec{A})\cdot d\vec{S}$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+ストークスの定理より、境界線の線積分に変換して計算します。解答は $-8\pi$ です。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 10</span> 回転ベクトルの性質を用いた証明</div>
+  <div class="problem-body">
+
+問題9を発散定理を用いて説明せよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+任意の場に対して $\nabla\cdot(\nabla\times\vec{A})=0$ が成り立つため、半球面の面積分は底面の面積分の符号反転になります。
+
+  </div>
+</div>
+
+---
+
+### 第5回：クーロンの法則と電場の導出
+
+電荷の周りに生じる静電場 $\vec{E}$ を、電荷分布を細かく分割して足し合わせる（積分する）ことで求めます。
+
+#### 1. 必須暗記項目
+
+*   **クーロンの法則**：
+    $$\vec{E} = \frac{Q}{4\pi\varepsilon_0 r^2}\vec{e}_r$$
+*   **真空の誘電率**：
+    $$\frac{1}{4\pi\varepsilon_0} \approx 9.0 \times 10^9 \text{ N}\cdot\text{m}^2/\text{C}^2$$
+
+#### 2. 解法パターン・型
+
+> **【型7：微小電荷の重ね合わせ積分】**
+> 電荷分布を微小要素 $dq$ に分割し、特定の対称軸方向のみを積分して全体の電磁場を求めます。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 地球の帯電量と電子数・水分子数</div>
+  <div class="problem-body">
+
+地球全体の帯電量 $-4.6\times 10^5\text{ C}$ は電子何個分か。また、それは何 ml の水に含まれる電子数に等しいか。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* 電子数： $\frac{-4.6\times 10^5}{-1.6\times 10^{-19}} \approx 2.9\times 10^{24}$ 個。
+* 水の量： $\approx 8.8\text{ ml}$ （詳細計算は前述）。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 陽子間の力比較</div>
+  <div class="problem-body">
+
+距離 $1.0\times 10^{-15}\text{ m}$ の陽子2つの間のクーロン力 $F_c$ と万有引力 $F_g$ を比較せよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $F_c = 230\text{ N}$。
+* $F_g = 1.9\times 10^{-34}\text{ N}$。
+比率 $F_c / F_g \approx 1.2\times 10^{36}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 電荷の重ね合わせと力ベクトル</div>
+  <div class="problem-body">
+
+距離 $2\text{ m}$ 離れた A点($+5\text{ mC}$), B点($-5\text{ mC}$)がある。頂点 C（A, Bから $1.5\text{ m}$）の電荷 $Q$ が、平行方向に $8.0\times 10^5\text{ N}$ の力を受けた。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) A, B間の静電力 $F$</h6>
+
+$$F = (9.0\times 10^9) \frac{(5.0\times 10^{-3})^2}{2^2} = 5.6\times 10^4\text{ N} \quad (\text{引力})$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) Cの電荷 $Q$ の大きさ</h6>
+
+C点における合成電界 $E_C \approx 2.67\times 10^7\text{ V/m}$ より、 $Q = F/E_C \approx 3.0\times 10^{-2}\text{ C}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 水素原子の電界</div>
+  <div class="problem-body">
+
+電子軌道半径 $5.3\times 10^{-11}\text{ m}$ の位置で、陽子が作る電界の強さを求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$$E = \frac{e}{4\pi\varepsilon_0 r^2} \approx 5.1\times 10^{11}\text{ V/m}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5</span> 無限長直線電荷の電場</div>
+  <div class="problem-body">
+
+線電荷密度 $\lambda$ の無限直線から距離 $r$ 離れた点 $P$ の電界を積分により求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+微小電荷 $dq = \lambda dz$ の作る電界を対称成分のみ積分します。解答は $E = \frac{\lambda}{2\pi\varepsilon_0 r}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 6</span> 円輪と円板電荷の電場</div>
+  <div class="problem-body">
+
+半径 $R$, 線密度 $\lambda$ の円輪の中心軸上 $z$ での電界、および半径 $R$, 面密度 $\sigma$ の円板の中心軸上 $z$ での電界を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) 円輪の中心軸上の電界</h6>
+
+$$E_z = \frac{\lambda R z}{2\varepsilon_0 (R^2+z^2)^{3/2}}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) 全電荷 $q$ による表現</h6>
+
+$$E_z = \frac{q z}{4\pi\varepsilon_0 (R^2+z^2)^{3/2}}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(3) 円板の中心軸上の電界</h6>
+
+$$E_z = \frac{\sigma}{2\varepsilon_0}\left(1 - \frac{z}{\sqrt{R^2+z^2}}\right)$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(4) 全電荷 $Q$ による表現</h6>
+
+$$E_z = \frac{Q}{2\pi\varepsilon_0 R^2}\left(1 - \frac{z}{\sqrt{R^2+z^2}}\right)$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(5) 無限平面電荷の電界</h6>
+
+$$E_z = \frac{\sigma}{2\varepsilon_0}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 7</span> 球面電荷の電場</div>
+  <div class="problem-body">
+
+半径 $R$ に面密度 $\sigma$ で一様に帯電した球面がつくる電界を積分により求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $r < R$ (内部) ： $E = 0$。
+* $r > R$ (外部) ： $E = \frac{Q}{4\pi\varepsilon_0 r^2}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 8</span> 球体積電荷の電場</div>
+  <div class="problem-body">
+
+半径 $R$ に体積密度 $\rho$ で一様に帯電した球がつくる電界を積分により求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $r < R$ (内部) ： $E = \frac{\rho r}{3\varepsilon_0}$。
+* $r > R$ (外部) ： $E = \frac{\rho R^3}{3\varepsilon_0 r^2}$。
+
+  </div>
+</div>
+
+---
+
+### 第6回：ガウスの法則とその応用
+
+電場 $\vec{E}$ の性質である「湧き出し」と電荷量との結びつきを利用して、対称性の高い系の電場を素早く決定します。
+
+#### 1. 必須暗記項目
+
+*   **ガウスの法則**：
+    $$\nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0}$$
+
+#### 2. 解法パターン・型
+
+> **【型8：ガウスの面設定パターン】**
+> 球対称なら同心球面、円柱対称なら同軸円柱の側面、平面対称なら平面を跨ぐ直方体をガウス閉曲面として選びます。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 異符号電荷対の力線分布</div>
+  <div class="problem-body">
+
+$+2q$ (A点) と $-q$ (B点) が距離 $a$ 離れている。以下の問いに答えよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) 電界の強さが $0$ になる位置</h6>
+
+B点から外側に $(1+\sqrt{2})a$ 離れた直線上の位置（詳細前述）。
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) $-q$ に吸い込まれる力線の割合</h6>
+
+割合は全体の $\frac{1}{2}$ (50%)。
+
+  </div>
+  <div class="solution-section">
+    <h6>(3) 出射角 $\alpha$ と入射角 $\beta$ の関係式</h6>
+
+$$2(1-\cos\alpha) = 1 + \cos\beta$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(4) 電気力線分布のスケッチ（模式図）</h6>
+
+<svg viewBox="0 0 500 250" width="100%" height="250" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 12px; margin: 12px 0;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#60a5fa"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#f87171"/>
+    </marker>
+  </defs>
+
+  <line x1="416" y1="125" x2="426" y2="125" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="421" y1="120" x2="421" y2="130" stroke="#f59e0b" stroke-width="2"/>
+  <circle cx="421" cy="125" r="6" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+  <text x="421" y="105" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f59e0b" text-anchor="middle">電場 E = 0 の点</text>
+  <text x="421" y="145" font-family="sans-serif" font-size="10" fill="var(--text-muted)" text-anchor="middle">x = (1+√2)a</text>
+
+  <line x1="80" y1="200" x2="180" y2="200" stroke="var(--text-muted)" stroke-width="1" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="130" y="195" font-family="sans-serif" font-size="11" fill="var(--text-muted)" text-anchor="middle">距離 a</text>
+  <line x1="80" y1="140" x2="80" y2="210" stroke="var(--border-color)" stroke-dasharray="3,3" stroke-width="1"/>
+  <line x1="180" y1="140" x2="180" y2="210" stroke="var(--border-color)" stroke-dasharray="3,3" stroke-width="1"/>
+
+  <path d="M 98 125 L 168 125" stroke="#60a5fa" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 95 115 C 110 80, 150 80, 170 115" stroke="#60a5fa" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 95 135 C 110 170, 150 170, 170 135" stroke="#60a5fa" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 90 108 C 105 50, 160 50, 175 110" stroke="#60a5fa" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 90 142 C 105 200, 160 200, 175 140" stroke="#60a5fa" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <path d="M 62 125 L 25 125" stroke="#60a5fa" stroke-width="1.5" fill="none" marker-start="url(#arrow)"/>
+  <path d="M 67 112 C 50 90, 30 80, 15 80" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+  <path d="M 67 138 C 50 160, 30 170, 15 170" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+  
+  <path d="M 192 125 L 260 125" stroke="#f87171" stroke-width="1.5" fill="none" marker-start="url(#arrow-red)"/>
+  <path d="M 188 116 C 210 90, 240 80, 270 80" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+  <path d="M 188 134 C 210 160, 240 170, 270 170" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+
+  <circle cx="80" cy="125" r="18" fill="#3b82f6" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="80" y="129" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">+2q</text>
+
+  <circle cx="180" cy="125" r="12" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="180" y="129" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">-q</text>
+</svg>
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 無限長直線電荷の電界（ガウス）</div>
+  <div class="problem-body">
+
+線電荷密度 $\lambda$ の無限直線から距離 $r$ の点の電界を、ガウスの法則を用いて求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+同軸円柱をガウス面にとります。
+$$E(r) \cdot 2\pi r L = \frac{\lambda L}{\varepsilon_0} \implies E(r) = \frac{\lambda}{2\pi\varepsilon_0 r}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 対称電荷分布の電界</div>
+  <div class="problem-body">
+
+無限平面電荷 $\sigma$, 無限長円柱面電荷 $\sigma$, 無限長円柱体積電荷 $\rho$ のつくる電界をガウスの法則で求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) 無限平面電荷 $\sigma$</h6>
+
+$$E = \frac{\sigma}{2\varepsilon_0}$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) 無限長円柱面電荷 $\sigma$</h6>
+
+* $r < R$ ： $E = 0$。
+* $r > R$ ： $E = \frac{\sigma R}{\varepsilon_0 r}$。
+
+  </div>
+  <div class="solution-section">
+    <h6>(3) 無限長円柱体積電荷 $\rho$</h6>
+
+* $r < R$ ： $E = \frac{\rho r}{2\varepsilon_0}$。
+* $r > R$ ： $E = \frac{\rho R^2}{2\varepsilon_0 r}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 同軸円筒間の電界</div>
+  <div class="problem-body">
+
+内円筒 $R_1, \sigma_1$、外円筒 $R_2, \sigma_2$ のつくる電界分布を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $r < R_1$ ： $E = 0$
+* $R_1 < r < R_2$ ： $E = \frac{\sigma_1 R_1}{\varepsilon_0 r}$
+* $r > R_2$ ： $E = \frac{\sigma_1 R_1 + \sigma_2 R_2}{\varepsilon_0 r}$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5</span> 球面電荷の電界（ガウス）</div>
+  <div class="problem-body">
+
+半径 $R$, 電荷 $Q$ の帯電球面がつくる電界をガウスの法則で求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $r < R$ ： $E = 0$
+* $r > R$ ： $E = \frac{Q}{4\pi\varepsilon_0 r^2}$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 6</span> 帯電球の電界（ガウス）</div>
+  <div class="problem-body">
+
+半径 $R$, 電荷 $Q$ の帯電球がつくる電界をガウスの法則で求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $r < R$ ： $E = \frac{Q r}{4\pi\varepsilon_0 R^3}$
+* $r > R$ ： $E = \frac{Q}{4\pi\varepsilon_0 r^2}$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 7</span> 球内での電荷の単振動</div>
+  <div class="problem-body">
+
+正帯電球（半径 $R$, 密度 $\rho$）の中心に置かれた負点電荷（$-q, m$）の微小振動運動の周期を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+復元力 $F = -q E = -\frac{q\rho}{3\varepsilon_0} r$。
+周期 $T = 2\pi\sqrt{\frac{3\varepsilon_0 m}{q\rho}}$（詳細前述）。
+
+  </div>
+</div>
+
+---
+
+### 第7回：静電位と電気双極子
+
+電場をスカラー量である「電位（ポテンシャル） $\phi$」で表現することで、重ね合わせの計算を容易にします。
+
+#### 1. 必須暗記項目
+
+*   **電位の定義公式**：
+    $$\phi(\vec{r}) = \frac{1}{4\pi\varepsilon_0} \int \frac{\rho(\vec{r}')}{|\vec{r} - \vec{r}'|} dV'$$
+*   **電気双極子遠方電位**：
+    $$\phi(r, \theta) \approx \frac{p \cos\theta}{4\pi\varepsilon_0 r^2}$$
+
+#### 2. 解法パターン・型
+
+> **【型9：電位からの電界成分導出】**
+> 球座標での電界成分： $E_r = -\frac{\partial \phi}{\partial r}$、 $E_{\theta} = -\frac{1}{r}\frac{\partial \phi}{\partial \theta}$ を用いて電界を導きます。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 電子ボルトと電子間距離</div>
+  <div class="problem-body">
+
+$1\text{ eV}$ は何 J か。また、2個の電子を近づけて静電エネルギーが $1\text{ eV}$ になるときの距離を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $1\text{ eV} = 1.6\times 10^{-19}\text{ J}$。
+* 距離 $x = 1.44\text{ nm}$ （詳細前述）。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 無限長直線電荷の電位</div>
+  <div class="problem-body">
+
+無限長直線電荷から距離 $r$ の電位 $\phi(r)$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+電界を積分して、 $\phi(r) = \frac{\lambda}{2\pi\varepsilon_0} \ln(r_0/r)$（詳細前述）。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 帯電球面の電位</div>
+  <div class="problem-body">
+
+半径 $R$, 電荷 $Q$ の一様帯電球面のつくる電位分布を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $r < R$ ： $\phi = \frac{Q}{4\pi\varepsilon_0 R}$
+* $r > R$ ： $\phi = \frac{Q}{4\pi\varepsilon_0 r}$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 帯電球の電位</div>
+  <div class="problem-body">
+
+半径 $R$, 電荷 $Q$ の一様帯電球のつくる電位分布を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* $r < R$ ： $\phi = \frac{Q(3R^2-r^2)}{8\pi\varepsilon_0 R^3}$
+* $r > R$ ： $\phi = \frac{Q}{4\pi\varepsilon_0 r}$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5</span> 同心球殻の電位と電荷誘起</div>
+  <div class="problem-body">
+
+同心殻導体において、外殻を接地し、内殻電位を $V$ としたときの内外電荷を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$$q_1 = 4\pi\varepsilon_0 \frac{R_1 R_2}{R_2-R_1} V, \quad q_2 = -q_1$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 6</span> 電気双極子の電位</div>
+  <div class="problem-body">
+
+$+q$ at $(0,0,l/2)$ と $-q$ at $(0,0,-l/2)$ のつくる電位、および $r \gg l$ における近似式を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>(1) 電位の厳密式</h6>
+
+$$\phi = \frac{q}{4\pi\varepsilon_0} \left( \frac{1}{r_1} - \frac{1}{r_2} \right)$$
+
+  </div>
+  <div class="solution-section">
+    <h6>(2) 遠方近似式 ($r \gg l$)</h6>
+
+$$\phi \approx \frac{q l \cos\theta}{4\pi\varepsilon_0 r^2}$$
+
+  </div>
+</div>
+
+---
+
+### 第8回：導体と静電容量
+
+導体表面が等電位面になるという性質と、それを満たすための手法（電気映像法）、およびキャパシタの静電容量の算出を学びます。
+
+#### 1. 必須暗記項目
+
+*   **導体直上の電界と電荷**：
+    $$E = \frac{\sigma}{\varepsilon_0}$$
+*   **静電容量**：
+    $$Q = C V$$
+
+#### 2. 解法パターン・型
+
+> **【型10：映像法による接地平面問題】**
+> 対称位置に異符号の映像電荷を置くことで、接地導体の電界および表面電荷分布を求めます。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 無限導体平面板の電界</div>
+  <div class="problem-body">
+
+導体板表面の面電荷密度が $\sigma$ のとき、外電界を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+導体内部は $E=0$ なので、ガウスの法則より $E = \frac{\sigma}{\varepsilon_0}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 金属球の電荷分配</div>
+  <div class="problem-body">
+
+半径 $2\text{ cm}$ と $4\text{ cm}$ の球を接続し、合計 $+6.0\times 10^{-4}\text{ C}$ を与えたときの各電荷と電界を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+電位が等しくなるため、電荷は半径比 $1:2$ で分配されます。
+* $2\text{ cm}$球： 電荷 $2.0\times 10^{-4}\text{ C}$、 $E = 4.5\times 10^9\text{ V/m}$。
+* $4\text{ cm}$球： 電荷 $4.0\times 10^{-4}\text{ C}$、 $E = 2.2\times 10^9\text{ V/m}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 同心球殻導体の電位</div>
+  <div class="problem-body">
+
+内半径 $a$, 外半径 $b$ の球殻の中心に $+Q$ の点電荷を置いたときの表面電荷と電位を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+内表面に $-Q$, 外表面に $+Q$ が誘起されます。電位は、
+* $r < a$ ： $\phi = \frac{Q}{4\pi\varepsilon_0}\left(\frac{1}{r} - \frac{1}{a} + \frac{1}{b}\right)$
+* $a < r < b$ ： $\phi = \frac{Q}{4\pi\varepsilon_0 b}$
+* $r > b$ ： $\phi = \frac{Q}{4\pi\varepsilon_0 r}$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 接地平面と点電荷（映像法）</div>
+  <div class="problem-body">
+
+接地平面 $z=0$ と $+q$ ($z=a$) のつくる誘起電荷密度 $\sigma$ および無限遠まで引き離す仕事 $W$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+対称位置に $-q$ を配置します。
+$$\sigma = -\frac{qa}{2\pi(x^2+y^2+a^2)^{3/2}}, \quad W = \frac{q^2}{16\pi\varepsilon_0 a}$$
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-image"></i> 電気映像法のイメージ図</h6>
+
+<svg viewBox="0 0 500 250" width="100%" height="250" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 12px; margin: 12px 0;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#60a5fa"/>
+    </marker>
+  </defs>
+
+  <line x1="250" y1="10" x2="250" y2="210" stroke="#10b981" stroke-width="4"/>
+  <line x1="250" y1="210" x2="250" y2="220" stroke="#10b981" stroke-width="2"/>
+  <line x1="240" y1="220" x2="260" y2="220" stroke="#10b981" stroke-width="2"/>
+  <line x1="244" y1="224" x2="256" y2="224" stroke="#10b981" stroke-width="2"/>
+  <line x1="248" y1="228" x2="252" y2="228" stroke="#10b981" stroke-width="2"/>
+  <text x="270" y="215" font-family="sans-serif" font-size="10" fill="#10b981" font-weight="bold">接地平面 z = 0</text>
+
+  <path d="M 352 115 H 250" stroke="#60a5fa" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 365 103 C 340 50, 280 50, 250 80" stroke="#60a5fa" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 365 127 C 340 180, 280 180, 250 150" stroke="#60a5fa" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 358 95 C 320 20, 260 20, 250 40" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+  <path d="M 358 135 C 320 210, 260 210, 250 190" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+
+  <path d="M 250 115 H 148" stroke="#f87171" stroke-dasharray="4,4" stroke-width="1.5" fill="none"/>
+  <path d="M 250 80 C 260 50, 200 50, 135 103" stroke="#f87171" stroke-dasharray="4,4" stroke-width="1.5" fill="none"/>
+  <path d="M 250 150 C 260 180, 200 180, 135 127" stroke="#f87171" stroke-dasharray="4,4" stroke-width="1.5" fill="none"/>
+
+  <line x1="250" y1="200" x2="370" y2="200" stroke="var(--text-muted)" stroke-width="1" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="310" y="195" font-family="sans-serif" font-size="11" fill="var(--text-muted)" text-anchor="middle">距離 a</text>
+  
+  <line x1="130" y1="200" x2="250" y2="200" stroke="var(--text-muted)" stroke-width="1" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="190" y="195" font-family="sans-serif" font-size="11" fill="var(--text-muted)" text-anchor="middle">距離 a</text>
+
+  <line x1="370" y1="135" x2="370" y2="210" stroke="var(--border-color)" stroke-dasharray="3,3" stroke-width="1"/>
+  <line x1="130" y1="130" x2="130" y2="210" stroke="var(--border-color)" stroke-dasharray="3,3" stroke-width="1"/>
+
+  <circle cx="370" cy="115" r="15" fill="#3b82f6" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="370" y="119" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">+q</text>
+  <text x="370" y="90" font-family="sans-serif" font-size="11" font-weight="bold" fill="#3b82f6" text-anchor="middle">実電荷</text>
+
+  <circle cx="130" cy="115" r="15" fill="rgba(239, 68, 68, 0.4)" stroke="#ef4444" stroke-dasharray="3,3" stroke-width="1.5"/>
+  <text x="130" y="119" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ef4444" text-anchor="middle">-q</text>
+  <text x="130" y="90" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ef4444" text-anchor="middle">映像電荷 (仮想)</text>
+</svg>
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5</span> 平行平板コンデンサーの諸量</div>
+  <div class="problem-body">
+
+面積 $S$, 間隔 $d$, 電荷 $q$ の平行平板キャパシタにおける容量、エネルギー、引力を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 各物理量の解答</h6>
+
+1. 静電容量： $C = \frac{\varepsilon_0 S}{d}$。
+2. 静電エネルギー： $U = \frac{q^2 d}{2\varepsilon_0 S}$。
+3. 位置変化による $\Delta U$： $\Delta U = \frac{q^2 \Delta d}{2\varepsilon_0 S}$。
+4. 極板間引力： $F = \frac{q^2}{2\varepsilon_0 S}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 6</span> 3枚の平行導体板</div>
+  <div class="problem-body">
+
+板 a, b, c において、aとcを接続し、中央のbに電荷 $Q$ を与えたときの各間隙の電界を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+等電位条件 $E_1 d_1 = E_2 d_2$ を用いて、
+$$E_1 = \frac{Q}{\varepsilon_0 A}\frac{d_2}{d_1+d_2}, \quad E_2 = \frac{Q}{\varepsilon_0 A}\frac{d_1}{d_1+d_2}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 7</span> 特殊コンデンサーの容量</div>
+  <div class="problem-body">
+
+球および円筒コンデンサーの静電容量を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 静電容量の解答</h6>
+
+* 球： $C = 4\pi\varepsilon_0 \frac{ab}{b-a}$
+* 円筒（単位長さあたり） ： $C_0 = \frac{2\pi\varepsilon_0}{\ln(b/a)}$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 8</span> 帯電球のエネルギー</div>
+  <div class="problem-body">
+
+半径 $R$, 電荷 $Q$ の導体球の自己エネルギーを求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$$U_e = \frac{Q^2}{2C} = \frac{Q^2}{8\pi\varepsilon_0 R}$$
+
+  </div>
+</div>
+
+---
+
+### 第9回：定常電流と導電率の微視的モデル
+
+電荷の移動現象である「電流」を記述し、金属導体内部の電子の運動からオームの法則を微視的に導出します。
+
+#### 1. 必須暗記項目
+
+*   **電流密度**：
+    $$\vec{j} = \sigma \vec{E}$$
+*   **Drude伝導率**：
+    $$\sigma = \frac{n e^2 \tau}{m}$$
+
+#### 2. 解法パターン・型
+
+> **【型11：抵抗の電界積分による導出】**
+> 全電流 $I$ を仮定し、各点における電流密度 $j(r)$ を求め、 $E = j/\sigma$ を積分して電位差 $V$ を計算することで抵抗 $R = V/I$ を求めます。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 雷放電の電流</div>
+  <div class="problem-body">
+
+$1.2\text{ C}$ の電荷が $1.0\ \mu\text{s}$ で放電したときの平均電流を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$$I = \frac{\Delta Q}{\Delta t} = 1.2\times 10^6\text{ A}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 銅線の電子運動</div>
+  <div class="problem-body">
+
+面積 $1\text{ mm}^2$, 長さ $60\text{ cm}$, 電圧 $3\text{ V}$, 電流 $1\text{ A}$ における抵抗率およびドリフト速度を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* 抵抗率： $\rho = 5.0\times 10^{-6}\ \Omega\cdot\text{m}$。
+* 速度： $v_d \approx 1.1\times 10^{-4}\text{ m/s}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 異種金属境界の電荷誘起</div>
+  <div class="problem-body">
+
+導電率 $\sigma_1, \sigma_2$ の金属の接合面を垂直に電流密度 $j$ が流れるときの境界電荷密度を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+電界の連続性条件より、境界上の誘起電荷密度は $\sigma = \varepsilon_0 j \left( \frac{1}{\sigma_2} - \frac{1}{\sigma_1} \right)$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 同軸円筒導体間の電気抵抗</div>
+  <div class="problem-body">
+
+内半径 $a$, 外半径 $b$、導電率 $\sigma$ の円筒形状導体の、径方向の抵抗を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+【型11】を用いて電界を径方向に積分します。
+$$R = \frac{\ln(b/a)}{2\pi\sigma L}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5</span> 回路のジュール熱</div>
+  <div class="problem-body">
+
+電源 $3\text{ V}$, 内部抵抗 $0.5\ \Omega$ に、銅線 $1\text{ m}, 1\text{ mm}^2$ を繋いだときの電流および熱発生量を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+銅線抵抗 $R \approx 0.0169\ \Omega$。電流 $I \approx 5.8\text{ A}$。ジュール熱 $P = R I^2 \approx 0.57\text{ W}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 6</span> ドゥルーデの自由電子伝導モデル</div>
+  <div class="problem-body">
+
+質量 $m$, 電荷 $-e$, 平均自由時間 $\tau$ の伝導電子の運動について、オームの法則を微視的に証明せよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 各ステップの解答と証明</h6>
+
+1. 運動方程式： $m\frac{d\vec{v}}{dt} = -e\vec{E}$。
+2. 衝突後 $t$ 秒の速度： $\vec{v}(t) = -\frac{e\vec{E}}{m}t$。
+3. ドリフト速度： $\vec{v}_d = -\frac{e\tau}{m}\vec{E}$。
+4. 導電率： $\sigma = \frac{ne^2\tau}{m}$ （$\vec{j} = -ne\vec{v}_d$ より）。
+5. 単位熱量： $J = \sigma E^2$。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-image"></i> ドゥルーデ自由電子散乱モデル図</h6>
+
+<svg viewBox="0 0 500 250" width="100%" height="250" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 12px; margin: 12px 0;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#60a5fa"/>
+    </marker>
+  </defs>
+
+  <line x1="50" y1="50" x2="450" y2="50" stroke="var(--border-color)" stroke-width="2"/>
+  <line x1="50" y1="200" x2="450" y2="200" stroke="var(--border-color)" stroke-width="2"/>
+  <path d="M 50 50 A 20 75 0 0 0 50 200" fill="none" stroke="var(--border-color)" stroke-width="2"/>
+  <path d="M 450 50 A 20 75 0 0 0 450 200" fill="none" stroke="var(--border-color)" stroke-dasharray="3,3" stroke-width="2"/>
+  <path d="M 450 50 A 20 75 0 0 1 450 200" fill="none" stroke="var(--border-color)" stroke-width="2"/>
+
+  <g fill="#10b981" stroke="#ffffff" stroke-width="1.5">
+    <circle cx="100" cy="90" r="14"/> <circle cx="200" cy="90" r="14"/> <circle cx="300" cy="90" r="14"/> <circle cx="400" cy="90" r="14"/>
+    <circle cx="150" cy="160" r="14"/> <circle cx="250" cy="160" r="14"/> <circle cx="350" cy="160" r="14"/>
+  </g>
+  <g fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">
+    <text x="100" y="94">+</text> <text x="200" y="94">+</text> <text x="300" y="94">+</text> <text x="400" y="94">+</text>
+    <text x="150" y="164">+</text> <text x="250" y="164">+</text> <text x="350" y="164">+</text>
+  </g>
+  <text x="300" y="40" font-family="sans-serif" font-size="11" fill="#10b981" font-weight="bold" text-anchor="middle">銅イオン格子（固定）</text>
+
+  <line x1="430" y1="25" x2="330" y2="25" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="440" y="29" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f59e0b">電場 E (左向き)</text>
+
+  <path d="M 60 120 L 90 100 L 120 145 L 140 148 L 195 104 L 210 102 L 242 148 L 290 102" stroke="#60a5fa" stroke-width="2" fill="none"/>
+  
+  <path d="M 90 100 L 85 92 M 90 100 L 98 94 M 90 100 L 95 108" stroke="#ef4444" stroke-width="2"/>
+  <path d="M 195 104 L 190 96 M 195 104 L 203 98 M 195 104 L 200 112" stroke="#ef4444" stroke-width="2"/>
+  <path d="M 242 148 L 235 142 M 242 148 L 250 144 M 242 148 L 246 156" stroke="#ef4444" stroke-width="2"/>
+
+  <circle cx="290" cy="102" r="6" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
+  <text x="290" y="105" font-family="sans-serif" font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle">-</text>
+  <text x="290" y="88" font-family="sans-serif" font-size="11" font-weight="bold" fill="#60a5fa" text-anchor="middle">電子</text>
+  <line x1="290" y1="102" x2="330" y2="102" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="335" y="106" font-family="sans-serif" font-size="10" font-weight="bold" fill="#60a5fa">ドリフト速度 v_d (右向き)</text>
+</svg>
+
+  </div>
+</div>
+
+---
+
+### 第10回：コンデンサーと過渡現象・エネルギー収支
+
+コンデンサーに誘電体を挿入する際の、静電エネルギーの変化と、電池や外部の力がなす「仕事」の関係を正しく追跡します。
+
+#### 1. 必須暗記項目
+
+*   **エネルギー保存則**：
+    $$\Delta W_{\text{bat}} = \Delta U + W_{\text{mech}} + H_{\text{Joule}}$$
+
+#### 2. 解法パターン・型
+
+> **【型12：ジュール熱のエネルギー保存則による計算】**
+> スイッチ切り替え前後のエネルギー差と、電源の仕事 $W_{\text{bat}} = V\Delta Q$ の収支からジュール熱を求めます。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 金属板挿入時のエネルギー収支</div>
+  <div class="problem-body">
+
+極板間隔 $d$ のキャパシタに厚さ $t$ の金属板を入れたときの、電荷一定時と電圧一定時の力学的仕事の関係を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+電荷一定時はエネルギーが減少、電圧一定時は増加しますが、いずれの場合も力学的には板は引き込まれます（詳細前述）。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> スイッチング回路の過渡現象</div>
+  <div class="problem-body">
+
+容量 $C_A, C_B$ の回路において、各種状態の電圧・電荷および $R_3$ で発生するジュール熱を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6>各小問の解答</h6>
+
+1. 投入直後の電流： $I_1 = \frac{2V}{3R}$。
+2. 十分時間経過後の電位差： $V_A = V/2$。
+3. 初期エネルギー： $U_1 = \frac{1}{8}C_A V^2$。
+4. 電荷再分配： $Q_A' = \frac{C_A^2}{C_A+C_B}V_A$, $Q_B' = \frac{C_AC_B}{C_A+C_B}V_A$。
+5. 最終エネルギー： $U_2 = \frac{C_A^2 V_A^2}{2(C_A+C_B)}$。
+6. 発生ジュール熱： $W = U_1 - U_2 = \frac{C_A C_B V_A^2}{2(C_A+C_B)}$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 誘電体挿入時の引力</div>
+  <div class="problem-body">
+
+極板間に比誘電率 $\varepsilon_r$, 厚さ $t$ の誘電体を挿入するときの引力をエネルギー変化から求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+極板容量変化 $\Delta C$ より、 $F = \frac{\partial U}{\partial x}$ から力を求めます。
+
+  </div>
+</div>
+
+---
+
+### 第11回：境界値問題と特殊な静電容量
+
+誘電率が空間的に変化するような、より複雑な電気的特性を持つ系の境界値問題を扱います。
+
+#### 1. 必須暗記項目
+
+*   **誘電体中のガウスの法則**：
+    $$\oint_S \vec{D} \cdot d\vec{S} = Q_{\text{free}}$$
+
+#### 2. 解法パターン・型
+
+> **【型13：電束密度の連続性】**
+> 平行な多層誘電体では、各境界を貫く電束密度 $D$ が一定（連続）であることを用いて電界と容量を決定します。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> 誘電体挿入とエネルギー変化</div>
+  <div class="problem-body">
+
+キャパシタに比誘電率 $\varepsilon_r$ の誘電体を入れたときの、電荷一定および電圧一定でのエネルギー変化を説明せよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* 電荷一定： $U = U_0/\varepsilon_r$ に減少。
+* 電圧一定： $U = \varepsilon_r U_0$ に増加。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 誘電体スラブの電界と分極電荷</div>
+  <div class="problem-body">
+
+極板間 $d$, 電圧 $V$, スラブ厚さ $t$, 比誘電率 $\varepsilon_r$ における、真空部電界、スラブ内電界、および分極電荷密度を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 各量の解答</h6>
+
+* 真空部電界： $E_0 = \frac{\varepsilon_r V}{\varepsilon_r(d-t)+t}$。
+* 誘電体内電界： $E = \frac{V}{\varepsilon_r(d-t)+t}$。
+* 分極電荷密度： $\sigma_P = \frac{(\varepsilon_r-1)\varepsilon_0 V}{\varepsilon_r(d-t)+t}$。
+
+  </div>
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-image"></i> コンデンサーへの誘電体挿入と分極の仕組み</h6>
+
+<svg viewBox="0 0 500 250" width="100%" height="250" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 12px; margin: 12px 0;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <rect x="50" y="25" width="400" height="15" fill="#475569" rx="3"/>
+  <text x="250" y="36" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">極板 (+)   真電荷密度 +σ₀</text>
+  <g fill="#3b82f6" font-family="sans-serif" font-size="12" font-weight="bold">
+    <text x="70" y="20">+</text> <text x="120" y="20">+</text> <text x="170" y="20">+</text> 
+    <text x="220" y="20">+</text> <text x="270" y="20">+</text> <text x="320" y="20">+</text> 
+    <text x="370" y="20">+</text> <text x="420" y="20">+</text>
+  </g>
+
+  <rect x="50" y="210" width="400" height="15" fill="#475569" rx="3"/>
+  <text x="250" y="221" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">極板 (-)   真電荷密度 -σ₀</text>
+  <g fill="#ef4444" font-family="sans-serif" font-size="14" font-weight="bold">
+    <text x="70" y="240">-</text> <text x="120" y="240">-</text> <text x="170" y="240">-</text> 
+    <text x="220" y="240">-</text> <text x="270" y="240">-</text> <text x="320" y="240">-</text> 
+    <text x="370" y="240">-</text> <text x="420" y="240">-</text>
+  </g>
+
+  <rect x="80" y="75" width="340" height="100" fill="rgba(59, 130, 246, 0.1)" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="250" y="130" font-family="sans-serif" font-size="12" font-weight="bold" fill="#60a5fa" text-anchor="middle">誘電体 (比誘電率 ε_r)</text>
+
+  <g fill="#f87171" font-family="sans-serif" font-size="12" font-weight="bold">
+    <text x="100" y="92">-</text> <text x="150" y="92">-</text> <text x="200" y="92">-</text> 
+    <text x="300" y="92">-</text> <text x="350" y="92">-</text> <text x="400" y="92">-</text>
+    <text x="250" y="92" font-size="9" font-weight="normal" fill="#ef4444" text-anchor="middle">分極電荷 -σ_P</text>
+  </g>
+  <g fill="#60a5fa" font-family="sans-serif" font-size="10" font-weight="bold">
+    <text x="100" y="170">+</text> <text x="150" y="170">+</text> <text x="200" y="170">+</text> 
+    <text x="300" y="170">+</text> <text x="350" y="170">+</text> <text x="400" y="170">+</text>
+    <text x="250" y="170" font-size="9" font-weight="normal" fill="#3b82f6" text-anchor="middle">分極電荷 +σ_P</text>
+  </g>
+
+  <line x1="65" y1="50" x2="65" y2="200" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="58" y="125" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f59e0b" text-anchor="end">外部電場 E₀</text>
+
+  <line x1="130" y1="95" x2="130" y2="155" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="140" y="130" font-family="sans-serif" font-size="11" font-weight="bold" fill="#10b981">板内電場 E = E₀ - E_P</text>
+</svg>
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 位置依存する誘電率を伴う容量</div>
+  <div class="problem-body">
+
+極板間で誘電率が $\varepsilon(x) = \frac{\varepsilon_2-\varepsilon_1}{d}x + \varepsilon_1$ のように連続変化するコンデンサーの静電容量を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+【型13】を適用し、 $E(x) = D/\varepsilon(x)$ を積分します。
+$$C = \frac{(\varepsilon_2-\varepsilon_1)S}{d\ln(\varepsilon_2/\varepsilon_1)}$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 電荷一定での誘電体挿入</div>
+  <div class="problem-body">
+
+充電後切り離したコンデンサーに、比誘電率 $\varepsilon_r$ の誘電体を隙間全体に入れたときの電界と分極電荷密度を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+* 電界： $E = \frac{V}{\varepsilon_r d}$ （真空電界の $1/\varepsilon_r$）。
+* 分極電荷： $\sigma_P = \sigma_0 \left(1 - \frac{1}{\varepsilon_r}\right)$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 5</span> 接地された同心球殻の静電容量</div>
+  <div class="problem-body">
+
+内球 $a$、外殻 $b$ において、(1)内球を接地した場合、(2)外殻を接地した場合のそれぞれの合成容量を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 合成容量の解答</h6>
+
+1. 内球接地： $C_1 = 4\pi\varepsilon_0 \frac{b^2}{b-a}$。
+2. 外殻接地： $C_2 = 4\pi\varepsilon_0 \frac{ab}{b-a}$。
+
+  </div>
+</div>
+
+---
+
+### 第12回：誘電体と電束密度・分極
+
+物質が電場中に置かれたときに起きる「原子レベルの分極」をマクロに記述するための「電束密度 $\vec{D}$」と「分極ベクトル $\vec{P}$」の定義、およびその境界条件を整理します。
+
+#### 1. 必須暗記項目
+
+*   **電束密度の基本定義**：
+    $$\vec{D} = \varepsilon_0 \vec{E} + \vec{P} = \varepsilon \vec{E}$$
+*   **屈折の境界条件式**：
+    $$\frac{\tan\theta_1}{\tan\theta_2} = \frac{\varepsilon_1}{\varepsilon_2}$$
+
+#### 2. 解法パターン・型
+
+> **【型14：屈折境界条件の連立】**
+> 接線電界の連続性 $E_{1t}=E_{2t}$ と法線電束の連続性 $D_{1n}=D_{2n}$ の2式を連立させて屈折現象を解きます。
+
+#### 3. 演習問題と詳細解説
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 1</span> コンデンサー内の電束と分極</div>
+  <div class="problem-body">
+
+誘電率 $\varepsilon$ の誘電体を極板間に入れたときの電束密度 $D$、分極 $P$、および面電荷 $Q$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 各量の解答</h6>
+
+* $D = \varepsilon \frac{V}{d}$
+* $P = (\varepsilon-\varepsilon_0)\frac{V}{d}$
+* $Q = \varepsilon S \frac{V}{d}$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 2</span> 一様外電界中の誘電体スラブ</div>
+  <div class="problem-body">
+
+比誘電率 $\varepsilon_s$ の無限平板を一様電界 $E_0$ に垂直に入れたときの、板内電界および誘起分極電荷密度を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+法線成分の連続性より、板内電束密度は $D = \varepsilon_0 E_0$。
+板内電界は $E = E_0/\varepsilon_s$。分極電荷は $\sigma_P = \left(1 - \frac{1}{\varepsilon_s}\right)\varepsilon_0 E_0$。
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 3</span> 2層誘電体の電界・分極</div>
+  <div class="problem-body">
+
+厚さ $d_1, \varepsilon_1$ の層と $d_2, \varepsilon_2$ の層が直列に重なったコンデンサーの電束密度 $D$ を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+$$D = \frac{\varepsilon_1\varepsilon_2}{\varepsilon_2 d_1 + \varepsilon_1 d_2} V$$
+
+  </div>
+</div>
+
+<div class="problem-card">
+  <div class="problem-header"><span class="problem-badge">問題 4</span> 誘電率境界での屈折</div>
+  <div class="problem-body">
+
+異なる誘電率 $\varepsilon_1, \varepsilon_2$ の境界における屈折角の関係式を証明し、透過後の電場強度を求めよ。
+
+  </div>
+</div>
+
+<div class="solution-card">
+  <div class="solution-section">
+    <h6><i class="fa-solid fa-square-check"></i> 詳細な計算プロセスと解答</h6>
+
+【型14】を用いて、 $\frac{\tan\theta_1}{\tan\theta_2} = \frac{\varepsilon_1}{\varepsilon_2}$ を証明します。
+透過後の電界強度は、 $E_2 = E_1 \sqrt{\sin^2\theta_1 + \left(\frac{\varepsilon_1}{\varepsilon_2}\right)^2 \cos^2\theta_1}$。
+
+  </div>
+</div>
+
+---
+
+## 覚えないといけない公式・概念の総まとめ
+
+電磁気学Iにおける必須暗記の重要公式・定理を体系的にまとめました。試験や演習問題の直前チェックシートとして活用してください。
+
+### 1. 数学的準備（ベクトル解析）
+
+| 公式名 | 数式表現 | 物理的意味 |
+| :--- | :--- | :--- |
+| **勾配 (Gradient)** | $\nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)$ | スカラー場の傾き（最大変化率の方向と大きさ） |
+| **発散 (Divergence)** | $\nabla \cdot \vec{g} = \frac{\partial g_x}{\partial x} + \frac{\partial g_y}{\partial y} + \frac{\partial g_z}{\partial z}$ | ベクトル場の湧き出し量（単位体積あたり） |
+| **回転 (Curl)** | $\nabla \times \vec{v} = \left(\frac{\partial v_z}{\partial y}-\frac{\partial v_y}{\partial z}\right)\vec{i} + \dots$ | ベクトル場のミクロな「渦」の強さと方向 |
+| **位置ベクトル微分** | $\nabla r = \frac{\vec{r}}{r}$、 $\nabla \frac{1}{r} = -\frac{\vec{r}}{r^3}$ | 点電荷がつくる電位 $\frac{1}{r}$ から電界 $\frac{\vec{r}}{r^3}$ への変換基礎 |
+| **ガウスの発散定理** | $\iint_S \vec{F} \cdot d\vec{S} = \iiint_V (\nabla \cdot \vec{F}) dV$ | 閉曲面を貫く全フラックス＝内部の湧き出しの総和 |
+| **ストークスの定理** | $\oint_C \vec{F} \cdot d\vec{r} = \iint_S (\nabla \times \vec{F}) \cdot d\vec{S}$ | 閉曲線を一周する仕事＝曲面を貫く回転の総和 |
+
+### 2. 真空中の静電場・静電位
+
+| 物理量 / 法則 | 公式・表現 | 備考 / 適用条件 |
+| :--- | :--- | :--- |
+| **クーロンの法則** | $\vec{F} = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r^2}\vec{e}_r$ | 点電荷同士に働く静電力 |
+| **電界と電位の関係** | $\vec{E} = -\nabla \phi$、 $\phi = -\int \vec{E}\cdot d\vec{r}$ | 電位（スカラー）から電界（ベクトル）の導出 |
+| **ガウスの法則（積分形）** | $\oint_S \vec{E} \cdot d\vec{S} = \frac{Q_{\text{enclosed}}}{\varepsilon_0}$ | 対称性の高い帯電体の電界決定に必須 |
+| **ポアソン方程式** | $\Delta \phi = -\frac{\rho}{\varepsilon_0}$ | 静電位が満たす微分方程式 |
+| **ラプラス方程式** | $\Delta \phi = 0$ | 電荷の存在しない領域における静電位方程式 |
+
+### 3. 導体と境界条件・静電容量
+
+| 項目 | 公式 / 境界条件 | 物理的意味 |
+| :--- | :--- | :--- |
+| **導体直上の電界** | $E = \frac{\sigma}{\varepsilon_0}$ | 導体表面の電界は常に表面に垂直で、面密度に比例する |
+| **電気映像法** | $q' = -q \frac{a}{d}$ （球導体）など | 接地境界条件を満たすために配置する仮想電荷 |
+| **容量の定義** | $Q = C V$ | コンデンサーの電荷蓄積能力 |
+| **平行平板キャパシタ** | $C = \frac{\varepsilon_0 S}{d}$ | 極板面積 $S$, 間隔 $d$ のコンデンサーの容量 |
+| **球殻キャパシタ** | $C = 4\pi\varepsilon_0 \frac{ab}{b-a}$ | 内半径 $a$, 外半径 $b$ の同心球殻間の容量 |
+
+### 4. 誘電体と電束密度・分極
+
+| 物理量 / 境界条件 | 公式表現 | 物理的意味 |
+| :--- | :--- | :--- |
+| **電束密度の定義** | $\vec{D} = \varepsilon_0 \vec{E} + \vec{P} = \varepsilon \vec{E}$ | 誘電体内のマクロな電束の定義 |
+| **分極ベクトル** | $\vec{P} = (\varepsilon - \varepsilon_0)\vec{E}$ | 誘電体内部の電気双極子の整列度合い |
+| **分極面電荷密度** | $\sigma_P = \vec{P} \cdot \vec{n}$ | 誘電体表面に現れる束縛電荷の密度 |
+| **境界条件（接線）** | $E_{1t} = E_{2t}$ | 境界に平行な電界成分は連続（屈折時に保存） |
+| **境界条件（法線）** | $D_{1n} = D_{2n}$ | 境界に垂直な電束密度成分は連続（真電荷がない界面） |
+| **屈折の法則** | $\frac{\tan\theta_1}{\tan\theta_2} = \frac{\varepsilon_1}{\varepsilon_2}$ | 誘電率境界における電気力線の曲がり方 |
+    </script>
+
+    <!-- Main Logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. DOM Elements
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const searchBox = document.getElementById('search-box');
+            const clearSearchBtn = document.getElementById('clear-search');
+            const menuContainer = document.getElementById('menu-container');
+            const breadcrumbContainer = document.getElementById('breadcrumb-container');
+            const activeBreadcrumb = document.getElementById('active-breadcrumb');
+            const renderedContent = document.getElementById('rendered-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtnTitle = document.getElementById('prev-btn-title');
+            const nextBtnTitle = document.getElementById('next-btn-title');
+            const copyBtn = document.getElementById('copy-btn');
+            const toast = document.getElementById('toast-notification');
+            const toastMessage = document.getElementById('toast-message');
+            const searchBannerContainer = document.getElementById('search-banner-container');
+
+            // Initialize Mermaid
+            mermaid.initialize({
+                startOnLoad: false,
+                theme: 'dark',
+                securityLevel: 'loose'
+            });
+
+            // Set up marked with custom renderer for Mermaid
+            const renderer = new marked.Renderer();
+            renderer.code = function(code, infostring) {
+                let text = code;
+                let lang = infostring;
+                if (code && typeof code === 'object') {
+                    text = code.text;
+                    lang = code.lang;
+                }
+                if (lang === 'mermaid') {
+                    return `<div class="mermaid">${text}</div>`;
+                }
+                return `<pre><code class="language-${lang || ''}">${text}</code></pre>`;
+            };
+            marked.use({ renderer });
+
+            // 2. Data Parsing
+            const rawMarkdown = document.getElementById('markdown-data').textContent;
+            
+            function parseMarkdownToSections(rawMarkdown) {
+                const sections = [];
+                const parts = rawMarkdown.split('## 各回の詳細解説');
+                const overviewText = parts[0];
+                const lecturesText = parts[1] || '';
+                
+                sections.push({
+                    id: 'overview',
+                    title: '概要と全体像',
+                    content: overviewText
+                });
+                
+                const lectureParts = lecturesText.split(/(?=### 第)/);
+                lectureParts.forEach((part, index) => {
+                    if (!part.trim()) return;
+                    
+                    const titleMatch = part.match(/### (第\d+回：[^\n]+)/);
+                    if (titleMatch) {
+                        const title = titleMatch[1];
+                        const cleanContent = part.replace(/### 第\d+回：[^\n]+\n/, '');
+                        sections.push({
+                            id: `lecture-${index + 1}`,
+                            title: title,
+                            content: cleanContent
+                        });
+                    }
+                });
+                
+                return sections;
+            }
+
+            const sections = parseMarkdownToSections(rawMarkdown);
+            let activeSectionIndex = 0;
+            let currentSearchQuery = "";
+
+            // 3. Formula Extractor for Quick View
+            function extractFormulas(sectionsList) {
+                const formulas = [];
+                let idCounter = 0;
+                sectionsList.forEach(section => {
+                    if (section.id === 'overview' || section.id === 'formulas-cheat-sheet') return;
+                    
+                    const matches = [...section.content.matchAll(/\$\$([\s\S]*?)\$\$/g)];
+                    matches.forEach(match => {
+                        const formulaText = match[1].trim();
+                        const contentBefore = section.content.substring(0, match.index);
+                        const linesBefore = contentBefore.trim().split('\n');
+                        let desc = '';
+                        
+                        for (let i = linesBefore.length - 1; i >= 0; i--) {
+                            const line = linesBefore[i].trim();
+                            if (line.startsWith('*') || line.startsWith('-') || line.startsWith('1.') || line.startsWith('#####') || (line && line.length > 3 && !line.includes('$$') && !line.startsWith('###') && !line.startsWith('---'))) {
+                                desc = line.replace(/^[\*\-\s\d\.\#]+/, '');
+                                break;
+                            }
+                        }
+                        if (!desc) desc = '基本公式';
+                        
+                        formulas.push({
+                            id: `formula-${idCounter++}`,
+                            sectionTitle: section.title.split('：')[0],
+                            desc: desc,
+                            formula: formulaText
+                        });
+                    });
+                });
+                return formulas;
+            }
+
+            const formulasList = extractFormulas(sections);
+            
+            // Add a special formulas tab
+            sections.push({
+                id: 'formulas-cheat-sheet',
+                title: '公式まとめシート',
+                isSpecial: true,
+                content: '' // Rendered via JS dynamically
+            });
+
+            // 4. Math Markdown Renderer
+            function renderMarkdownWithMath(markdown, container) {
+                const mathBlocks = [];
+                const inlineMath = [];
+                
+                // Replace block math $$ ... $$
+                let processed = markdown.replace(/\$\$([\s\S]*?)\$\$/g, (match, p1) => {
+                    const id = `MATHBLOCK_${mathBlocks.length}_MATH`;
+                    mathBlocks.push({ id, formula: p1 });
+                    return id;
+                });
+                
+                // Replace inline math $ ... $
+                processed = processed.replace(/\$([^\$\n]+?)\$/g, (match, p1) => {
+                    const id = `MATHINLINE_${inlineMath.length}_MATH`;
+                    inlineMath.push({ id, formula: p1 });
+                    return id;
+                });
+                
+                // Run marked parser
+                let html = marked.parse(processed);
+                
+                // Restore block math with KaTeX
+                mathBlocks.forEach(item => {
+                    try {
+                        const rendered = katex.renderToString(item.formula, { displayMode: true, throwOnError: false });
+                        html = html.split(item.id).join(`<div class="math-block" title="クリックしてLaTeXをコピー" data-formula="${encodeURIComponent(item.formula)}">${rendered}</div>`);
+                    } catch (e) {
+                        html = html.split(item.id).join(`<div class="math-block error">${item.formula}</div>`);
+                    }
+                });
+                
+                // Restore inline math with KaTeX
+                inlineMath.forEach(item => {
+                    try {
+                        const rendered = katex.renderToString(item.formula, { displayMode: false, throwOnError: false });
+                        html = html.split(item.id).join(`<span class="math-inline" title="クリックしてLaTeXをコピー" data-formula="${encodeURIComponent(item.formula)}">${rendered}</span>`);
+                    } catch (e) {
+                        html = html.split(item.id).join(`<span class="math-inline error">${item.formula}</span>`);
+                    }
+                });
+                
+                container.innerHTML = html;
+            }
+
+            // 5. Highlight Search Text
+            function highlightText(element, query) {
+                if (!query) return;
+                
+                const regex = new RegExp(`(${query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+                
+                const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+                const nodesToReplace = [];
+                
+                let node;
+                while (node = walk.nextNode()) {
+                    // Check if node is not inside code or math blocks or formulas
+                    let parent = node.parentNode;
+                    let isProtected = false;
+                    while (parent && parent !== element) {
+                        if (parent.parentNode && (parent.tagName === 'CODE' || parent.tagName === 'PRE' || parent.classList.contains('katex') || parent.classList.contains('mermaid') || parent.classList.contains('math-block') || parent.classList.contains('math-inline'))) {
+                            isProtected = true;
+                            break;
+                        }
+                        parent = parent.parentNode;
+                    }
+                    
+                    if (!isProtected && regex.test(node.nodeValue)) {
+                        nodesToReplace.push(node);
+                    }
+                }
+                
+                nodesToReplace.forEach(textNode => {
+                    const span = document.createElement('span');
+                    span.innerHTML = textNode.nodeValue.replace(regex, '<mark class="search-highlight">$1</mark>');
+                    textNode.parentNode.replaceChild(span, textNode);
+                });
+            }
+
+            // 6. Display Active Section
+            function displaySection(index) {
+                activeSectionIndex = index;
+                const section = sections[index];
+                
+                // Update active menu highlight
+                document.querySelectorAll('.menu-item').forEach((item, idx) => {
+                    if (idx === index) {
+                        item.classList.add('active');
+                        item.setAttribute('aria-selected', 'true');
+                    } else {
+                        item.classList.remove('active');
+                        item.setAttribute('aria-selected', 'false');
+                    }
+                });
+
+                // Scroll to top
+                document.querySelector('.content-scroll').scrollTop = 0;
+
+                // Update Breadcrumbs
+                activeBreadcrumb.textContent = section.title;
+
+                // Render Content
+                if (section.id === 'formulas-cheat-sheet') {
+                    // Render the specialized formula sheet grid
+                    renderedContent.innerHTML = `
+                        <h1>公式まとめ・クイック参照シート</h1>
+                        <p>各解説資料から抽出された主要公式の一覧です。クリックすると数式のLaTeXソースコードをコピーできます。</p>
+                        <div class="formulas-grid" id="formulas-grid-container"></div>
+                    `;
+                    
+                    const grid = document.getElementById('formulas-grid-container');
+                    formulasList.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'formula-card';
+                        
+                        const mathRender = katex.renderToString(item.formula, { displayMode: true, throwOnError: false });
+                        
+                        card.innerHTML = `
+                            <div class="formula-card-header">
+                                <span class="formula-card-title" id="desc-${item.id}"></span>
+                                <span class="formula-card-tag">${item.sectionTitle}</span>
+                            </div>
+                            <div class="math-block" style="margin: 0; padding: 14px;" data-formula="${encodeURIComponent(item.formula)}">
+                                ${mathRender}
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                        
+                        // Render description with KaTeX support!
+                        const descEl = card.querySelector(`#desc-${item.id}`);
+                        renderMarkdownWithMath(item.desc, descEl);
+                    });
+                } else {
+                    // Render standard section markdown
+                    renderMarkdownWithMath(section.content, renderedContent);
+                }
+
+                // Render Mermaid Diagrams if any
+                try {
+                    mermaid.run({
+                        nodes: renderedContent.querySelectorAll('.mermaid')
+                    });
+                } catch (e) {
+                    console.error("Mermaid error:", e);
+                }
+
+                // Apply search highlight if active query
+                if (currentSearchQuery) {
+                    highlightText(renderedContent, currentSearchQuery);
+                    showSearchBanner();
+                } else {
+                    searchBannerContainer.innerHTML = "";
+                }
+
+                // Update Footer Buttons
+                if (index > 0) {
+                    prevBtn.classList.remove('disabled');
+                    prevBtnTitle.textContent = sections[index - 1].title;
+                } else {
+                    prevBtn.classList.add('disabled');
+                    prevBtnTitle.textContent = "なし";
+                }
+
+                if (index < sections.length - 1) {
+                    nextBtn.classList.remove('disabled');
+                    nextBtnTitle.textContent = sections[index + 1].title;
+                } else {
+                    nextBtn.classList.add('disabled');
+                    nextBtnTitle.textContent = "なし";
+                }
+
+                // Attach copy click listener to math formulas
+                document.querySelectorAll('.math-block, .math-inline').forEach(el => {
+                    el.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const formula = decodeURIComponent(el.getAttribute('data-formula') || '');
+                        if (formula) {
+                            navigator.clipboard.writeText(formula).then(() => {
+                                showToast(`数式 (LaTeX): "${formula}" をコピーしました！`);
+                            });
+                        }
+                    });
+                });
+            }
+
+            // 7. Toast Notification Handler
+            function showToast(message) {
+                toastMessage.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // 8. Copy entire section content
+            copyBtn.addEventListener('click', () => {
+                const text = renderedContent.innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('セクションのテキストをコピーしました！');
+                });
+            });
+
+            // 9. Render Menu items in Sidebar
+            function renderMenu(query = "") {
+                menuContainer.innerHTML = '<div class="menu-label">コンテンツ</div>';
+                
+                sections.forEach((section, index) => {
+                    // Search matching check
+                    let isMatch = true;
+                    if (query) {
+                        const contentToSearch = (section.title + " " + section.content).toLowerCase();
+                        isMatch = contentToSearch.includes(query.toLowerCase());
+                    }
+
+                    if (isMatch) {
+                        const menuItem = document.createElement('button');
+                        menuItem.className = `menu-item ${index === activeSectionIndex ? 'active' : ''}`;
+                        menuItem.setAttribute('role', 'tab');
+                        menuItem.setAttribute('aria-selected', index === activeSectionIndex ? 'true' : 'false');
+                        menuItem.setAttribute('aria-controls', 'rendered-content');
+                        menuItem.setAttribute('tabindex', '0');
+                        
+                        let iconClass = "fa-solid fa-file-lines";
+                        if (section.id === 'overview') iconClass = "fa-solid fa-compass";
+                        if (section.id === 'formulas-cheat-sheet') iconClass = "fa-solid fa-square-root-variable";
+
+                        menuItem.innerHTML = `
+                            <i class="${iconClass}" aria-hidden="true"></i>
+                            <span style="flex-grow:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${section.title}">
+                                ${section.title}
+                            </span>
+                        `;
+                        
+                        // Click navigation
+                        menuItem.addEventListener('click', () => {
+                            displaySection(index);
+                        });
+
+                        // Keyboard navigation (Enter / Space)
+                        menuItem.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                displaySection(index);
+                            }
+                        });
+                        
+                        menuContainer.appendChild(menuItem);
+                    }
+                });
+            }
+
+            // 10. Search logic
+            searchBox.addEventListener('input', (e) => {
+                const query = e.target.value.trim();
+                currentSearchQuery = query;
+                
+                if (query) {
+                    clearSearchBtn.style.display = 'block';
+                } else {
+                    clearSearchBtn.style.display = 'none';
+                }
+
+                renderMenu(query);
+                
+                // Refresh active section highlights
+                displaySection(activeSectionIndex);
+            });
+
+            clearSearchBtn.addEventListener('click', () => {
+                searchBox.value = "";
+                currentSearchQuery = "";
+                clearSearchBtn.style.display = 'none';
+                renderMenu();
+                displaySection(activeSectionIndex);
+            });
+
+            function showSearchBanner() {
+                searchBannerContainer.innerHTML = `
+                    <div class="search-results-banner">
+                        <div class="search-results-text">
+                            キーワード「<strong>${currentSearchQuery}</strong>」の検索結果をハイライト表示しています
+                        </div>
+                        <button class="close-banner-btn" id="close-search-banner" aria-label="検索結果表示を閉じる">
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                `;
+                document.getElementById('close-search-banner').addEventListener('click', () => {
+                    searchBox.value = "";
+                    currentSearchQuery = "";
+                    clearSearchBtn.style.display = 'none';
+                    renderMenu();
+                    displaySection(activeSectionIndex);
+                });
+            }
+
+            // 11. Footer Navigation clicks
+            prevBtn.addEventListener('click', () => {
+                if (activeSectionIndex > 0) {
+                    displaySection(activeSectionIndex - 1);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (activeSectionIndex < sections.length - 1) {
+                    displaySection(activeSectionIndex + 1);
+                }
+            });
+
+            // 12. Dark/Light Theme toggler
+            let currentTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeButton(currentTheme);
+
+            themeToggleBtn.addEventListener('click', () => {
+                const targetTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', targetTheme);
+                localStorage.setItem('theme', targetTheme);
+                updateThemeButton(targetTheme);
+                
+                // Re-render Mermaid because Mermaid themes differ by mode
+                mermaid.initialize({
+                    theme: targetTheme === 'dark' ? 'dark' : 'default'
+                });
+                displaySection(activeSectionIndex);
+            });
+
+            function updateThemeButton(theme) {
+                if (theme === 'dark') {
+                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun" aria-hidden="true"></i><span class="sr-only">ライトモードへ切り替え</span>';
+                    themeToggleBtn.style.color = '#eab308'; // Sunlight yellow
+                } else {
+                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon" aria-hidden="true"></i><span class="sr-only">ダークモードへ切り替え</span>';
+                    themeToggleBtn.style.color = '#2563eb'; // Moon indigo
+                }
+            }
+
+            // 13. Initialization
+            renderMenu();
+            displaySection(0);
+        });
+    </script>
+</body>
+</html>

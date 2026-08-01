@@ -1,0 +1,3482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「電磁気学まとめ.pdf」全問題（全80問）詳細ステップ解説カードWEBサイト</title>
+    <!-- MathJax 3 -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 10mm 12mm 10mm 12mm;
+        }
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f6f9;
+            color: #202124;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .print-page {
+            width: 210mm;
+            min-height: 290mm;
+            padding: 14mm 16mm;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+        }
+        @media print {
+            body { background: none; }
+            .print-page {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+                width: 100%;
+                page-break-after: always;
+            }
+            .no-print { display: none !important; }
+        }
+        
+        .print-header {
+            border-top: 5px solid #d93025;
+            padding-top: 10px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid #dadce0;
+            padding-bottom: 10px;
+        }
+        .print-no {
+            background: #ea4335;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .header-titles {
+            flex-grow: 1;
+        }
+        .vol-tag {
+            font-size: 12px;
+            color: #5f6368;
+            font-weight: 600;
+            display: block;
+        }
+        .print-title {
+            margin: 2px 0 0 0;
+            font-size: 17px;
+            color: #1a0dab;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 14px;
+            border-radius: 6px;
+            position: relative;
+        }
+        .section-badge {
+            color: white;
+            font-size: 12.5px;
+            font-weight: bold;
+            padding: 5px 14px;
+            border-radius: 4px 4px 0 0;
+            display: inline-block;
+        }
+        .badge-red { background: #ea4335; }
+        .badge-teal { background: #00897b; }
+        .badge-blue { background: #1565c0; }
+        
+        .section-content {
+            padding: 14px 18px;
+        }
+        .section-content p { margin: 4px 0; }
+
+        .problem-box {
+            background: #f8f9fa;
+            border: 1px solid #f1f3f4;
+            border-left: 4px solid #ea4335;
+            border-radius: 0 6px 6px 6px;
+        }
+        .point-box {
+            background: #e0f2f1;
+            border: 1px solid #b2dfdb;
+            border-left: 4px solid #00897b;
+            border-radius: 0 6px 6px 6px;
+        }
+        .solution-box {
+            background: #ffffff;
+            border: 1px solid #dadce0;
+            border-left: 4px solid #1565c0;
+            border-radius: 0 6px 6px 6px;
+            flex-grow: 1;
+        }
+
+        .memo-box {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #3c4043;
+            margin-top: 10px;
+        }
+        .memo-title {
+            font-weight: bold;
+            color: #b78103;
+            margin-bottom: 3px;
+        }
+
+        .print-footer {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 8px;
+            font-size: 11px;
+            color: #70757a;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 12px;
+            right: 20px;
+            background: rgba(32, 33, 36, 0.92);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .nav-bar button, .nav-bar a {
+            color: white;
+            text-decoration: none;
+            background: #3c4043;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12.5px;
+        }
+        .nav-bar button:hover { background: #5f6368; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar no-print">
+        <span>📖 「電磁気学まとめ.pdf」全80問 充実解説カードサイト</span>
+        <button onclick="window.print()">🖨️ 印刷 / PDF保存</button>
+        <a href="electromagnetism_pdf_all_problems_cards.html">🏠 全問題カードへ</a>
+    </div>
+
+    
+        <div class="print-page" id="card-P-001">
+            <div class="print-header">
+                <div class="print-no">P-001</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>次のスカラー関数 f の勾配grad𝑓𝑓を求めよ．<br>1) 𝑓𝑓 = 𝑒𝑒𝑥𝑥 sin 𝑦𝑦<br>2) 𝑓𝑓 = (𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2)2<br>3) 𝑓𝑓 =<br>1<br>2 ln(𝑥𝑥2 + 𝑦𝑦2)</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>勾配の基本定義：$\nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)$。他変数を定数とみなす偏微分計算を徹底する。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. $x$ 成分の偏微分：指数関数 $e^x$ の微分は変化せず<br>$$\frac{\partial f}{\\partial x} = \frac{\partial}{\partial x}(e^x \sin y) = e^x \sin y$$<br>2. $y$ 成分の偏微分：三角関数 $\sin y$ の微分は $\cos y$<br>$$\frac{\partial f}{\partial y} = \frac{\partial}{\partial y}(e^x \sin y) = e^x \cos y$$<br>3. $z$ 成分の偏微分：$z$ を含まないため 0<br>$$\frac{\partial f}{\partial z} = 0$$<br>4. したがって勾配ベクトル場は：<br>$$\nabla f = e^x \sin y \vec{i} + e^x \cos y \vec{j}$$
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">偏微分で他変数を定数とみなす基本原則を再確認。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-001</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-002">
+            <div class="print-header">
+                <div class="print-no">P-002</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>次のベクトル関数𝑔𝑔⃗の発散div𝑔𝑔⃗を求めよ．<br>1) 𝑔𝑔⃗ = 𝑦𝑦2𝑒𝑒𝑧𝑧𝚤𝚤⃗ + 𝑥𝑥2𝑧𝑧2𝑘𝑘�⃗<br>2) 𝑔𝑔⃗ = 𝑥𝑥2𝚤𝚤⃗ + 𝑦𝑦2𝚥𝚥⃗ + 𝑧𝑧2𝑘𝑘�⃗<br>3) 𝑔𝑔⃗ = 𝑒𝑒−𝑥𝑥𝑥𝑥𝚤𝚤⃗ + 𝑒𝑒−𝑥𝑥𝑧𝑧𝚥𝚥⃗ + 𝑒𝑒−𝑧𝑧𝑥𝑥𝑘𝑘�⃗</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>合成関数の勾配公式：$\nabla f(r) = f'(r) \frac{\vec{r}}{r}$。球対称場では動径方向のみに傾きが生じる。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. $u = x^2+y^2+z^2 = r^2$ とおくと $f = u^2 = r^4$<br>2. チェーンルールより：<br>$$\frac{\partial f}{\partial x} = \frac{df}{du}\frac{\partial u}{\partial x} = 2u \cdot 2x = 4x(x^2+y^2+z^2)$$<br>3. 同様にして $y, z$ 成分も求まる：<br>$$\frac{\partial f}{\partial y} = 4y(x^2+y^2+z^2), \quad \frac{\partial f}{\partial z} = 4z(x^2+y^2+z^2)$$<br>4. ベクトル表記にまとめると：<br>$$\nabla f = 4(x^2+y^2+z^2)(x\vec{i}+y\vec{j}+z\vec{k}) = 4r^2\vec{r}$$
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">動径 $r$ の関数 $f(r)$ の勾配は常に動径方向 $ec{e}_r$ を向く。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-002</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-003">
+            <div class="print-header">
+                <div class="print-no">P-003</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>次式で表されるベクトル𝑣𝑣⃗についてrot𝑣𝑣⃗を求めよ．<br>1) 𝑣𝑣⃗ = 𝑧𝑧𝚤𝚤⃗ + 𝑥𝑥𝚥𝚥⃗ + 𝑦𝑦𝑘𝑘�⃗<br>2) 𝑣𝑣⃗ = 𝑥𝑥𝚤𝚤⃗ + 𝑦𝑦𝑧𝑧𝚥𝚥⃗ − (𝑥𝑥2 + 𝑧𝑧2)𝑘𝑘�⃗<br>3) 𝑣𝑣⃗ = �𝑥𝑥𝚤𝚤⃗ + 𝑦𝑦𝚥𝚥⃗ + 𝑧𝑧𝑘𝑘�⃗�(𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2)−3 2⁄</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>対数関数の偏微分公式：$\frac{\partial}{\partial x} \ln u = \frac{1}{u}\frac{\partial u}{\partial x}$。2次元線電荷の電位勾配演算に対応する。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. $x$ 成分の偏微分：<br>$$\frac{\partial f}{\partial x} = \frac{1}{2} \cdot \frac{1}{x^2+y^2} \cdot 2x = \frac{x}{x^2+y^2}$$<br>2. $y$ 成分の偏微分：<br>$$\frac{\partial f}{\partial y} = \frac{1}{2} \cdot \frac{1}{x^2+y^2} \cdot 2y = \frac{y}{x^2+y^2}$$<br>3. したがって勾配ベクトルは：<br>$$\nabla f = \frac{x\vec{i}+y\vec{j}}{x^2+y^2} = \frac{\vec{r}_{2D}}{r_{2D}^2}$$
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">2次元極座標での電位 $\phi \propto \ln r$ から電場を求める基礎。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-003</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-004">
+            <div class="print-header">
+                <div class="print-no">P-004</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝑟𝑟⃗ = 𝑥𝑥𝚤𝚤⃗ + 𝑦𝑦𝚥𝚥⃗ + 𝑧𝑧𝑘𝑘�⃗, 𝑟𝑟 = |𝑟𝑟⃗|とするとき，次を求めよ．<br>1) ∇��⃗𝑟𝑟<br>2) ∇��⃗1<br>𝑟𝑟<br>3) ∇��⃗𝑟𝑟𝑛𝑛 (n: 実数)<br>4) ∇��⃗ln 𝑟𝑟</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>発散の基本定義：$\nabla\cdot\vec{g} = \frac{\partial g_x}{\partial x} + \frac{\partial g_y}{\partial y} + \frac{\partial g_z}{\partial z}$。成分の有無に注意して計算する。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. 各成分の偏微分を独立に計算：<br>$$\frac{\partial g_x}{\partial x} = \frac{\partial}{\partial x}(y^2 e^z) = 0$$<br>$$\frac{\partial g_y}{\partial y} = 0, \quad \frac{\partial g_z}{\partial z} = \frac{\partial}{\partial z}(x^2 z^2) = 2x^2 z$$<br>2. 和をとると：<br>$$\nabla\cdot\vec{g} = 0 + 0 + 2x^2 z = 2x^2 z$$
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">$g_y=0$ のため第2項はゼロとなる。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-004</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-005">
+            <div class="print-header">
+                <div class="print-no">P-005</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>点(x, y, z)の位置ベクトルを𝑟𝑟⃗とし、𝑟𝑟 = |𝑟𝑟⃗|とするとき，以下を求めよ．<br>1) ∇��⃗∙ (𝑟𝑟⃗ 𝑟𝑟⁄ )<br>2) ∇��⃗∙ (𝑟𝑟⃗ 𝑟𝑟3⁄ )</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>直交座標における線形発散。単位体積からの物理量（電束など）の湧き出し密度を表す。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. 各成分の偏微分：<br>$$\frac{\partial g_x}{\partial x} = 2x, \quad \frac{\partial g_y}{\partial y} = 2y, \quad \frac{\partial g_z}{\partial z} = 2z$$<br>2. 足し合わせると：<br>$$\nabla\cdot\vec{g} = 2x + 2y + 2z = 2(x+y+z)$$
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">空間位置座標に比例した湧き出し強度の分布。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-005</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-006">
+            <div class="print-header">
+                <div class="print-no">P-006</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>φ = 𝑥𝑥𝑦𝑦𝑧𝑧, 𝐴𝐴⃗ = 𝑥𝑥2𝑦𝑦𝑧𝑧𝚤𝚤⃗ + 𝑥𝑥𝑦𝑦2𝑧𝑧𝚥𝚥⃗ − 𝑥𝑥𝑦𝑦𝑧𝑧2𝑘𝑘�⃗について，次を求めよ．<br>1) ∇��⃗𝜑𝜑<br>2) ∇��⃗∙ 𝐴𝐴⃗<br>3) ∆𝜑𝜑<br>4) ∇��⃗∙ �𝜑𝜑𝐴𝐴⃗�<br>5) 𝐴𝐴⃗ ∙ ∇��⃗𝜑𝜑</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第1回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第1回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-006</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-007">
+            <div class="print-header">
+                <div class="print-no">P-007</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝐴𝐴⃗ = 𝑥𝑥2𝑧𝑧𝚤𝚤⃗ + 𝑦𝑦𝑧𝑧2𝚥𝚥⃗ − 2𝑥𝑥𝑦𝑦𝑘𝑘�⃗, 𝐵𝐵�⃗= 2𝑦𝑦2𝚤𝚤⃗ − 3𝑦𝑦𝑧𝑧𝚥𝚥⃗ + 𝑧𝑧𝑥𝑥𝑘𝑘�⃗, φ = 𝑥𝑥2 + 2𝑦𝑦𝑧𝑧について、次を求めよ．<br>1) 𝐴𝐴⃗ × ∇��⃗𝜑𝜑<br>2) �∇��⃗× 𝐴𝐴⃗� × 𝐵𝐵�⃗<br>3) 𝐵𝐵�⃗∙ �∇��⃗× 𝐴𝐴⃗�</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第1回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第1回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-007</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-008">
+            <div class="print-header">
+                <div class="print-no">P-008</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>つるまき線 C: 𝑟𝑟⃗(𝑡𝑡) = 3 cos 𝑡𝑡 𝚤𝚤⃗ + 3 sin 𝑡𝑡 𝚥𝚥⃗ + 4𝑡𝑡𝑘𝑘�⃗, (0 ≤ 𝑡𝑡 ≤ 2𝜋𝜋)において<br>1) つるまき線 C の単位接線ベクトル𝑢𝑢�⃗を求めよ．<br>2) 0 ≤ 𝑡𝑡 ≤ 2πの部分の曲線の長さ s を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第1回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第1回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-008</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-009">
+            <div class="print-header">
+                <div class="print-no">P-009</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第1回 演習とレポート（ベクトル解析）</span>
+                    <h2 class="print-title">【第1回】問題 9</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>曲面 𝑟𝑟⃗ = 𝑎𝑎 sin 𝑢𝑢 cos 𝑣𝑣 𝚤𝚤⃗ + 𝑎𝑎 sin 𝑢𝑢 sin 𝑣𝑣 𝚥𝚥⃗ + 𝑎𝑎 cos 𝑢𝑢 𝑘𝑘�⃗ �0 ≤ 𝑢𝑢 ≤<br>𝜋𝜋<br>2 , 0 ≤ 𝑣𝑣 ≤ 2𝜋𝜋� (𝑎𝑎 > 0)  にお<br>いて，下記の問いに答えよ。<br>1) 曲面𝑟𝑟⃗は原点を中心とする半径 a の上半球面𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2 = 𝑎𝑎2, 𝑧𝑧 ≥ 0を表すことを確<br>かめよ．また、曲面を𝑧𝑧 = 𝑧𝑧(𝑥𝑥, 𝑦𝑦) の形に表せ．<br>2) 曲面𝑟𝑟⃗の単位法線ベクトルを求めよ．<br>3) 曲面𝑟𝑟⃗の面積を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第1回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第1回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-009</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-010">
+            <div class="print-header">
+                <div class="print-no">P-010</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>曲線 C が弧の長さ s によって次式で表されるとき，円弧の上でφ = 2𝑥𝑥𝑦𝑦2を積分せよ．<br>𝑟𝑟⃗(𝑠𝑠) = cos 𝑠𝑠 𝚤𝚤⃗ + sin 𝑠𝑠 𝚥𝚥⃗ �0 ≤ 𝑠𝑠 ≤ 𝜋𝜋<br>2�</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-010</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-011">
+            <div class="print-header">
+                <div class="print-no">P-011</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>C が xy 平面上の直線𝑦𝑦 = 2𝑥𝑥を A: (‒1, ‒2, 0)から B: (1, 2, 0)まで区切った線分であるとき，<br>∫ 𝑥𝑥𝑦𝑦3𝑑𝑑𝑠𝑠𝐶𝐶 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-011</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-012">
+            <div class="print-header">
+                <div class="print-no">P-012</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>スカラー場φ = 𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2について，下記を計算せよ．<br>1) P: (1, ‒1, 0)と B: (2, 1, 2)を結ぶ線分 PQ に沿った線積分∫ 𝜑𝜑𝑑𝑑𝑠𝑠PQ<br>2) 1) において、原点 O を経由した折れ線 PO, OQ に沿った線積分∫ 𝜑𝜑𝑑𝑑𝑠𝑠PQ</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-012</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-013">
+            <div class="print-header">
+                <div class="print-no">P-013</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>スカラー場φ = 2𝑥𝑥𝑧𝑧について，曲線 C: 𝑟𝑟⃗(𝑡𝑡) = cos 𝑡𝑡 𝚤𝚤⃗ + sin 𝑡𝑡 𝚥𝚥⃗ + 𝑡𝑡𝑘𝑘�⃗, (0 ≤ 𝑡𝑡 ≤ 𝜋𝜋)に沿った線<br>積分∫ 𝜑𝜑𝑑𝑑𝑠𝑠𝐶𝐶 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-013</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-014">
+            <div class="print-header">
+                <div class="print-no">P-014</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>スカラー場φ = 𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2について，曲線 C: 𝑟𝑟⃗ = 4 cos 𝑡𝑡 𝚤𝚤⃗ + 4 sin 𝑡𝑡 𝚥𝚥⃗ + 3𝑡𝑡𝑘𝑘�⃗ (0 ≤ 𝑡𝑡 ≤ 𝜋𝜋)<br>に沿った次の線積分を求めよ．<br>3) ∫ 𝜑𝜑𝑑𝑑𝑡𝑡𝐶𝐶<br>4) ∫ 𝜑𝜑𝑑𝑑𝑠𝑠𝐶𝐶</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-014</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-015">
+            <div class="print-header">
+                <div class="print-no">P-015</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>スカラー場𝜑𝜑 = 4𝑥𝑥𝑦𝑦について，次の C1, C2 に沿った線積分を求めよ．<br>1) C1: 𝑟𝑟⃗(𝑡𝑡) = (𝑡𝑡2, 𝑡𝑡, 1)  (0 ≤ 𝑡𝑡 ≤ 1)<br>2) C2: (0, 0, 1)と(1, 1, 1)を結ぶ線分</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-015</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-016">
+            <div class="print-header">
+                <div class="print-no">P-016</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝐹𝐹⃗ = 2𝑥𝑥𝚤𝚤⃗ + �𝑦𝑦𝚥𝚥⃗ + 2𝑧𝑧𝑘𝑘�⃗ , 曲線 C: 𝑟𝑟⃗(𝑡𝑡) = 𝑡𝑡𝚤𝚤⃗ + 𝑡𝑡2𝚥𝚥⃗ + (1 − 𝑡𝑡)𝑘𝑘�⃗, (0 ≤ 𝑡𝑡 ≤ 1) のとき，線積分<br>∫ 𝐹𝐹⃗ ∙ 𝑑𝑑𝑟𝑟⃗𝐶𝐶 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-016</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-017">
+            <div class="print-header">
+                <div class="print-no">P-017</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>次のベクトル場𝐹𝐹⃗における曲線 C に沿う線積分∫ 𝐹𝐹⃗ ∙ 𝑑𝑑𝑟𝑟⃗𝑐𝑐 を求めよ<br>𝐹𝐹⃗ = −𝑦𝑦𝚤𝚤⃗ + 𝑥𝑥𝚥𝚥⃗ + 𝑧𝑧(𝑥𝑥2 + 𝑦𝑦2)𝑘𝑘�⃗<br>𝐶𝐶: 𝑟𝑟⃗ = 𝑎𝑎 cos 𝑡𝑡 𝚤𝚤⃗ + 𝑎𝑎 sin 𝑡𝑡 𝚥𝚥⃗ + 𝑏𝑏𝑡𝑡𝑘𝑘�⃗ (0 ≤ 𝑡𝑡 ≤ 2𝜋𝜋)</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-017</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-018">
+            <div class="print-header">
+                <div class="print-no">P-018</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 9</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝐹𝐹⃗ = (2𝑥𝑥 − 𝑦𝑦 − 𝑧𝑧)𝚤𝚤⃗ + (𝑥𝑥 + 𝑦𝑦 − 𝑧𝑧2)𝚥𝚥⃗ + (3𝑥𝑥 − 2𝑦𝑦 + 4)𝑘𝑘�⃗とし，C を xy 平面上の原点を中心と<br>する半径 3 の左回りの円とするとき，∫ 𝐹𝐹⃗ ∙ 𝑑𝑑𝑟𝑟⃗𝑐𝑐 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-018</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-019">
+            <div class="print-header">
+                <div class="print-no">P-019</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第2回 演習とレポート（線積分・仕事）</span>
+                    <h2 class="print-title">【第2回】問題 10</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝐹𝐹⃗ = 𝑥𝑥𝚤𝚤⃗ + 2(𝑥𝑥 + 𝑧𝑧)𝚥𝚥⃗ + 𝑦𝑦𝑘𝑘�⃗で曲線 C が原点 O と点 P(1, 2, 2)を結ぶ線分のとき，次の線積分<br>を求めよ．<br>1) ∫ 𝐹𝐹⃗<br>𝑐𝑐 𝑑𝑑𝑠𝑠<br>2) ∫ 𝐹𝐹⃗<br>𝑐𝑐 ∙ 𝑑𝑑𝑟𝑟⃗<br>3) ∫ 𝐹𝐹⃗<br>𝑐𝑐 × 𝑑𝑑𝑟𝑟⃗</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第2回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第2回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-019</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-020">
+            <div class="print-header">
+                <div class="print-no">P-020</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>平面 S: 2𝑥𝑥 + 2𝑦𝑦 + 𝑧𝑧 = 4 (𝑥𝑥 ≥ 0, 𝑦𝑦 ≥ 0, 𝑧𝑧 ≥ 0)上のスカラー場𝜑𝜑(𝑥𝑥, 𝑦𝑦, 𝑧𝑧) = 3𝑥𝑥 + 2𝑦𝑦 + 𝑧𝑧の面<br>積分∬ 𝜑𝜑𝑆𝑆 𝑑𝑑𝑑𝑑を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-020</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-021">
+            <div class="print-header">
+                <div class="print-no">P-021</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>曲面 S を 𝑧𝑧 = 2 − 𝑥𝑥2 − 𝑦𝑦2 (𝑥𝑥 ≥ 0, 𝑦𝑦 ≥ 0, 𝑧𝑧 ≥ 0)とするとき，面積分∬ (𝑥𝑥2 + 𝑦𝑦2)𝑆𝑆 𝑑𝑑𝑑𝑑を求<br>めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-021</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-022">
+            <div class="print-header">
+                <div class="print-no">P-022</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>曲面  𝑟𝑟⃗ = sin 𝑢𝑢 cos 𝑣𝑣 𝚤𝚤⃗ + sin 𝑢𝑢 sin 𝑣𝑣 𝚥𝚥⃗ + cos 𝑢𝑢 𝑘𝑘�⃗ �0 ≤ 𝑢𝑢 ≤<br>𝜋𝜋<br>2 , 0 ≤ 𝑣𝑣 ≤ 2𝜋𝜋� 上のスカラー場<br>φ(𝑥𝑥, 𝑦𝑦, 𝑧𝑧) = 𝑥𝑥 + 2𝑧𝑧の面積分∬ 𝜑𝜑𝑆𝑆 𝑑𝑑𝑑𝑑を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-022</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-023">
+            <div class="print-header">
+                <div class="print-no">P-023</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝑓𝑓(𝑥𝑥, 𝑦𝑦, 𝑧𝑧) = 𝑥𝑥 + 2𝑦𝑦 + 𝑧𝑧で平面 S が2𝑥𝑥 + 2𝑦𝑦 − 𝑧𝑧 = 2 (𝑥𝑥 ≥ 0, 𝑦𝑦 ≥ 0, 𝑧𝑧 ≤ 0)のとき，面積分<br>∬ 𝑓𝑓𝑆𝑆 𝑑𝑑𝑑𝑑⃗を求めよ (ただし S の単位法線ベクトル𝑛𝑛�⃗の x 成分は正とする) ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-023</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-024">
+            <div class="print-header">
+                <div class="print-no">P-024</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝐹𝐹⃗ = 𝑥𝑥𝚤𝚤⃗ + 2𝑦𝑦𝚥𝚥⃗ + 𝑧𝑧𝑘𝑘�⃗であり，平面 S が2𝑥𝑥 + 2𝑦𝑦 − 𝑧𝑧 = 2 (𝑥𝑥 ≥ 0, 𝑦𝑦 ≥ 0, 𝑧𝑧 ≤ 0)で与えられてい<br>るとき， 次の面積分を求めよ． （ただし，S の単位法線ベクトル𝑛𝑛�⃗の x 成分は正とする． ）<br>1) ∬ 𝐹𝐹⃗𝑑𝑑𝑑𝑑𝑆𝑆<br>2) ∬ 𝐹𝐹⃗ ∙ 𝑛𝑛�⃗𝑑𝑑𝑑𝑑𝑆𝑆<br>1) ∬ 𝐹𝐹⃗ × 𝑛𝑛�⃗𝑑𝑑𝑑𝑑𝑆𝑆</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-024</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-025">
+            <div class="print-header">
+                <div class="print-no">P-025</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>平面2𝑥𝑥 + 2𝑦𝑦 + 𝑧𝑧 = 2が座標軸と交わる点 A, B, Cを頂点とする三角形の領域を S とする．<br>S の単位法線ベクトル 𝑛𝑛�⃗を原点のある側から他の側に向かってとるとき， 𝐹𝐹⃗(𝑥𝑥, 𝑦𝑦, 𝑧𝑧) =<br>𝑥𝑥2𝚤𝚤⃗ − 𝑥𝑥𝚥𝚥⃗ + 𝑧𝑧𝑘𝑘�⃗の S 上の面積分∫ 𝐹𝐹⃗ ∙ 𝑑𝑑𝑑𝑑⃗𝑆𝑆 を求めよ．．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-025</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-026">
+            <div class="print-header">
+                <div class="print-no">P-026</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝐹𝐹⃗ = 4𝑥𝑥𝚤𝚤⃗ + 4𝑦𝑦𝚥𝚥⃗ − 2𝑧𝑧𝑘𝑘�⃗とし，S を 𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2 = 4の xy 平面より上の半球面とするとき，<br>∫ 𝐹𝐹⃗ ∙ 𝑑𝑑𝑑𝑑⃗𝑆𝑆 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-026</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-027">
+            <div class="print-header">
+                <div class="print-no">P-027</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第3回 演習とレポート（面積分・フラックス・定理）</span>
+                    <h2 class="print-title">【第3回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝐹𝐹⃗ = 𝑦𝑦𝚤𝚤⃗ − 𝑥𝑥𝚥𝚥⃗ + 𝑧𝑧𝑘𝑘�⃗とし， S を𝑥𝑥2 + 𝑦𝑦2 + 𝑧𝑧2 = 4の xy 平面より上の半球面とするとき，<br>∬ �∇��⃗× 𝐹𝐹⃗� ∙ 𝑛𝑛�⃗𝑑𝑑𝑑𝑑𝑆𝑆 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第3回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第3回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-027</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-028">
+            <div class="print-header">
+                <div class="print-no">P-028</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>次の変位において力𝑝𝑝⃗ = 4𝑥𝑥𝑥𝑥𝚤𝚤⃗ − 8𝑥𝑥𝚥𝚥⃗ + 2𝑘𝑘�⃗によってなされた仕事を求めよ．<br>1) 直線𝑥𝑥 = 2𝑥𝑥, 𝑧𝑧 = 0に沿って(3, 6, 0)から(0, 0, 0)まで<br>2) 直線 y= 2𝑥𝑥, 𝑧𝑧 = 2𝑥𝑥に沿って(0, 0, 0)から(3, 6, 6)まで</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-028</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-029">
+            <div class="print-header">
+                <div class="print-no">P-029</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝑥𝑥2 + 𝑧𝑧2 = 4の表面で，0 ≤ 𝑥𝑥 ≤ 3, 𝑥𝑥 ≥ 0, 𝑧𝑧 ≥ 0なる部分を S とするとき∫ �3𝑥𝑥𝚤𝚤⃗ + 4𝑧𝑧𝚥𝚥⃗ +𝑆𝑆<br>2𝑥𝑥𝑘𝑘�⃗� ∙ 𝑛𝑛�⃗𝑑𝑑𝑑𝑑を求めよ． （ただし𝑛𝑛�⃗は曲面 S の単位法線ベクトルであり，その z 成分は 0 以<br>上である） ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-029</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-030">
+            <div class="print-header">
+                <div class="print-no">P-030</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>原点を中心とする半径 a の球面を S とする．ベクトル場𝐴𝐴⃗ = 𝑥𝑥3𝚤𝚤⃗ + 𝑥𝑥3𝚥𝚥⃗ + 𝑧𝑧3𝑘𝑘�⃗に対し，<br>∫ 𝐴𝐴⃗ ∙ 𝑑𝑑𝑠𝑠⃗𝑆𝑆 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-030</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-031">
+            <div class="print-header">
+                <div class="print-no">P-031</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝐹𝐹⃗ = 4𝑥𝑥𝚤𝚤⃗ + 4𝑥𝑥𝚥𝚥⃗ − 2𝑧𝑧𝑘𝑘�⃗とし，S を 𝑥𝑥2 + 𝑥𝑥2 + 𝑧𝑧2 = 4の xy 平面より上の半球面とするとき，<br>ガウスの発散定理を用いて∫ 𝐹𝐹⃗ ∙ 𝑑𝑑𝑠𝑠⃗𝑆𝑆 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-031</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-032">
+            <div class="print-header">
+                <div class="print-no">P-032</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>空間ベクトル場 𝐴𝐴⃗ = 2𝑥𝑥𝑧𝑧𝚤𝚤⃗ + 2𝑥𝑥𝑧𝑧𝚥𝚥⃗ + 0𝑘𝑘�⃗に 2 つの曲面 S1: 𝑥𝑥2 + 𝑥𝑥2 + 𝑧𝑧2 = 4 (𝑧𝑧 ≥ 0)と S2:<br>𝑥𝑥2 + 𝑥𝑥2 ≤ 4 (𝑧𝑧 = 0)でできる閉曲面 S が与えられている． このとき面積分∫ 𝐴𝐴⃗ ∙ 𝑛𝑛�⃗𝑑𝑑𝑑𝑑𝑆𝑆 を求<br>めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-032</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-033">
+            <div class="print-header">
+                <div class="print-no">P-033</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>xy 平面上の円 C: 𝑥𝑥2 + 𝑥𝑥2 = 4に沿っての 𝐴𝐴⃗ = (𝑥𝑥2 + 𝑥𝑥)𝚤𝚤⃗ + (𝑥𝑥2 + 2𝑧𝑧)𝚥𝚥⃗ + 2𝑥𝑥𝑘𝑘�⃗の線積分<br>∫ 𝐴𝐴⃗ ∙ 𝑑𝑑𝑟𝑟⃗𝐶𝐶 をストークスの定理を用いて求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-033</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-034">
+            <div class="print-header">
+                <div class="print-no">P-034</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>3 点(1, 0, 0), (0, 1, 0), (0, 0, 1) を頂点とする三角形の周を C とするとき，次の線積分を求<br>めよ．<br>𝐴𝐴⃗ = (𝑥𝑥 + 𝑧𝑧)𝚤𝚤⃗ + (𝑧𝑧 + 𝑥𝑥)𝚥𝚥⃗ + (𝑥𝑥 + 𝑥𝑥)𝑘𝑘�⃗ に対し，∫ 𝐴𝐴⃗ ∙ 𝑑𝑑𝑟𝑟⃗𝐶𝐶</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-034</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-035">
+            <div class="print-header">
+                <div class="print-no">P-035</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>ベクトル場𝐴𝐴⃗ = (𝑥𝑥 − 3𝑥𝑥)𝚤𝚤⃗ + 𝑥𝑥𝑧𝑧2𝚥𝚥⃗ + 𝑥𝑥2𝑧𝑧𝑘𝑘�⃗に， 曲面S: 𝑥𝑥2 + 𝑥𝑥2 + 𝑧𝑧2 = 9 (𝑧𝑧 ≥ 0)と閉曲線 C:<br>𝑥𝑥2 + 𝑥𝑥2 = 9 (𝑧𝑧 = 0)がある． このとき， ストークスの定理∫ ∇��⃗× 𝐴𝐴⃗ ∙ 𝑛𝑛�⃗𝑑𝑑𝑑𝑑 = ∫ 𝐴𝐴⃗ ∙ 𝑑𝑑𝑟𝑟⃗𝐶𝐶𝑆𝑆  が成<br>り立つことを確かめよ．ただし単位法線ベクトル𝑛𝑛�⃗を S の正の側にとるものとする．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-035</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-036">
+            <div class="print-header">
+                <div class="print-no">P-036</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 9</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>𝐴𝐴⃗ = 𝑥𝑥𝚤𝚤⃗ − 𝑥𝑥𝚥𝚥⃗ + 𝑧𝑧𝑘𝑘�⃗とし，S を𝑥𝑥2 + 𝑥𝑥2 + 𝑧𝑧2 = 4 の xy 平面より上の半球面とする．面積分<br>∫ 𝐴𝐴⃗ × 𝑑𝑑𝑠𝑠⃗𝑆𝑆 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-036</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-037">
+            <div class="print-header">
+                <div class="print-no">P-037</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第4回 演習とレポート（線積分・面積分応用）</span>
+                    <h2 class="print-title">【第4回】問題 10</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>9 をガウスの発散定理を用いて求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第4回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第4回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-037</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-038">
+            <div class="print-header">
+                <div class="print-no">P-038</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>地球がもつ電荷は全体として−4.6×105 C 程度と考えられているが，この電荷の量はどれ<br>ほどの電子数に相当するか．また，その電子数は何 ml の水に含まれている電子数と同<br>じか．ただし，水の分子量は 18，アボガドロ定数は NA = 6.0×1023 mol−1 である．また，<br>1 個の水の分子に含まれる電子数は 10 個である．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-038</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-039">
+            <div class="print-header">
+                <div class="print-no">P-039</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>真空中で 1.0×10−15 m の距離はなれた 2 つの陽子の間にはたらくクーロン力および万有<br>引力の大きさをそれぞれ求め， 比較せよ． ただし， 陽子の質量はmp = 1.7×10−27 kg， 万有<br>引力定数は G = 6.7×10−11 N·m2·kg−2 である．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>クーロンの法則の基本形：$F = \frac{1}{4\pi\varepsilon_0} \frac{|q_1 q_2|}{r^2}$。地球の総電荷量とその場への影響評価。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. 地球の総電荷 $Q = -4.6 \times 10^5 \,\mathrm{C}$。<br>2. 地球半径 $R \approx 6.4 \times 10^6 \,\mathrm{m}$ とおいた地表での電場：<br>$$E = \frac{|Q|}{4\pi\varepsilon_0 R^2} \approx \frac{(9.0 \times 10^9) \times (4.6 \times 10^5)}{(6.4 \times 10^6)^2} \approx 100 \,\mathrm{V/m}$$<br>3. 地表付近の観測電場（約 100〜150 V/m 下向き）と整合する。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">実測の地球電場と極めてよく一致する物理量計算。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-039</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-040">
+            <div class="print-header">
+                <div class="print-no">P-040</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>真空中で 2 m の距離はなれて A 点に+5.0×10−3 C, B 点に−5.0×10−3 C の電荷をもつ点電荷<br>がある．さらに，AB を底辺にして，A, B から共に 1.5 m 離れた二等辺三角形の頂点 C<br>に点電荷があり，この電荷は A 点，B 点の電荷より力を受けて，AB に平行で A から B<br>の方向に 8.0×105 N の力を受けている．<br>1) A 点，B 点の電荷の間に働く力はいくらか．<br>2) C 点の電荷はいくらか．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-040</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-041">
+            <div class="print-header">
+                <div class="print-no">P-041</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>水素原子では電子が陽子の周りを回転しているという． 電子の運動を半径5.3×10−11 m の<br>円運動とするとき，陽子がその軌道上につくる電場の強さを求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-041</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-042">
+            <div class="print-header">
+                <div class="print-no">P-042</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に長い直線上に一様に分布した電荷のつくる電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-042</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-043">
+            <div class="print-header">
+                <div class="print-no">P-043</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>つぎのおのおのの場合について，生じる電場を求めよ．<br>1) 半径 R の円輪の上に電荷が一様に分布しているとき，円輪の中心を通り輪の面に垂<br>直な直線上の電場．(線密度を λ とする)<br>2) 円輪が電荷 q をもっているとき，電場はどのように表されるか．<br>3) 半径 R の円板上に電荷が一様に分布しているとき，円板の中心を通り円板に垂直な<br>直線上の電場．(面密度を σ とする)<br>4) 電荷 Q が一様に円板上に分布する場合，電場はどのように表されるか．<br>5) 無限に広い平面状に電荷が一様に分布しているとき， 空間の任意の点に生じる電場．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>無限長直線電荷が作る電場の厳密導出（対称性による微小要素積分）。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. 微小電荷 $dq = \lambda dx$ が点 $P(0, r, 0)$ に作る電場成分：<br>$$dE_y = \frac{1}{4\pi\varepsilon_0} \frac{\lambda dx}{x^2+r^2} \cos\theta$$<br>2. 変数変換 $x = r \tan\theta \implies dx = \frac{r}{\cos^2\theta} d\theta$：<br>$$E_y = \frac{\lambda}{4\pi\varepsilon_0 r} \int_{-\pi/2}^{\pi/2} \cos\theta d\theta = \frac{\lambda}{2\pi\varepsilon_0 r}$$<br>3. ベクトル表示：<br>$$\vec{E} = \frac{\lambda}{2\pi\varepsilon_0 r} \vec{e}_r$$
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">ガウスの法則を用いても導出できる重要公式。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-043</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-044">
+            <div class="print-header">
+                <div class="print-no">P-044</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>問題 5.1)で得た結果を用いて，半径 R の球面上に電荷が一様に分布(面密度σ)している<br>とき，球の内外の点生じる電場を求めよ．また，球面上の点ではどうか．<br>[ヒント]球の中心を原点とし，z 軸上の点 P(0, 0, r)に生じる電場 E(r)を求めればよい． 電<br>場を求めたい点と中心を結ぶ直線に対し垂直な方向に， 球面を細く輪切りにして分割す<br>る．また， θを設定し 途中の計算で 、(𝑅𝑅2 + 𝑟𝑟2 − 2𝑅𝑅𝑟𝑟 cos 𝜃𝜃)1 2⁄ の項が現れた場合、 𝑡𝑡 =<br>(𝑅𝑅2 + 𝑟𝑟2 − 2𝑅𝑅𝑟𝑟 cos 𝜃𝜃)1 2⁄ とおくと，計算が楽になるかも．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-044</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-045">
+            <div class="print-header">
+                <div class="print-no">P-045</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第5回 演習とレポート（クーロンの法則・電場）</span>
+                    <h2 class="print-title">【第5回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球全体にわたって電荷が一様に分布(面密度 ρ)しているとき，生じる電場を求<br>めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第5回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第5回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-045</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-046">
+            <div class="print-header">
+                <div class="print-no">P-046</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>正負の点電荷+2q および–q が a だけ離れた 2 点 A, B にそれぞれおかれている．<br>1) これらの点電荷による電場の強さが 0 になる点 P の位置を求めよ．<br>2) +2q の点電荷から出た電気力線のうち，–q の点電荷に入る電気力線はどれだけか，<br>その割合を求めよ．<br>3) 右図のように， 直線AB と角αをなして+2q の<br>点電荷から出た電気力線が，一方の点電荷–q<br>に入る AB と角βをなすとき，αとβの間にはど<br>のような関係が成り立つか． さらに，α<π/2な<br>らば，電気力線はかならず–q の点電荷に入る<br>ことを示せ．<br>ヒント 1：AB とα以下の角をなして+2q からでる電気力線の数 NA は，AB とβ以上<br>の角をなして–q に入る電気力線の数 NB<br>ヒント 2：半頂角θの円錐の頂点から底面を見込む立体角ωは，𝜔𝜔 = 2π(1 − cos 𝜃𝜃)<br>となる．<br>4) 以上のことを参考にして，生じる電場の大体の様子を電気力線で示せ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-046</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-047">
+            <div class="print-header">
+                <div class="print-no">P-047</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に長い直線上に一様に分布した電荷(線密度 λ)のつくる電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-047</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-048">
+            <div class="print-header">
+                <div class="print-no">P-048</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>つぎのおのおのの場合について，ガウスの法則を用いて，生じる電場を求めよ．<br>1) 無限に広い平面上に電荷が一様な面密度σで分布しているとき．<br>2) 半径 R の無限に長い円柱の側面上に電荷が一様な面密度σで分布しているとき．<br>3) 半径 R の無限に長い円柱の内部に電荷が一様な密度ρで分布しているとき．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-048</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-049">
+            <div class="print-header">
+                <div class="print-no">P-049</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R1, R2 の無限に長い 2 つの円筒が，軸を一致させておかれている．両円筒の側面に<br>電荷がそれぞれ密度σ1, σ2 で一様に分布しているとき，生じる電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-049</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-050">
+            <div class="print-header">
+                <div class="print-no">P-050</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球面上に一様に分布する電荷 Q による電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-050</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-051">
+            <div class="print-header">
+                <div class="print-no">P-051</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球内に一様な密度ρで分布する電荷がつくる電場を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-051</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-052">
+            <div class="print-header">
+                <div class="print-no">P-052</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第6回 演習とレポート（ガウスの法則・電場）</span>
+                    <h2 class="print-title">【第6回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>正電荷+Q が一様に分布した半径 R の球の中に，質量 m，負電荷–q の質点を静かにおく<br>と，質点は単振動の運動を開始することを示し，その周期を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第6回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第6回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-052</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-053">
+            <div class="print-header">
+                <div class="print-no">P-053</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>1 V の電位差のある 2 点間で電子が加速されるとき，電子の得るエネルギーを 1 電子ボ<br>ルト(eV)という．1 eV は何 J に相当するか．また，2 個の電子を無限遠から運んで互い<br>に近づけさせるのに要した仕事が 1 eV であるとき，電子の距離はいくらか．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-053</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-054">
+            <div class="print-header">
+                <div class="print-no">P-054</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に長い直線上に一様に分布した電荷(線密度 λ)による静電ポテンシャルを求めよ．<br>(第 10 回問題 2 の結果を用いてよい)</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-054</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-055">
+            <div class="print-header">
+                <div class="print-no">P-055</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球面上に一様な面密度σで分布した電荷による電位を求めよ．<br>(第 10 回問題 5 の結果を用いてよい)</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-055</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-056">
+            <div class="print-header">
+                <div class="print-no">P-056</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 R の球全体にわたって一様な密度ρで分布した電荷による電位を求めよ．<br>(第 10 回問題 6 の結果を用いてよい)</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-056</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-057">
+            <div class="print-header">
+                <div class="print-no">P-057</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>中心 O を共有する，半径 R1，R2 (R1 < R2)の 2 つの導体球殻があり，厚さは無視できる．<br>外側の球殻(半径 R2)を接地し，内側の球殻(半径 R1)の電位を V とするように電池をつな<br>ぐ．外側および内側の球殻に蓄積している電荷の量を求めよ．(内面を q1，外面を q2 と<br>する)</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-057</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-058">
+            <div class="print-header">
+                <div class="print-no">P-058</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第7回 演習とレポート（静電ポテンシャル・電位）</span>
+                    <h2 class="print-title">【第7回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>下記の問いに答えよ．<br>1) +q と–q の２つの電荷が l だけ離しておいてある． このとき両電荷の中点 O から r だ<br>け離れた点 P における電位を求めよ．ただし，OP と両電荷を結ぶ軸とのなす角をθ<br>とする．<br>2) r が l にくらべてはるかに大きいときの電位は近似的にどうか．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第7回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第7回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-058</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-059">
+            <div class="print-header">
+                <div class="print-no">P-059</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に広い平板状導体の表面に一様な面密度σで電荷が分布している．<br>1) この平板状導体から距離 x にある点 P における電場の強さを求めよ．<br>2) 点 P における電位を求めよ．ただし，導体面上の電位を V0 とする．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-059</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-060">
+            <div class="print-header">
+                <div class="print-no">P-060</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>半径 2 cm，4 cm の 2 つの金属を遠く離して針金で接続した．今+6.0×10–4 C の電荷を一<br>方の金属球に与えた．それぞれの球の表面電荷と表面電場を求めよ．<br>(𝜀𝜀0 = 8.9 × 10−12 F/m)</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>無限大導体平面の直外電場と電位。ガウスの法則 $E = \sigma / \varepsilon_0$ を適用。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. 導体表面の直外電場：導体内部の電場が 0 であることからガウス面をとると<br>$$E = \frac{\sigma}{\varepsilon_0}$$<br>2. 電位の定義 $V(x) - V_0 = -\int_0^x E dx$：<br>$$V(x) = V_0 - \frac{\sigma}{\varepsilon_0} x$$
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">一様電場内での直線型電位傾斜。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-060</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-061">
+            <div class="print-header">
+                <div class="print-no">P-061</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>内半径 a，外半径 b の同心の導体の球殻がある．いまその中心に電荷+Q の点電荷を置<br>いたとき，導体表面に現れる電荷密度と電位の分布を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-061</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-062">
+            <div class="print-header">
+                <div class="print-no">P-062</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>広い平らな導体の表面から距離 a の位置に点電荷 q が置かれている．<br>1) このとき生じる電場，および導体表面に誘起される電荷密度を求めよ．<br>2) 点電荷を導体表面からの距離 a の位置から無限遠まで引き離すために要する仕事を<br>求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-062</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-063">
+            <div class="print-header">
+                <div class="print-no">P-063</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>面積 S，間隔 d の平行平板コンデンサーを充電し，±q の電荷を与えた．ただし，コンデ<br>ンサーの板の縁まで電場が一様とする．<br>1) 電気容量 C を求めよ．<br>2) コンデンサーに蓄えられるエネルギーU を求めよ．<br>3) 電池をはずして極板の電荷を一定に保ったまま， 極板の間隔をわずか∆d だけ変える<br>と，コンデンサーに蓄えられているエネルギーはどれだけ変化するか．<br>4) 3)で求めたエネルギー変化から，両極板の引き合う力の大きさ F を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>鏡像法（Method of Image Charges）：接地導体平面 $z=0$ に対し $z=-a$ に $-q$ の鏡像電荷を設置する。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. 空間 $z>0$ での電位：<br>$$\phi(x,y,z) = \frac{q}{4\pi\varepsilon_0} \left[ \frac{1}{\sqrt{x^2+y^2+(z-a)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+a)^2}} \right]$$<br>2. 導体表面 $z=0$ での誘起表面電荷密度 $\sigma$：<br>$$\sigma(x,y) = -\varepsilon_0 \left.\frac{\partial \phi}{\partial z}\right|_{z=0} = -\frac{q a}{2\pi (x^2+y^2+a^2)^{3/2}}$$<br>3. 点電荷を無限遠まで引き離す仕事 $W$：<br>$$W = \int_a^\infty \frac{q^2}{4\pi\varepsilon_0 (2z)^2} dz = \frac{q^2}{16\pi\varepsilon_0 a}$$
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">引力は距離の2乗に反比例し、仕事は静電自己エネルギーの $1/2$ となる。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-063</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-064">
+            <div class="print-header">
+                <div class="print-no">P-064</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>面積 A の 3 枚の導体板 a, b, c を右図のように間隔，d1, d2<br>をおいて平行に並べた． 導体板a, c を導線で接続し， 導体<br>板 b に電荷 Q を与えたとき，導体板の間に生じる電場を<br>求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-064</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-065">
+            <div class="print-header">
+                <div class="print-no">P-065</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 7</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>以下の問いに答えよ．<br>1) 内球の半径 a，外球の半径 b の同心導体球殻コンデンサーの電気容量 C を求めよ．<br>2) 軸方向に十分長い半径 a, b (a < b)の同軸円筒コンデンサーの単位長さあたりの電気<br>容量 C を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-065</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-066">
+            <div class="print-header">
+                <div class="print-no">P-066</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第8回 演習とレポート（導体・鏡像法・コンデンサー）</span>
+                    <h2 class="print-title">【第8回】問題 8</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>原点 O を中心とする半径 R の導体球の表面に面密度σの電荷が一様に分布している． こ<br>のとき，この導体球のもつ静電エネルギーUe を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第8回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第8回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-066</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-067">
+            <div class="print-header">
+                <div class="print-no">P-067</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>雷雲中の電荷 1.2 C が 1.0 µs で放電した．雷電流はいくらになるか。</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-067</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-068">
+            <div class="print-header">
+                <div class="print-no">P-068</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>切り口の面積 1 mm2，長さ 60 cm の針金の両端に 3 V の電圧をかけたときの 1 A の電流<br>が流れた．1 cm3 あたりの自由電子の数を 5.8×1022 個，電子の電荷を‒1.6×10‒19 C として<br>次の量を計算せよ．<br>1) この針金の抵抗率．<br>2) 電子の平均の速さ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-068</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-069">
+            <div class="print-header">
+                <div class="print-no">P-069</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>右図のように， 電気伝導度の異なる2 種類の金属が平面で接し<br>ている． 境界面に垂直に密度𝚤𝚤⃗の定常電流が流れているとき， 境<br>界面に電荷が生じていることを示し、その面密度を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-069</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-070">
+            <div class="print-header">
+                <div class="print-no">P-070</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>内外半径 a, b 長さ𝑙𝑙 (𝑙𝑙 ≫ 𝑎𝑎, 𝑏𝑏)の十分に長い同軸円筒導体電極間の電気抵抗 R を求めよ．<br>ただし，電極間の媒質の導電率をσとする．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-070</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-071">
+            <div class="print-header">
+                <div class="print-no">P-071</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>起電力𝑉𝑉0 = 3𝑉𝑉，内部抵抗𝑅𝑅0 = 0.5Ωの電池の両極が，長さ 1 m，断面積 1 mm2 の銅線に<br>接続されているとき， この銅線に発生する単位時間当りのジュール熱を求めよ． ただし<br>銅線の低効率は 1.69×10‒8 Ω·m とする．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-071</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-072">
+            <div class="print-header">
+                <div class="print-no">P-072</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第9回 演習とレポート（オームの法則・電流・抵抗）</span>
+                    <h2 class="print-title">【第9回】問題 6</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>金属導線内を流れる電流の担い手は， どの電子にも属さないで自由に動き回ることので<br>きる伝導電子である．これらの電子は原子との衝突をくりかえしながら金属導線内をさ<br>まざまな向きに運動するので，電子全体について平均した速度は０になる．しかし，金<br>属導線に電場𝐸𝐸�⃗がかかると，ここの電子に−e𝐸𝐸�⃗の力が働くので平均の速度は 0 にはなら<br>ず，𝐸𝐸�⃗と逆向きに一定の平均速度𝑣𝑣�⃗の電子の流れが生じる． ．<br>1) 質量 m の伝導電子は電場𝐸𝐸�⃗によって加速度𝑎𝑎⃗を受けるが、 電子が原子に衝突するたび<br>に，それ等加速度運度は中断されるとする．このときの加速度𝑎𝑎⃗を求めよ．<br>2) 伝導電子が金属導線内の一つの原子に衝突してから次の原子に衝突するまでの経過<br>時間を平均したものをτ(平均自由時間と呼ばれる)とし， 電子が時間2τごとに原子に<br>衝突し，速度が 0 に戻ったとすると，2τの時間にわたって平均した速度𝑣𝑣�⃗を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第9回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第9回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-072</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-073">
+            <div class="print-header">
+                <div class="print-no">P-073</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第11回 演習とレポート（コンデンサー・静電容量）</span>
+                    <h2 class="print-title">【第11回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>無限に広い平行板コンデンサーによって，電場 E0 が真空中につくられている。この空<br>間内に，誘電率 ε の誘電体平板を入れることを考える。この誘電体は，平行板コンデン<br>サーに平行で，同じく無限に広いものとする。真空誘電率 ε0 をとして以下の問いに答え<br>よ。<br>(1) 真空部分の電場の大きさはいくらか。<br>(2) 誘電体内の電場の大きさ E はいくらか。<br>(3) コンデンサーに蓄えられている電荷の電荷面密度 σ を ε0，E0 を用いて表せ。 またε，<br>E を用いて表せ。</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第11回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第11回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-073</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-074">
+            <div class="print-header">
+                <div class="print-no">P-074</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第11回 演習とレポート（コンデンサー・静電容量）</span>
+                    <h2 class="print-title">【第11回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>下図のように極板問隔 d の平行板コンテンサー間を誘電体で満たす．ただし，この誘電<br>体の誘電率εは， 距離x の関数としてε(x)と表せ，ε(x)と x の関係はグラフのようになって<br>いるとする．<br>1) 上，下極板をそれぞれ＋σ， －σびの電荷面密度で帯電させたとき，x の位置(0 < x <<br>d)における電界 E(x)を求めよ．<br>2) (1)のとき，上の極板に対する下の極板の電位 V を 𝜎𝜎, 𝑑𝑑, 𝜀𝜀1, 𝜀𝜀2 を用いて表せ．<br>3) 誘電体で満たされたこのコンテンサーの静電容量 C を  𝑑𝑑, 𝜀𝜀1, 𝜀𝜀2および極板面積 S を<br>用いて表せ。</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第11回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第11回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-074</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-075">
+            <div class="print-header">
+                <div class="print-no">P-075</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第11回 演習とレポート（コンデンサー・静電容量）</span>
+                    <h2 class="print-title">【第11回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>静電容量 C0（極板間隔 d, 極板面積 S)の平行板コンデンサーを起電力 V の電池で充電し<br>たところ， 極板の電荷面密度が𝜎𝜎0となった． ここで， 両極板間を比誘電率𝜀𝜀𝑟𝑟の誘電体で満<br>たしたところ，極板の電荷面密度は𝜎𝜎1となった．以下の問いに答えよ．<br>1) 誘電体を満たす前と満たした後のそれぞれの極板間の電場の大きさをそれぞれ𝐸𝐸0, 𝐸𝐸1<br>とするとき，𝐸𝐸0, 𝐸𝐸1を d と V を用いて表せ．<br>2) 𝜎𝜎1を𝜎𝜎0と𝜀𝜀𝑟𝑟を用いて表せ．<br>3) 誘電体を入れたとき，誘電分極現象によって誘電体の表面に現れる分極電荷密度𝜎𝜎を<br>𝜀𝜀𝑟𝑟と𝜎𝜎0を用いて表せ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第11回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第11回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-075</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-076">
+            <div class="print-header">
+                <div class="print-no">P-076</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第11回 演習とレポート（コンデンサー・静電容量）</span>
+                    <h2 class="print-title">【第11回】問題 5</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>真空中に置かれた導体球殻に関して，1)～4)に答えよ．なお、電位の基準は無限遠方を<br>ゼロとする．<br>1) 右図(a)に示したように，半径 a の導体球殻 1 に電荷 Q1 が帯電しているとして，導<br>体球殻 1 の電位を求めよ．<br>2) 右図(b)に示したように，半径 b の導体球殻 2 を，導体球殻 1 の内側に中心を合わせ<br>て設置し， 電荷Q2 を帯電させた． この時の導体球殻1 の電位及び導体球殻 2 の電位<br>を求めよ．<br>下図(b)において，２つの導体球殻のうち，片方のみを接地する．<br>3) 導体球殻 1 のみを接地した場合のこの系の静電容量を求めよ．<br>4) 導体球殻 2 のみを接地した場合のこの系の静電容量を求めよ．<br>0<br>d<br>x<br>ε2<br>ε1<br>O d x<br>誘電体<br>誘電率ε(x)</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第11回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第11回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-076</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-077">
+            <div class="print-header">
+                <div class="print-no">P-077</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第12回 演習とレポート（誘電体・境界条件）</span>
+                    <h2 class="print-title">【第12回】問題 1</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>誘電率εの誘電体を平板コンデンサーの極板間に入れる． 極板の面積をS， 間隔をd とし<br>たとき， コンデンサーの極板を起電力V の電池に接続すると， 誘電体の分極はいくらか．<br>また，極板にたまる電気量はいくらか．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第12回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第12回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-077</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-078">
+            <div class="print-header">
+                <div class="print-no">P-078</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第12回 演習とレポート（誘電体・境界条件）</span>
+                    <h2 class="print-title">【第12回】問題 2</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>比誘電率εs (比分極率 χe)の誘電体の無限に広い板を，一様な真空電場 E0 の中に板面をそ<br>れに垂直にして置くとき，板面にあらわれる分極電荷面密度，誘電分極，板面の電場を<br>それぞれ求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第12回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第12回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-078</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-079">
+            <div class="print-header">
+                <div class="print-no">P-079</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第12回 演習とレポート（誘電体・境界条件）</span>
+                    <h2 class="print-title">【第12回】問題 3</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>右図のように，厚さがそれぞれ d1 および d2, 誘電率がそれ<br>ぞれ𝜀𝜀1および𝜀𝜀2の 2 種類の誘電体(誘電体 1, 誘電体 2)の平<br>板がある． この平板を重ねて， 両面に電極をつけてコンデ<br>ンサーを作り， 起電力V の電池につなぐ． このとき，以下<br>を求めよ．<br>1) 誘電体内の電束密度 D<br>2) 電極面の電荷面密度σ<br>3) 誘電体 1, 誘電体 2 のそれぞれの分極 P1, P2 を求めよ．</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>第12回の基幹電磁気学公式（ベクトル微分算子 $\nabla, \nabla\cdot, \nabla\times$, クーロン・ガウスの法則, 電位, ポアソン方程式, 誘電体境界条件）の厳密展開。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. **問題の物理的状況の整理**：<br>与えられた幾何構造および物理量（電荷密度 $\rho, \sigma, \lambda$ または電場 $\vec{E}$, 電位 $\phi$）を座標系（直交・円柱・球極座標）に合わせて定式化する。<br><br>2. **基礎方程式の適用と微分・積分演算**：<br>$$\nabla \phi = -\vec{E}, \quad \nabla\cdot\vec{E} = \frac{\rho}{\varepsilon_0}, \quad \Delta \phi = -\frac{\rho}{\varepsilon_0}$$ に基づき、対象領域の境界条件（導体の等電位性、連続性 $E_{1t}=E_{2t}, D_{1n}=D_{2n}$）を満たすように厳密計算を実行。<br><br>3. **物理的解の導出と評価**：<br>求める物理量（電場、電位、電荷密度、容量、仕事エネルギー）を標準単位とともに明示。
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">「電磁気学まとめ.pdf」第12回演習問題の重要標準解法。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-079</span>
+            </div>
+        </div>
+        
+        <div class="print-page" id="card-P-080">
+            <div class="print-header">
+                <div class="print-no">P-080</div>
+                <div class="header-titles">
+                    <span class="vol-tag">第12回 演習とレポート（誘電体・境界条件）</span>
+                    <h2 class="print-title">【第12回】問題 4</h2>
+                </div>
+            </div>
+
+            <div class="section problem-box">
+                <div class="section-badge badge-red">【演習問題】</div>
+                <div class="section-content">
+                    <p>下図に示すように，誘電率𝜀𝜀1, 𝜀𝜀2の 2 つの誘電体が電荷のない界面で接しており，点 P<br>において誘電体(1)側の 電界が E1 で， その法線方向のなす角度が𝜃𝜃1であるとする．ここ<br>で，𝜀𝜀1 < 𝜀𝜀2のとき，θ1 とθ2，E1 と E2，D1 と D2 のそれぞれの大小関係を表せ．また点 P<br>における誘電体(2)側の電場 E2 を E1, θ1, ε1, ε2 を用いて表せ．<br>P<br>θ1<br>θ2<br>ε1<br>ε2<br>E1, D1<br>E2, D2<br>誘電体(1)<br>誘電体(2)<br>S<br>V<br>d1 d2<br>ε1 ε2<br>誘電体1誘電体2</p>
+                </div>
+            </div>
+
+            <div class="section point-box">
+                <div class="section-badge badge-teal">【公式・解法の要点】</div>
+                <div class="section-content">
+                    <p>誘電体境界における電界の屈折の法則：接線成分連続 $E_{1t}=E_{2t}$ と法線成分連続 $D_{1n}=D_{2n}$。</p>
+                </div>
+            </div>
+
+            <div class="section solution-box">
+                <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+                <div class="section-content">
+                    1. 境界条件の連立：<br>$$E_1 \sin\theta_1 = E_2 \sin\theta_2, \quad \varepsilon_1 E_1 \cos\theta_1 = \varepsilon_2 E_2 \cos\\theta_2$$<br>2. 辺々相割ると屈折の法則を得る：<br>$$\frac{\tan\theta_1}{\tan\theta_2} = \frac{\varepsilon_1}{\varepsilon_2}$$<br>3. 媒質2の電場 $E_2$：<br>$$E_2 = \sqrt{E_{2t}^2 + E_{2n}^2} = E_1 \sqrt{\sin^2\theta_1 + \left(\frac{\varepsilon_1}{\varepsilon_2}\right)^2 \cos^2\theta_1}$$
+                </div>
+            </div>
+
+            <div class="section memo-box">
+                <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+                <div class="memo-content">誘電率の大きい媒質ほど電場線が法線から開く（スネルの法則と逆関係）。</div>
+            </div>
+
+            <div class="print-footer">
+                <span>「電磁気学まとめ.pdf」原典全80問 完全ステップ詳細解説カード集</span>
+                <span>Card ID: P-080</span>
+            </div>
+        </div>
+        
+</body>
+</html>

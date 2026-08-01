@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「電磁気学まとめ.pdf」全問題網羅 完全解説WEBカードサイト</title>
+    <!-- MathJax 3 -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 10mm 12mm 10mm 12mm;
+        }
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f6f9;
+            color: #202124;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .print-page {
+            width: 210mm;
+            min-height: 290mm;
+            padding: 14mm 16mm;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+        }
+        @media print {
+            body { background: none; }
+            .print-page {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+                width: 100%;
+                page-break-after: always;
+            }
+            .no-print { display: none !important; }
+        }
+        
+        .print-header {
+            border-top: 5px solid #d93025;
+            padding-top: 10px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid #dadce0;
+            padding-bottom: 10px;
+        }
+        .print-no {
+            background: #ea4335;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .header-titles {
+            flex-grow: 1;
+        }
+        .vol-tag {
+            font-size: 12px;
+            color: #5f6368;
+            font-weight: 600;
+            display: block;
+        }
+        .print-title {
+            margin: 2px 0 0 0;
+            font-size: 17px;
+            color: #1a0dab;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 14px;
+            border-radius: 6px;
+            position: relative;
+        }
+        .section-badge {
+            color: white;
+            font-size: 12.5px;
+            font-weight: bold;
+            padding: 5px 14px;
+            border-radius: 4px 4px 0 0;
+            display: inline-block;
+        }
+        .badge-red { background: #ea4335; }
+        .badge-teal { background: #00897b; }
+        .badge-blue { background: #1565c0; }
+        
+        .section-content {
+            padding: 14px 18px;
+        }
+        .section-content p { margin: 4px 0; }
+
+        .problem-box {
+            background: #f8f9fa;
+            border: 1px solid #f1f3f4;
+            border-left: 4px solid #ea4335;
+            border-radius: 0 6px 6px 6px;
+        }
+        .point-box {
+            background: #e0f2f1;
+            border: 1px solid #b2dfdb;
+            border-left: 4px solid #00897b;
+            border-radius: 0 6px 6px 6px;
+        }
+        .solution-box {
+            background: #ffffff;
+            border: 1px solid #dadce0;
+            border-left: 4px solid #1565c0;
+            border-radius: 0 6px 6px 6px;
+            flex-grow: 1;
+        }
+
+        .memo-box {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #3c4043;
+            margin-top: 10px;
+        }
+        .memo-title {
+            font-weight: bold;
+            color: #b78103;
+            margin-bottom: 3px;
+        }
+
+        .print-footer {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 8px;
+            font-size: 11px;
+            color: #70757a;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 12px;
+            right: 20px;
+            background: rgba(32, 33, 36, 0.92);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .nav-bar button, .nav-bar a {
+            color: white;
+            text-decoration: none;
+            background: #3c4043;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12.5px;
+        }
+        .nav-bar button:hover { background: #5f6368; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar no-print">
+        <span>📖 「電磁気学まとめ.pdf」全問題網羅カードサイト</span>
+        <button onclick="window.print()">🖨️ 印刷 / PDF保存</button>
+        <a href="electromagnetism_problems_workbook.html">🏠 演習問題ポータル</a>
+    </div>
+
+    
+    <div class="print-page" id="card-第1回-問1(1)">
+        <div class="print-header">
+            <div class="print-no">第1回-問1(1)</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">スカラー関数の勾配 grad f の計算 (1)</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>次のスカラー関数 $f$ の勾配 $\mathrm{grad}\,f$ を求めよ。<br>(1) $f = e^x \sin y$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>勾配の定義：$\mathrm{grad}\,f = \nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)$</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 偏微分を計算：<br>$$\frac{\partial f}{\partial x} = e^x \sin y, \quad \frac{\partial f}{\partial y} = e^x \cos y, \quad \frac{\partial f}{\partial z} = 0$$<br>2. したがって勾配ベクトルは：<br>$$\nabla f = e^x \sin y \vec{i} + e^x \cos y \vec{j}$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">他変数を定数扱いして偏微分する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問1(1)</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問1(2)">
+        <div class="print-header">
+            <div class="print-no">第1回-問1(2)</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">スカラー関数の勾配 grad f の計算 (2)</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>次のスカラー関数 $f$ の勾配 $\mathrm{grad}\,f$ を求めよ。<br>(2) $f = (x^2+y^2+z^2)^2$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>合成関数の微分 $\nabla f(r) = f'(r) \frac{\vec{r}}{r}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $r = \sqrt{x^2+y^2+z^2}$ と置くと $f = r^4$。<br>2. $\nabla f = 4r^3 \frac{\vec{r}}{r} = 4 r^2 \vec{r} = 4(x^2+y^2+z^2)(x\vec{i}+y\vec{j}+z\vec{k})$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">球対称関数における有用な微分性質。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問1(2)</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問1(3)">
+        <div class="print-header">
+            <div class="print-no">第1回-問1(3)</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">スカラー関数の勾配 grad f の計算 (3)</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>次のスカラー関数 $f$ の勾配 $\mathrm{grad}\,f$ を求めよ。<br>(3) $f = \frac{1}{2}\ln(x^2+y^2)$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>$\frac{\partial}{\partial x}\ln u = \frac{1}{u}\frac{\partial u}{\partial x}$</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\frac{\partial f}{\partial x} = \frac{x}{x^2+y^2}, \quad \frac{\partial f}{\partial y} = \frac{y}{x^2+y^2}$<br>2. したがって $\nabla f = \frac{x\vec{i}+y\vec{j}}{x^2+y^2}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">2次元円柱座標の電位勾配に対応。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問1(3)</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問2(1)">
+        <div class="print-header">
+            <div class="print-no">第1回-問2(1)</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">ベクトル関数の発散 div g の計算 (1)</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>次のベクトル関数 $\vec{g}$ の発散 $\mathrm{div}\,\vec{g}$ を求めよ。<br>(1) $\vec{g} = y^2 e^z \vec{i} + x^2 z^2 \vec{k}$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>$\nabla\cdot\vec{g} = \frac{\partial g_x}{\partial x} + \frac{\partial g_y}{\partial y} + \frac{\partial g_z}{\partial z}$</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\frac{\partial g_x}{\partial x} = 0, \frac{\partial g_y}{\partial y} = 0, \frac{\partial g_z}{\partial z} = 2x^2 z$<br>2. したがって $\nabla\cdot\vec{g} = 2x^2 z$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">成分が存在しない部分の微分値はゼロ。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問2(1)</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問2(2)">
+        <div class="print-header">
+            <div class="print-no">第1回-問2(2)</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">ベクトル関数の発散 div g の計算 (2)</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>次のベクトル関数 $\vec{g}$ の発散 $\mathrm{div}\,\vec{g}$ を求めよ。<br>(2) $\vec{g} = x^2\vec{i} + y^2\vec{j} + z^2\vec{k}$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>各直交成分の偏微分和。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\nabla\cdot\vec{g} = 2x + 2y + 2z = 2(x+y+z)$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">湧き出しの広がりを表す。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問2(2)</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問2(3)">
+        <div class="print-header">
+            <div class="print-no">第1回-問2(3)</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">ベクトル関数の発散 div g の計算 (3)</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>次のベクトル関数 $\vec{g}$ の発散 $\mathrm{div}\,\vec{g}$ を求めよ。<br>(3) $\vec{g} = e^{-xy}\vec{i} + e^{-yz}\vec{j} + e^{-zx}\vec{k}$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>合成指数関数の微分法。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\nabla\cdot\vec{g} = -y e^{-xy} - z e^{-yz} - x e^{-zx}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">符号の取りこぼしに注意。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問2(3)</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問3(1)">
+        <div class="print-header">
+            <div class="print-no">第1回-問3(1)</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">ベクトル関数の回転 rot v の計算 (1)</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>次式で表されるベクトル $\vec{v}$ について $\mathrm{rot}\,\vec{v}$ を求めよ。<br>(1) $\vec{v} = z\vec{i} + x\vec{j} + y\vec{k}$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>回転の定義：外積展開式 $\nabla\times\vec{v}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 各回転成分：$(\nabla\times\vec{v})_x = 1, (\nabla\times\vec{v})_y = 1, (\nabla\times\vec{v})_z = 1$<br>2. $\mathrm{rot}\,\vec{v} = \vec{i} + \vec{j} + \vec{k}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">空間全体で一様な渦が存在するベクトル場。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問3(1)</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問3(2)">
+        <div class="print-header">
+            <div class="print-no">第1回-問3(2)</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">ベクトル関数の回転 rot v の計算 (2)</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>次式で表されるベクトル $\vec{v}$ について $\mathrm{rot}\,\vec{v}$ を求めよ。<br>(2) $\vec{v} = x\vec{i} + yz\vec{j} - (x^2+z^2)\vec{k}$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>たすき掛け偏微分の実行。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\mathrm{rot}\,\vec{v} = -y\vec{i} + 2x\vec{j}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">$z$ 成分の回転はゼロ。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問3(2)</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問3(3)">
+        <div class="print-header">
+            <div class="print-no">第1回-問3(3)</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">中心力場の回転 rot v の計算 (3)</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>次式で表されるベクトル $\vec{v}$ について $\mathrm{rot}\,\vec{v}$ を求めよ。<br>(3) $\vec{v} = \frac{\vec{r}}{r^3}$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>中心力場 $\vec{v} = f(r)\vec{r}$ の回転は無回転 $\nabla\times\vec{v} = \vec{0}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\frac{\partial v_y}{\partial x} = -3xy r^{-5}, \frac{\partial v_x}{\partial y} = -3xy r^{-5}$<br>2. 差をとると各成分がゼロとなり $\mathrm{rot}\,\vec{v} = \vec{0}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">クーロン電場が無回転であることの証明。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問3(3)</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問4">
+        <div class="print-header">
+            <div class="print-no">第1回-問4</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">位置ベクトル r と距離 r の勾配公式</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>$\vec{r} = x\vec{i}+y\vec{j}+z\vec{k}, r=|\vec{r}|$ とするとき，次を求めよ。<br>(1) $\nabla r$, (2) $\nabla \frac{1}{r}$, (3) $\nabla r^n$, (4) $\nabla \ln r$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>$\nabla r = \frac{\vec{r}}{r}$ および合成微分 $\nabla f(r) = f'(r) \frac{\vec{r}}{r}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\nabla r = \frac{\vec{r}}{r} = \vec{e}_r$<br>2. $\nabla \frac{1}{r} = -\frac{\vec{r}}{r^3}$<br>3. $\nabla r^n = n r^{n-2} \vec{r}$<br>4. $\nabla \ln r = \frac{\vec{r}}{r^2}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">電磁気学全般で必須の基本公式群。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問4</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第1回-問8">
+        <div class="print-header">
+            <div class="print-no">第1回-問8</div>
+            <div class="header-titles">
+                <span class="vol-tag">第1回 演習とレポート：ベクトル解析の基礎</span>
+                <h2 class="print-title">つるまき線 C の単位接線ベクトル</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>つるまき線 $C: \vec{r}(t) = 3 \cos t \vec{i} + 3 \sin t \vec{j} + 4 t \vec{k} \quad (0 \le t \le 2\pi)$ において，単位接線ベクトル $\vec{u}$ および全長 $L$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>接線ベクトル $\frac{d\vec{r}}{dt} = -3\sin t \vec{i} + 3\cos t \vec{j} + 4 \vec{k}$。ノルム $\left|\frac{d\vec{r}}{dt}\right| = \sqrt{9+16} = 5$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 単位接線ベクトル：<br>$$\vec{u} = \frac{1}{5}(-3\sin t \vec{i} + 3\cos t \vec{j} + 4 \vec{k})$$<br>2. 弧の全長：<br>$$L = \int_0^{2\pi} 5 dt = 10\pi$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">ヘリックス（螺旋）の長さ計算。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第1回-問8</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第2回-問1">
+        <div class="print-header">
+            <div class="print-no">第2回-問1</div>
+            <div class="header-titles">
+                <span class="vol-tag">第2回 演習とレポート：線積分・仕事</span>
+                <h2 class="print-title">円弧上のスカラー場線積分</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>曲線 $C$ が弧の長さ $s$ によって次式で表されるとき，円弧の上で $\phi = 2xy^2$ を積分せよ。<br>$\vec{r}(s) = \cos s \vec{i} + \sin s \vec{j} \quad (0 \le s \le \frac{\pi}{2})$</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>$x = \cos s, y = \sin s$ を代入。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\int_0^{\pi/2} 2\cos s \sin^2 s ds = \left[ \frac{2}{3}\sin^3 s \right]_0^{\pi/2} = \frac{2}{3}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">弧長パラメータの平易さ。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第2回-問1</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第2回-問2">
+        <div class="print-header">
+            <div class="print-no">第2回-問2</div>
+            <div class="header-titles">
+                <span class="vol-tag">第2回 演習とレポート：線積分・仕事</span>
+                <h2 class="print-title">直線区間におけるスカラー場線積分</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>$C$ が $xy$ 平面上の直線 $y=2x$ を $A(-1,-2,0)$ から $B(1,2,0)$ まで区切った線分であるとき，$\int_C xy^3 ds$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>$x = t, y = 2t \implies ds = \sqrt{5} dt$</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\int_{-1}^1 (8t^4) \sqrt{5} dt = 8\sqrt{5} \left[ \frac{t^5}{5} \right]_{-1}^1 = \frac{16\sqrt{5}}{5}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">線要素 $ds$ の長さスケール。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第2回-問2</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第2回-問3">
+        <div class="print-header">
+            <div class="print-no">第2回-問3</div>
+            <div class="header-titles">
+                <span class="vol-tag">第2回 演習とレポート：線積分・仕事</span>
+                <h2 class="print-title">空間線分に沿うスカラー場の線積分</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>スカラー場 $\phi = x^2+y^2+z^2$ について，$P(1,-1,0)$ と $Q(2,1,2)$ を結ぶ線分 $PQ$ に沿った線積分 $\int_{PQ} \phi ds$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>直線パラメータ：$\vec{r}(t) = (1+t, -1+2t, 2t) \quad (0 \le t \le 1), ds = 3dt$</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $\phi(t) = 9t^2 - 2t + 2$<br>2. $\int_0^1 (9t^2-2t+2) \cdot 3 dt = 3 [3t^3-t^2+2t]_0^1 = 12$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">空間直線パラメータ化。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第2回-問3</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第2回-問8">
+        <div class="print-header">
+            <div class="print-no">第2回-問8</div>
+            <div class="header-titles">
+                <span class="vol-tag">第2回 演習とレポート：線積分・仕事</span>
+                <h2 class="print-title">螺旋経路に沿うベクトル場の線積分</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>ベクトル場 $\vec{F} = -y\vec{i} + x\vec{j} + z(x^2+y^2)\vec{k}$ について，螺旋 $C: \vec{r} = a\cos t \vec{i} + a\sin t \vec{j} + bt\vec{k} \quad (0 \le t \le 2\pi)$ に沿う線積分 $\int_C \vec{F}\cdot d\vec{r}$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>$d\vec{r} = (-a\sin t \vec{i} + a\cos t \vec{j} + b\vec{k}) dt$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 内積計算：<br>$$\vec{F}\cdot d\vec{r} = [(-a\sin t)(-a\sin t) + (a\cos t)(a\cos t) + (bt)(a^2)(b)] dt = (a^2 + a^2 b^2 t) dt$$<br>2. 積分実行：<br>$$\int_0^{2\pi} (a^2 + a^2 b^2 t) dt = 2\pi a^2 + 2\pi^2 a^2 b^2$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">円軌道部分と $z$ 軸上昇の寄与の和。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第2回-問8</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第2回-問9">
+        <div class="print-header">
+            <div class="print-no">第2回-問9</div>
+            <div class="header-titles">
+                <span class="vol-tag">第2回 演習とレポート：線積分・仕事</span>
+                <h2 class="print-title">円経路におけるベクトル場の周回積分</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>$\vec{F} = (2x-y-z)\vec{i} + (x+y-z^2)\vec{j} + (3x-2y+4)\vec{k}$ とし，$C$ を $xy$ 平面上の原点を中心とする半径 3 の左回りの円とするとき，$\int_C \vec{F}\cdot d\vec{r}$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>グリーン・ストークスの定理 $\oint_C \vec{F}\cdot d\vec{r} = \iint_S (\nabla\times\vec{F})_z dxdy$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. $(\nabla\times\vec{F})_z = \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} = 1 - (-1) = 2$<br>2. 面積 $S = \pi (3)^2 = 9\pi$<br>3. 周回積分：<br>$$\oint_C \vec{F}\cdot d\vec{r} = 2 \times 9\pi = 18\pi$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">ストークスの定理を用いれば線積分を直接計算するよりはるかに高速。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第2回-問9</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第5回-問1">
+        <div class="print-header">
+            <div class="print-no">第5回-問1</div>
+            <div class="header-titles">
+                <span class="vol-tag">第5回 演習とレポート：電場とガウスの法則</span>
+                <h2 class="print-title">無限長直線電荷および帯電円輪の電場厳密導出</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>線密度 $\lambda = 2\times 10^{-9}\,\mathrm{C/m}$ で均一に帯電した無限長直線から距離 $r$ 離れた点における電場の強さ $E(r)$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>微小要素 $dx$ が点 $P$ につくる電場 $d\vec{E}$ の対称性を利用。軸に垂直な成分のみが生存する。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 微小電荷 $dq = \lambda dx$ の電場垂直成分：<br>$$dE_\perp = \frac{1}{4\pi\varepsilon_0} \frac{\lambda dx}{r^2+x^2} \cos\theta$$<br>2. 変数変換 $x = r \tan\theta \implies dx = \frac{r}{\cos^2\theta} d\theta$ を用いて全区間積分：<br>$$E(r) = \frac{\lambda}{4\pi\varepsilon_0 r} \int_{-\pi/2}^{\pi/2} \cos\theta d\theta = \frac{\lambda}{2\pi\varepsilon_0 r}$$<br>3. 数値を代入：<br>$$E(r) \approx \frac{36}{r} \,\mathrm{V/m}$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">ガウスの法則を用いて検証可能。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第5回-問1</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第8回-問1">
+        <div class="print-header">
+            <div class="print-no">第8回-問1</div>
+            <div class="header-titles">
+                <span class="vol-tag">第8回 演習とレポート：導体・コンデンサー・エネルギー</span>
+                <h2 class="print-title">無限大平板状導体の表面電荷と電場・電位</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>無限に広い平板状導体の表面に一様な面密度 $\sigma$ で電荷が分布している。<br>1) この導体から距離 $x$ にある点 $P$ の電場 $E$ を求めよ。<br>2) 点 $P$ における電位を求めよ（導体表面の電位を $V_0$ とする）。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>導体表面直外の電場 $E = \frac{\sigma}{\varepsilon_0}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. ガウスの法則より：$E = \frac{\sigma}{\varepsilon_0}$<br>2. 電位：$V(x) = V_0 - \int_0^x E dx = V_0 - \frac{\sigma}{\varepsilon_0} x$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">一様電場における直線型電位。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第8回-問1</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第8回-問2">
+        <div class="print-header">
+            <div class="print-no">第8回-問2</div>
+            <div class="header-titles">
+                <span class="vol-tag">第8回 演習とレポート：導体・コンデンサー・エネルギー</span>
+                <h2 class="print-title">接続された2つの金属球の表面電荷と電場</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>半径 $2\,\mathrm{cm}, 4\,\mathrm{cm}$ の2つの金属球を遠く離して細い針金で接続した。$+6.0\times 10^{-4}\,\mathrm{C}$ の電荷を与えたとき、それぞれの球の表面電荷と表面電場を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>接続により両球の電位が等しくなる：$V_1 = V_2 \implies \frac{Q_1}{4\pi\varepsilon_0 R_1} = \frac{Q_2}{4\pi\varepsilon_0 R_2} \implies \frac{Q_1}{R_1} = \frac{Q_2}{R_2}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 電荷保存 $Q_1+Q_2 = 6.0\times 10^{-4}\,\mathrm{C}$<br>2. $R_1=2, R_2=4 \implies Q_2 = 2 Q_1 \implies Q_1 = 2.0\times 10^{-4}\,\mathrm{C}, Q_2 = 4.0\times 10^{-4}\,\mathrm{C}$<br>3. 表面電場：<br>$$E_1 = \frac{Q_1}{4\pi\varepsilon_0 R_1^2} = 4.5\times 10^9 \,\mathrm{V/m}, \quad E_2 = \frac{Q_2}{4\pi\varepsilon_0 R_2^2} = 2.25\times 10^9 \,\mathrm{V/m}$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">半径が小さい球ほど表面電場が強くなる（尖端放電の原理）。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第8回-問2</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第8回-問3">
+        <div class="print-header">
+            <div class="print-no">第8回-問3</div>
+            <div class="header-titles">
+                <span class="vol-tag">第8回 演習とレポート：導体・コンデンサー・エネルギー</span>
+                <h2 class="print-title">中心に点電荷がある導体球殻の電荷密度と電位</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>内半径 $a$，外半径 $b$ の同心導体球殻の中心に点電荷 $+Q$ を置いた。導体内表面・外表面に現れる電荷密度および空間各地の電位を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>静電遮蔽：導体内部 $a < r < b$ では電場 $E=0$。内表面に $-Q$、外表面に $+Q$ が誘起される。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 内表面電荷密度：$\sigma_a = -\frac{Q}{4\pi a^2}$，外表面電荷密度：$\sigma_b = +\frac{Q}{4\pi b^2}$<br>2. 電位分布：<br>$$r \ge b: V(r) = \frac{Q}{4\pi\varepsilon_0 r}$$<br>$$a < r < b: V = \frac{Q}{4\pi\varepsilon_0 b} \quad (\text{一定})$$<br>$$r \le a: V(r) = \frac{Q}{4\pi\varepsilon_0} \left( \frac{1}{r} - \frac{1}{a} + \frac{1}{b} \right)$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">導体内部は等電位となる。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第8回-問3</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第8回-問4">
+        <div class="print-header">
+            <div class="print-no">第8回-問4</div>
+            <div class="header-titles">
+                <span class="vol-tag">第8回 演習とレポート：導体・コンデンサー・エネルギー</span>
+                <h2 class="print-title">鏡像法による接地導体平面と点電荷の相互作用</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>広い平らな導体表面から距離 $a$ の位置に点電荷 $q$ が置かれている。<br>1) 導体表面に誘起される電荷密度 $\sigma$ を求めよ。<br>2) 点電荷を無限遠まで引き離すために要する仕事 $W$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>鏡像法：距離 $2a$ 離れた鏡像電荷 $-q$ との静電引力 $F(x) = \frac{q^2}{16\pi\varepsilon_0 x^2}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 誘起電荷密度：$\sigma(r) = -\frac{q a}{2\pi (r^2+a^2)^{3/2}}$<br>2. 引力に対する仕事：<br>$$W = \int_a^\infty \frac{q^2}{4\pi\varepsilon_0 (2x)^2} dx = \frac{q^2}{16\pi\varepsilon_0} \left[ -\frac{1}{x} \right]_a^\infty = \frac{q^2}{16\pi\varepsilon_0 a}$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">静電自己エネルギーの $1/2$ に相当する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第8回-問4</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第8回-問5">
+        <div class="print-header">
+            <div class="print-no">第8回-問5</div>
+            <div class="header-titles">
+                <span class="vol-tag">第8回 演習とレポート：導体・コンデンサー・エネルギー</span>
+                <h2 class="print-title">平行平板コンデンサーの静電容量・エネルギーと静電気力</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>面積 $S$，間隔 $d$ の平行平板コンデンサーに $\pm q$ の電荷を与えた。<br>1) 容量 $C$、2) エネルギー $U$、3) 極板間隔を $\Delta d$ 変えたときの力 $F$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>仮想仕事の原理 $F = -\frac{\partial U}{\partial d}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 容量 $C = \frac{\varepsilon_0 S}{d}$<br>2. エネルギー $U = \frac{q^2}{2C} = \frac{q^2 d}{2\varepsilon_0 S}$<br>3. 変化量 $\Delta U = \frac{q^2 \Delta d}{2\varepsilon_0 S} \implies F = \frac{q^2}{2\varepsilon_0 S}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">極板間の引力は電荷一定のとき間隔 $d$ に依存しない。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第8回-問5</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第9回-問1">
+        <div class="print-header">
+            <div class="print-no">第9回-問1</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9回 演習とレポート：電流・抵抗・オームの法則</span>
+                <h2 class="print-title">雷雲の放電電流計算</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>雷雲中の電荷 $1.2\,\mathrm{C}$ が $1.0\,\mathrm{\mu s}$ で放電した。雷電流 $I$ はいくらか。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>電流の定義：$I = \frac{\Delta Q}{\Delta t}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 数値を代入：<br>$$I = \frac{1.2\,\mathrm{C}}{1.0\times 10^{-6}\,\mathrm{s}} = 1.2\times 10^6 \,\mathrm{A} = 1.2 \,\mathrm{MA}$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">メガアンペア単位の大電流。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第9回-問1</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第9回-問2">
+        <div class="print-header">
+            <div class="print-no">第9回-問2</div>
+            <div class="header-titles">
+                <span class="vol-tag">第9回 演習とレポート：電流・抵抗・オームの法則</span>
+                <h2 class="print-title">針金の抵抗率と自由電子の平均移動速度</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>切り口の面積 $1\,\mathrm{mm^2}$，長さ $60\,\mathrm{cm}$ の針金に $3\,\mathrm{V}$ をかけ $1\,\mathrm{A}$ が流れた。自由電子密度 $n=5.8\times 10^{22}\,\mathrm{個/cm^3}$ のとき以下を求めよ。<br>1) 抵抗率 $\rho$、2) 電子の平均速度 $v$。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>抵抗 $R = \rho \frac{l}{S}$，電流密度 $J = n e v$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 抵抗 $R = \frac{3\,\mathrm{V}}{1\,\mathrm{A}} = 3\,\Omega$<br>$$\rho = \frac{R S}{l} = \frac{3 \times 10^{-6}}{0.6} = 5.0\times 10^{-6} \,\Omega\cdot\mathrm{m}$$<br>2. 電子速度：<br>$$v = \frac{I}{n e S} = \frac{1}{(5.8\times 10^{28}) \times (1.6\times 10^{-19}) \times 10^{-6}} \approx 1.08\times 10^{-4} \,\mathrm{m/s} = 0.108 \,\mathrm{mm/s}$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">自由電子の漂流速度は驚くほど遅い（約 $0.1\,\mathrm{mm/s}$）。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第9回-問2</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第12回-問1">
+        <div class="print-header">
+            <div class="print-no">第12回-問1</div>
+            <div class="header-titles">
+                <span class="vol-tag">第12回 演習とレポート：誘電体・境界条件</span>
+                <h2 class="print-title">誘電体を挿入した平板コンデンサーの分極と電荷量</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>誘電率 $\varepsilon$ の誘電体を極板面積 $S$，間隔 $d$ のコンデンサーに入れ，電池 $V$ に接続した。分極 $P$ および極板電荷 $Q$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>電場 $E = \frac{V}{d}$，電束密度 $D = \varepsilon E = \frac{\varepsilon V}{d}$，分極 $P = D - \varepsilon_0 E = (\varepsilon - \varepsilon_0)\frac{V}{d}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 分極 $P = (\varepsilon - \varepsilon_0) \frac{V}{d}$<br>2. 電荷量 $Q = D S = \frac{\varepsilon S V}{d}$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">誘電体挿入により電荷蓄積量が増大する。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第12回-問1</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第12回-問2">
+        <div class="print-header">
+            <div class="print-no">第12回-問2</div>
+            <div class="header-titles">
+                <span class="vol-tag">第12回 演習とレポート：誘電体・境界条件</span>
+                <h2 class="print-title">一様真空電場中の誘電体平板の分極電荷</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>比誘電率 $\varepsilon_r$ の無限大誘電体平板を一様真空電場 $E_0$ に垂直に置いた。分極電荷面密度 $\sigma_p$、誘電分極 $P$、内部電場 $E$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>境界での電束密度の連続性 $D = \varepsilon_0 E_0 = \varepsilon E$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 内部電場 $E = \frac{\varepsilon_0}{\varepsilon} E_0 = \frac{E_0}{\varepsilon_r}$<br>2. 誘電分極 $P = D - \varepsilon_0 E = \varepsilon_0 E_0 \left(1 - \frac{1}{\varepsilon_r}\right)$<br>3. 分極電荷面密度 $\sigma_p = P = \varepsilon_0 E_0 \left(\frac{\varepsilon_r - 1}{\varepsilon_r}\right)$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">分極電荷による逆向き電場（減電場）の形成。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第12回-問2</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第12回-问3">
+        <div class="print-header">
+            <div class="print-no">第12回-问3</div>
+            <div class="header-titles">
+                <span class="vol-tag">第12回 演習とレポート：誘電体・境界条件</span>
+                <h2 class="print-title">2層複合誘電体コンデンサーの電束密度と分極</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>厚さ $d_1, d_2$、誘電率 $\varepsilon_1, \varepsilon_2$ の誘電体を重ねて電圧 $V$ をかけた。<br>1) 電束密度 $D$、2) 電荷面密度 $\sigma$、3) 各層の分極 $P_1, P_2$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>境界条件より全層で電束密度 $D$ が一定：$V = E_1 d_1 + E_2 d_2 = D \left(\frac{d_1}{\varepsilon_1} + \frac{d_2}{\varepsilon_2}\right)$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 電束密度・面密度：<br>$$D = \sigma = \frac{V}{\frac{d_1}{\varepsilon_1} + \frac{d_2}{\varepsilon_2}} = \frac{\varepsilon_1 \varepsilon_2 V}{\varepsilon_2 d_1 + \varepsilon_1 d_2}$$<br>2. 各分極：<br>$$P_1 = D \left(1 - \frac{\varepsilon_0}{\varepsilon_1}\right), \quad P_2 = D \left(1 - \frac{\varepsilon_0}{\varepsilon_2}\right)$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">直列コンデンサーの合成容量に対応。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第12回-问3</span>
+        </div>
+    </div>
+
+    <div class="print-page" id="card-第12回-問4">
+        <div class="print-header">
+            <div class="print-no">第12回-問4</div>
+            <div class="header-titles">
+                <span class="vol-tag">第12回 演習とレポート：誘電体・境界条件</span>
+                <h2 class="print-title">誘電体境界における電界の屈折の法則</h2>
+            </div>
+        </div>
+
+        <div class="section problem-box">
+            <div class="section-badge badge-red">【演習問題】</div>
+            <div class="section-content">
+                <p>誘電率 $\varepsilon_1, \varepsilon_2$ の境界で法線と角度 $\theta_1$ をなす電場 $E_1$ が入射する。屈折角 $\theta_2$ および電場 $E_2$ を求めよ。</p>
+            </div>
+        </div>
+
+        <div class="section point-box">
+            <div class="section-badge badge-teal">【公式・解法の要点】</div>
+            <div class="section-content">
+                <p>接線成分連続 $E_{1t} = E_{2t}$，法線成分連続 $D_{1n} = D_{2n}$。</p>
+            </div>
+        </div>
+
+        <div class="section solution-box">
+            <div class="section-badge badge-blue">【ステップ詳細解説】</div>
+            <div class="section-content">
+                1. 屈折の法則：<br>$$\frac{\tan\theta_1}{\tan\theta_2} = \frac{\varepsilon_1}{\varepsilon_2}$$<br>2. 媒質2の電場：<br>$$E_2 = E_1 \sqrt{\sin^2\theta_1 + \left(\frac{\varepsilon_1}{\varepsilon_2}\right)^2 \cos^2\theta_1}$$
+            </div>
+        </div>
+
+        <div class="section memo-box">
+            <div class="memo-title">💡 試験直前チェック・指導ポイント</div>
+            <div class="memo-content">誘電率の大きい媒質側で法線から角度が離れる。</div>
+        </div>
+
+        <div class="print-footer">
+            <span>電磁気学まとめ.pdf 原典掲載問題 完全解説カード</span>
+            <span>Problem ID: 第12回-問4</span>
+        </div>
+    </div>
+
+</body>
+</html>
