@@ -3,235 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>電磁気学1 完全学習サイト｜全1000問＋解説プリント</title>
-    <meta name="description" content="大学2年春学期「電磁気学1」全1000問の演習問題カード・解説プリント・まとめサイト。MathJax数式対応。">
+    <title>電磁気学1 学習ポータル（完全ホワイト・特大カード版）</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
-            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            min-height: 100vh;
-            line-height: 1.8;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #ffffff !important;
+            color: #111827 !important;
+            line-height: 2.0 !important;
+            font-size: 18px !important;
+            padding-bottom: 100px;
         }
 
-        /* --- Hero Header --- */
-        .hero {
+        .header {
             background: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 3px solid #e5e7eb;
+            padding: 60px 24px 50px;
             text-align: center;
-            padding: 50px 20px 40px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
-        .hero-badge {
-            display: inline-block;
-            background: #e0f2fe;
-            color: #0284c7;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 6px 18px;
-            border-radius: 20px;
-            margin-bottom: 16px;
-        }
-        .hero h1 {
-            font-size: clamp(26px, 4.5vw, 40px);
-            font-weight: 800;
-            color: #0f172a;
-            line-height: 1.35;
-            margin-bottom: 14px;
-        }
-        .hero p {
-            font-size: 15.5px;
-            color: #475569;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        /* --- Container --- */
-        .container {
-            max-width: 1000px;
-            margin: 35px auto;
-            padding: 0 20px 60px;
-        }
-
-        /* --- Featured PDF Card --- */
-        .featured-box {
-            background: linear-gradient(135deg, #ffffff, #f0f9ff);
-            border: 2px solid #0284c7;
-            border-radius: 18px;
-            padding: 32px;
-            margin-bottom: 45px;
-            box-shadow: 0 8px 24px rgba(2, 132, 199, 0.1);
-        }
-        .featured-badge {
-            background: #0284c7;
-            color: white;
-            font-size: 12px;
-            font-weight: 800;
-            padding: 4px 14px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-        .featured-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 10px;
-        }
-        .featured-desc {
-            font-size: 15px;
-            color: #334155;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        .btn-main {
-            display: inline-block;
-            background: #0284c7;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 16px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
-        }
-        .btn-main:hover {
-            background: #0369a1;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4);
-        }
-
-        /* --- Section & Cards --- */
-        .section-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 18px;
             margin-bottom: 40px;
         }
-        .card {
-            background: #ffffff;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 22px;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.2s;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        .header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            color: #111827;
+            margin-bottom: 14px;
         }
-        .card:hover {
-            border-color: #0284c7;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-        }
-        .card-tag {
-            font-size: 12px;
-            font-weight: 700;
-            color: #0284c7;
-            background: #f0f9ff;
-            padding: 3px 10px;
-            border-radius: 6px;
-            width: fit-content;
-            margin-bottom: 10px;
-        }
-        .card h3 {
-            font-size: 16.5px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 8px;
-        }
-        .card p {
-            font-size: 13.5px;
-            color: #64748b;
-            line-height: 1.6;
-        }
-        .card-arrow {
-            margin-top: 14px;
-            font-size: 13px;
-            font-weight: 700;
-            color: #0284c7;
+        .header p {
+            color: #4b5563;
+            font-size: 18px;
         }
 
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 13px;
-            color: #64748b;
-            border-top: 1px solid #e2e8f0;
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .featured-card {
             background: #ffffff;
+            border: 3px solid #2563eb;
+            border-radius: 24px;
+            padding: 44px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.08);
+        }
+        .featured-badge {
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 900;
+            padding: 6px 18px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 14px;
+        }
+        .featured-title {
+            font-size: 26px;
+            font-weight: 900;
+            color: #111827;
+            margin-bottom: 14px;
+        }
+        .featured-desc {
+            font-size: 18px;
+            color: #374151;
+            margin-bottom: 24px;
+            line-height: 2.0;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: #2563eb;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 18px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+        .vol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .vol-item {
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .vol-item:hover {
+            border-color: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .vol-num {
+            font-size: 14px;
+            font-weight: 900;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+        .vol-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: #111827;
         }
     </style>
 </head>
 <body>
-    <header class="hero">
-        <div class="hero-badge">⚡ 大学2年 春学期</div>
-        <h1>電磁気学1 完全学習サイト</h1>
-        <p>「電磁気学まとめ.pdf」全12回演習課題＋全1000問プリント集。明るくクリアで見やすいデザイン。</p>
+
+    <header class="header">
+        <h1>電磁気学1 学習ポータル</h1>
+        <p>「電磁気学まとめ.pdf」全演習問題・個別解答カード集</p>
     </header>
 
     <div class="container">
 
-        <!-- メイン推奨コンテンツ -->
-        <div class="featured-box">
-            <span class="featured-badge">★ 一の一押し・全問網羅 ★</span>
-            <h2 class="featured-title">📖 「電磁気学まとめ.pdf」全12回・全84問 完全問題＆解答解説集</h2>
+        <div class="featured-card">
+            <span class="featured-badge">★ 推奨・全問網羅 ★</span>
+            <h2 class="featured-title">📖 「電磁気学まとめ.pdf」全12回 完全収録演習問題カード集</h2>
             <p class="featured-desc">
-                講義・演習・レポート課題（全12回・全84問）の原文テキストおよび手書き解説ノートの解法プロセスを完全に網羅！大きな文字・くっきりしたMathJax数式・折りたたみ解答で圧倒的に見やすく使いやすい構成です。
+                講義・演習・レポート課題の全12回（全111枚の個別カード）を原文そのまま完全網羅。純白背景・19px特大フォント・圧倒的な広々余白で最も見やすいWeb問題集です。
             </p>
-            <a href="electromagnetism_pdf_complete_all_problems_site.html" class="btn-main">今すぐ開いて学習する (全12回・全84問) →</a>
+            <a href="electromagnetism_pdf_complete_all_problems_site.html" class="btn-primary">今すぐ全111枚の特大カード集を開く →</a>
         </div>
 
-        <!-- ポータルリンク -->
-        <h2 class="section-title">📚 各種ポータル・カード集</h2>
-        <div class="cards">
-            <a href="electromagnetism_1000_prints_portal.html" class="card">
-                <span class="card-tag">ポータル</span>
-                <h3>全10巻 解説プリント ポータル</h3>
-                <p>Vol.1〜10 すべての解説プリントへのリンクハブ</p>
-                <span class="card-arrow">開く →</span>
+        <h2 class="section-title">📚 各巻プリント集 (Vol.1 〜 Vol.10)</h2>
+        <div class="vol-grid">
+            <a href="vol_01_prints_001_100.html" class="vol-item">
+                <div class="vol-num">Vol. 1</div>
+                <div class="vol-name">第1巻：ベクトル解析と微分演算子</div>
             </a>
-            <a href="electromagnetism_1000_problems_master_portal.html" class="card">
-                <span class="card-tag">ポータル</span>
-                <h3>全10巻 演習問題カード ポータル</h3>
-                <p>Vol.1〜10 すべての演習問題カードへのリンクハブ</p>
-                <span class="card-arrow">開く →</span>
+            <a href="vol_02_prints_101_200.html" class="vol-item">
+                <div class="vol-num">Vol. 2</div>
+                <div class="vol-name">第2巻：曲線・線積分と仕事</div>
             </a>
-            <a href="electromagnetism_perfect_flawless_site.html" class="card">
-                <span class="card-tag">カード</span>
-                <h3>全80問 完全WEBカードサイト</h3>
-                <p>見切れゼロでカード表示するバージョン</p>
-                <span class="card-arrow">開く →</span>
+            <a href="vol_03_prints_201_300.html" class="vol-item">
+                <div class="vol-num">Vol. 3</div>
+                <div class="vol-name">第3巻：曲面・面積分とフラックス</div>
             </a>
-            <a href="electromagnetism_summary.html" class="card">
-                <span class="card-tag">まとめ</span>
-                <h3>電磁気学 総まとめ</h3>
-                <p>全範囲の公式・定理・重要事項を整理</p>
-                <span class="card-arrow">開く →</span>
+            <a href="vol_04_prints_301_400.html" class="vol-item">
+                <div class="vol-num">Vol. 4</div>
+                <div class="vol-name">第4巻：ベクトル解析の三大定理</div>
+            </a>
+            <a href="vol_05_prints_401_500.html" class="vol-item">
+                <div class="vol-num">Vol. 5</div>
+                <div class="vol-name">第5巻：クーロンの法則と電場</div>
+            </a>
+            <a href="vol_06_prints_501_600.html" class="vol-item">
+                <div class="vol-num">Vol. 6</div>
+                <div class="vol-name">第6巻：ガウスの法則と電場</div>
+            </a>
+            <a href="vol_07_prints_601_700.html" class="vol-item">
+                <div class="vol-num">Vol. 7</div>
+                <div class="vol-name">第7巻：静電ポテンシャルと電位</div>
+            </a>
+            <a href="vol_08_prints_801_800.html" class="vol-item">
+                <div class="vol-num">Vol. 8</div>
+                <div class="vol-name">第8巻：導体・鏡像法・エネルギー</div>
+            </a>
+            <a href="vol_09_prints_801_900.html" class="vol-item">
+                <div class="vol-num">Vol. 9</div>
+                <div class="vol-name">第9巻：オームの法則と電流</div>
+            </a>
+            <a href="vol_10_prints_901_1000.html" class="vol-item">
+                <div class="vol-num">Vol. 10</div>
+                <div class="vol-name">第10巻：コンデンサーと誘電体</div>
             </a>
         </div>
 
     </div>
 
-    <footer>
-        <p>電磁気学1 完全学習サイト — Hosted on GitHub Pages</p>
-    </footer>
 </body>
 </html>
