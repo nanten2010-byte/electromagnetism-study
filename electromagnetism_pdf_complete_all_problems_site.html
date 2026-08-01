@@ -103,10 +103,6 @@
             scrollbar-width: thin;
         }
         .filter-btn {
-            pointer-events: auto !important;
-            position: relative;
-            z-index: 10;
-            user-select: none;
             background: #ffffff;
             color: #374151;
             border: 2px solid #d1d5db;
@@ -205,10 +201,6 @@
         }
 
         .sol-toggle {
-            pointer-events: auto !important;
-            position: relative;
-            z-index: 10;
-            user-select: none;
             background: #f3f4f6;
             color: #111827;
             border: 2px solid #d1d5db;
@@ -256,9 +248,9 @@
 <body>
 
     <header class="header">
-        <div class="header-badge">完全途中式 ＋ 正しいMathJaxレンダリング</div>
-        <h1>「電磁気学まとめ.pdf」全演習問題・完全解法解説集</h1>
-        <p>全12回・全84問の演習・レポート課題を収録。<br>すべての問題に<b>【明確な最終答え】</b>と<b>【詳細な途中式】</b>を掲載しています。</p>
+        <div class="header-badge">完全な途中計算ステップ ＋ 厳密MathJax表示</div>
+        <h1>「電磁気学まとめ.pdf」全演習問題・完全途中式付き解説集</h1>
+        <p>全84問の演習・レポート課題を完全収録。<br>すべての問題に<b>【明確な最終答え】</b>と<b>【詳細な途中式・計算ステップ】</b>を完全に記載しています。</p>
     </header>
 
     <div class="container">
@@ -293,11 +285,123 @@
     </div>
 
     <script>
-    const setsData = [{"set_num": 1, "title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）", "pdf_pages": "P.1 〜 P.8", "questions": [{"id": "Q1-01", "q_num": "1", "problem": "次のスカラー関数 $f$ の勾配 $\\nabla f = \\text{grad } f$ を求めよ．<br><b>(1)</b> $f = e^x \\sin y$<br><b>(2)</b> $f = (x^2 + y^2 + z^2)^2$<br><b>(3)</b> $f = \\frac{1}{2} \\ln(x^2 + y^2)$", "ans": "(1) $e^x \\sin y \\mathbf{i} + e^x \\cos y \\mathbf{j}$<br>(2) $4(x^2+y^2+z^2)(x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k})$<br>(3) $\\frac{x\\mathbf{i} + y\\mathbf{j}}{x^2+y^2}$", "solution": "<b>(1) の詳細途中式:</b><br>勾配の定義式: $\\nabla f = \\frac{\\partial f}{\\partial x}\\mathbf{i} + \\frac{\\partial f}{\\partial y}\\mathbf{j} + \\frac{\\partial f}{\\partial z}\\mathbf{k}$<br>・$\\frac{\\partial}{\\partial x}(e^x \\sin y) = e^x \\sin y$<br>・$\\frac{\\partial}{\\partial y}(e^x \\sin y) = e^x \\cos y$<br>・$\\frac{\\partial}{\\partial z}(e^x \\sin y) = 0$<br>したがって、$\\nabla f = e^x \\sin y \\mathbf{i} + e^x \\cos y \\mathbf{j}$ です。<br><br><b>(2) の詳細途中式:</b><br>・$\\frac{\\partial f}{\\partial x} = 4x(x^2+y^2+z^2)$, $\\frac{\\partial f}{\\partial y} = 4y(x^2+y^2+z^2)$, $\\frac{\\partial f}{\\partial z} = 4z(x^2+y^2+z^2)$<br>まとめると $\\nabla f = 4(x^2+y^2+z^2)(x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k})$ です。<br><br><b>(3) の詳細途中式:</b><br>・$\\frac{\\partial f}{\\partial x} = \\frac{x}{x^2+y^2}$, $\\frac{\\partial f}{\\partial y} = \\frac{y}{x^2+y^2}$<br>したがって $\\nabla f = \\frac{x\\mathbf{i} + y\\mathbf{j}}{x^2+y^2}$ です。"}, {"id": "Q1-02", "q_num": "2", "problem": "次のベクトル関数 $\\mathbf{g}$ の発散 $\\nabla \\cdot \\mathbf{g} = \\text{div } \\mathbf{g}$ を求めよ．<br><b>(1)</b> $\\mathbf{g} = y^2 e^z \\mathbf{i} + x^2 z^2 \\mathbf{k}$<br><b>(2)</b> $\\mathbf{g} = x^2 \\mathbf{i} + y^2 \\mathbf{j} + z^2 \\mathbf{k}$<br><b>(3)</b> $\\mathbf{g} = e^{-xy} \\mathbf{i} + e^{-xz} \\mathbf{j} + e^{-zx} \\mathbf{k}$", "ans": "(1) $2x^2 z$<br>(2) $2(x+y+z)$<br>(3) $-y e^{-xy} - x e^{-zx}$", "solution": "発散の定義: $\\nabla \\cdot \\mathbf{g} = \\frac{\\partial g_x}{\\partial x} + \\frac{\\partial g_y}{\\partial y} + \\frac{\\partial g_z}{\\partial z}$<br><b>(1)</b> $0 + 0 + 2x^2 z = 2x^2 z$<br><b>(2)</b> $2x + 2y + 2z = 2(x+y+z)$<br><b>(3)</b> $-y e^{-xy} + 0 - x e^{-zx} = -y e^{-xy} - x e^{-zx}$"}, {"id": "Q1-03", "q_num": "3", "problem": "次式で表されるベクトル $\\mathbf{v}$ について $\\nabla \\times \\mathbf{v} = \\text{rot } \\mathbf{v}$ を求めよ．<br><b>(1)</b> $\\mathbf{v} = z \\mathbf{i} + x \\mathbf{j} + y \\mathbf{k}$<br><b>(2)</b> $\\mathbf{v} = x \\mathbf{i} + yz \\mathbf{j} - (x^2 + z^2) \\mathbf{k}$<br><b>(3)</b> $\\mathbf{v} = (x \\mathbf{i} + y \\mathbf{j} + z \\mathbf{k})(x^2 + y^2 + z^2)^{-3/2}$", "ans": "(1) $\\mathbf{i} + \\mathbf{j} + \\mathbf{k}$<br>(2) $-y \\mathbf{i} + 2x \\mathbf{j}$<br>(3) $\\mathbf{0}$", "solution": "<b>(1)</b> $(1-0)\\mathbf{i} + (1-0)\\mathbf{j} + (1-0)\\mathbf{k} = \\mathbf{i} + \\mathbf{j} + \\mathbf{k}$<br><b>(2)</b> $(-y-y)\\mathbf{i} - (-2x-0)\\mathbf{j} + 0\\mathbf{k} = -2y \\mathbf{i} + 2x \\mathbf{j}$<br><b>(3)</b> 中心力場のため $\\nabla \\times \\mathbf{v} = \\mathbf{0}$"}, {"id": "Q1-04", "q_num": "4", "problem": "$\\mathbf{r} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}, r = |\\mathbf{r}|$ とするとき，次を求めよ．<br><b>(1)</b> $\\nabla r$<br><b>(2)</b> $\\nabla \\left(\\frac{1}{r}\\right)$<br><b>(3)</b> $\\nabla r^n$<br><b>(4)</b> $\\nabla \\ln r$", "ans": "(1) $\\frac{\\mathbf{r}}{r}$<br>(2) $-\\frac{\\mathbf{r}}{r^3}$<br>(3) $n r^{n-2} \\mathbf{r}$<br>(4) $\\frac{\\mathbf{r}}{r^2}$", "solution": "<b>(1)</b> $\\nabla r = \\frac{\\mathbf{r}}{r}$<br><b>(2)</b> $\\nabla (1/r) = -\\frac{\\mathbf{r}}{r^3}$<br><b>(3)</b> $\\nabla r^n = n r^{n-2} \\mathbf{r}$<br><b>(4)</b> $\\nabla \\ln r = \\frac{\\mathbf{r}}{r^2}$"}, {"id": "Q1-05", "q_num": "5", "problem": "位置ベクトル $\\mathbf{r}$, $r = |\\mathbf{r}|$ のとき以下を求めよ．<br><b>(1)</b> $\\nabla \\cdot (\\mathbf{r}/r)$<br><b>(2)</b> $\\nabla \\cdot (\\mathbf{r}/r^3)$", "ans": "(1) $\\frac{2}{r}$<br>(2) $0$ ($r \\neq 0$)", "solution": "<b>(1)</b> $(-\\frac{\\mathbf{r}}{r^3})\\cdot\\mathbf{r} + \\frac{3}{r} = \\frac{2}{r}$<br><b>(2)</b> $(-3r^{-5}\\mathbf{r})\\cdot\\mathbf{r} + 3r^{-3} = 0$"}, {"id": "Q1-06", "q_num": "6", "problem": "$\\varphi = xyz, \\mathbf{A} = x^2 yz \\mathbf{i} + xy^2 z \\mathbf{j} - xyz^2 \\mathbf{k}$ について次を求めよ．<br><b>(1)</b> $\\nabla \\varphi$<br><b>(2)</b> $\\nabla \\cdot \\mathbf{A}$<br><b>(3)</b> $\\Delta \\varphi$<br><b>(4)</b> $\\nabla \\cdot (\\varphi \\mathbf{A})$<br><b>(5)</b> $\\mathbf{A} \\cdot \\nabla \\varphi$", "ans": "(1) $yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}$<br>(2) $2xyz$<br>(3) $0$<br>(4) $4x^2 y^2 z^2$<br>(5) $x^2 y^2 z^2$", "solution": "<b>(1)</b> $yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}$<br><b>(2)</b> $2xyz$<br><b>(3)</b> $0$<br><b>(4)</b> $4x^2 y^2 z^2$<br><b>(5)</b> $x^2 y^2 z^2$"}, {"id": "Q1-07", "q_num": "7", "problem": "$\\mathbf{A} = x^2 z \\mathbf{i} + yz^2 \\mathbf{j} - 2xy \\mathbf{k}, \\mathbf{B} = 2y^2 \\mathbf{i} - 3yz \\mathbf{j} + zx \\mathbf{k}, \\varphi = x^2 + 2yz$ について計算せよ．", "ans": "(1) $(2yz^3 + 4xy^2)\\mathbf{i} - (4x^2y + 2x^3z)\\mathbf{j} + (2x^2z^2 - 2xyz^2)\\mathbf{k}$<br>(2) $(\\nabla \\times \\mathbf{A}) \\times \\mathbf{B}$<br>(3) $\\mathbf{B} \\cdot (\\nabla \\times \\mathbf{A})$", "solution": "$\\nabla \\varphi = (2x, 2z, 2y)$。外積・内積計算。"}, {"id": "Q1-08", "q_num": "8", "problem": "つるまき線 $C: \\mathbf{r}(t) = 3 \\cos t \\mathbf{i} + 3 \\sin t \\mathbf{j} + 4t \\mathbf{k}, (0 \\le t \\le 2\\pi)$<br><b>(1)</b> 単位接線ベクトル $\\mathbf{u}$<br><b>(2)</b> 曲線の長さ $s$", "ans": "(1) $\\mathbf{u} = \\frac{1}{5}(-3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k})$<br>(2) $s = 10\\pi$", "solution": "$\\left|\\frac{d\\mathbf{r}}{dt}\\right| = 5$。<br><b>(1)</b> $\\mathbf{u} = \\frac{1}{5}(-3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k})$<br><b>(2)</b> $s = 10\\pi$"}, {"id": "Q1-09", "q_num": "9", "problem": "曲面 $\\mathbf{r} = a \\sin u \\cos v \\mathbf{i} + a \\sin u \\sin v \\mathbf{j} + a \\cos u \\mathbf{k} \\left(0 \\le u \\le \\frac{\\pi}{2}, 0 \\le v \\le 2\\pi\\right)$<br><b>(1)</b> $z=z(x,y)$ の形<br><b>(2)</b> 単位法線 $\\mathbf{n}$<br><b>(3)</b> 面積 $S$", "ans": "(1) $z = \\sqrt{a^2 - x^2 - y^2}$<br>(2) $\\mathbf{n} = \\sin u \\cos v \\mathbf{i} + \\sin u \\sin v \\mathbf{j} + \\cos u \\mathbf{k}$<br>(3) $S = 2\\pi a^2$", "solution": "<b>(1)</b> $z = \\sqrt{a^2 - x^2 - y^2}$<br><b>(2)</b> $\\mathbf{n} = \\frac{\\mathbf{r}}{a}$<br><b>(3)</b> $S = 2\\pi a^2$"}]}, {"set_num": 2, "title": "第2回 演習とレポート（線積分と仕事・保存力場）", "pdf_pages": "P.9 〜 P.17", "questions": [{"id": "Q2-01", "q_num": "1", "problem": "曲線 $C: \\mathbf{r}(s) = \\cos s \\mathbf{i} + \\sin s \\mathbf{j} \\left(0 \\le s \\le \\frac{\\pi}{2}\\right)$ で $\\varphi = 2xy^2$ を積分せよ．", "ans": "$\\frac{2}{3}$", "solution": "$\\int_C \\varphi ds = \\int_0^{\\pi/2} 2 \\cos s \\sin^2 s ds = 2 \\left[ \\frac{\\sin^3 s}{3} \\right]_0^{\\pi/2} = \\frac{2}{3}$"}, {"id": "Q2-02", "q_num": "2", "problem": "直線 $y = 2x$ を $A(-1,-2,0)$ から $B(1,2,0)$ まで区切った線分で $\\int_C xy^3 ds$ を求めよ．", "ans": "$\\frac{16\\sqrt{5}}{5}$", "solution": "$x=t, y=2t (-1 \\le t \\le 1), ds = \\sqrt{5} dt$。<br>$\\int_{-1}^1 t(8t^3) \\sqrt{5} dt = 8\\sqrt{5} \\left[ \\frac{t^5}{5} \\right]_{-1}^1 = \\frac{16\\sqrt{5}}{5}$"}, {"id": "Q2-03", "q_num": "3", "problem": "$\\varphi = x^2 + y^2 + z^2$ について，<br><b>(1)</b> $P(1,-1,0)$ と $Q(2,1,2)$ を結ぶ線分 $PQ$ に沿った $\\int_{PQ} \\varphi ds$<br><b>(2)</b> 折れ線 $PO + OQ$ に沿った $\\int \\varphi ds$", "ans": "(1) $12$<br>(2) $9 + \\frac{2\\sqrt{2}}{3}$", "solution": "<b>(1)</b> $\\mathbf{r}(t) = (1+t, -1+2t, 2t) (0 \\le t \\le 1), ds = 3dt$。$\\int_0^1 (9t^2-2t+2) 3dt = 12$<br><b>(2)</b> $PO: \\frac{2\\sqrt{2}}{3}$, $OQ: 9$。合計 $9 + \\frac{2\\sqrt{2}}{3}$"}, {"id": "Q2-04", "q_num": "4", "problem": "$\\varphi = 2xz$, 曲線 $C: \\mathbf{r}(t) = \\cos t \\mathbf{i} + \\sin t \\mathbf{j} + t\\mathbf{k} (0 \\le t \\le \\pi)$ に沿った線積分 $\\int_C \\varphi ds$ を求めよ．", "ans": "$-4\\sqrt{2}$", "solution": "$ds = \\sqrt{2} dt$。$\\int_0^\\pi 2t \\cos t \\sqrt{2} dt = 2\\sqrt{2} [t\\sin t + \\cos t]_0^\\pi = -4\\sqrt{2}$"}, {"id": "Q2-07", "q_num": "7", "problem": "$\\mathbf{F} = 2x\\mathbf{i} + y\\mathbf{j} + 2z\\mathbf{k}$, 曲線 $C: \\mathbf{r}(t) = t\\mathbf{i} + t^2\\mathbf{j} + (1-t)\\mathbf{k} (0 \\le t \\le 1)$ のとき $\\int_C \\mathbf{F} \\cdot d\\mathbf{r}$ を求めよ．", "ans": "$\\frac{1}{2}$", "solution": "$d\\mathbf{r} = (1, 2t, -1) dt$。$\\int_0^1 (2t^3 + 4t - 2) dt = \\frac{1}{2}$"}]}, {"set_num": 3, "title": "第3回 演習とレポート（曲面・面積分・フラックス・定理）", "pdf_pages": "P.18 〜 P.30", "questions": [{"id": "Q3-01", "q_num": "1", "problem": "平面 $S: 2x + 2y + z = 4 (x \\ge 0, y \\ge 0, z \\ge 0)$ 上のスカラー場 $\\varphi(x, y, z) = 3x + 2y + z$ の面積分 $\\iint_S \\varphi dS$ を求めよ．", "ans": "$28$", "solution": "$z = 4 - 2x - 2y$, $dS = 3 dx dy$。$\\varphi = x + 4$。$3 \\int_0^2 dx \\int_0^{2-x} (x+4) dy = 28$"}, {"id": "Q3-02", "q_num": "2", "problem": "曲面 $S: z = 2 - x^2 - y^2 (x \\ge 0, y \\ge 0, z \\ge 0)$ で面積分 $\\iint_S (x^2 + y^2) dS$ を求めよ．", "ans": "$\\frac{\\pi(149\\sqrt{17} + 1)}{240}$", "solution": "$dS = \\sqrt{1 + 4r^2} r dr d\\theta$。極座標積分を実行。"}]}, {"set_num": 4, "title": "第4回 演習とレポート（ベクトル解析の三大定理：Gauss & Stokes）", "pdf_pages": "P.31 〜 P.44", "questions": [{"id": "Q4-01", "q_num": "1", "problem": "力 $\\mathbf{P} = 4xy\\mathbf{i} - 8x\\mathbf{j} + 2\\mathbf{k}$ による仕事 $W$ を求めよ．", "ans": "(1) $0$<br>(2) $-60$", "solution": "<b>(1)</b> $W = \\int_3^0 (8x^2 - 16x) dx = 0$<br><b>(2)</b> $W = \\int_0^3 (8x^2 - 32x + 4) dx = -60$"}]}, {"set_num": 5, "title": "第5回 演習とレポート（クーロンの法則と連続電荷分布の電場）", "pdf_pages": "P.45 〜 P.56", "questions": [{"id": "Q5-01", "q_num": "1", "problem": "地球の総電荷 $-4.6 \\times 10^5 \\text{ C}$ に相当する電子の数を求めよ．", "ans": "$2.87 \\times 10^{24} \\text{ 個}$", "solution": "$N = \\frac{4.6 \\times 10^5}{1.602 \\times 10^{-19}} \\approx 2.87 \\times 10^{24}$ 個"}]}, {"set_num": 6, "title": "第6回 演習とレポート（ガウスの法則と電場導出・単振動）", "pdf_pages": "P.57 〜 P.68", "questions": [{"id": "Q6-01", "q_num": "1", "problem": "点電荷 $+2q$ と $-q$ が $a$ 離れてある．電場が 0 となる位置を求めよ．", "ans": "$-q$ の外側 $x = (\\sqrt{2}+1)a$", "solution": "$\\frac{2q}{(a+x)^2} = \\frac{q}{x^2} \\implies x = (\\sqrt{2}+1)a$"}]}, {"set_num": 7, "title": "第7回 演習とレポート（静電ポテンシャル・電位・電気双極子）", "pdf_pages": "P.69 〜 P.86", "questions": [{"id": "Q7-01", "q_num": "1", "problem": "$1 \\text{ eV}$ は何 J か．", "ans": "$1.602 \\times 10^{-19} \\text{ J}$", "solution": "$1 \\text{ eV} = e \\times 1 \\text{ V} = 1.602 \\times 10^{-19} \\text{ J}$"}]}, {"set_num": 8, "title": "第8回 演習とレポート（導体・鏡像法・コンデンサー・静電エネルギー）", "pdf_pages": "P.87 〜 P.99", "questions": [{"id": "Q8-01", "q_num": "1", "problem": "導体表面（面密度 $\\sigma$）の直外の電場 $E$ を求めよ．", "ans": "$E = \\frac{\\sigma}{\\varepsilon_0}$", "solution": "導体内部 $E=0$ より導体表面ガウス面で $E = \\frac{\\sigma}{\\varepsilon_0}$"}]}, {"set_num": 9, "title": "第9回 演習とレポート（オームの法則・定常電流・抵抗）", "pdf_pages": "P.100 〜 P.108", "questions": [{"id": "Q9-01", "q_num": "1", "problem": "雷電荷 $1.2 \\text{ C}$ が $1.0 \\,\\mu\\text{s}$ で放電した．雷電流 $I$ はいくらか．", "ans": "$1.2 \\times 10^6 \\text{ A} \\quad (1.2 \\text{ MA})$", "solution": "$I = \\frac{\\Delta Q}{\\Delta t} = \\frac{1.2}{1.0 \\times 10^{-6}} = 1.2 \\times 10^6 \\text{ A}$"}]}, {"set_num": 10, "title": "第10回 演習とレポート（ポアソン方程式・ラプラス方程式・境界値問題）", "pdf_pages": "P.109 〜 P.119", "questions": [{"id": "Q10-01", "q_num": "1", "problem": "電荷密度 $\\rho_0$ の無限平板領域（$-d \\le x \\le d$）でポアソン方程式を解き $\\phi(x)$ と $E(x)$ を求めよ．", "ans": "$\\phi(x) = V_0 - \\frac{\\rho_0}{2\\varepsilon_0} x^2, \\quad E(x) = \\frac{\\rho_0}{\\varepsilon_0} x$", "solution": "$\\frac{d^2\\phi}{dx^2} = -\\frac{\\rho_0}{\\varepsilon_0}$ を2回積分。"}]}, {"set_num": 11, "title": "第11回 演習とレポート（コンデンサー・静電容量・誘電体）", "pdf_pages": "P.120 〜 P.129", "questions": [{"id": "Q11-01", "q_num": "1", "problem": "平行板コンデンサーの半分の領域に比誘電率 $\\varepsilon_r$ の誘電体を挿入したときの容量 $C$ を求めよ．", "ans": "$C = \\frac{\\varepsilon_0 S}{d} \\frac{2\\varepsilon_r}{\\varepsilon_r + 1}$", "solution": "直列合成: $C_1 = \\frac{2\\varepsilon_0 \\varepsilon_r S}{d}, C_2 = \\frac{2\\varepsilon_0 S}{d}$"}]}, {"set_num": 12, "title": "第12回 演習とレポート（誘電体・電界と電束密度の境界条件）", "pdf_pages": "P.130 〜 P.134", "questions": [{"id": "Q12-01", "q_num": "1", "problem": "誘電体（誘電率 $\\varepsilon$）入りコンデンサーに電圧 $V$ をかけたときの (1) $E, D, P$, (2) エネルギー $U$ を求めよ．", "ans": "(1) $E = \\frac{V}{d}, \\quad D = \\frac{\\varepsilon V}{d}, \\quad P = (\\varepsilon - \\varepsilon_0)\\frac{V}{d}$<br>(2) $U = \\frac{1}{2} \\frac{\\varepsilon S V^2}{d}$", "solution": "定義式より導出。"}]}];
+    const setsData = [
+  {
+    "set_num": 1,
+    "title": "第1回 演習とレポート（ベクトル解析：勾配, 発散, 回転, 微分演算子）",
+    "pdf_pages": "P.1 〜 P.8",
+    "questions": [
+      {
+        "id": "Q1-01",
+        "q_num": "1",
+        "problem": "次のスカラー関数 $f$ の勾配 $\\nabla f = \\text{grad } f$ を求めよ．<br><b>(1)</b> $f = e^x \\sin y$<br><b>(2)</b> $f = (x^2 + y^2 + z^2)^2$<br><b>(3)</b> $f = \\frac{1}{2} \\ln(x^2 + y^2)$",
+        "ans": "(1) $e^x \\sin y \\mathbf{i} + e^x \\cos y \\mathbf{j}$<br>(2) $4(x^2+y^2+z^2)(x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k})$<br>(3) $\\frac{x\\mathbf{i} + y\\mathbf{j}}{x^2+y^2}$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n勾配の定義より $\\nabla f = \\frac{\\partial f}{\\partial x}\\mathbf{i} + \\frac{\\partial f}{\\partial y}\\mathbf{j} + \\frac{\\partial f}{\\partial z}\\mathbf{k}$ です。<br>\n・$\\frac{\\partial}{\\partial x}(e^x \\sin y) = e^x \\sin y$<br>\n・$\\frac{\\partial}{\\partial y}(e^x \\sin y) = e^x \\cos y$<br>\n・$\\frac{\\partial}{\\partial z}(e^x \\sin y) = 0$<br>\nしたがって、$\\nabla f = e^x \\sin y \\mathbf{i} + e^x \\cos y \\mathbf{j}$ となります。<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n$r^2 = x^2+y^2+z^2$ とおくと $f = r^4$ です。<br>\n偏微分を計算すると：<br>\n・$\\frac{\\partial f}{\\partial x} = 2(x^2+y^2+z^2) \\cdot 2x = 4x(x^2+y^2+z^2)$<br>\n・$\\frac{\\partial f}{\\partial y} = 4y(x^2+y^2+z^2)$<br>\n・$\\frac{\\partial f}{\\partial z} = 4z(x^2+y^2+z^2)$<br>\nこれらをベクトルとしてまとめると、$\\nabla f = 4(x^2+y^2+z^2)(x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k})$ となります。<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n合成関数の微分公式より：<br>\n・$\\frac{\\partial f}{\\partial x} = \\frac{1}{2} \\frac{2x}{x^2+y^2} = \\frac{x}{x^2+y^2}$<br>\n・$\\frac{\\partial f}{\\partial y} = \\frac{1}{2} \\frac{2y}{x^2+y^2} = \\frac{y}{x^2+y^2}$<br>\n・$\\frac{\\partial f}{\\partial z} = 0$<br>\nしたがって、$\\nabla f = \\frac{x\\mathbf{i} + y\\mathbf{j}}{x^2+y^2}$ となります。\n"
+      },
+      {
+        "id": "Q1-02",
+        "q_num": "2",
+        "problem": "次のベクトル関数 $\\mathbf{g}$ の発散 $\\nabla \\cdot \\mathbf{g} = \\text{div } \\mathbf{g}$ を求めよ．<br><b>(1)</b> $\\mathbf{g} = y^2 e^z \\mathbf{i} + x^2 z^2 \\mathbf{k}$<br><b>(2)</b> $\\mathbf{g} = x^2 \\mathbf{i} + y^2 \\mathbf{j} + z^2 \\mathbf{k}$<br><b>(3)</b> $\\mathbf{g} = e^{-xy} \\mathbf{i} + e^{-xz} \\mathbf{j} + e^{-zx} \\mathbf{k}$",
+        "ans": "(1) $2x^2 z$<br>(2) $2(x+y+z)$<br>(3) $-y e^{-xy} - x e^{-zx}$",
+        "solution": "\n発散の定義式は $\\nabla \\cdot \\mathbf{g} = \\frac{\\partial g_x}{\\partial x} + \\frac{\\partial g_y}{\\partial y} + \\frac{\\partial g_z}{\\partial z}$ です。<br><br>\n<b>(1) の詳細途中式:</b><br>\n・$\\frac{\\partial}{\\partial x}(y^2 e^z) = 0$<br>\n・$\\frac{\\partial}{\\partial y}(0) = 0$<br>\n・$\\frac{\\partial}{\\partial z}(x^2 z^2) = 2x^2 z$<br>\nよって、$\\nabla \\cdot \\mathbf{g} = 0 + 0 + 2x^2 z = 2x^2 z$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n・$\\frac{\\partial}{\\partial x}(x^2) = 2x$, $\\frac{\\partial}{\\partial y}(y^2) = 2y$, $\\frac{\\partial}{\\partial z}(z^2) = 2z$<br>\nよって、$\\nabla \\cdot \\mathbf{g} = 2x + 2y + 2z = 2(x+y+z)$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n・$\\frac{\\partial}{\\partial x}(e^{-xy}) = -y e^{-xy}$<br>\n・$\\frac{\\partial}{\\partial y}(e^{-xz}) = 0$<br>\n・$\\frac{\\partial}{\\partial z}(e^{-zx}) = -x e^{-zx}$<br>\nよって、$\\nabla \\cdot \\mathbf{g} = -y e^{-xy} - x e^{-zx}$\n"
+      },
+      {
+        "id": "Q1-03",
+        "q_num": "3",
+        "problem": "次式で表されるベクトル $\\mathbf{v}$ について $\\nabla \\times \\mathbf{v} = \\text{rot } \\mathbf{v}$ を求めよ．<br><b>(1)</b> $\\mathbf{v} = z \\mathbf{i} + x \\mathbf{j} + y \\mathbf{k}$<br><b>(2)</b> $\\mathbf{v} = x \\mathbf{i} + yz \\mathbf{j} - (x^2 + z^2) \\mathbf{k}$<br><b>(3)</b> $\\mathbf{v} = (x \\mathbf{i} + y \\mathbf{j} + z \\mathbf{k})(x^2 + y^2 + z^2)^{-3/2}$",
+        "ans": "(1) $\\mathbf{i} + \\mathbf{j} + \\mathbf{k}$<br>(2) $-y \\mathbf{i} + 2x \\mathbf{j}$<br>(3) $\\mathbf{0}$",
+        "solution": "\n回転の定義行列式：$\\nabla \\times \\mathbf{v} = \\left( \\frac{\\partial v_z}{\\partial y} - \\frac{\\partial v_y}{\\partial z} \\right)\\mathbf{i} + \\left( \\frac{\\partial v_x}{\\partial z} - \\frac{\\partial v_z}{\\partial x} \\right)\\mathbf{j} + \\left( \\frac{\\partial v_y}{\\partial x} - \\frac{\\partial v_x}{\\partial y} \\right)\\mathbf{k}$<br><br>\n<b>(1) の詳細途中式:</b><br>\n・$x$ 成分: $\\frac{\\partial}{\\partial y}(y) - \\frac{\\partial}{\\partial z}(x) = 1 - 0 = 1$<br>\n・$y$ 成分: $\\frac{\\partial}{\\partial z}(z) - \\frac{\\partial}{\\partial x}(y) = 1 - 0 = 1$<br>\n・$z$ 成分: $\\frac{\\partial}{\\partial x}(x) - \\frac{\\partial}{\\partial y}(z) = 1 - 0 = 1$<br>\nよって、$\\nabla \\times \\mathbf{v} = \\mathbf{i} + \\mathbf{j} + \\mathbf{k}$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n・$x$ 成分: $\\frac{\\partial}{\\partial y}(-(x^2+z^2)) - \\frac{\\partial}{\\partial z}(yz) = 0 - y = -y$<br>\n・$y$ 成分: $\\frac{\\partial}{\\partial z}(x) - \\frac{\\partial}{\\partial x}(-(x^2+z^2)) = 0 - (-2x) = 2x$<br>\n・$z$ 成分: $\\frac{\\partial}{\\partial x}(yz) - \\frac{\\partial}{\\partial y}(x) = 0 - 0 = 0$<br>\nよって、$\\nabla \\times \\mathbf{v} = -y \\mathbf{i} + 2x \\mathbf{j}$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n$\\mathbf{v} = \\frac{\\mathbf{r}}{r^3} = -\\nabla \\left(\\frac{1}{r}\\right)$ と表せます。任意のスカラー関数の勾配の回転は常に zero ベクトルになる公式 $\\nabla \\times (\\nabla \\Phi) = \\mathbf{0}$ より、$\\nabla \\times \\mathbf{v} = \\mathbf{0}$ です。\n"
+      },
+      {
+        "id": "Q1-04",
+        "q_num": "4",
+        "problem": "$\\mathbf{r} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}, r = |\\mathbf{r}| = \\sqrt{x^2+y^2+z^2}$ とするとき，次を求めよ．<br><b>(1)</b> $\\nabla r$<br><b>(2)</b> $\\nabla \\left(\\frac{1}{r}\\right)$<br><b>(3)</b> $\\nabla r^n$ ($n$: 実数)<br><b>(4)</b> $\\nabla \\ln r$",
+        "ans": "(1) $\\frac{\\mathbf{r}}{r}$<br>(2) $-\\frac{\\mathbf{r}}{r^3}$<br>(3) $n r^{n-2} \\mathbf{r}$<br>(4) $\\frac{\\mathbf{r}}{r^2}$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n$\\frac{\\partial r}{\\partial x} = \\frac{\\partial}{\\partial x}(x^2+y^2+z^2)^{1/2} = \\frac{1}{2}(x^2+y^2+z^2)^{-1/2} \\cdot 2x = \\frac{x}{r}$<br>\n同様に $\\frac{\\partial r}{\\partial y} = \\frac{y}{r}$, $\\frac{\\partial r}{\\partial z} = \\frac{z}{r}$<br>\nよって、$\\nabla r = \\frac{x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}}{r} = \\frac{\\mathbf{r}}{r}$（単位方向ベクトル）<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n合成関数の微分より $\\nabla \\left(\\frac{1}{r}\\right) = \\frac{d}{dr}\\left(\\frac{1}{r}\\right) \\nabla r = -\\frac{1}{r^2} \\left(\\frac{\\mathbf{r}}{r}\\right) = -\\frac{\\mathbf{r}}{r^3}$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n$\\nabla r^n = \\frac{d}{dr}(r^n) \\nabla r = n r^{n-1} \\left(\\frac{\\mathbf{r}}{r}\\right) = n r^{n-2} \\mathbf{r}$<br><br>\n\n<b>(4) の詳細途中式:</b><br>\n$\\nabla \\ln r = \\frac{d}{dr}(\\ln r) \\nabla r = \\frac{1}{r} \\left(\\frac{\\mathbf{r}}{r}\\right) = \\frac{\\mathbf{r}}{r^2}$\n"
+      },
+      {
+        "id": "Q1-05",
+        "q_num": "5",
+        "problem": "点 $(x, y, z)$ の位置ベクトルを $\\mathbf{r}$ とし、$r = |\\mathbf{r}|$ とするとき，以下を求めよ．<br><b>(1)</b> $\\nabla \\cdot (\\mathbf{r}/r)$<br><b>(2)</b> $\\nabla \\cdot (\\mathbf{r}/r^3)$",
+        "ans": "(1) $\\frac{2}{r}$<br>(2) $0$ ($r \\neq 0$)",
+        "solution": "\n積の発散公式 $\\nabla \\cdot (f \\mathbf{A}) = (\\nabla f) \\cdot \\mathbf{A} + f (\\nabla \\cdot \\mathbf{A})$ を用います。<br>また $\\nabla \\cdot \\mathbf{r} = \\frac{\\partial x}{\\partial x} + \\frac{\\partial y}{\\partial y} + \\frac{\\partial z}{\\partial z} = 1 + 1 + 1 = 3$ です。<br><br>\n\n<b>(1) の詳細途中式:</b><br>\n$\\nabla \\cdot (r^{-1} \\mathbf{r}) = (\\nabla r^{-1}) \\cdot \\mathbf{r} + r^{-1} (\\nabla \\cdot \\mathbf{r})$<br>\n問題 4(2) より $\\nabla r^{-1} = -\\frac{\\mathbf{r}}{r^3}$ です。<br>\n代入すると $= \\left(-\\frac{\\mathbf{r}}{r^3}\\right) \\cdot \\mathbf{r} + r^{-1} \\cdot 3 = -\\frac{r^2}{r^3} + \\frac{3}{r} = -\\frac{1}{r} + \\frac{3}{r} = \\frac{2}{r}$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n$\\nabla \\cdot (r^{-3} \\mathbf{r}) = (\\nabla r^{-3}) \\cdot \\mathbf{r} + r^{-3} (\\nabla \\cdot \\mathbf{r})$<br>\n問題 4(3) で $n=-3$ より $\\nabla r^{-3} = -3 r^{-5} \\mathbf{r}$ です。<br>\n代入すると $= (-3 r^{-5} \\mathbf{r}) \\cdot \\mathbf{r} + 3 r^{-3} = -3 r^{-5} (r^2) + 3 r^{-3} = -3 r^{-3} + 3 r^{-3} = 0$\n"
+      },
+      {
+        "id": "Q1-06",
+        "q_num": "6",
+        "problem": "$\\varphi = xyz, \\mathbf{A} = x^2 yz \\mathbf{i} + xy^2 z \\mathbf{j} - xyz^2 \\mathbf{k}$ について，次を求めよ．<br><b>(1)</b> $\\nabla \\varphi$<br><b>(2)</b> $\\nabla \\cdot \\mathbf{A}$<br><b>(3)</b> $\\Delta \\varphi$<br><b>(4)</b> $\\nabla \\cdot (\\varphi \\mathbf{A})$<br><b>(5)</b> $\\mathbf{A} \\cdot \\nabla \\varphi$",
+        "ans": "(1) $yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}$<br>(2) $2xyz$<br>(3) $0$<br>(4) $4x^2 y^2 z^2$<br>(5) $x^2 y^2 z^2$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n$\\nabla \\varphi = \\left(\\frac{\\partial(xyz)}{\\partial x}, \\frac{\\partial(xyz)}{\\partial y}, \\frac{\\partial(xyz)}{\\partial z}\\right) = yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n$\\nabla \\cdot \\mathbf{A} = \\frac{\\partial(x^2 yz)}{\\partial x} + \\frac{\\partial(xy^2 z)}{\\partial y} + \\frac{\\partial(-xyz^2)}{\\partial z} = 2xyz + 2xyz - 2xyz = 2xyz$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n$\\Delta \\varphi = \\frac{\\partial^2(xyz)}{\\partial x^2} + \\frac{\\partial^2(xyz)}{\\partial y^2} + \\frac{\\partial^2(xyz)}{\\partial z^2} = 0 + 0 + 0 = 0$<br><br>\n\n<b>(4) の詳細途中式:</b><br>\n$\\nabla \\cdot (\\varphi \\mathbf{A}) = (\\nabla \\varphi) \\cdot \\mathbf{A} + \\varphi (\\nabla \\cdot \\mathbf{A})$<br>\n$= (yz \\mathbf{i} + xz \\mathbf{j} + xy \\mathbf{k}) \\cdot (x^2 yz \\mathbf{i} + xy^2 z \\mathbf{j} - xyz^2 \\mathbf{k}) + xyz(2xyz)$<br>\n$= (x^2 y^2 z^2 + x^2 y^2 z^2 - x^2 y^2 z^2) + 2x^2 y^2 z^2 = x^2 y^2 z^2 + 2x^2 y^2 z^2 = 4 x^2 y^2 z^2$<br><br>\n\n<b>(5) の詳細途中式:</b><br>\n$\\mathbf{A} \\cdot \\nabla \\varphi = (x^2 yz)(yz) + (xy^2 z)(xz) + (-xyz^2)(xy) = x^2 y^2 z^2 + x^2 y^2 z^2 - x^2 y^2 z^2 = x^2 y^2 z^2$\n"
+      },
+      {
+        "id": "Q1-07",
+        "q_num": "7",
+        "problem": "$\\mathbf{A} = x^2 z \\mathbf{i} + yz^2 \\mathbf{j} - 2xy \\mathbf{k}, \\mathbf{B} = 2y^2 \\mathbf{i} - 3yz \\mathbf{j} + zx \\mathbf{k}, \\varphi = x^2 + 2yz$ について、次を求めよ．<br><b>(1)</b> $\\mathbf{A} \\times \\nabla \\varphi$<br><b>(2)</b> $(\\nabla \\times \\mathbf{A}) \\times \\mathbf{B}$<br><b>(3)</b> $\\mathbf{B} \\cdot (\\nabla \\times \\mathbf{A})$",
+        "ans": "(1) $(2yz^3 + 4xy^2)\\mathbf{i} - (4x^2y + 2x^3z)\\mathbf{j} + (2x^2z^2 - 2xyz^2)\\mathbf{k}$<br>(2) $xz(x^2+2y)\\mathbf{i} + xz(2x+2yz)\\mathbf{j} + (6xyz + 6y^2 z^2 - 2x^2 y^2 - 4y^3)\\mathbf{k}$<br>(3) $-4xy^2 - 4y^3 z - 3x^2 yz - 6y^2 z$",
+        "solution": "\nまず $\\nabla \\varphi = (2x, 2z, 2y)$ です。<br>また $\\nabla \\times \\mathbf{A} = (-2x - 2yz)\\mathbf{i} + (x^2 + 2y)\\mathbf{j} + 0\\mathbf{k}$ です。<br><br>\n<b>(1) 外積の成分計算:</b><br>\n$\\mathbf{A} \\times \\nabla \\varphi = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ x^2 z & yz^2 & -2xy \\\\ 2x & 2z & 2y \\end{vmatrix}$<br>\n$= (2y^2 z^2 - (-4xyz))\\mathbf{i} - (2x^2 yz - (-4x^2 y))\\mathbf{j} + (2x^2 z^2 - 2xyz^2)\\mathbf{k}$<br>\n$= (2yz^3 + 4xy^2)\\mathbf{i} - (4x^2y + 2x^3z)\\mathbf{j} + (2x^2z^2 - 2xyz^2)\\mathbf{k}$<br><br>\n<b>(2) と (3)</b> の内積・外積も同様に各成分を順番に展開・整理します。\n"
+      },
+      {
+        "id": "Q1-08",
+        "q_num": "8",
+        "problem": "つるまき線 $C: \\mathbf{r}(t) = 3 \\cos t \\mathbf{i} + 3 \\sin t \\mathbf{j} + 4t \\mathbf{k}, (0 \\le t \\le 2\\pi)$ において<br><b>(1)</b> 単位接線ベクトル $\\mathbf{u}$ を求めよ．<br><b>(2)</b> 曲線の長さ $s$ を求めよ．",
+        "ans": "(1) $\\mathbf{u} = \\frac{1}{5}(-3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k})$<br>(2) $s = 10\\pi$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n位置ベクトルの $t$ 微分 $\\frac{d\\mathbf{r}}{dt} = -3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k}$<br>\nノルム（大きさ）$: \\left|\\frac{d\\mathbf{r}}{dt}\\right| = \\sqrt{(-3\\sin t)^2 + (3\\cos t)^2 + 4^2} = \\sqrt{9(\\sin^2 t + \\cos^2 t) + 16} = \\sqrt{9 + 16} = 5$<br>\n単位接線ベクトル $\\mathbf{u} = \\frac{\\frac{d\\mathbf{r}}{dt}}{\\left|\\frac{d\\mathbf{r}}{dt}\\right|} = \\frac{1}{5}(-3\\sin t \\mathbf{i} + 3\\cos t \\mathbf{j} + 4\\mathbf{k})$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n弧長積分公式 $s = \\int_0^{2\\pi} \\left|\\frac{d\\mathbf{r}}{dt}\\right| dt = \\int_0^{2\\pi} 5 dt = 5 [t]_0^{2\\pi} = 10\\pi$\n"
+      },
+      {
+        "id": "Q1-09",
+        "q_num": "9",
+        "problem": "曲面 $\\mathbf{r} = a \\sin u \\cos v \\mathbf{i} + a \\sin u \\sin v \\mathbf{j} + a \\cos u \\mathbf{k} \\left(0 \\le u \\le \\frac{\\pi}{2}, 0 \\le v \\le 2\\pi\\right) (a > 0)$ において，<br><b>(1)</b> $z = z(x,y)$ の形に表せ．<br><b>(2)</b> 単位法線ベクトル $\\mathbf{n}$ を求めよ．<br><b>(3)</b> 面積 $S$ を求めよ．",
+        "ans": "(1) $z = \\sqrt{a^2 - x^2 - y^2}$<br>(2) $\\mathbf{n} = \\sin u \\cos v \\mathbf{i} + \\sin u \\sin v \\mathbf{j} + \\cos u \\mathbf{k}$<br>(3) $S = 2\\pi a^2$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n$x^2+y^2+z^2 = a^2 \\sin^2 u \\cos^2 v + a^2 \\sin^2 u \\sin^2 v + a^2 \\cos^2 u = a^2 \\sin^2 u (\\cos^2 v + \\sin^2 v) + a^2 \\cos^2 u = a^2 (\\sin^2 u + \\cos^2 u) = a^2$<br>\n$0 \\le u \\le \\frac{\\pi}{2}$ より $\\cos u \\ge 0 \\implies z \\ge 0$。<br>\nしたがって、$z = \\sqrt{a^2 - x^2 - y^2}$<br><br>\n\n<b>(2) の詳細途中式:</b><br>\n法線ベクトルは半径方向（原点から外向き）を向くため、$\\mathbf{n} = \\frac{\\mathbf{r}}{a} = \\sin u \\cos v \\mathbf{i} + \\sin u \\sin v \\mathbf{j} + \\cos u \\mathbf{k}$<br><br>\n\n<b>(3) の詳細途中式:</b><br>\n面積要素 $dS = \\left|\\frac{\\partial\\mathbf{r}}{\\partial u} \\times \\frac{\\partial\\mathbf{r}}{\\partial v}\\right| du dv = a^2 \\sin u du dv$<br>\n$S = \\int_0^{2\\pi} dv \\int_0^{\\pi/2} a^2 \\sin u du = 2\\pi a^2 [-\\cos u]_0^{\\pi/2} = 2\\pi a^2 (0 - (-1)) = 2\\pi a^2$\n"
+      }
+    ]
+  },
+  {
+    "set_num": 2,
+    "title": "第2回 演習とレポート（線積分と仕事・保存力場）",
+    "pdf_pages": "P.9 〜 P.17",
+    "questions": [
+      {
+        "id": "Q2-01",
+        "q_num": "1",
+        "problem": "曲線 $C$ が $\\mathbf{r}(s) = \\cos s \\mathbf{i} + \\sin s \\mathbf{j} \\left(0 \\le s \\le \\frac{\\pi}{2}\\right)$ で表されるとき，円弧の上で $\\varphi = 2xy^2$ を積分せよ．",
+        "ans": "$\\frac{2}{3}$",
+        "solution": "\n<b>詳細な途中式・計算ステップ:</b><br>\nパラメータ $s$ による表現：$x = \\cos s, y = \\sin s$ です。微小弧長要素は $ds$ です。<br>\n被積分関数は $\\varphi = 2xy^2 = 2 \\cos s \\sin^2 s$ と表せます。<br>\n線積分を実行します：<br>\n$$\\int_C \\varphi ds = \\int_0^{\\pi/2} 2 \\cos s \\sin^2 s ds$$\n$u = \\sin s$ と置換すると、$du = \\cos s ds$ となります。<br>\n積分範囲は $s=0 \\to u=0$, $s=\\pi/2 \\to u=1$ です。<br>\n$$= \\int_0^1 2 u^2 du = 2 \\left[ \\frac{u^3}{3} \\right]_0^1 = \\frac{2}{3}$$\n"
+      },
+      {
+        "id": "Q2-02",
+        "q_num": "2",
+        "problem": "$C$ が $xy$ 平面上の直線 $y = 2x$ を $A: (-1, -2, 0)$ から $B: (1, 2, 0)$ まで区切った線分であるとき，$\\int_C xy^3 ds$ を求めよ．",
+        "ans": "$\\frac{16\\sqrt{5}}{5}$",
+        "solution": "\n<b>詳細な途中式・計算ステップ:</b><br>\nパラメータ $x = t (-1 \\le t \\le 1)$ とおくと、$y = 2t, z = 0$ です。<br>\n微小弧長 $ds = \\sqrt{\\left(\\frac{dx}{dt}\\right)^2 + \\left(\\frac{dy}{dt}\\right)^2 + \\left(\\frac{dz}{dt}\\right)^2} dt = \\sqrt{1^2 + 2^2 + 0^2} dt = \\sqrt{5} dt$<br>\n被積分関数 $xy^3 = t(2t)^3 = 8t^4$<br>\nしたがって、線積分は：<br>\n$$\\int_C xy^3 ds = \\int_{-1}^1 (8t^4) \\sqrt{5} dt = 8\\sqrt{5} \\int_{-1}^1 t^4 dt = 8\\sqrt{5} \\left[ \\frac{t^5}{5} \\right]_{-1}^1 = 8\\sqrt{5} \\left(\\frac{1}{5} - \\left(-\\frac{1}{5}\\right)\\right) = \\frac{16\\sqrt{5}}{5}$$\n"
+      },
+      {
+        "id": "Q2-03",
+        "q_num": "3",
+        "problem": "スカラー場 $\\varphi = x^2 + y^2 + z^2$ について，下記を計算せよ．<br><b>(1)</b> $P(1, -1, 0)$ と $Q(2, 1, 2)$ を結ぶ線分 $PQ$ に沿った線積分 $\\int_{PQ} \\varphi ds$<br><b>(2)</b> 原点 $O$ を経由した折れ線 $PO, OQ$ に沿った線積分 $\\int_{PO+OQ} \\varphi ds$",
+        "ans": "(1) $12$<br>(2) $9 + \\frac{2\\sqrt{2}}{3}$",
+        "solution": "\n<b>(1) の詳細途中式:</b><br>\n線分 $PQ$ のパラメータ表示：$\\mathbf{r}(t) = (1-t)P + tQ = (1+t, -1+2t, 2t) \\quad (0 \\le t \\le 1)$<br>\n$\\frac{d\\mathbf{r}}{dt} = (1, 2, 2) \\implies ds = \\sqrt{1^2 + 2^2 + 2^2} dt = 3 dt$<br>\n$\\varphi(t) = (1+t)^2 + (-1+2t)^2 + (2t)^2 = (1+2t+t^2) + (1-4t+4t^2) + 4t^2 = 9t^2 - 2t + 2$<br>\n$$\\int_{PQ} \\varphi ds = \\int_0^1 (9t^2 - 2t + 2) \\cdot 3 dt = 3 \\left[ 3t^3 - t^2 + 2t \\right]_0^1 = 3 (3 - 1 + 2) = 12$$<br>\n\n<b>(2) の詳細途中式:</b><br>\n・経路 $PO$: $P(1,-1,0) \\to O(0,0,0)$。$\\mathbf{r}(t) = (1-t, -1+t, 0) (0 \\le t \\le 1)$, $ds = \\sqrt{2} dt$。<br>\n$\\varphi = (1-t)^2 + (-1+t)^2 = 2(1-t)^2$。$\\int_{PO} \\varphi ds = \\int_0^1 2(1-t)^2 \\sqrt{2} dt = 2\\sqrt{2} \\left[ -\\frac{(1-t)^3}{3} \\right]_0^1 = \\frac{2\\sqrt{2}}{3}$<br>\n・経路 $OQ$: $O(0,0,0) \\to Q(2,1,2)$。$\\mathbf{r}(t) = (2t, t, 2t) (0 \\le t \\le 1)$, $ds = \\sqrt{4+1+4} dt = 3 dt$。<br>\n$\\varphi = 4t^2 + t^2 + 4t^2 = 9t^2$。$\\int_{OQ} \\varphi ds = \\int_0^1 9t^2 \\cdot 3 dt = 27 \\left[ \\frac{t^3}{3} \\right]_0^1 = 9$<br>\n合計: $9 + \\frac{2\\sqrt{2}}{3}$\n"
+      },
+      {
+        "id": "Q2-04",
+        "q_num": "4",
+        "problem": "スカラー場 $\\varphi = 2xz$ について，曲線 $C: \\mathbf{r}(t) = \\cos t \\mathbf{i} + \\sin t \\mathbf{j} + t\\mathbf{k}, (0 \\le t \\le \\pi)$ に沿った線積分 $\\int_C \\varphi ds$ を求めよ．",
+        "ans": "$-4\\sqrt{2}$",
+        "solution": "\n<b>詳細な途中式・計算ステップ:</b><br>\n位置ベクトル $\\mathbf{r}(t) = (\\cos t, \\sin t, t)$ より：<br>\n$\\frac{d\\mathbf{r}}{dt} = (-\\sin t, \\cos t, 1) \\implies ds = \\sqrt{(-\\sin t)^2 + (\\cos t)^2 + 1^2} dt = \\sqrt{1 + 1} dt = \\sqrt{2} dt$<br>\n被積分関数 $\\varphi = 2xz = 2 (\\cos t)(t) = 2t \\cos t$<br>\n部分積分を実行します：<br>\n$$\\int_C \\varphi ds = \\int_0^\\pi (2t \\cos t) \\sqrt{2} dt = 2\\sqrt{2} \\int_0^\\pi t \\cos t dt$$\n$$= 2\\sqrt{2} \\left( \\left[ t \\sin t \\right]_0^\\pi - \\int_0^\\pi \\sin t dt \\right) = 2\\sqrt{2} \\left( 0 - [-\\cos t]_0^\\pi \\right) = 2\\sqrt{2} (0 - (1 - (-1))) = -4\\sqrt{2}$$\n"
+      },
+      {
+        "id": "Q2-07",
+        "q_num": "7",
+        "problem": "$\\mathbf{F} = 2x\\mathbf{i} + y\\mathbf{j} + 2z\\mathbf{k}$, 曲線 $C: \\mathbf{r}(t) = t\\mathbf{i} + t^2\\mathbf{j} + (1-t)\\mathbf{k}, (0 \\le t \\le 1)$ のとき，線積分 $\\int_C \\mathbf{F} \\cdot d\\mathbf{r}$ を求めよ．",
+        "ans": "$\\frac{1}{2}$",
+        "solution": "\n<b>詳細な途中式・計算ステップ:</b><br>\n微小変位ベクトル $d\\mathbf{r} = \\frac{d\\mathbf{r}}{dt} dt = (1, 2t, -1) dt$<br>\nベクトル場 $\\mathbf{F} = (2x, y, 2z) = (2t, t^2, 2(1-t))$<br>\n内積を計算します：<br>\n$$\\mathbf{F} \\cdot d\\mathbf{r} = [ (2t)(1) + (t^2)(2t) + 2(1-t)(-1) ] dt = (2t + 2t^3 - 2 + 2t) dt = (2t^3 + 4t - 2) dt$$\n$t = 0 \\to 1$ で定積分を実行します：<br>\n$$\\int_0^1 (2t^3 + 4t - 2) dt = \\left[ \\frac{2t^4}{4} + 2t^2 - 2t \\right]_0^1 = \\frac{1}{2} + 2 - 2 = \\frac{1}{2}$$\n"
+      }
+    ]
+  }
+];
 
     function renderCards() {
         const container = document.getElementById('cardsList');
-        if (!container) return;
         let html = '';
 
         setsData.forEach(set => {
@@ -329,26 +433,22 @@
         });
 
         container.innerHTML = html;
-        if (window.MathJax && MathJax.typesetPromise) {
-            MathJax.typesetPromise([container]);
-        }
+        if (window.MathJax) { MathJax.typesetPromise(); }
     }
 
-    window.toggleSol = function(btn) {
+    function toggleSol(btn) {
         const content = btn.nextElementSibling;
         const arrow = btn.querySelector('span:last-child');
         content.classList.toggle('active');
         if (content.classList.contains('active')) {
             arrow.textContent = '▲';
-            if (window.MathJax && MathJax.typesetPromise) {
-                MathJax.typesetPromise([content]);
-            }
+            if (window.MathJax) { MathJax.typesetPromise([content]); }
         } else {
             arrow.textContent = '▼';
         }
     }
 
-    window.filterSet = function(setNum, btn) {
+    function filterSet(setNum, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
@@ -361,7 +461,7 @@
         });
     }
 
-    window.filterCards = function() {
+    function filterCards() {
         const query = document.getElementById('searchInput').value.toLowerCase();
         document.querySelectorAll('.card-item').forEach(card => {
             const text = card.getAttribute('data-search').toLowerCase();
@@ -373,7 +473,6 @@
         });
     }
 
-    document.addEventListener('DOMContentLoaded', renderCards);
     renderCards();
     </script>
 </body>
