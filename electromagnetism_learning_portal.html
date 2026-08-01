@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>電磁気学1 構造化解説カードポータル | 全81問 公式・解法の要点・詳細ステップ解説</title>
+    <title>電磁気学1 構造化解説WEBプリントポータル | 全81問 公式・ステップ解説・指導ポイント</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -93,7 +93,7 @@
             font-size: 15px;
             color: #93c5fd;
             font-weight: 500;
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
@@ -143,6 +143,32 @@
             background: var(--accent-blue);
             color: white;
             box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .control-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .print-trigger-btn {
+            background: #1e293b;
+            color: white;
+            border: none;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 13.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .print-trigger-btn:hover {
+            background: #0f172a;
+            transform: translateY(-1px);
         }
 
         .progress-badge {
@@ -227,6 +253,65 @@
             font-weight: 800;
             font-size: 15px;
             color: var(--text-dark);
+        }
+
+        /* List View Search & Filter Bar */
+        .list-filter-bar {
+            background: white;
+            border-radius: var(--radius-block);
+            border: 1.5px solid var(--border-card);
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .search-input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1.5px solid var(--border-card);
+            font-size: 14.5px;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .set-tabs-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .set-tab-chip {
+            background: #f1f5f9;
+            border: 1px solid var(--border-card);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .set-tab-chip.active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
         }
 
         /* STRUCTURED CARD SPECIFICATION (各問題カード) */
@@ -407,6 +492,7 @@
             padding: 12px 16px;
             border: 1px dashed var(--accent-green);
             margin-bottom: 8px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
         }
 
         /* ④ 【ステップ詳細解説】ブロック */
@@ -458,13 +544,14 @@
                 print-color-adjust: exact !important;
             }
 
-            .mode-bar, .top-header, .single-page-nav {
+            .mode-bar, .top-header, .single-page-nav, .list-filter-bar {
                 display: none !important;
             }
 
             .print-container {
                 max-width: 100% !important;
                 gap: 0 !important;
+                padding: 0 !important;
             }
 
             .problem-card {
@@ -477,6 +564,10 @@
                 margin-bottom: 0 !important;
                 height: 98vh;
                 justify-content: space-between;
+            }
+
+            .card-actions-group {
+                display: none !important;
             }
 
             .card-top-bar, .no-badge, .block-tag {
@@ -499,8 +590,8 @@
 <body>
 
     <header class="top-header">
-        <h1>⚡ 電磁気学1 構造化解説カードポータル</h1>
-        <p>全81問（全12回） 完全構造化Webカードプリント（個別の公式・解法の要点・ステップ解説付き）</p>
+        <h1>⚡ 電磁気学1 構造化解説WEBプリント</h1>
+        <p>全81問（全12回） 完全構造化Web解説カード（公式・思考の要点・途中式ステップ・指導ポイント）</p>
     </header>
 
     <div class="mode-bar">
@@ -509,7 +600,10 @@
                 <button class="mode-btn active" id="btn-mode-single" onclick="switchViewMode('single')">📄 1問1ページ学習モード</button>
                 <button class="mode-btn" id="btn-mode-list" onclick="switchViewMode('list')">📋 全問題カード一覧</button>
             </div>
-            <div class="progress-badge" id="progress-badge">進捗: 0 / 81 問</div>
+            <div class="control-right">
+                <button class="print-trigger-btn" onclick="window.print()">🖨️ A4プリント・PDF保存</button>
+                <div class="progress-badge" id="progress-badge">進捗: 0 / 81 問</div>
+            </div>
         </div>
     </div>
 
@@ -534,6 +628,14 @@
 
         <!-- ALL CARDS LIST VIEW MODE CONTAINER -->
         <div id="list-view-container" style="display: none;">
+            <div class="list-filter-bar">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="search-input" placeholder="🔍 キーワード検索 (例: 勾配, 発散, ガウス, コンデンサー, 誘電体)..." oninput="filterListView()">
+                </div>
+                <div class="set-tabs-scroll" id="set-tabs">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
             <div id="all-cards-mount"></div>
         </div>
 
@@ -558,11 +660,13 @@
 
         let currentCardIndex = 0;
         let viewMode = 'single';
+        let activeSetFilter = 'all';
         let completedProbs = JSON.parse(localStorage.getItem('em_completed') || '{}');
         let favProbs = JSON.parse(localStorage.getItem('em_favs') || '{}');
 
         function init() {
             populateDropdown();
+            renderSetTabs();
             renderSingleCard();
             updateProgress();
             
@@ -585,6 +689,24 @@
             });
         }
 
+        function renderSetTabs() {
+            const tabsContainer = document.getElementById('set-tabs');
+            let html = `<button class="set-tab-chip active" onclick="selectSetFilter('all')">全81問</button>`;
+            setsData.forEach(s => {
+                let shortTitle = s.title.split('演習')[0];
+                html += `<button class="set-tab-chip" onclick="selectSetFilter('${s.id}')">${shortTitle}</button>`;
+            });
+            tabsContainer.innerHTML = html;
+        }
+
+        function selectSetFilter(setId) {
+            activeSetFilter = setId;
+            const buttons = document.querySelectorAll('.set-tab-chip');
+            buttons.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            filterListView();
+        }
+
         function switchViewMode(mode) {
             viewMode = mode;
             document.getElementById('btn-mode-single').classList.toggle('active', mode === 'single');
@@ -595,7 +717,7 @@
             if (mode === 'single') {
                 renderSingleCard();
             } else {
-                renderAllCards();
+                filterListView();
             }
         }
 
@@ -614,10 +736,10 @@
                             <div class="no-badge">No. ${formattedNo}</div>
                             <div class="header-titles">
                                 <span class="chapter-title">${p.setNum}</span>
-                                <h2 class="main-title">${p.num} の演習課題解説</h2>
+                                <h2 class="main-title">${p.num} の演習問題解説 [No.${formattedNo}]</h2>
                             </div>
                             <div class="card-actions-group">
-                                <button class="fav-btn ${isFav ? 'is-fav' : ''}" onclick="toggleFav('${p.num}')">★</button>
+                                <button class="fav-btn ${isFav ? 'is-fav' : ''}" onclick="toggleFav('${p.num}')" title="お気に入り">★</button>
                                 <button class="check-btn" onclick="toggleCompleted('${p.num}')">
                                     ${isDone ? '✓ 解けた！' : '○ 未完了'}
                                 </button>
@@ -639,7 +761,7 @@
                             </div>
                             <div class="block-content">
                                 <div class="point-formula-box">
-                                    <strong>【使用する数学・物理公式】</strong><br>
+                                    <strong>📐 【使用する数学・物理公式】</strong><br>
                                     ${p.formula}
                                 </div>
                                 <strong>💡 解法のアプローチ・思考のポイント:</strong><br>
@@ -692,9 +814,26 @@
             }
         }
 
-        function renderAllCards() {
+        function filterListView() {
+            const query = (document.getElementById('search-input')?.value || '').toLowerCase();
             const mount = document.getElementById('all-cards-mount');
-            mount.innerHTML = allProblemsList.map((p, idx) => buildCardHtml(p, idx)).join('');
+
+            let filtered = allProblemsList.filter(p => {
+                let matchSet = (activeSetFilter === 'all' || p.setId === activeSetFilter);
+                let matchQuery = !query || (
+                    p.num.toLowerCase().includes(query) ||
+                    p.text.toLowerCase().includes(query) ||
+                    p.point.toLowerCase().includes(query)
+                );
+                return matchSet && matchQuery;
+            });
+
+            if (filtered.length === 0) {
+                mount.innerHTML = `<div style="text-align:center; padding:40px; color:#64748b; font-weight:700;">一致する演習問題が見つかりませんでした。</div>`;
+                return;
+            }
+
+            mount.innerHTML = filtered.map((p, idx) => buildCardHtml(p, idx)).join('');
 
             if (window.MathJax) {
                 MathJax.typesetPromise();
@@ -724,7 +863,7 @@
             localStorage.setItem('em_completed', JSON.stringify(completedProbs));
             updateProgress();
             if (viewMode === 'single') renderSingleCard();
-            else renderAllCards();
+            else filterListView();
         }
 
         function toggleFav(num) {
@@ -735,7 +874,7 @@
             }
             localStorage.setItem('em_favs', JSON.stringify(favProbs));
             if (viewMode === 'single') renderSingleCard();
-            else renderAllCards();
+            else filterListView();
         }
 
         function updateProgress() {
