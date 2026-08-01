@@ -6,608 +6,232 @@
     <title>電磁気学1 完全学習サイト｜全1000問＋解説プリント</title>
     <meta name="description" content="大学2年春学期「電磁気学1」全1000問の演習問題カード・解説プリント・まとめサイト。MathJax数式対応。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-            background: #0a0e1a;
-            color: #e8eaed;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
             min-height: 100vh;
-            overflow-x: hidden;
+            line-height: 1.8;
         }
 
-        /* --- Animated background --- */
-        .bg-glow {
-            position: fixed;
-            top: -40%; left: -20%;
-            width: 140%; height: 180%;
-            background:
-                radial-gradient(ellipse 600px 600px at 20% 30%, rgba(26,115,232,0.12) 0%, transparent 70%),
-                radial-gradient(ellipse 500px 500px at 80% 60%, rgba(161,66,244,0.10) 0%, transparent 70%),
-                radial-gradient(ellipse 400px 400px at 50% 80%, rgba(234,67,53,0.08) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-            animation: glowDrift 20s ease-in-out infinite alternate;
-        }
-        @keyframes glowDrift {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, -20px) scale(1.05); }
-        }
-
-        /* --- Hero header --- */
+        /* --- Hero Header --- */
         .hero {
-            position: relative;
-            z-index: 1;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
             text-align: center;
-            padding: 70px 20px 50px;
+            padding: 50px 20px 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
         .hero-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #1a73e8, #a142f4);
-            color: white;
+            background: #e0f2fe;
+            color: #0284c7;
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             padding: 6px 18px;
             border-radius: 20px;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-        }
-        .hero h1 {
-            font-size: clamp(28px, 5vw, 44px);
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #8ab4f8 50%, #c58af9 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.3;
             margin-bottom: 16px;
         }
-        .hero p {
-            font-size: 16px;
-            color: #9aa0a6;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        /* --- Stats bar --- */
-        .stats {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 30px 20px;
-        }
-        .stat {
-            text-align: center;
-        }
-        .stat-value {
-            font-size: 32px;
+        .hero h1 {
+            font-size: clamp(26px, 4.5vw, 40px);
             font-weight: 800;
-            background: linear-gradient(135deg, #8ab4f8, #c58af9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #0f172a;
+            line-height: 1.35;
+            margin-bottom: 14px;
         }
-        .stat-label {
-            font-size: 12px;
-            color: #70757a;
-            margin-top: 4px;
+        .hero p {
+            font-size: 15.5px;
+            color: #475569;
+            max-width: 650px;
+            margin: 0 auto;
         }
 
         /* --- Container --- */
         .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
-            margin: 0 auto;
+            max-width: 1000px;
+            margin: 35px auto;
             padding: 0 20px 60px;
         }
 
-        /* --- Section --- */
-        .section {
-            margin-bottom: 50px;
+        /* --- Featured PDF Card --- */
+        .featured-box {
+            background: linear-gradient(135deg, #ffffff, #f0f9ff);
+            border: 2px solid #0284c7;
+            border-radius: 18px;
+            padding: 32px;
+            margin-bottom: 45px;
+            box-shadow: 0 8px 24px rgba(2, 132, 199, 0.1);
         }
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
+        .featured-badge {
+            background: #0284c7;
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 12px;
         }
-        .section-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
-        }
-        .section-title {
+        .featured-title {
             font-size: 22px;
             font-weight: 800;
-            color: #e8eaed;
+            color: #0f172a;
+            margin-bottom: 10px;
         }
-        .section-desc {
-            font-size: 13px;
-            color: #70757a;
-            margin-top: 2px;
+        .featured-desc {
+            font-size: 15px;
+            color: #334155;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .btn-main {
+            display: inline-block;
+            background: #0284c7;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 16px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+        .btn-main:hover {
+            background: #0369a1;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4);
         }
 
-        /* --- Cards grid --- */
+        /* --- Section & Cards --- */
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 18px;
+            margin-bottom: 40px;
         }
-
         .card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 22px;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            border-radius: 16px 16px 0 0;
-            opacity: 0;
-            transition: opacity 0.3s;
+            justify-content: space-between;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
         .card:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.15);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            border-color: #0284c7;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card-label {
-            font-size: 11px;
+        .card-tag {
+            font-size: 12px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #0284c7;
+            background: #f0f9ff;
             padding: 3px 10px;
             border-radius: 6px;
             width: fit-content;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .card h3 {
-            font-size: 17px;
+            font-size: 16.5px;
             font-weight: 700;
-            color: #e8eaed;
+            color: #0f172a;
             margin-bottom: 8px;
-            line-height: 1.4;
         }
         .card p {
-            font-size: 13px;
-            color: #9aa0a6;
+            font-size: 13.5px;
+            color: #64748b;
             line-height: 1.6;
-            flex: 1;
         }
         .card-arrow {
-            margin-top: 16px;
+            margin-top: 14px;
             font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: gap 0.2s;
-        }
-        .card:hover .card-arrow {
-            gap: 10px;
-        }
-
-        /* Color themes */
-        .theme-blue .card::before { background: linear-gradient(90deg, #1a73e8, #4285f4); }
-        .theme-blue .card-label { background: rgba(26,115,232,0.15); color: #8ab4f8; }
-        .theme-blue .card-arrow { color: #8ab4f8; }
-        .theme-blue .section-icon { background: rgba(26,115,232,0.15); }
-
-        .theme-red .card::before { background: linear-gradient(90deg, #ea4335, #f28b82); }
-        .theme-red .card-label { background: rgba(234,67,53,0.15); color: #f28b82; }
-        .theme-red .card-arrow { color: #f28b82; }
-        .theme-red .section-icon { background: rgba(234,67,53,0.15); }
-
-        .theme-purple .card::before { background: linear-gradient(90deg, #a142f4, #c58af9); }
-        .theme-purple .card-label { background: rgba(161,66,244,0.15); color: #c58af9; }
-        .theme-purple .card-arrow { color: #c58af9; }
-        .theme-purple .section-icon { background: rgba(161,66,244,0.15); }
-
-        .theme-green .card::before { background: linear-gradient(90deg, #0d904f, #34a853); }
-        .theme-green .card-label { background: rgba(13,144,79,0.15); color: #81c995; }
-        .theme-green .card-arrow { color: #81c995; }
-        .theme-green .section-icon { background: rgba(13,144,79,0.15); }
-
-        /* --- Divider --- */
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-            margin: 20px 0 50px;
+            font-weight: 700;
+            color: #0284c7;
         }
 
         /* --- Footer --- */
         footer {
-            position: relative;
-            z-index: 1;
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             font-size: 13px;
-            color: #5f6368;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        footer a {
-            color: #8ab4f8;
-            text-decoration: none;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 600px) {
-            .stats { gap: 24px; }
-            .stat-value { font-size: 26px; }
-            .cards { grid-template-columns: 1fr; }
-            .hero { padding: 50px 16px 30px; }
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
         }
     </style>
 </head>
 <body>
-    <div class="bg-glow"></div>
-
     <header class="hero">
         <div class="hero-badge">⚡ 大学2年 春学期</div>
-        <h1>電磁気学1<br>完全学習サイト</h1>
-        <p>全1,000問の演習問題カード＋1,000枚の解説プリント＋まとめ資料。<br>MathJax数式対応、A4印刷最適化済み。</p>
+        <h1>電磁気学1 完全学習サイト</h1>
+        <p>「電磁気学まとめ.pdf」全12回演習課題＋全1000問プリント集。明るくクリアで見やすいデザイン。</p>
     </header>
-
-    <div class="stats">
-        <div class="stat">
-            <div class="stat-value">1,000</div>
-            <div class="stat-label">解説プリント</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">1,000</div>
-            <div class="stat-label">演習問題</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">10</div>
-            <div class="stat-label">Vol. (各100枚)</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">80</div>
-            <div class="stat-label">まとめカード</div>
-        </div>
-    </div>
 
     <div class="container">
 
-        <!-- ===== 🔥 電磁気学まとめ.pdf 完全網羅メイン問題集 ===== -->
-        <div class="section theme-purple" style="border: 2px solid #a142f4; border-radius: 20px; padding: 24px; background: rgba(161, 66, 244, 0.05); margin-bottom: 50px;">
-            <div class="section-header">
-                <div class="section-icon" style="background: rgba(161, 66, 244, 0.2); font-size: 26px;">🎯</div>
-                <div>
-                    <div class="section-title" style="font-size: 24px; color: #e8eaed;">「電磁気学まとめ.pdf」全12回 演習・レポート課題 完全収録WEBサイト</div>
-                    <div class="section-desc" style="font-size: 14px; color: #c58af9;">PDF（全134ページ）に収録されている全12回・全84問の演習問題および手書き解説ノートを原文100%完全網羅！</div>
-                </div>
-            </div>
-            <a href="electromagnetism_pdf_complete_all_problems_site.html" class="card" style="background: linear-gradient(135deg, rgba(161,66,244,0.15), rgba(26,115,232,0.15)); border: 1px solid rgba(161,66,244,0.4); padding: 30px;">
-                <div class="card-label" style="background: #a142f4; color: #ffffff; font-size: 13px;">★ 最優先・全問完全網羅 ★</div>
-                <h3 style="font-size: 22px; margin-top: 10px; margin-bottom: 12px; color: #ffffff;">📖 「電磁気学まとめ.pdf」全12回・全84問 完全問題＆解答解説サイトを開く</h3>
-                <p style="font-size: 14px; color: #e2e8f0; line-height: 1.7;">
-                    第1回（ベクトル解析）〜 第12回（誘電体・境界条件）までの講義演習・レポート問題全84問をそのまま全収録！<br>
-                    全問題に折りたたみ式のアコーディオン模範解答・詳細途中式・MathJax LaTeX数式・第1〜12回検索フィルターを搭載。
-                </p>
-                <div class="card-arrow" style="font-size: 16px; color: #c58af9; font-weight: 800; margin-top: 20px;">全12回・全84問を今すぐ学習する →</div>
+        <!-- メイン推奨コンテンツ -->
+        <div class="featured-box">
+            <span class="featured-badge">★ 一の一押し・全問網羅 ★</span>
+            <h2 class="featured-title">📖 「電磁気学まとめ.pdf」全12回・全84問 完全問題＆解答解説集</h2>
+            <p class="featured-desc">
+                講義・演習・レポート課題（全12回・全84問）の原文テキストおよび手書き解説ノートの解法プロセスを完全に網羅！大きな文字・くっきりしたMathJax数式・折りたたみ解答で圧倒的に見やすく使いやすい構成です。
+            </p>
+            <a href="electromagnetism_pdf_complete_all_problems_site.html" class="btn-main">今すぐ開いて学習する (全12回・全84問) →</a>
+        </div>
+
+        <!-- ポータルリンク -->
+        <h2 class="section-title">📚 各種ポータル・カード集</h2>
+        <div class="cards">
+            <a href="electromagnetism_1000_prints_portal.html" class="card">
+                <span class="card-tag">ポータル</span>
+                <h3>全10巻 解説プリント ポータル</h3>
+                <p>Vol.1〜10 すべての解説プリントへのリンクハブ</p>
+                <span class="card-arrow">開く →</span>
             </a>
-        </div>
-
-
-        <!-- ===== 解説プリント 1000枚 ===== -->
-        <div class="section theme-blue">
-            <div class="section-header">
-                <div class="section-icon">📖</div>
-                <div>
-                    <div class="section-title">解説プリント集（全1,000枚）</div>
-                    <div class="section-desc">各問題の詳細な解説・公式・計算過程を収録した解説プリント</div>
-                </div>
-            </div>
-            <div class="cards">
-                <a href="electromagnetism_1000_prints_portal.html" class="card">
-                    <div class="card-label">ポータル</div>
-                    <h3>📚 全10巻 ポータルページ</h3>
-                    <p>Vol.1〜10 すべての解説プリントへのリンクハブ。ここから各巻にアクセスできます。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_01_prints_001_100.html" class="card">
-                    <div class="card-label">Vol. 1</div>
-                    <h3>ベクトル解析と微分演算子</h3>
-                    <p>grad, div, rot の基礎からベクトル場の微分まで（No.001〜100）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_02_prints_101_200.html" class="card">
-                    <div class="card-label">Vol. 2</div>
-                    <h3>曲線・線積分と仕事・保存力場</h3>
-                    <p>線積分の計算と物理的意味（No.101〜200）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_03_prints_201_300.html" class="card">
-                    <div class="card-label">Vol. 3</div>
-                    <h3>曲面・面積分とフラックス計算</h3>
-                    <p>面積分とフラックスの概念（No.201〜300）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_04_prints_301_400.html" class="card">
-                    <div class="card-label">Vol. 4</div>
-                    <h3>ベクトル解析の三大定理</h3>
-                    <p>Gaussの発散定理・Stokesの定理（No.301〜400）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_05_prints_401_500.html" class="card">
-                    <div class="card-label">Vol. 5</div>
-                    <h3>クーロンの法則と電場</h3>
-                    <p>点電荷・連続分布の電場計算（No.401〜500）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_06_prints_501_600.html" class="card">
-                    <div class="card-label">Vol. 6</div>
-                    <h3>ガウスの法則と電場導出</h3>
-                    <p>対称性を利用した電場の求め方（No.501〜600）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_07_prints_601_700.html" class="card">
-                    <div class="card-label">Vol. 7</div>
-                    <h3>静電ポテンシャルと電気双極子</h3>
-                    <p>電位の計算と双極子場（No.601〜700）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_08_prints_701_800.html" class="card">
-                    <div class="card-label">Vol. 8</div>
-                    <h3>静電エネルギーとポアソン方程式</h3>
-                    <p>エネルギーとラプラス・ポアソン方程式（No.701〜800）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_09_prints_801_900.html" class="card">
-                    <div class="card-label">Vol. 9</div>
-                    <h3>導体の性質と鏡像法</h3>
-                    <p>平面・球鏡像の応用（No.801〜900）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_10_prints_901_1000.html" class="card">
-                    <div class="card-label">Vol. 10</div>
-                    <h3>電流・コンデンサー・誘電体</h3>
-                    <p>総合演習を含む最終章（No.901〜1000）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ===== 演習問題 1000問 ===== -->
-        <div class="section theme-red">
-            <div class="section-header">
-                <div class="section-icon">📝</div>
-                <div>
-                    <div class="section-title">演習問題カード（全1,000問）</div>
-                    <div class="section-desc">自習用アコーディオン機能付き。問題→解答のトグル表示で効率的に学習</div>
-                </div>
-            </div>
-            <div class="cards">
-                <a href="electromagnetism_1000_problems_master_portal.html" class="card">
-                    <div class="card-label">ポータル</div>
-                    <h3>📚 全10巻 演習問題ポータル</h3>
-                    <p>Vol.1〜10 すべての演習問題カードへのリンクハブ。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_01_problems_only_001_100.html" class="card">
-                    <div class="card-label">Vol. 1</div>
-                    <h3>ベクトル解析と微分演算子</h3>
-                    <p>100問（No.001〜100）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_02_problems_only_101_200.html" class="card">
-                    <div class="card-label">Vol. 2</div>
-                    <h3>曲線・線積分と仕事・保存力場</h3>
-                    <p>100問（No.101〜200）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_03_problems_only_201_300.html" class="card">
-                    <div class="card-label">Vol. 3</div>
-                    <h3>曲面・面積分とフラックス計算</h3>
-                    <p>100問（No.201〜300）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_04_problems_only_301_400.html" class="card">
-                    <div class="card-label">Vol. 4</div>
-                    <h3>ベクトル解析の三大定理</h3>
-                    <p>100問（No.301〜400）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_05_problems_only_401_500.html" class="card">
-                    <div class="card-label">Vol. 5</div>
-                    <h3>クーロンの法則と電場</h3>
-                    <p>100問（No.401〜500）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_06_problems_only_501_600.html" class="card">
-                    <div class="card-label">Vol. 6</div>
-                    <h3>ガウスの法則と電場導出</h3>
-                    <p>100問（No.501〜600）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_07_problems_only_601_700.html" class="card">
-                    <div class="card-label">Vol. 7</div>
-                    <h3>静電ポテンシャルと電気双極子</h3>
-                    <p>100問（No.601〜700）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_08_problems_only_701_800.html" class="card">
-                    <div class="card-label">Vol. 8</div>
-                    <h3>静電エネルギーとポアソン方程式</h3>
-                    <p>100問（No.701〜800）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_09_problems_only_801_900.html" class="card">
-                    <div class="card-label">Vol. 9</div>
-                    <h3>導体の性質と鏡像法</h3>
-                    <p>100問（No.801〜900）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="vol_10_problems_only_901_1000.html" class="card">
-                    <div class="card-label">Vol. 10</div>
-                    <h3>電流・コンデンサー・誘電体</h3>
-                    <p>100問（No.901〜1000）</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ===== まとめ・ガイド ===== -->
-        <div class="section theme-purple">
-            <div class="section-header">
-                <div class="section-icon">🎯</div>
-                <div>
-                    <div class="section-title">まとめ・試験対策</div>
-                    <div class="section-desc">全80問のまとめカードや分野別ガイド</div>
-                </div>
-            </div>
-            <div class="cards">
-                <a href="electromagnetism_perfect_flawless_site.html" class="card">
-                    <div class="card-label">おすすめ</div>
-                    <h3>✨ 全80問 完全WEBカードサイト</h3>
-                    <p>PDF準拠の全80問を見切れゼロで完全再現。最も完成度の高いバージョン。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_summary.html" class="card">
-                    <div class="card-label">まとめ</div>
-                    <h3>📋 電磁気学 総まとめ</h3>
-                    <p>全範囲の公式・定理・重要事項を網羅的に整理。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetics_summary.html" class="card">
-                    <div class="card-label">まとめ</div>
-                    <h3>📋 電磁気学 要約ノート</h3>
-                    <p>コンパクトにまとめたサマリー版。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetics_1_guide.html" class="card">
-                    <div class="card-label">ガイド</div>
-                    <h3>📘 電磁気学1 学習ガイド</h3>
-                    <p>前半範囲の体系的な学習ガイド。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetics_2_guide.html" class="card">
-                    <div class="card-label">ガイド</div>
-                    <h3>📗 電磁気学2 学習ガイド</h3>
-                    <p>後半範囲の体系的な学習ガイド。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ===== その他バリエーション ===== -->
-        <div class="section theme-green">
-            <div class="section-header">
-                <div class="section-icon">🔧</div>
-                <div>
-                    <div class="section-title">その他のバリエーション</div>
-                    <div class="section-desc">レイアウトや機能が異なる各種バージョン</div>
-                </div>
-            </div>
-            <div class="cards">
-                <a href="electromagnetism_flawless_pdf_cards_site.html" class="card">
-                    <div class="card-label">カード</div>
-                    <h3>PDFカードサイト（Flawless版）</h3>
-                    <p>PDF準拠のフローレスカード。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_clean_mathjax_pdf_cards.html" class="card">
-                    <div class="card-label">カード</div>
-                    <h3>Clean MathJax PDFカード</h3>
-                    <p>クリーンなMathJax数式表示版。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_perfect_pdf_cards_site.html" class="card">
-                    <div class="card-label">カード</div>
-                    <h3>Perfect PDFカードサイト</h3>
-                    <p>完全PDF準拠のカード表示。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_pdf_rich_explanations_site.html" class="card">
-                    <div class="card-label">解説</div>
-                    <h3>リッチ解説サイト</h3>
-                    <p>PDF準拠の詳細な解説付き。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_pdf_complete_all_problems_site.html" class="card">
-                    <div class="card-label">全問</div>
-                    <h3>全問題 Complete版</h3>
-                    <p>すべての問題を1ページに収録。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_pdf_all_problems_cards.html" class="card">
-                    <div class="card-label">カード</div>
-                    <h3>全問題カード版</h3>
-                    <p>カード形式の全問題表示。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_pdf_original_problems_site.html" class="card">
-                    <div class="card-label">オリジナル</div>
-                    <h3>オリジナル問題サイト</h3>
-                    <p>PDF原文準拠の問題表示。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_problems_print.html" class="card">
-                    <div class="card-label">印刷用</div>
-                    <h3>演習問題 印刷プリント</h3>
-                    <p>A4印刷に最適化されたレイアウト。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_problems_workbook.html" class="card">
-                    <div class="card-label">ワークブック</div>
-                    <h3>演習問題ワークブック</h3>
-                    <p>書き込みスペース付きのワークブック形式。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_exact_layout_prints.html" class="card">
-                    <div class="card-label">レイアウト</div>
-                    <h3>正確レイアウト版プリント</h3>
-                    <p>原本の配置を忠実に再現。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-                <a href="electromagnetism_problem_only_exact_site.html" class="card">
-                    <div class="card-label">問題のみ</div>
-                    <h3>問題のみ（正確版）</h3>
-                    <p>解答なし・問題のみ表示。</p>
-                    <div class="card-arrow">開く →</div>
-                </a>
-            </div>
+            <a href="electromagnetism_1000_problems_master_portal.html" class="card">
+                <span class="card-tag">ポータル</span>
+                <h3>全10巻 演習問題カード ポータル</h3>
+                <p>Vol.1〜10 すべての演習問題カードへのリンクハブ</p>
+                <span class="card-arrow">開く →</span>
+            </a>
+            <a href="electromagnetism_perfect_flawless_site.html" class="card">
+                <span class="card-tag">カード</span>
+                <h3>全80問 完全WEBカードサイト</h3>
+                <p>見切れゼロでカード表示するバージョン</p>
+                <span class="card-arrow">開く →</span>
+            </a>
+            <a href="electromagnetism_summary.html" class="card">
+                <span class="card-tag">まとめ</span>
+                <h3>電磁気学 総まとめ</h3>
+                <p>全範囲の公式・定理・重要事項を整理</p>
+                <span class="card-arrow">開く →</span>
+            </a>
         </div>
 
     </div>
 
     <footer>
-        <p>電磁気学1 完全学習サイト — 大学物理学演習シリーズ</p>
-        <p style="margin-top: 8px;">Powered by <a href="https://www.mathjax.org/" target="_blank" rel="noopener">MathJax</a> | Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a></p>
+        <p>電磁気学1 完全学習サイト — Hosted on GitHub Pages</p>
     </footer>
 </body>
 </html>
