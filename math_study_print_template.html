@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>構造化Web解説カード（WEBプリントテンプレート）</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- MathJax v3 -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        :root {
+            /* メインテーマカラー */
+            --primary-red: #d9383a;
+            --primary-red-hover: #c02b2d;
+            --primary-red-bg: #fdf2f2;
+            --primary-red-border: #f87171;
+
+            --accent-green: #0d9488;
+            --accent-green-bg: #e6f4f1;
+            --accent-green-border: #99f6e4;
+
+            --accent-blue: #2563eb;
+            --accent-blue-bg: #eff6ff;
+            --accent-blue-border: #bfdbfe;
+
+            --accent-yellow: #d97706;
+            --accent-yellow-bg: #fffbeb;
+            --accent-yellow-border: #fef08a;
+
+            /* テキスト＆背景カラー */
+            --text-dark: #1e293b;
+            --text-title: #2b4b9b;
+            --text-muted: #64748b;
+            --bg-page: #f1f5f9;
+            --bg-card: #ffffff;
+            --border-card: #e2e8f0;
+
+            /* シャドウ＆角丸 */
+            --radius-card: 16px;
+            --radius-block: 10px;
+            --radius-badge: 20px;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.75;
+            padding: 40px 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ページ全体コンテナ */
+        .print-container {
+            max-width: 820px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* 個別カード（1問1ブロック） */
+        .problem-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-card);
+            border: 1.5px solid var(--border-card);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .problem-card:hover {
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ① 最上部アクセント赤バー */
+        .card-top-bar {
+            height: 6px;
+            background-color: var(--primary-red);
+            width: 100%;
+        }
+
+        /* カード内部コンテンツラッパー */
+        .card-inner {
+            padding: 28px 32px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+
+        /* ① カードヘッダー */
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1.5px dashed #cbd5e1;
+        }
+
+        .no-badge {
+            background-color: var(--primary-red);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 800;
+            padding: 6px 18px;
+            border-radius: var(--radius-badge);
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(217, 56, 58, 0.25);
+        }
+
+        .header-titles {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .chapter-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .main-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--text-title);
+            line-height: 1.4;
+        }
+
+        /* 共通セクションブロック */
+        .card-block {
+            border-radius: var(--radius-block);
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .block-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .block-tag {
+            font-size: 13px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 6px;
+            color: #ffffff;
+            letter-spacing: 0.03em;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .block-content {
+            font-size: 15.5px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* ② 【演習問題】ブロック */
+        .block-problem {
+            background-color: var(--primary-red-bg);
+            border: 1.5px solid var(--primary-red-border);
+        }
+
+        .block-problem .block-tag {
+            background-color: var(--primary-red);
+        }
+
+        /* ③ 【公式・解法の要点】ブロック */
+        .block-point {
+            background-color: var(--accent-green-bg);
+            border: 1.5px solid var(--accent-green-border);
+        }
+
+        .block-point .block-tag {
+            background-color: var(--accent-green);
+        }
+
+        /* ④ 【ステップ詳細解説】ブロック */
+        .block-solution {
+            background-color: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .block-solution .block-tag {
+            background-color: var(--accent-blue);
+        }
+
+        .solution-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .solution-step {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .step-label {
+            font-weight: 800;
+            color: var(--accent-blue);
+            font-size: 15px;
+        }
+
+        .step-math {
+            padding-left: 12px;
+            overflow-x: auto;
+        }
+
+        /* ⑤ 【試験直前チェック・指導ポイント】ブロック */
+        .block-check {
+            background-color: var(--accent-yellow-bg);
+            border: 1.5px solid var(--accent-yellow-border);
+        }
+
+        .block-check .block-tag {
+            background-color: var(--accent-yellow);
+        }
+
+        .check-content {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #78350f;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ⑥ フッター情報 */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            margin-top: 4px;
+            border-top: 1px solid var(--border-card);
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        /* 印刷（CSS Paged Media A4対応）設定 */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 12mm 15mm;
+            }
+
+            body {
+                background-color: #ffffff !important;
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .print-container {
+                max-width: 100% !important;
+                gap: 0 !important;
+            }
+
+            .problem-card {
+                box-shadow: none !important;
+                border: 1.5px solid #94a3b8 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                margin-bottom: 0 !important;
+                height: 98vh; /* A4用紙いっぱいに綺麗にフィット */
+                justify-content: space-between;
+            }
+
+            .card-top-bar, .no-badge, .block-tag {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        /* レスポンシブ対応（スマホ画面） */
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 8px;
+            }
+
+            .card-inner {
+                padding: 20px 16px 16px;
+                gap: 16px;
+            }
+
+            .card-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .main-title {
+                font-size: 17px;
+            }
+
+            .card-block {
+                padding: 14px 16px;
+            }
+
+            .card-footer {
+                flex-direction: column;
+                gap: 6px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="print-container">
+
+        <!-- ================= CARD No.001 ================= -->
+        <article class="problem-card">
+            <div class="card-top-bar"></div>
+            <div class="card-inner">
+
+                <!-- ① カードヘッダー -->
+                <header class="card-header">
+                    <div class="no-badge">No. 001</div>
+                    <div class="header-titles">
+                        <span class="chapter-title">第1章：ベクトル解析と微分演算子 (grad, div, rot)</span>
+                        <h2 class="main-title">スカラー関数の勾配 $\text{grad } f = \nabla f$ の計算演習 [No.001]</h2>
+                    </div>
+                </header>
+
+                <!-- ② 【演習問題】 -->
+                <section class="card-block block-problem">
+                    <div class="block-header">
+                        <span class="block-tag">【演習問題】</span>
+                    </div>
+                    <div class="block-content">
+                        スカラー関数 $f(x, y, z) = 2x^2 y^3 - \sin(2z)$ の勾配 $\nabla f$ および点 $(1, 2, \pi/2)$ における向きベクトルを求めよ。
+                    </div>
+                </section>
+
+                <!-- ③ 【公式・解法の要点】 -->
+                <section class="card-block block-point">
+                    <div class="block-header">
+                        <span class="block-tag">【公式・解法の要点】</span>
+                    </div>
+                    <div class="block-content">
+                        数関数の各変数の変化率から最も増加する方向 $\nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$ を求める。
+                    </div>
+                </section>
+
+                <!-- ④ 【ステップ詳細解説】 -->
+                <section class="card-block block-solution">
+                    <div class="block-header">
+                        <span class="block-tag">【ステップ詳細解説】</span>
+                    </div>
+                    <div class="block-content">
+                        <ol class="solution-list">
+                            <li class="solution-step">
+                                <span class="step-label">1. 各変数に関する偏微分を計算する：</span>
+                                <div class="step-math">
+                                    $$\frac{\partial f}{\partial x} = 4x y^3, \quad \frac{\partial f}{\partial y} = 6x^2 y^2, \quad \frac{\partial f}{\partial z} = -2\cos(2z)$$
+                                </div>
+                            </li>
+                            <li class="solution-step">
+                                <span class="step-label">2. したがって、勾配ベクトル場は：</span>
+                                <div class="step-math">
+                                    $$\nabla f = 4x y^3 \mathbf{i} + 6x^2 y^2 \mathbf{j} - 2\cos(2z)\mathbf{k}$$
+                                </div>
+                            </li>
+                            <li class="solution-step">
+                                <span class="step-label">3. 点 $(1, 2, \pi/2)$ を代入すると：</span>
+                                <div class="step-math">
+                                    $$\nabla f(1, 2, \pi/2) = 16 \mathbf{i} + 24 \mathbf{j} + 2 \mathbf{k} = (16, 24, 2)$$
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ⑤ 【試験直前チェック・指導ポイント】 -->
+                <section class="card-block block-check">
+                    <div class="block-header">
+                        <span class="block-tag">💡 試験直前チェック・指導ポイント</span>
+                    </div>
+                    <div class="check-content">
+                        各変数の偏微分で他変数を定数扱いすることを徹底しよう。
+                    </div>
+                </section>
+
+                <!-- ⑥ フッター情報 -->
+                <footer class="card-footer">
+                    <span class="footer-left">大学数学演習：解析学Ⅰ 完全マスタープリント集（全100枚）</span>
+                    <span class="footer-right">Page No. 001 / 100</span>
+                </footer>
+
+            </div>
+        </article>
+
+
+        <!-- ================= CARD No.002 ================= -->
+        <article class="problem-card">
+            <div class="card-top-bar"></div>
+            <div class="card-inner">
+
+                <!-- ① カードヘッダー -->
+                <header class="card-header">
+                    <div class="no-badge">No. 002</div>
+                    <div class="header-titles">
+                        <span class="chapter-title">第1章：ベクトル解析と微分演算子 (grad, div, rot)</span>
+                        <h2 class="main-title">スカラー関数の勾配 $\text{grad } f = \nabla f$ の計算演習 [No.002]</h2>
+                    </div>
+                </header>
+
+                <!-- ② 【演習問題】 -->
+                <section class="card-block block-problem">
+                    <div class="block-header">
+                        <span class="block-tag">【演習問題】</span>
+                    </div>
+                    <div class="block-content">
+                        スカラー関数 $f(x, y, z) = 3x^3 y^2 - \sin(3z)$ の勾配 $\nabla f$ および点 $(1, 2, \pi/3)$ における向きベクトルを求めよ。
+                    </div>
+                </section>
+
+                <!-- ③ 【公式・解法の要点】 -->
+                <section class="card-block block-point">
+                    <div class="block-header">
+                        <span class="block-tag">【公式・解法の要点】</span>
+                    </div>
+                    <div class="block-content">
+                        数関数の各変数の変化率から最も増加する方向 $\nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$ を求める。
+                    </div>
+                </section>
+
+                <!-- ④ 【ステップ詳細解説】 -->
+                <section class="card-block block-solution">
+                    <div class="block-header">
+                        <span class="block-tag">【ステップ詳細解説】</span>
+                    </div>
+                    <div class="block-content">
+                        <ol class="solution-list">
+                            <li class="solution-step">
+                                <span class="step-label">1. 各変数に関する偏微分を計算する：</span>
+                                <div class="step-math">
+                                    $$\frac{\partial f}{\partial x} = 9x^2 y^2, \quad \frac{\partial f}{\partial y} = 6x^3 y, \quad \frac{\partial f}{\partial z} = -3\cos(3z)$$
+                                </div>
+                            </li>
+                            <li class="solution-step">
+                                <span class="step-label">2. したがって、勾配ベクトル場は：</span>
+                                <div class="step-math">
+                                    $$\nabla f = 9x^2 y^2 \mathbf{i} + 6x^3 y \mathbf{j} - 3\cos(3z)\mathbf{k}$$
+                                </div>
+                            </li>
+                            <li class="solution-step">
+                                <span class="step-label">3. 点 $(1, 2, \pi/3)$ を代入すると：</span>
+                                <div class="step-math">
+                                    $$\nabla f(1, 2, \pi/3) = 36 \mathbf{i} + 12 \mathbf{j} + 3 \mathbf{k} = (36, 12, 3)$$
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ⑤ 【試験直前チェック・指導ポイント】 -->
+                <section class="card-block block-check">
+                    <div class="block-header">
+                        <span class="block-tag">💡 試験直前チェック・指導ポイント</span>
+                    </div>
+                    <div class="check-content">
+                        各変数の偏微分で他変数を定数扱いすることを徹底しよう。
+                    </div>
+                </section>
+
+                <!-- ⑥ フッター情報 -->
+                <footer class="card-footer">
+                    <span class="footer-left">大学数学演習：解析学Ⅰ 完全マスタープリント集（全100枚）</span>
+                    <span class="footer-right">Page No. 002 / 100</span>
+                </footer>
+
+            </div>
+        </article>
+
+    </div>
+
+</body>
+</html>
